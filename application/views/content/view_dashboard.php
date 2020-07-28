@@ -4,9 +4,8 @@
 		
 		<div class="row">	
 		<?php 
-			foreach ($dev_qty as $value){
-			var_dump($value);
-		}
+			var_dump($machine_type_desc);
+		
 		 ?> 	
 		</div>
 	</div>

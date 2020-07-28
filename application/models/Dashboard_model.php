@@ -17,6 +17,7 @@ class Dashboard_model extends CI_Model {
 	public function items_machine_type(){
 		$sql = "SELECT DISTINCT machine_type FROM items";
 		$query = $this->db->query($sql);
+		// var_dump($query->result());
 		return $query->result();
 	}
 

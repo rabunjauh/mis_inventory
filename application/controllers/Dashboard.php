@@ -18,15 +18,26 @@ class Dashboard extends CI_Controller {
 		// 	array_push($data,["dev_qty" => $this->dashboard_model->all_items($device[$i]->machine_type), "dev_type" => $device[$i]->machine_type]);
 		// $data[] =  ["dev_qty" => $this->dashboard_model->all_items($device[$i]->machine_type), "dev_type" => $device[$i]->machine_type];
 		// }
-		// var_dump($data[0]);
-		// die;
+		// var_dump($data);
+		$data['machine_type_desc'] = $this->dashboard_model->items_machine_type();
+		$machine = $data['machine_type_desc'];
+		
+		// foreach ($machine as $value) {
+		// 	// echo $value->machine_type . "=" . $this->dashboard_model->all_items($value->machine_type) . "<br>";	
+		// 	array_push($)		
+		// }
+
+		// $data['qty'] = 10;
+		// $data['machine_type'] = "laptop";
+		var_dump($machine);die;
+		die;
 		$data['title'] = 'Dashboard';
 		$data['header'] = $this->load->view('header/head', '', TRUE);
 		$data['navigation'] = $this->load->view('header/navigation', $data, TRUE);
 		// $data['all_devices'] =
 		// $all_devices_qty = [];
 		// $all_devices_type = [];		
-		// $data['all_desktop'] = $this->dashboard_model->all_items($desktop);		
+		// $data['all_desktop'] = $this->dashboard_model->all_items('desktop');		
 		// $data['all_laptop'] = $this->dashboard_model->all_items('laptop');
 				
 		// $data['borrowed_desktop'] = $this->dashboard_model->borrow_items($desktop);		
