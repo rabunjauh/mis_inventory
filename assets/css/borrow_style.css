@@ -1,0 +1,145 @@
+.section-mid {
+  background-color: #949393;
+  margin-bottom: 10px;
+  height: 10px;
+}
+
+
+.borderTable{
+    border-collapse: collapse;
+    margin: 10px 15px;
+    width: 97.2%;
+}
+
+.borderTable th {
+    border: 1px solid black;
+    padding: 3px;
+}
+
+.borderTable td {
+    border: 1px solid black;
+    padding: 3px;
+}
+.box-body{
+    margin-bottom : 20px!important;
+}
+.header-text{
+  margin: 15px;
+  text-decoration: underline;
+}
+.content-table td, th{
+  padding-bottom: 10px !important;
+}
+.section-header {
+  background-color: #949393;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+.box-header{
+  font-size: 20px;
+  text-align: right;
+  margin-bottom: 10px;
+}
+.aggrement{
+  border: solid 1px;
+  padding: 3px;
+  margin: 0px 15px;
+  text-align: center;
+}
+
+.footer-table td{
+  padding: 3px;
+}
+
+.footer-space{
+  width: 1%;
+}
+
+.footer-text{
+  border-bottom: solid 1px ;
+  width: 25%;
+}
+
+.footer-first{
+  width: 15%;
+  text-align: right;
+}
+
+.footer-signature{
+  padding-top: 50px !important;
+  border-bottom: solid 1px ;
+  width: 25%;
+}
+
+.content-table{
+  /*border: solid 1px;*/
+  margin: 10px 15px;
+  width: 97.2%;
+}
+
+.content-table td{
+  padding: 3px;
+}
+
+.content-space{
+  width: 1%;
+}
+
+.content-text{
+  border-bottom: solid 1px ;
+  width: 25%;
+}
+
+.content-remark{
+  border-bottom: solid 1px ;
+  width: 60%;
+}
+
+.content-first{
+  width: 20%;
+}
+
+.software-text{
+  border-bottom: solid 1px ;
+  width: 49%;
+}
+.software-first{
+  border-bottom: solid 1px ;
+  width: 8%;
+}
+.software-code{
+  border-bottom: solid 1px ;
+  width: 20%;
+}
+.software-space{
+  width: 2%;
+}
+
+.accesories-text{
+  border-bottom: solid 1px ;
+  width: 49%;
+}
+.accesories-first{
+  border-bottom: solid 1px ;
+  width: 10%;
+}
+.accesories-code{
+  border-bottom: solid 1px ;
+  width: 25%;
+}
+.accesories-space{
+  width: 2%;
+}
+
+.section-footer {
+  background-color: #949393;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+
+
+
+
+
+
+.pagebreak { page-break-before: always; }

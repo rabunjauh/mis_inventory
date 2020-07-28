@@ -1,0 +1,38 @@
+item_calibration_status
+0 : No Calibration
+1 : Calibration
+
+item_material_status
+0: Consumable
+1: Stock 
+
+borrow_status
+0: pending
+1: returned
+
+
+
+
+Home : Default : Consumable Item
+
+
+Tambah Menu : Stock Item -->  Maintenance (status, date), calibration(status, date) , Borrow
+		Menu untuk cari dan export
+
+
+Invoices --> Rubah jadi Transaction
+
+
+View Invoice :  Remove : Price
+
+
+Invoice From --> From
+Purchased By --> Taken By
+
+Inventory out and in Remove Price
+
+
+Menu : Borrow --> Add, edit, delete, print, view
+
+
+

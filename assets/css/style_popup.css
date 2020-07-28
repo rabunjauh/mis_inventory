@@ -1,0 +1,491 @@
+body {
+	font-family: Verdana, Helvetica; 
+	font-size: 10px; 
+	color:#444;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	padding:0;
+	height:100%;
+	background-repeat:repeat-x;
+	background-color:#fff;
+}
+
+th   {  font-family: Verdana, Helvetica; font-weight: bold; font-size: 12px; background-color: #D3DCE3;}
+td   {  font-family: Verdana, Helvetica; font-size: 10px;}
+form   {  font-family: Verdana, Helvetica; font-size: 10px}
+h1   {  font-family: Verdana, Helvetica; font-size: 10px; font-weight: bold}
+h3   {  font-family: Verdana, Helvetica;
+		font-size: 13px;
+		font-weight: bold;
+		color: #6b98a8;
+		margin: 0;
+		padding: 5px 0 10px 0;
+		white-space: nowrap;
+}
+a:link    {  font-family: Verdana, Helvetica; font-size: 10px; text-decoration: none; color: #006699;}
+a:visited {  font-family: Verdana, Helvetica; font-size: 10px; text-decoration: none; color: #006699;}
+a:hover   {  font-family: Verdana, Helvetica; font-size: 10px; text-decoration: underline; color: #003366;}
+a:link.nav {  font-family: Verdana, Helvetica; color: #000000;}
+a:visited.nav {  font-family: Verdana, Helvetica; color: #000000;}
+a:hover.nav {  font-family: Verdana, Helvetica; color: red;}
+.nav {  font-family: Verdana, Helvetica; color: #000000;}
+img{ border-style:none; }
+.choose { 
+	  font-size: 10px; 
+	  font-style: normal; 
+	  border:none; 
+	  background:url(../images/browse.png) no-repeat;
+	  font-family: Verdana, Arial, Helvetica, sans-serif; 
+	  color:#ccc;
+}
+#lbl_error_msg{
+	font-size:small;
+	color:#FF0000;	
+	font-weight:bold;
+	
+}
+.style2 {	color: #FFFFFF;
+	font-weight: bold;
+}
+.style20 {color: #000000}
+.style24 {
+	font-size: 10px;
+	color: #999999;
+}
+
+.form1 {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-style: normal; color: #000033; border: #999999; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; background-color: #eee; width:210px;}
+.form1_disabled {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-style: normal; color: #000033; border: #999999; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; background-color: #333; width:210px;}
+.form_small {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-style: normal; color: #000033; border: #999999; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; background-color: #eee; width:50px;}
+.form_small1 {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-style: normal; color: #000033; border: #999999; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; background-color: #eee; width:40px;}
+.btn {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-style: normal; color: #fff; border: #ccc; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; background-color: #000;}
+
+.style28 {font-size: 10px; font-style: normal; border: #666; border-style: dotted; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; background-color: #000; font-family: Verdana, Arial, Helvetica, sans-serif; color:#ccc;}
+
+.style29 {font-size: 10px; font-style: normal; border: #666; border-style: dotted; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; background-color: #333; font-family: Verdana, Arial, Helvetica, sans-serif; color:#ccc;}
+
+.style30 {font-size: 10px; font-style: normal; border:none; background:url(idobi/images/browse.png) no-repeat;font-family: Verdana, Arial, Helvetica, sans-serif; color:#ccc; }
+
+.style4 {color: #666666}
+
+.link1 a:link {text-decoration : none;color:#000000;}
+.link1 a:visited {text-decoration : none;color:#000000;}
+.link1 a:hover {text-decoration: underline;color:#000000;}
+
+.link2 a:link {text-decoration :none;color:lightblue; font-size:11px;}
+.link2 a:visited {text-decoration : none;color:lightblue; font-size:11px;}
+.link2 a:hover {text-decoration: underline;color:white; font-size:11px;}
+
+.link3 a:link {text-decoration :none;color:#ccc; font-size:10px}
+.link3 a:visited {text-decoration : none;color:#ccc; font-size:10px}
+.link3 a:hover {text-decoration: underline;color:#ffffff; font-size:10px}
+
+.link4 a:link {text-decoration :none;color:#fff; font-size:10px}
+.link4 a:visited {text-decoration :none;color:#fff; font-size:10px}
+.link4 a:hover {text-decoration: underline;color:#ff9900; font-size:10px}
+
+#link_dash a {font-size: 10px; font-style: normal; border: #666;background-color: #333; font-family: Verdana, Arial, Helvetica, sans-serif; color: #FFF;}
+#link_dash a:hover {font-size: 10px; font-style: normal; text-decoration:none; border: #666; border-style: none; background-color: #99CCFF; font-family: Verdana, Arial, Helvetica, sans-serif; color:#333;}
+
+#menu {
+	float: left;
+	width: 570px;
+	height: 55px;
+	margin-top: 10px;
+	
+	
+}
+#menu ul {
+	margin: 0;
+	padding: 0px 0px 0px 90px;
+	list-style: none;
+	line-height: normal;
+	margin-left: 10px;
+}
+			
+#menu li {
+	display: inline;
+	text-align: center;
+}
+
+#menu a {
+	display: block;
+	float: left;
+	height: 18px;
+	padding: 18px 20px 18px 20px;
+	text-decoration: none;
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #464E53;
+	background-color: #CCC;
+	
+}
+
+#menu a:hover, #menu .active a {
+	background: #06F;
+	color: #FFFFFF;
+}
+
+#color_field{
+	position: relative;
+	margin:0px 5px;	
+	height: 10px;
+	width: 10px;
+	display:inline-block;
+}
+
+.pag_link{
+background:#f8f8f8;
+border:#EBEBEB 1px solid;
+padding:3px 8px;
+margin-left:3px;
+margin-right:3px;
+color:#000000;
+}
+.pag_link_cur{
+background:#AAAAAA;
+border:#f8f8f8 1px solid;
+padding:3px 8px;
+margin-right:3px;
+margin-left:3px;
+color:#000000;
+}
+.paging{
+margin-right:10px;
+padding-bottom:10px;
+padding-top:10px;
+margin-bottom:10px;
+text-align:right;
+}
+.paging a{
+border:none;
+color:#000;
+}
+.paging a:hover{
+text-decoration:underline;
+}
+
+div.notification { 
+	  margin: 0 0 10px 0;
+	  padding: 5px 20px;
+	  background-color: #FFC;
+}
+div.notification ul{
+	padding:0px 25px;
+}
+div.notification p { 
+	 margin: 0;
+}
+div.notification p em { 
+	 color: #C00; 
+	 font-style: normal; 
+	 font-weight: bold; 
+}
+em { 
+	 color: #C00; 
+	 font-style: normal; 
+	 font-weight: bold; 
+}
+div.errors,div.errors_add_attach { 
+	  margin: 0 0 10px 0;
+	  padding: 5px 20px;
+	  background-color: #FFC;
+}
+div.errors ul,div.errors_add_attach ul{
+	padding:0px 25px;
+}
+div.errors p,div.errors_add_attach p { 
+	 margin: 0;
+}
+div.errors p em,div.errors_add_attach p em { 
+	 color: #C00; 
+	 font-style: normal; 
+	 font-weight: bold; 
+}
+input[type="text"].error,input[type="password"].error,select.error,textarea.error { 
+	  border-color: #C00; 
+	  background-color: #FEF; 
+}
+fieldset { 
+	  margin: 10px 0; 
+	  padding: 10px; 
+	  border: #333 1px solid; 
+}
+legend { 
+	  font-weight: bold; 
+	  color: #666; 
+}
+fieldset div { 
+	  padding: 0.25em 0; 
+}
+.btnadd 
+{
+	font-size: 10px; font-style: normal; 
+	border:none; background:url(../images/plus.png) no-repeat;
+	font-family: Verdana, Arial, Helvetica, sans-serif; color:#ccc; 
+}
+.btnremove
+{
+	font-size: 10px; font-style: normal; 
+	border:none; background:url(../images/remove.gif) no-repeat;
+	font-family: Verdana, Arial, Helvetica, sans-serif; color:#ccc; 
+}
+.btnedit 
+{
+	font-size: 10px; font-style: normal; 
+	border:none; background:url(../images/edit.png) no-repeat;
+	font-family: Verdana, Arial, Helvetica, sans-serif; color:#ccc; 
+}
+.btndelete 
+{
+	font-size: 10px; font-style: normal; 
+	border:none; background:url(../images/delete.png) no-repeat;
+	font-family: Verdana, Arial, Helvetica, sans-serif; color:#ccc; 
+}
+.add {
+    background: url("../images/add.gif") no-repeat scroll left center transparent;
+    color: #0000FF;
+    padding-left: 15px;
+    text-decoration: none;
+}
+.delete {
+    background: url("../images/remove.gif") no-repeat scroll left center transparent;
+    color: #FF0000;
+    padding-left: 15px;
+    text-decoration: none;
+}
+.btnsave 
+{
+	font-size: 10px; font-style: normal; 
+	border:none; background:url(../images/envelope.png) no-repeat;
+	font-family: Verdana, Arial, Helvetica, sans-serif; color:#ccc; 
+}
+
+.borders {
+ border-left: dotted 2px #333; 
+ border-bottom:none; 
+ border-right:none;
+ border-top:none; 
+ padding:0px 0px 0px 0px; 
+ width: auto;
+ margin:0px 0px 0px 0px;
+}
+
+.borders a.menuitem{
+background: none;
+font: bold 10px Geneva, Arial, Helvetica, sans-serif;
+color: #ccc;
+display: block;
+position: relative; /*To help in the anchoring of the ".statusicon" icon image*/
+width: auto;
+padding: 9px 0; 
+padding-left:10px; 
+padding-right:10px;
+height:20px;
+text-decoration: none;
+}
+
+.borders a.menuitem2{
+background-color:#333;
+font: bold 10px Geneva, Arial, Helvetica, sans-serif;
+/*color: #ff9900;*/
+color: #3FC;
+display: block;
+position: relative; /*To help in the anchoring of the ".statusicon" icon image*/
+width: auto;
+padding: 9px 0; 
+padding-left:10px; 
+padding-right:10px;
+height:20px;
+text-decoration: none;
+}
+
+.borders2 a.menuitem2{
+background-color:#333;
+font: bold 10px Geneva, Arial, Helvetica, sans-serif;
+color: #99CCFF;
+display: block;
+position: relative; /*To help in the anchoring of the ".statusicon" icon image*/
+width: 550px;
+padding: 9px 0; 
+padding-left:10px; 
+padding-right:10px;
+text-decoration: none;
+}
+
+
+.borders a.menuitem:visited, .glossymenu .menuitem:active{
+color: #ccc;
+
+}
+
+.borders a.menuitem:hover{
+background-color:#333; 
+color:#3FC;
+
+}
+
+.borders2 {
+border-left: dotted 2px #333; 
+border-right: dotted 2px #333; 
+border-bottom:none; 
+border-top:none; 
+padding:0px; 
+width: auto; 
+height : 40px;
+max-height:40px;
+margin:0px;
+}
+
+.borders2 a.menuitem{
+background: none;
+font: bold 10px Geneva, Arial, Helvetica, sans-serif;
+color: #ccc;
+display: block;
+position: relative; /*To help in the anchoring of the ".statusicon" icon image*/
+width: auto;
+padding: 9px 0; 
+padding-left:10px; 
+padding-right:10px;
+text-decoration: none;
+}
+
+
+.borders2 a.menuitem:visited, .glossymenu .menuitem:active{
+color: #ccc;
+}
+
+.borders2 a.menuitem:hover{
+background-color:#333; 
+color:#99CCFF;
+}
+.style3 {
+	font-size: 10px;
+	color: #999999;
+}
+#link9 a{
+	text-decoration :none;
+	color: #FFFF00; 
+	font-size:10px;
+	}
+#link9 a:hover {
+	text-decoration: underline;
+	color: #FFFFFF; 
+	font-size:10px;
+	}
+
+.pagination {
+  display: inline-block;
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 4px;
+}
+.pagination > li {
+  display: inline;
+}
+.pagination > li > a,
+.pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: #337ab7;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+.pagination > li:first-child > a,
+.pagination > li:first-child > span {
+  margin-left: 0;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  color: #23527c;
+  background-color: #eee;
+  border-color: #ddd;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  z-index: 2;
+  color: #fff;
+  cursor: default;
+  background-color: #337ab7;
+  border-color: #337ab7;
+}
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+  color: #777;
+  cursor: not-allowed;
+  background-color: #fff;
+  border-color: #ddd;
+}
+.pagination-lg > li > a,
+.pagination-lg > li > span {
+  padding: 10px 16px;
+  font-size: 18px;
+}
+.pagination-lg > li:first-child > a,
+.pagination-lg > li:first-child > span {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.pagination-lg > li:last-child > a,
+.pagination-lg > li:last-child > span {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.pagination-sm > li > a,
+.pagination-sm > li > span {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+.pagination-sm > li:first-child > a,
+.pagination-sm > li:first-child > span {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.pagination-sm > li:last-child > a,
+.pagination-sm > li:last-child > span {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+.sr-only-focusable:active,
+.sr-only-focusable:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+}
