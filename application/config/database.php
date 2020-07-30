@@ -36,7 +36,7 @@
 
 // The following values will probably need to be changed.
 $db['default']['username'] = "root";
-$db['default']['password'] = "Megaron08";
+$db['default']['password'] = "";
 $db['default']['database'] = "mis_inventory";
 
 // The following values can probably stay the same.

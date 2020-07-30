@@ -228,7 +228,7 @@ $str .= "]";
                             <?php if (!empty($costcenter)): ?>
                                 <?php foreach ($costcenter as $costcenter): ?>
                                     <tr>
-                                    	<td><? echo $costcenter->cost_center_uid; ?></td>
+                                    	<td><?php echo $costcenter->cost_center_uid; ?></td>
                                         <td>
                                             <a href="#" data-name="cost_center" data-type="text" data-url="<?= base_url('settings/update_costcenter'); ?>" data-pk="<?= $costcenter->cost_center_id; ?>" class="data-modify-<?= $costcenter->cost_center_id; ?> no-style"><?= $costcenter->cost_center; ?></a>
                                         </td>
@@ -285,7 +285,7 @@ $str .= "]";
                             <?php if (!empty($project)): ?>
                                 <?php foreach ($project as $project): ?>
                                     <tr>
-                                    	<td><? echo $project->project_uid; ?></td>
+                                    	<td><?php echo $project->project_uid; ?></td>
                                         <td>
                                             <a href="#" data-name="project_name" data-type="text" data-url="<?= base_url('settings/update_project'); ?>" data-pk="<?= $project->project_id; ?>" class="data-modify-<?= $project->project_id; ?> no-style"><?= $project->project_name; ?></a>
                                         </td>
