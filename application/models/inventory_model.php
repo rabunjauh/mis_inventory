@@ -131,7 +131,7 @@ class Inventory_model extends CI_Model {
     public function fetch_data_inventory_search($limit, $offset, $type,$txtsearchby,$txtsearch)
     {
         if ($type == 'inventory') {
-            $this->db->select('*')
+            $this->db->select('items.*,tbl_measurement.*,category.*')
             ->join('inventory', 'inventory.item_id = items.item_id', 'left')
             ->join('tbl_measurement', 'tbl_measurement.measurement_id = items.measurement_id', 'left')
             ->join('category', 'items.cat_id = category.cat_id', 'left');
@@ -359,7 +359,7 @@ class Inventory_model extends CI_Model {
         $txtactualdate = $this->input->post('txtactualdate', TRUE);
         $exp = explode("/",$txtactualdate);
         $txtactualdate = $exp["2"]."-".$exp[1]."-".$exp[0];
-        
+
         $ids = '';
         $u_price = '';
         $qtt = '';
@@ -374,7 +374,8 @@ class Inventory_model extends CI_Model {
         $item_in_id = $this->db->insert_id();
 
         foreach ($items as $key => $item) { 
-            $i = 0;
+			$i = 0;
+			
             if($items[$key] AND ($items[$key] != 0) AND (is_numeric($items[$key]))){
                 if($quantity[$key] AND ($quantity[$key] != 0) AND (is_numeric($quantity[$key]))){
                     foreach ($inventories as $inventory) {
@@ -405,7 +406,6 @@ class Inventory_model extends CI_Model {
                 }
             }
         }
-
         return TRUE;
     }
 
@@ -626,18 +626,5 @@ class Inventory_model extends CI_Model {
             return $count;
         }
 
-    function sum_inventory($category){
-        // var_dump($category);die;
-        $sql = "SELECT sum(inventory.inventory_quantity) AS summaryOfInventory FROM inventory LEFT JOIN items ON inventory.item_id = items.item_id join category ON items.cat_id = category.cat_id WHERE items.cat_id = $category";
-        // echo $sql;die;
-        $query = $this->db->query($sql);
-      return $query->row();
-    } 
 
-    public function sumTotalByType($type){
-        $sql = "SELECT sum(inventory.inventory_quantity) AS summaryOfInventory FROM inventory LEFT JOIN items ON inventory.item_id = items.item_id WHERE items.machine_type = '$type'";
-        $query = $this->db->query($sql);
-        return $query->row();
-    } 
-
-}
+    }

@@ -12,14 +12,9 @@ class Item_model extends CI_Model {
                 ->from('items')
                 ->join('category', 'items.cat_id = category.cat_id','left')
                 ->join('tbl_measurement', 'items.measurement_id = tbl_measurement.measurement_id','left');
+		$this->db->order_by("items.item_id", "ASC");		
         $result = $this->db->get()->result();
         return $result;
-    }
-
-    public function summary_count($type){
-      $sql = "SELECT count(item_id) as total FROM items WHERE cat_id = $type";  
-      $query = $this->db->query($sql);
-      return $query->row()->total;
     }
 
     public function record_count($type)
@@ -126,20 +121,7 @@ class Item_model extends CI_Model {
 
     public function get_categories()
     {
-      $this->db->select('*')->from('category');
-      $result = $this->db->get()->result();
-
-      return $result;
-      //  return $this->db->get('category')->result();
-    }
-
-    public function getMachineType()
-    {
-      $this->db->select('*')->from('machinetype');
-      $result = $this->db->get()->result();
-
-      return $result;
-      //  return $this->db->get('category')->result();
+        return $this->db->get('category')->result();
     }
 
     public function get_items()
@@ -304,6 +286,7 @@ class Item_model extends CI_Model {
     public function update_item($input, $id)
     {
         $info['cat_id'] = $input['category'];
+		$info['item_code'] = $input['item_code'];
         $info['item_name'] = $input['name'];
         $info['measurement_id'] = $input['measurement_id'];
         $info['item_description'] = $input['description'];
@@ -355,11 +338,5 @@ class Item_model extends CI_Model {
         } else {
             return FALSE;
         }
-    }
-
-    public function get_item_unduplicated(){
-      $sql = "SELECT DISTINCT machine_type FROM items WHERE machine_type != '' LIMIT 10";
-      $query = $this->db->query($sql);
-      return $query->result(); 
     }
 }

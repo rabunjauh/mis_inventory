@@ -10,7 +10,7 @@ class Inventory extends CI_Controller {
             redirect(base_url('login'));
         }
     }
-    
+
     public function index()
     {
         $data = array();
@@ -257,7 +257,6 @@ class Inventory extends CI_Controller {
         $data['getdepartment_list'] = $this->inventory_model->get_department_list();
         $data['offset'] = $this->uri->segment(5);
         $data['search_value'] = $txtsearch;
-        // var_dump($txtsearch);die;
         $data['search_by'] = $txtsearchby;
         $this->load->view('content/view_employee', $data);
     }
@@ -438,7 +437,6 @@ class Inventory extends CI_Controller {
     }
 
     public function browse_item($type)
-    // echo $type;die;
     {
         $data = array();
         $config = array();

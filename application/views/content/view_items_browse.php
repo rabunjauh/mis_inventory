@@ -19,6 +19,7 @@
 	function send_item(code,desc,item_id){
 		var this_ = window.opener;
 		var type_input = this_.$('#type_input').val();
+		console.log(type_input);
 		if (type_input == 'item') {
 			this_.$('#item_id').val(item_id);
 			this_.$('#item_code').val(code);

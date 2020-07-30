@@ -1,6 +1,6 @@
 <script src="<?php echo prefix_url;?>assets/js/jquery.js" type="text/javascript"></script>
-<!-- <script src="<?php echo prefix_url;?>assets/js/bootstrap-datepicker.js" type="text/javascript"></script> -->
-<!-- <link rel="stylesheet" type="text/css" href="<?php echo prefix_url;?>assets/css/datepicker.css" /> -->
+<script src="<?php echo prefix_url;?>assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo prefix_url;?>assets/css/datepicker.css" />
 
 <script>
 

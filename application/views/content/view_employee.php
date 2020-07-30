@@ -68,6 +68,8 @@
 			</td>
 			<td>
 				<br /><div align="right"><button class="style29" onclick="window.close();">Close Window</button></div>
+			</td>
+		</tr>
 		<tr>
 			<td><br /></td>
 		</tr>
@@ -192,7 +194,7 @@
 										$bg="bgcolor=\"#eeeeee\"";
 									}
 									?>
-									<tr <?php echo $bg; ?> style="cursor:pointer;" onmouseover="ChangeColor(this, true);" onmouseout="ChangeColor(this, false);" onClick="send_emp('<?php  echo $item->fingerid;?>','<?php echo $item->employeename; ?>')">
+									<tr <?php echo $bg; ?> style="cursor:pointer;" onmouseover="ChangeColor(this, true);" onmouseout="ChangeColor(this, false);" onClick="send_emp('<?php  echo $item->fingerid;?>','<?php echo addslashes($item->employeename); ?>')">
 										<td><?php echo ($offset+$a);  ?></td>
 										<td align="center"><?php echo $item->employeeno;?></td>
 										<td align="center"><?php echo $item->employeename;?></td>

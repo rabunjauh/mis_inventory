@@ -14,19 +14,8 @@ class Borrow_model extends CI_Model {
     return $query->row()->total;
   }
 
-   public function get_id_count_borrow($type = false)
-  {
-          
-      $sql = "SELECT items.cat_id as borrowed FROM items join item_borrow on items.item_id = item_borrow.item_id WHERE item_borrow.dlt = 0 AND items.cat_id = $type";
-
-    // echo $sql;die;
-    $query = $this->db->query($sql);
-    return $query->result();
-  }
-
-
   public function fetch_data_borrow($limit, $offset)
-  {   
+  {
     $sql = "SELECT ib.*,wh.warehouse_name,us.user_full_name, pj.project_name,
     (SELECT employeename FROM wasco_fingerman.tblmas_employee WHERE fingerid=ib.taken_by_uid)AS employee_name
     FROM item_borrow ib
@@ -34,9 +23,8 @@ class Borrow_model extends CI_Model {
     LEFT OUTER JOIN  project pj ON pj.project_uid = ib.project_uid
     LEFT OUTER JOIN  user us ON us.user_id = ib.created_by
     WHERE ib.dlt = 0";
-     
+
     $sql .= " ORDER BY ib.borrow_id DESC";
-    
     if ($limit) {
       if(!$offset){
         $sql .= " LIMIT $limit";
@@ -44,6 +32,7 @@ class Borrow_model extends CI_Model {
         $sql .= " LIMIT $limit OFFSET $offset";
       }
     }
+
     $query = $this->db->query($sql);
     return $query->result();
   }
@@ -369,17 +358,23 @@ class Borrow_model extends CI_Model {
   {
     $count = sizeof($arrId);
     $i = 1;
-    $sql = "DELETE FROM item_borrow_detail WHERE borrow_id = '$borrowId' AND borrow_detail_id NOT IN ('";
-    foreach ($arrId as $value) {
-      if ($count == $i) {
-        $sql .= $value."')";
-      }else {
-        $sql .= $value."','";
-      }
-      $i++;
-    }
-    $query = $this->db->query($sql);
-    return $query;
+	
+	if(count($arrId) > 0){
+	
+		$sql = "DELETE FROM item_borrow_detail WHERE borrow_id = '$borrowId' AND borrow_detail_id NOT IN ('";
+		foreach ($arrId as $value) {
+		  if ($count == $i) {
+			$sql .= $value."')";
+		  }else {
+			$sql .= $value."','";
+		  }
+		  $i++;
+		}
+		$query = $this->db->query($sql);
+		return $query;
+	}else{
+		return 1;
+	}
   }
 
   public function get_user_by_fingerid($id)
@@ -390,46 +385,6 @@ class Borrow_model extends CI_Model {
     $result = $this->db->get()->row();
     return $result;
   }
-
-public function count_borrow_id($type = false)
-  {
-    $sql = "SELECT COUNT(items.item_id) as borrowed
-     FROM item_borrow 
-     LEFT OUTER JOIN items ON item_borrow.item_id = items.item_id 
-     WHERE items.machine_type = '$type' 
-     ORDER BY item_borrow.item_id";
-
-    // echo $sql;die;
-    $query = $this->db->query($sql);
-    return $query->row()->borrowed;
-  }
-
-  public function fetch_data_borrow_id($type = false, $limit, $offset)
-  {
-     $sql = "SELECT items.service_tag, items.item_description, items.machine_type, items.item_name, 
-     (SELECT employeename FROM wasco_fingerman.tblmas_employee WHERE fingerid=item_borrow.taken_by_uid)AS employee_name 
-     FROM item_borrow 
-     LEFT OUTER JOIN items ON item_borrow.item_id = items.item_id 
-     WHERE items.machine_type = '$type' 
-     ORDER BY item_borrow.item_id";
-
-    if ($limit) {
-      if(!$offset){
-        $sql .= " LIMIT $limit";
-      }else{
-        $sql .= " LIMIT $limit OFFSET $offset";
-      }
-    }
-    // echo $sql;die;
-    $query = $this->db->query($sql);
-    return $query->result();
-  }
-
-  public function sumBorrowByType($type){
-        $sql = "SELECT sum(item_borrow.borrow_status) AS summaryOfBorrow FROM item_borrow LEFT JOIN items ON item_borrow.item_id = items.item_id WHERE item_borrow.borrow_status = 1 AND items.machine_type = '$type'";
-        $query = $this->db->query($sql);
-        return $query->row();
-    } 
 
 }
 

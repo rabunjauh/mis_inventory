@@ -366,14 +366,17 @@ class Borrow extends CI_Controller {
         }
         //delete
       }
+	  
+	  
+	  
       $deleteDetails = $this->borrow_model->removeBorrowDetails($tmpID,$id);
       $i = $detailsCount;
       //add
       for ($i; $i < sizeof($item_id); $i++) {
         $inventory = $this->inventory_model->get_inventory_by_item($item_id[$i]);
-		echo "inventory_quantity:".$inventory->inventory_quantity."<br>";
-		echo "quantities:".$quantities[$i]."<br>";
-		echo "item_id:".$item_id[$i]."<br>";
+		//echo "inventory_quantity:".$inventory->inventory_quantity."<br>";
+		//echo "quantities:".$quantities[$i]."<br>";
+		//echo "item_id:".$item_id[$i]."<br>";
         if ($inventory && $inventory->inventory_quantity >= $quantities[$i]) {
           $tmp['item_id'] = $item_id[$i];
           $tmp['quantities'] = $quantities[$i];

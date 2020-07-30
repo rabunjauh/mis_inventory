@@ -76,6 +76,7 @@ class Items extends CI_Controller {
     $data['extra_footer'] = $this->load->view('footer/x-editable_scripts', '', TRUE);
     $data['footer'] = $this->load->view('footer/footer', '', TRUE);
     $this->load->view('main', $data);
+
   }
 
   public function consumable()
@@ -262,7 +263,6 @@ class Items extends CI_Controller {
     $data['navigation'] = $this->load->view('header/navigation', $data, TRUE);
     $data['categories'] = $this->item_model->get_categories();
     $data['measurement'] = $this->settings_model->get_measurement();
-    $data['machineType'] = $this->item_model->getMachineType();
     $data['content'] = $this->load->view('forms/form_add_item', $data, TRUE);
     $data['footer'] = $this->load->view('footer/footer', '', TRUE);
     $this->load->view('main', $data);
@@ -358,6 +358,7 @@ class Items extends CI_Controller {
           $form_info['product_key_others'] = $this->input->post('product_key_others', TRUE);
           $form_info['accessories'] = $this->input->post('accessories', TRUE);
           $form_info['predecessor'] = $this->input->post('predecessor', TRUE);
+		  $form_info['item_code'] = $this->input->post('item_code', TRUE);
           //
         }
 

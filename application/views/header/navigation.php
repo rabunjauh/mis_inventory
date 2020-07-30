@@ -1,6 +1,5 @@
 <nav class="nav">
     <ul>
-        <li><a href="<?php echo base_url('dashboard'); ?>"><i class="fa fa-dashboard fa-2x"></i><br/>Dashboard</a></li>
         <li><a href="<?php echo base_url('inventory'); ?>"><i class="fa fa-home fa-2x"></i><br/>Home</a></li>
         <li><a href="<?php echo base_url('items'); ?>"><i class="fa fa-smile-o fa-2x"></i><br/>Item List</a></li>
         <li><a href="<?php echo base_url('invoice'); ?>"><i class="fa fa-file-text fa-2x"></i><br/>Transaction</a></li>

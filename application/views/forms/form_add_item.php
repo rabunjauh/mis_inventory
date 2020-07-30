@@ -27,12 +27,6 @@
             foreach ($measurement as $value) {
                     $optionMeasurement[$value->measurement_id] = $value->measurement;
             }
-
-            $machineTypeOption = array();
-            $machineTypeOption[0] = 'Select Machine Type';
-            foreach ($machineType as $value) {
-                    $machineTypeOption[$value->machineTypeId] = $value->machineType;
-            }
             ?>
             <div class="form-group">
                 <label for="category_id" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Category: *</label>
@@ -137,20 +131,12 @@
                   <input type="text" name="express_service" id="express_service" class="form-control">
                 </div>
             </div>
-           <!--  <div class="form-group stock">
+            <div class="form-group stock">
                 <label for="machine_type" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Machine Type: *</label>
                 <div class="col-sm-6 col-xs-12">
                   <input type="text" name="machine_type" id="machine_type" class="form-control">
                 </div>
-            </div> -->
-
-             <div class="form-group">
-                <label for="machineTypeId" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Machine Type: *</label>
-                <div class="col-sm-6 col-xs-12">
-                    <?=form_dropdown('machineTypeId', $machineTypeOption, '', 'id="machineTypeId" class="form-control"') ?>
-                </div>
             </div>
-
             <div class="form-group stock">
                 <label for="model" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Model: *</label>
                 <div class="col-sm-6 col-xs-12">

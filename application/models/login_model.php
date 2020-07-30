@@ -99,4 +99,23 @@ class Login_model extends CI_Model
             }
         }
     }
+	
+	function get_sso($apikey,$username)
+	{
+		$iframesource = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);
+		
+		$query = $this->db->query("SELECT apikey,hostname
+		FROM inv_config  
+		WHERE hostname=".$this->db->escape($iframesource)." 
+		AND apikey=".$this->db->escape($apikey)."");
+		
+		if($query->num_rows() > 0)
+		{
+			return 1;
+		
+		}else{
+			// user name doesnt exist
+			return 3;
+		} 
+	}
 }
