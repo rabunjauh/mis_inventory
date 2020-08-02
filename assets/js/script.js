@@ -23,23 +23,24 @@ $(function () {
 // 	xhr.send();
 // })
 
-// $(document).ready(function(){
-// 	const baseUrl = '<?= base_url("dashboard/view_dashboard/") ?>';
-// 	$('#select_filter').change(function(){
-// 	console.log(select_filter.val());
-// 		$.ajax({
-// 			url: baseUrl,
-// 			type: 'POST',
-// 			data: {keyword: $('#select_filter').val()},
-// 			dataType: 'json',
-// 			beforeSend: function(e){
-// 				if(e && e.overrideMimeType){
-// 					e.overrideMimeType("application/json;charset=UTF-8");
-// 				}
-// 			},
-// 			success: function(response){
-				
-// 			}  
-// 		})
-// 	})
-// })
+$(document).ready(function(){
+	const baseUrl = 'http://localhost/mis_inventory/dashboard';
+	console.log(baseUrl);
+	$('#select_filter').change(function(){
+		// $.ajax({
+		// 	url: baseUrl,
+		// 	type: 'POST',
+		// 	data: {keyword: $('#select_filter').val()},
+		// 	dataType: 'json',
+		// 	beforeSend: function(e){
+		// 		if(e && e.overrideMimeType){
+		// 			e.overrideMimeType("application/json;charset=UTF-8");
+		// 		}
+		// 	},
+		// 	success: function(response){
+		// 		console.log('response');
+		// 	}  
+		// })
+		console.log($('select_filter').val());
+	})
+})
