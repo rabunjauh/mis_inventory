@@ -19,7 +19,7 @@
                             </div>
                         </div><br/><br/><br/>
                     <?php endif; ?>
-					<?= form_open(base_url('dashboard')) ?>
+					<?= form_open(base_url('dashboard/')) ?>
 						<div class="form-group">
 							<label for="select_filter">View By :</label>
 							<select name="select_filter" id="select_filter" class="form-control" required>
@@ -28,7 +28,11 @@
 								<option value="category">Category</option>
 								<option value="model">Model</option>
 							</select>
-						</div>	
+						</div>
+
+                        <div class="form-group">
+                            <button type="submit" id="select_filter_submit" name="select_filter_submit">Submit</button>
+                        </div>	
 					<?=form_close(); ?>							
                    <div id="table_all_items">
                    	 <table class="table table-bordered table-striped">
@@ -193,3 +197,25 @@
         </div><!-- .tab-content -->
     </div><!-- nav-tabs-custom -->
 </div> <!-- .box -->
+<script>
+let select_filter = document.getElementById('select_filter');
+let table_all_items = document.getElementById('table_all_items');
+const baseUrl = '<?php echo base_url("dashboard/view_dashboard") ?>';
+select_filter.addEventListener('change', function(){
+
+    //create ajax object
+    let xhr = new XMLHttpRequest();
+
+    // check if ajax is ready
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4 && xhr.status == 200){
+            console.log('ajax ok');
+            table_all_items.innerHTML = xhr.responseText;
+        }
+    }
+
+    // ajax execution
+    xhr.open('GET', baseUrl + '/' + select_filter.value, true);
+    xhr.send();
+})
+</script>
