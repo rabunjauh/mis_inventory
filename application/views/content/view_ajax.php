@@ -15,7 +15,16 @@
             ?>
                 <tr>
                     <td><?= $no; ?></td>
-                    <td><?= $all_item->machine_type; ?></td>
+                    <td>
+                        <?php
+                            if($all_item->machine_type){
+                                echo $all_item->machine_type;  
+                            }else{
+                                echo $all_item->cat_name;
+                            }  
+                        ?>
+
+                        </td>
                     <td><?= $all_item->qty; ?></td>                                    
                 </tr>
             <?php 

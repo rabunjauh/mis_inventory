@@ -2883,3 +2883,746 @@ ERROR - 2020-08-13 10:28:53 --> Severity: Notice  --> Undefined property: stdCla
 DEBUG - 2020-08-13 10:28:53 --> File loaded: application/views/content/view_ajax.php
 DEBUG - 2020-08-13 10:28:53 --> Final output sent to browser
 DEBUG - 2020-08-13 10:28:53 --> Total execution time: 0.3070
+ERROR - 2020-08-13 11:15:27 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-08-13 11:15:27 --> Config Class Initialized
+DEBUG - 2020-08-13 11:15:27 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:15:27 --> Utf8 Class Initialized
+DEBUG - 2020-08-13 11:15:27 --> UTF-8 Support Enabled
+DEBUG - 2020-08-13 11:15:27 --> URI Class Initialized
+DEBUG - 2020-08-13 11:15:27 --> Router Class Initialized
+DEBUG - 2020-08-13 11:15:27 --> Output Class Initialized
+DEBUG - 2020-08-13 11:15:27 --> Security Class Initialized
+DEBUG - 2020-08-13 11:15:27 --> Input Class Initialized
+DEBUG - 2020-08-13 11:15:27 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-08-13 11:15:27 --> Language Class Initialized
+DEBUG - 2020-08-13 11:15:27 --> Loader Class Initialized
+DEBUG - 2020-08-13 11:15:27 --> Helper loaded: url_helper
+DEBUG - 2020-08-13 11:15:27 --> Helper loaded: file_helper
+DEBUG - 2020-08-13 11:15:27 --> Helper loaded: form_helper
+DEBUG - 2020-08-13 11:15:27 --> Database Driver Class Initialized
+DEBUG - 2020-08-13 11:15:27 --> Session Class Initialized
+DEBUG - 2020-08-13 11:15:27 --> Helper loaded: string_helper
+DEBUG - 2020-08-13 11:15:27 --> Session routines successfully run
+DEBUG - 2020-08-13 11:15:27 --> XML-RPC Class Initialized
+DEBUG - 2020-08-13 11:15:27 --> Pagination Class Initialized
+DEBUG - 2020-08-13 11:15:27 --> Controller Class Initialized
+DEBUG - 2020-08-13 11:15:27 --> Model Class Initialized
+DEBUG - 2020-08-13 11:15:27 --> Model Class Initialized
+DEBUG - 2020-08-13 11:15:27 --> File loaded: application/views/header/head.php
+DEBUG - 2020-08-13 11:15:27 --> File loaded: application/views/header/navigation.php
+DEBUG - 2020-08-13 11:15:27 --> File loaded: application/views/content/view_dashboard.php
+DEBUG - 2020-08-13 11:15:27 --> File loaded: application/views/footer/footer.php
+DEBUG - 2020-08-13 11:15:27 --> File loaded: application/views/main.php
+DEBUG - 2020-08-13 11:15:27 --> Final output sent to browser
+DEBUG - 2020-08-13 11:15:27 --> Total execution time: 0.1510
+ERROR - 2020-08-13 11:30:12 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-08-13 11:30:12 --> Config Class Initialized
+DEBUG - 2020-08-13 11:30:12 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:30:12 --> Utf8 Class Initialized
+DEBUG - 2020-08-13 11:30:12 --> UTF-8 Support Enabled
+DEBUG - 2020-08-13 11:30:12 --> URI Class Initialized
+DEBUG - 2020-08-13 11:30:12 --> Router Class Initialized
+DEBUG - 2020-08-13 11:30:12 --> Output Class Initialized
+DEBUG - 2020-08-13 11:30:12 --> Security Class Initialized
+DEBUG - 2020-08-13 11:30:12 --> Input Class Initialized
+DEBUG - 2020-08-13 11:30:12 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-08-13 11:30:12 --> Language Class Initialized
+DEBUG - 2020-08-13 11:30:12 --> Loader Class Initialized
+DEBUG - 2020-08-13 11:30:12 --> Helper loaded: url_helper
+DEBUG - 2020-08-13 11:30:12 --> Helper loaded: file_helper
+DEBUG - 2020-08-13 11:30:12 --> Helper loaded: form_helper
+DEBUG - 2020-08-13 11:30:12 --> Database Driver Class Initialized
+DEBUG - 2020-08-13 11:30:12 --> Session Class Initialized
+DEBUG - 2020-08-13 11:30:12 --> Helper loaded: string_helper
+DEBUG - 2020-08-13 11:30:12 --> Session routines successfully run
+DEBUG - 2020-08-13 11:30:12 --> XML-RPC Class Initialized
+DEBUG - 2020-08-13 11:30:12 --> Pagination Class Initialized
+DEBUG - 2020-08-13 11:30:12 --> Controller Class Initialized
+DEBUG - 2020-08-13 11:30:12 --> Model Class Initialized
+DEBUG - 2020-08-13 11:30:12 --> Model Class Initialized
+DEBUG - 2020-08-13 11:30:12 --> File loaded: application/views/content/view_ajax.php
+DEBUG - 2020-08-13 11:30:12 --> Final output sent to browser
+DEBUG - 2020-08-13 11:30:12 --> Total execution time: 0.1010
+ERROR - 2020-08-13 11:30:15 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-08-13 11:30:15 --> Config Class Initialized
+DEBUG - 2020-08-13 11:30:15 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:30:15 --> Utf8 Class Initialized
+DEBUG - 2020-08-13 11:30:15 --> UTF-8 Support Enabled
+DEBUG - 2020-08-13 11:30:15 --> URI Class Initialized
+DEBUG - 2020-08-13 11:30:15 --> Router Class Initialized
+DEBUG - 2020-08-13 11:30:15 --> Output Class Initialized
+DEBUG - 2020-08-13 11:30:15 --> Security Class Initialized
+DEBUG - 2020-08-13 11:30:15 --> Input Class Initialized
+DEBUG - 2020-08-13 11:30:15 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-08-13 11:30:15 --> Language Class Initialized
+DEBUG - 2020-08-13 11:30:15 --> Loader Class Initialized
+DEBUG - 2020-08-13 11:30:15 --> Helper loaded: url_helper
+DEBUG - 2020-08-13 11:30:15 --> Helper loaded: file_helper
+DEBUG - 2020-08-13 11:30:15 --> Helper loaded: form_helper
+DEBUG - 2020-08-13 11:30:15 --> Database Driver Class Initialized
+DEBUG - 2020-08-13 11:30:15 --> Session Class Initialized
+DEBUG - 2020-08-13 11:30:15 --> Helper loaded: string_helper
+DEBUG - 2020-08-13 11:30:15 --> Session routines successfully run
+DEBUG - 2020-08-13 11:30:15 --> XML-RPC Class Initialized
+DEBUG - 2020-08-13 11:30:15 --> Pagination Class Initialized
+DEBUG - 2020-08-13 11:30:15 --> Controller Class Initialized
+DEBUG - 2020-08-13 11:30:15 --> Model Class Initialized
+DEBUG - 2020-08-13 11:30:15 --> Model Class Initialized
+ERROR - 2020-08-13 11:30:15 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 18
+ERROR - 2020-08-13 11:30:15 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 18
+ERROR - 2020-08-13 11:30:15 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 18
+ERROR - 2020-08-13 11:30:15 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 18
+ERROR - 2020-08-13 11:30:15 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 18
+ERROR - 2020-08-13 11:30:15 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 18
+ERROR - 2020-08-13 11:30:15 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 18
+ERROR - 2020-08-13 11:30:15 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 18
+ERROR - 2020-08-13 11:30:15 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 18
+ERROR - 2020-08-13 11:30:15 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 18
+ERROR - 2020-08-13 11:30:15 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 18
+DEBUG - 2020-08-13 11:30:15 --> File loaded: application/views/content/view_ajax.php
+DEBUG - 2020-08-13 11:30:15 --> Final output sent to browser
+DEBUG - 2020-08-13 11:30:15 --> Total execution time: 0.2890
+ERROR - 2020-08-13 11:32:55 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-08-13 11:32:55 --> Config Class Initialized
+DEBUG - 2020-08-13 11:32:55 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:32:55 --> Utf8 Class Initialized
+DEBUG - 2020-08-13 11:32:55 --> UTF-8 Support Enabled
+DEBUG - 2020-08-13 11:32:55 --> URI Class Initialized
+DEBUG - 2020-08-13 11:32:55 --> Router Class Initialized
+DEBUG - 2020-08-13 11:32:55 --> Output Class Initialized
+DEBUG - 2020-08-13 11:32:55 --> Security Class Initialized
+DEBUG - 2020-08-13 11:32:55 --> Input Class Initialized
+DEBUG - 2020-08-13 11:32:55 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-08-13 11:32:55 --> Language Class Initialized
+DEBUG - 2020-08-13 11:32:55 --> Loader Class Initialized
+DEBUG - 2020-08-13 11:32:55 --> Helper loaded: url_helper
+DEBUG - 2020-08-13 11:32:55 --> Helper loaded: file_helper
+DEBUG - 2020-08-13 11:32:55 --> Helper loaded: form_helper
+DEBUG - 2020-08-13 11:32:55 --> Database Driver Class Initialized
+DEBUG - 2020-08-13 11:32:55 --> Session Class Initialized
+DEBUG - 2020-08-13 11:32:55 --> Helper loaded: string_helper
+DEBUG - 2020-08-13 11:32:55 --> Session routines successfully run
+DEBUG - 2020-08-13 11:32:55 --> XML-RPC Class Initialized
+DEBUG - 2020-08-13 11:32:55 --> Pagination Class Initialized
+DEBUG - 2020-08-13 11:32:55 --> Controller Class Initialized
+DEBUG - 2020-08-13 11:32:55 --> Model Class Initialized
+DEBUG - 2020-08-13 11:32:55 --> Model Class Initialized
+DEBUG - 2020-08-13 11:32:55 --> File loaded: application/views/header/head.php
+DEBUG - 2020-08-13 11:32:55 --> File loaded: application/views/header/navigation.php
+DEBUG - 2020-08-13 11:32:55 --> File loaded: application/views/content/view_dashboard.php
+DEBUG - 2020-08-13 11:32:55 --> File loaded: application/views/footer/footer.php
+DEBUG - 2020-08-13 11:32:55 --> File loaded: application/views/main.php
+DEBUG - 2020-08-13 11:32:55 --> Final output sent to browser
+DEBUG - 2020-08-13 11:32:55 --> Total execution time: 0.2110
+ERROR - 2020-08-13 11:32:58 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-08-13 11:32:58 --> Config Class Initialized
+DEBUG - 2020-08-13 11:32:58 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:32:58 --> Utf8 Class Initialized
+DEBUG - 2020-08-13 11:32:58 --> UTF-8 Support Enabled
+DEBUG - 2020-08-13 11:32:58 --> URI Class Initialized
+DEBUG - 2020-08-13 11:32:58 --> Router Class Initialized
+DEBUG - 2020-08-13 11:32:58 --> Output Class Initialized
+DEBUG - 2020-08-13 11:32:58 --> Security Class Initialized
+DEBUG - 2020-08-13 11:32:58 --> Input Class Initialized
+DEBUG - 2020-08-13 11:32:58 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-08-13 11:32:58 --> Language Class Initialized
+DEBUG - 2020-08-13 11:32:58 --> Loader Class Initialized
+DEBUG - 2020-08-13 11:32:58 --> Helper loaded: url_helper
+DEBUG - 2020-08-13 11:32:58 --> Helper loaded: file_helper
+DEBUG - 2020-08-13 11:32:58 --> Helper loaded: form_helper
+DEBUG - 2020-08-13 11:32:58 --> Database Driver Class Initialized
+DEBUG - 2020-08-13 11:32:58 --> Session Class Initialized
+DEBUG - 2020-08-13 11:32:58 --> Helper loaded: string_helper
+DEBUG - 2020-08-13 11:32:58 --> Session routines successfully run
+DEBUG - 2020-08-13 11:32:58 --> XML-RPC Class Initialized
+DEBUG - 2020-08-13 11:32:58 --> Pagination Class Initialized
+DEBUG - 2020-08-13 11:32:58 --> Controller Class Initialized
+DEBUG - 2020-08-13 11:32:58 --> Model Class Initialized
+DEBUG - 2020-08-13 11:32:58 --> Model Class Initialized
+ERROR - 2020-08-13 11:32:58 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:32:58 --> Severity: Notice  --> Undefined property: stdClass::$category C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 23
+ERROR - 2020-08-13 11:32:58 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:32:58 --> Severity: Notice  --> Undefined property: stdClass::$category C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 23
+ERROR - 2020-08-13 11:32:58 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:32:58 --> Severity: Notice  --> Undefined property: stdClass::$category C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 23
+ERROR - 2020-08-13 11:32:58 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:32:58 --> Severity: Notice  --> Undefined property: stdClass::$category C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 23
+ERROR - 2020-08-13 11:32:58 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:32:58 --> Severity: Notice  --> Undefined property: stdClass::$category C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 23
+ERROR - 2020-08-13 11:32:58 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:32:58 --> Severity: Notice  --> Undefined property: stdClass::$category C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 23
+ERROR - 2020-08-13 11:32:58 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:32:58 --> Severity: Notice  --> Undefined property: stdClass::$category C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 23
+ERROR - 2020-08-13 11:32:58 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:32:58 --> Severity: Notice  --> Undefined property: stdClass::$category C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 23
+ERROR - 2020-08-13 11:32:58 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:32:58 --> Severity: Notice  --> Undefined property: stdClass::$category C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 23
+ERROR - 2020-08-13 11:32:58 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:32:58 --> Severity: Notice  --> Undefined property: stdClass::$category C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 23
+ERROR - 2020-08-13 11:32:58 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:32:58 --> Severity: Notice  --> Undefined property: stdClass::$category C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 23
+DEBUG - 2020-08-13 11:32:58 --> File loaded: application/views/content/view_ajax.php
+DEBUG - 2020-08-13 11:32:58 --> Final output sent to browser
+DEBUG - 2020-08-13 11:32:58 --> Total execution time: 0.3060
+ERROR - 2020-08-13 11:33:58 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-08-13 11:33:58 --> Config Class Initialized
+DEBUG - 2020-08-13 11:33:58 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:33:58 --> Utf8 Class Initialized
+DEBUG - 2020-08-13 11:33:58 --> UTF-8 Support Enabled
+DEBUG - 2020-08-13 11:33:58 --> URI Class Initialized
+DEBUG - 2020-08-13 11:33:58 --> Router Class Initialized
+DEBUG - 2020-08-13 11:33:58 --> Output Class Initialized
+DEBUG - 2020-08-13 11:33:58 --> Security Class Initialized
+DEBUG - 2020-08-13 11:33:58 --> Input Class Initialized
+DEBUG - 2020-08-13 11:33:58 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-08-13 11:33:58 --> Language Class Initialized
+DEBUG - 2020-08-13 11:33:59 --> Loader Class Initialized
+DEBUG - 2020-08-13 11:33:59 --> Helper loaded: url_helper
+DEBUG - 2020-08-13 11:33:59 --> Helper loaded: file_helper
+DEBUG - 2020-08-13 11:33:59 --> Helper loaded: form_helper
+DEBUG - 2020-08-13 11:33:59 --> Database Driver Class Initialized
+DEBUG - 2020-08-13 11:33:59 --> Session Class Initialized
+DEBUG - 2020-08-13 11:33:59 --> Helper loaded: string_helper
+DEBUG - 2020-08-13 11:33:59 --> Session routines successfully run
+DEBUG - 2020-08-13 11:33:59 --> XML-RPC Class Initialized
+DEBUG - 2020-08-13 11:33:59 --> Pagination Class Initialized
+DEBUG - 2020-08-13 11:33:59 --> Controller Class Initialized
+DEBUG - 2020-08-13 11:33:59 --> Model Class Initialized
+DEBUG - 2020-08-13 11:33:59 --> Model Class Initialized
+DEBUG - 2020-08-13 11:33:59 --> File loaded: application/views/header/head.php
+DEBUG - 2020-08-13 11:33:59 --> File loaded: application/views/header/navigation.php
+DEBUG - 2020-08-13 11:33:59 --> File loaded: application/views/content/view_dashboard.php
+DEBUG - 2020-08-13 11:33:59 --> File loaded: application/views/footer/footer.php
+DEBUG - 2020-08-13 11:33:59 --> File loaded: application/views/main.php
+DEBUG - 2020-08-13 11:33:59 --> Final output sent to browser
+DEBUG - 2020-08-13 11:33:59 --> Total execution time: 0.1710
+ERROR - 2020-08-13 11:34:01 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-08-13 11:34:01 --> Config Class Initialized
+DEBUG - 2020-08-13 11:34:01 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:34:01 --> Utf8 Class Initialized
+DEBUG - 2020-08-13 11:34:01 --> UTF-8 Support Enabled
+DEBUG - 2020-08-13 11:34:01 --> URI Class Initialized
+DEBUG - 2020-08-13 11:34:01 --> Router Class Initialized
+DEBUG - 2020-08-13 11:34:01 --> Output Class Initialized
+DEBUG - 2020-08-13 11:34:01 --> Security Class Initialized
+DEBUG - 2020-08-13 11:34:01 --> Input Class Initialized
+DEBUG - 2020-08-13 11:34:01 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-08-13 11:34:01 --> Language Class Initialized
+DEBUG - 2020-08-13 11:34:01 --> Loader Class Initialized
+DEBUG - 2020-08-13 11:34:01 --> Helper loaded: url_helper
+DEBUG - 2020-08-13 11:34:01 --> Helper loaded: file_helper
+DEBUG - 2020-08-13 11:34:01 --> Helper loaded: form_helper
+DEBUG - 2020-08-13 11:34:01 --> Database Driver Class Initialized
+DEBUG - 2020-08-13 11:34:01 --> Session Class Initialized
+DEBUG - 2020-08-13 11:34:01 --> Helper loaded: string_helper
+DEBUG - 2020-08-13 11:34:01 --> Session routines successfully run
+DEBUG - 2020-08-13 11:34:01 --> XML-RPC Class Initialized
+DEBUG - 2020-08-13 11:34:01 --> Pagination Class Initialized
+DEBUG - 2020-08-13 11:34:01 --> Controller Class Initialized
+DEBUG - 2020-08-13 11:34:01 --> Model Class Initialized
+DEBUG - 2020-08-13 11:34:01 --> Model Class Initialized
+ERROR - 2020-08-13 11:34:01 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:01 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:01 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:01 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:01 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:01 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:01 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:01 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:01 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:01 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:01 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+DEBUG - 2020-08-13 11:34:01 --> File loaded: application/views/content/view_ajax.php
+DEBUG - 2020-08-13 11:34:01 --> Final output sent to browser
+DEBUG - 2020-08-13 11:34:01 --> Total execution time: 0.2780
+ERROR - 2020-08-13 11:34:44 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-08-13 11:34:44 --> Config Class Initialized
+DEBUG - 2020-08-13 11:34:44 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:34:44 --> Utf8 Class Initialized
+DEBUG - 2020-08-13 11:34:44 --> UTF-8 Support Enabled
+DEBUG - 2020-08-13 11:34:44 --> URI Class Initialized
+DEBUG - 2020-08-13 11:34:44 --> Router Class Initialized
+DEBUG - 2020-08-13 11:34:44 --> Output Class Initialized
+DEBUG - 2020-08-13 11:34:44 --> Security Class Initialized
+DEBUG - 2020-08-13 11:34:44 --> Input Class Initialized
+DEBUG - 2020-08-13 11:34:44 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-08-13 11:34:44 --> Language Class Initialized
+DEBUG - 2020-08-13 11:34:44 --> Loader Class Initialized
+DEBUG - 2020-08-13 11:34:44 --> Helper loaded: url_helper
+DEBUG - 2020-08-13 11:34:44 --> Helper loaded: file_helper
+DEBUG - 2020-08-13 11:34:44 --> Helper loaded: form_helper
+DEBUG - 2020-08-13 11:34:44 --> Database Driver Class Initialized
+DEBUG - 2020-08-13 11:34:44 --> Session Class Initialized
+DEBUG - 2020-08-13 11:34:44 --> Helper loaded: string_helper
+DEBUG - 2020-08-13 11:34:44 --> Session routines successfully run
+DEBUG - 2020-08-13 11:34:44 --> XML-RPC Class Initialized
+DEBUG - 2020-08-13 11:34:44 --> Pagination Class Initialized
+DEBUG - 2020-08-13 11:34:44 --> Controller Class Initialized
+DEBUG - 2020-08-13 11:34:44 --> Model Class Initialized
+DEBUG - 2020-08-13 11:34:44 --> Model Class Initialized
+ERROR - 2020-08-13 11:34:44 --> Severity: Notice  --> Undefined property: stdClass::$cat_name C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 23
+ERROR - 2020-08-13 11:34:44 --> Severity: Notice  --> Undefined property: stdClass::$cat_name C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 23
+DEBUG - 2020-08-13 11:34:44 --> File loaded: application/views/content/view_ajax.php
+DEBUG - 2020-08-13 11:34:44 --> Final output sent to browser
+DEBUG - 2020-08-13 11:34:44 --> Total execution time: 0.1890
+ERROR - 2020-08-13 11:34:47 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-08-13 11:34:47 --> Config Class Initialized
+DEBUG - 2020-08-13 11:34:47 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:34:47 --> Utf8 Class Initialized
+DEBUG - 2020-08-13 11:34:47 --> UTF-8 Support Enabled
+DEBUG - 2020-08-13 11:34:47 --> URI Class Initialized
+DEBUG - 2020-08-13 11:34:47 --> Router Class Initialized
+DEBUG - 2020-08-13 11:34:47 --> Output Class Initialized
+DEBUG - 2020-08-13 11:34:47 --> Security Class Initialized
+DEBUG - 2020-08-13 11:34:47 --> Input Class Initialized
+DEBUG - 2020-08-13 11:34:47 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-08-13 11:34:47 --> Language Class Initialized
+DEBUG - 2020-08-13 11:34:47 --> Loader Class Initialized
+DEBUG - 2020-08-13 11:34:47 --> Helper loaded: url_helper
+DEBUG - 2020-08-13 11:34:47 --> Helper loaded: file_helper
+DEBUG - 2020-08-13 11:34:47 --> Helper loaded: form_helper
+DEBUG - 2020-08-13 11:34:47 --> Database Driver Class Initialized
+DEBUG - 2020-08-13 11:34:47 --> Session Class Initialized
+DEBUG - 2020-08-13 11:34:47 --> Helper loaded: string_helper
+DEBUG - 2020-08-13 11:34:47 --> Session routines successfully run
+DEBUG - 2020-08-13 11:34:47 --> XML-RPC Class Initialized
+DEBUG - 2020-08-13 11:34:47 --> Pagination Class Initialized
+DEBUG - 2020-08-13 11:34:47 --> Controller Class Initialized
+DEBUG - 2020-08-13 11:34:47 --> Model Class Initialized
+DEBUG - 2020-08-13 11:34:47 --> Model Class Initialized
+ERROR - 2020-08-13 11:34:47 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:47 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:47 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:47 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:47 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:47 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:47 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:47 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:47 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:47 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:47 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+DEBUG - 2020-08-13 11:34:47 --> File loaded: application/views/content/view_ajax.php
+DEBUG - 2020-08-13 11:34:47 --> Final output sent to browser
+DEBUG - 2020-08-13 11:34:47 --> Total execution time: 0.2820
+ERROR - 2020-08-13 11:34:49 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-08-13 11:34:49 --> Config Class Initialized
+DEBUG - 2020-08-13 11:34:49 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:34:49 --> Utf8 Class Initialized
+DEBUG - 2020-08-13 11:34:49 --> UTF-8 Support Enabled
+DEBUG - 2020-08-13 11:34:49 --> URI Class Initialized
+DEBUG - 2020-08-13 11:34:49 --> Router Class Initialized
+DEBUG - 2020-08-13 11:34:49 --> Output Class Initialized
+DEBUG - 2020-08-13 11:34:49 --> Security Class Initialized
+DEBUG - 2020-08-13 11:34:49 --> Input Class Initialized
+DEBUG - 2020-08-13 11:34:49 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-08-13 11:34:49 --> Language Class Initialized
+DEBUG - 2020-08-13 11:34:49 --> Loader Class Initialized
+DEBUG - 2020-08-13 11:34:49 --> Helper loaded: url_helper
+DEBUG - 2020-08-13 11:34:49 --> Helper loaded: file_helper
+DEBUG - 2020-08-13 11:34:49 --> Helper loaded: form_helper
+DEBUG - 2020-08-13 11:34:49 --> Database Driver Class Initialized
+DEBUG - 2020-08-13 11:34:49 --> Session Class Initialized
+DEBUG - 2020-08-13 11:34:49 --> Helper loaded: string_helper
+DEBUG - 2020-08-13 11:34:49 --> Session routines successfully run
+DEBUG - 2020-08-13 11:34:49 --> XML-RPC Class Initialized
+DEBUG - 2020-08-13 11:34:49 --> Pagination Class Initialized
+DEBUG - 2020-08-13 11:34:49 --> Controller Class Initialized
+DEBUG - 2020-08-13 11:34:49 --> Model Class Initialized
+DEBUG - 2020-08-13 11:34:49 --> Model Class Initialized
+ERROR - 2020-08-13 11:34:49 --> Severity: Notice  --> Undefined property: stdClass::$cat_name C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 23
+ERROR - 2020-08-13 11:34:49 --> Severity: Notice  --> Undefined property: stdClass::$cat_name C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 23
+DEBUG - 2020-08-13 11:34:49 --> File loaded: application/views/content/view_ajax.php
+DEBUG - 2020-08-13 11:34:49 --> Final output sent to browser
+DEBUG - 2020-08-13 11:34:49 --> Total execution time: 0.1340
+ERROR - 2020-08-13 11:34:51 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-08-13 11:34:51 --> Config Class Initialized
+DEBUG - 2020-08-13 11:34:51 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:34:51 --> Utf8 Class Initialized
+DEBUG - 2020-08-13 11:34:51 --> UTF-8 Support Enabled
+DEBUG - 2020-08-13 11:34:51 --> URI Class Initialized
+DEBUG - 2020-08-13 11:34:51 --> Router Class Initialized
+DEBUG - 2020-08-13 11:34:51 --> Output Class Initialized
+DEBUG - 2020-08-13 11:34:51 --> Security Class Initialized
+DEBUG - 2020-08-13 11:34:51 --> Input Class Initialized
+DEBUG - 2020-08-13 11:34:51 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-08-13 11:34:51 --> Language Class Initialized
+DEBUG - 2020-08-13 11:34:51 --> Loader Class Initialized
+DEBUG - 2020-08-13 11:34:51 --> Helper loaded: url_helper
+DEBUG - 2020-08-13 11:34:51 --> Helper loaded: file_helper
+DEBUG - 2020-08-13 11:34:51 --> Helper loaded: form_helper
+DEBUG - 2020-08-13 11:34:51 --> Database Driver Class Initialized
+DEBUG - 2020-08-13 11:34:51 --> Session Class Initialized
+DEBUG - 2020-08-13 11:34:51 --> Helper loaded: string_helper
+DEBUG - 2020-08-13 11:34:51 --> Session routines successfully run
+DEBUG - 2020-08-13 11:34:51 --> XML-RPC Class Initialized
+DEBUG - 2020-08-13 11:34:51 --> Pagination Class Initialized
+DEBUG - 2020-08-13 11:34:51 --> Controller Class Initialized
+DEBUG - 2020-08-13 11:34:51 --> Model Class Initialized
+DEBUG - 2020-08-13 11:34:51 --> Model Class Initialized
+ERROR - 2020-08-13 11:34:51 --> Severity: Notice  --> Undefined property: stdClass::$cat_name C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 23
+ERROR - 2020-08-13 11:34:51 --> Severity: Notice  --> Undefined property: stdClass::$cat_name C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 23
+DEBUG - 2020-08-13 11:34:51 --> File loaded: application/views/content/view_ajax.php
+DEBUG - 2020-08-13 11:34:51 --> Final output sent to browser
+DEBUG - 2020-08-13 11:34:51 --> Total execution time: 0.0940
+ERROR - 2020-08-13 11:34:53 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-08-13 11:34:53 --> Config Class Initialized
+DEBUG - 2020-08-13 11:34:53 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:34:53 --> Utf8 Class Initialized
+DEBUG - 2020-08-13 11:34:53 --> UTF-8 Support Enabled
+DEBUG - 2020-08-13 11:34:53 --> URI Class Initialized
+DEBUG - 2020-08-13 11:34:53 --> Router Class Initialized
+DEBUG - 2020-08-13 11:34:53 --> Output Class Initialized
+DEBUG - 2020-08-13 11:34:53 --> Security Class Initialized
+DEBUG - 2020-08-13 11:34:53 --> Input Class Initialized
+DEBUG - 2020-08-13 11:34:53 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-08-13 11:34:53 --> Language Class Initialized
+DEBUG - 2020-08-13 11:34:53 --> Loader Class Initialized
+DEBUG - 2020-08-13 11:34:53 --> Helper loaded: url_helper
+DEBUG - 2020-08-13 11:34:53 --> Helper loaded: file_helper
+DEBUG - 2020-08-13 11:34:53 --> Helper loaded: form_helper
+DEBUG - 2020-08-13 11:34:53 --> Database Driver Class Initialized
+DEBUG - 2020-08-13 11:34:53 --> Session Class Initialized
+DEBUG - 2020-08-13 11:34:53 --> Helper loaded: string_helper
+DEBUG - 2020-08-13 11:34:53 --> Session routines successfully run
+DEBUG - 2020-08-13 11:34:53 --> XML-RPC Class Initialized
+DEBUG - 2020-08-13 11:34:53 --> Pagination Class Initialized
+DEBUG - 2020-08-13 11:34:53 --> Controller Class Initialized
+DEBUG - 2020-08-13 11:34:53 --> Model Class Initialized
+DEBUG - 2020-08-13 11:34:53 --> Model Class Initialized
+ERROR - 2020-08-13 11:34:54 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:54 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:54 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:54 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:54 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:54 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:54 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:54 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:54 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:54 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:54 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+DEBUG - 2020-08-13 11:34:54 --> File loaded: application/views/content/view_ajax.php
+DEBUG - 2020-08-13 11:34:54 --> Final output sent to browser
+DEBUG - 2020-08-13 11:34:54 --> Total execution time: 0.2900
+ERROR - 2020-08-13 11:34:55 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-08-13 11:34:55 --> Config Class Initialized
+DEBUG - 2020-08-13 11:34:55 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:34:55 --> Utf8 Class Initialized
+DEBUG - 2020-08-13 11:34:55 --> UTF-8 Support Enabled
+DEBUG - 2020-08-13 11:34:55 --> URI Class Initialized
+DEBUG - 2020-08-13 11:34:55 --> Router Class Initialized
+DEBUG - 2020-08-13 11:34:55 --> Output Class Initialized
+DEBUG - 2020-08-13 11:34:55 --> Security Class Initialized
+DEBUG - 2020-08-13 11:34:55 --> Input Class Initialized
+DEBUG - 2020-08-13 11:34:55 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-08-13 11:34:55 --> Language Class Initialized
+DEBUG - 2020-08-13 11:34:55 --> Loader Class Initialized
+DEBUG - 2020-08-13 11:34:55 --> Helper loaded: url_helper
+DEBUG - 2020-08-13 11:34:55 --> Helper loaded: file_helper
+DEBUG - 2020-08-13 11:34:55 --> Helper loaded: form_helper
+DEBUG - 2020-08-13 11:34:55 --> Database Driver Class Initialized
+DEBUG - 2020-08-13 11:34:55 --> Session Class Initialized
+DEBUG - 2020-08-13 11:34:55 --> Helper loaded: string_helper
+DEBUG - 2020-08-13 11:34:55 --> Session routines successfully run
+DEBUG - 2020-08-13 11:34:55 --> XML-RPC Class Initialized
+DEBUG - 2020-08-13 11:34:55 --> Pagination Class Initialized
+DEBUG - 2020-08-13 11:34:55 --> Controller Class Initialized
+DEBUG - 2020-08-13 11:34:55 --> Model Class Initialized
+DEBUG - 2020-08-13 11:34:55 --> Model Class Initialized
+ERROR - 2020-08-13 11:34:55 --> Severity: Notice  --> Undefined property: stdClass::$cat_name C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 23
+ERROR - 2020-08-13 11:34:55 --> Severity: Notice  --> Undefined property: stdClass::$cat_name C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 23
+DEBUG - 2020-08-13 11:34:55 --> File loaded: application/views/content/view_ajax.php
+DEBUG - 2020-08-13 11:34:55 --> Final output sent to browser
+DEBUG - 2020-08-13 11:34:55 --> Total execution time: 0.1000
+ERROR - 2020-08-13 11:34:56 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-08-13 11:34:56 --> Config Class Initialized
+DEBUG - 2020-08-13 11:34:56 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:34:56 --> Utf8 Class Initialized
+DEBUG - 2020-08-13 11:34:56 --> UTF-8 Support Enabled
+DEBUG - 2020-08-13 11:34:56 --> URI Class Initialized
+DEBUG - 2020-08-13 11:34:56 --> Router Class Initialized
+DEBUG - 2020-08-13 11:34:56 --> Output Class Initialized
+DEBUG - 2020-08-13 11:34:56 --> Security Class Initialized
+DEBUG - 2020-08-13 11:34:56 --> Input Class Initialized
+DEBUG - 2020-08-13 11:34:56 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-08-13 11:34:56 --> Language Class Initialized
+DEBUG - 2020-08-13 11:34:56 --> Loader Class Initialized
+DEBUG - 2020-08-13 11:34:56 --> Helper loaded: url_helper
+DEBUG - 2020-08-13 11:34:56 --> Helper loaded: file_helper
+DEBUG - 2020-08-13 11:34:56 --> Helper loaded: form_helper
+DEBUG - 2020-08-13 11:34:56 --> Database Driver Class Initialized
+DEBUG - 2020-08-13 11:34:56 --> Session Class Initialized
+DEBUG - 2020-08-13 11:34:56 --> Helper loaded: string_helper
+DEBUG - 2020-08-13 11:34:56 --> Session routines successfully run
+DEBUG - 2020-08-13 11:34:56 --> XML-RPC Class Initialized
+DEBUG - 2020-08-13 11:34:56 --> Pagination Class Initialized
+DEBUG - 2020-08-13 11:34:56 --> Controller Class Initialized
+DEBUG - 2020-08-13 11:34:56 --> Model Class Initialized
+DEBUG - 2020-08-13 11:34:56 --> Model Class Initialized
+ERROR - 2020-08-13 11:34:56 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:56 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:56 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:56 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:56 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:56 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:56 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:56 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:56 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:56 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:34:56 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+DEBUG - 2020-08-13 11:34:56 --> File loaded: application/views/content/view_ajax.php
+DEBUG - 2020-08-13 11:34:56 --> Final output sent to browser
+DEBUG - 2020-08-13 11:34:56 --> Total execution time: 0.2750
+ERROR - 2020-08-13 11:34:57 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-08-13 11:34:57 --> Config Class Initialized
+DEBUG - 2020-08-13 11:34:57 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:34:57 --> Utf8 Class Initialized
+DEBUG - 2020-08-13 11:34:57 --> UTF-8 Support Enabled
+DEBUG - 2020-08-13 11:34:57 --> URI Class Initialized
+DEBUG - 2020-08-13 11:34:57 --> Router Class Initialized
+DEBUG - 2020-08-13 11:34:57 --> Output Class Initialized
+DEBUG - 2020-08-13 11:34:57 --> Security Class Initialized
+DEBUG - 2020-08-13 11:34:57 --> Input Class Initialized
+DEBUG - 2020-08-13 11:34:57 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-08-13 11:34:57 --> Language Class Initialized
+DEBUG - 2020-08-13 11:34:57 --> Loader Class Initialized
+DEBUG - 2020-08-13 11:34:57 --> Helper loaded: url_helper
+DEBUG - 2020-08-13 11:34:57 --> Helper loaded: file_helper
+DEBUG - 2020-08-13 11:34:57 --> Helper loaded: form_helper
+DEBUG - 2020-08-13 11:34:57 --> Database Driver Class Initialized
+DEBUG - 2020-08-13 11:34:57 --> Session Class Initialized
+DEBUG - 2020-08-13 11:34:57 --> Helper loaded: string_helper
+DEBUG - 2020-08-13 11:34:57 --> Session routines successfully run
+DEBUG - 2020-08-13 11:34:57 --> XML-RPC Class Initialized
+DEBUG - 2020-08-13 11:34:57 --> Pagination Class Initialized
+DEBUG - 2020-08-13 11:34:57 --> Controller Class Initialized
+DEBUG - 2020-08-13 11:34:57 --> Model Class Initialized
+DEBUG - 2020-08-13 11:34:57 --> Model Class Initialized
+ERROR - 2020-08-13 11:34:57 --> Severity: Notice  --> Undefined property: stdClass::$cat_name C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 23
+ERROR - 2020-08-13 11:34:57 --> Severity: Notice  --> Undefined property: stdClass::$cat_name C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 23
+DEBUG - 2020-08-13 11:34:57 --> File loaded: application/views/content/view_ajax.php
+DEBUG - 2020-08-13 11:34:57 --> Final output sent to browser
+DEBUG - 2020-08-13 11:34:57 --> Total execution time: 0.0730
+ERROR - 2020-08-13 11:35:03 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-08-13 11:35:03 --> Config Class Initialized
+DEBUG - 2020-08-13 11:35:03 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:35:03 --> Utf8 Class Initialized
+DEBUG - 2020-08-13 11:35:03 --> UTF-8 Support Enabled
+DEBUG - 2020-08-13 11:35:03 --> URI Class Initialized
+DEBUG - 2020-08-13 11:35:03 --> Router Class Initialized
+DEBUG - 2020-08-13 11:35:03 --> Output Class Initialized
+DEBUG - 2020-08-13 11:35:03 --> Security Class Initialized
+DEBUG - 2020-08-13 11:35:03 --> Input Class Initialized
+DEBUG - 2020-08-13 11:35:03 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-08-13 11:35:03 --> Language Class Initialized
+DEBUG - 2020-08-13 11:35:03 --> Loader Class Initialized
+DEBUG - 2020-08-13 11:35:03 --> Helper loaded: url_helper
+DEBUG - 2020-08-13 11:35:03 --> Helper loaded: file_helper
+DEBUG - 2020-08-13 11:35:03 --> Helper loaded: form_helper
+DEBUG - 2020-08-13 11:35:03 --> Database Driver Class Initialized
+DEBUG - 2020-08-13 11:35:03 --> Session Class Initialized
+DEBUG - 2020-08-13 11:35:03 --> Helper loaded: string_helper
+DEBUG - 2020-08-13 11:35:03 --> Session routines successfully run
+DEBUG - 2020-08-13 11:35:03 --> XML-RPC Class Initialized
+DEBUG - 2020-08-13 11:35:03 --> Pagination Class Initialized
+DEBUG - 2020-08-13 11:35:03 --> Controller Class Initialized
+DEBUG - 2020-08-13 11:35:03 --> Model Class Initialized
+DEBUG - 2020-08-13 11:35:03 --> Model Class Initialized
+ERROR - 2020-08-13 11:35:04 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:35:04 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:35:04 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:35:04 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:35:04 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:35:04 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:35:04 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:35:04 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:35:04 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:35:04 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:35:04 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+DEBUG - 2020-08-13 11:35:04 --> File loaded: application/views/content/view_ajax.php
+DEBUG - 2020-08-13 11:35:04 --> Final output sent to browser
+DEBUG - 2020-08-13 11:35:04 --> Total execution time: 0.2480
+ERROR - 2020-08-13 11:35:36 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-08-13 11:35:36 --> Config Class Initialized
+DEBUG - 2020-08-13 11:35:36 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:35:36 --> Utf8 Class Initialized
+DEBUG - 2020-08-13 11:35:36 --> UTF-8 Support Enabled
+DEBUG - 2020-08-13 11:35:36 --> URI Class Initialized
+DEBUG - 2020-08-13 11:35:36 --> Router Class Initialized
+DEBUG - 2020-08-13 11:35:36 --> Output Class Initialized
+DEBUG - 2020-08-13 11:35:36 --> Security Class Initialized
+DEBUG - 2020-08-13 11:35:36 --> Input Class Initialized
+DEBUG - 2020-08-13 11:35:36 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-08-13 11:35:36 --> Language Class Initialized
+DEBUG - 2020-08-13 11:35:36 --> Loader Class Initialized
+DEBUG - 2020-08-13 11:35:36 --> Helper loaded: url_helper
+DEBUG - 2020-08-13 11:35:36 --> Helper loaded: file_helper
+DEBUG - 2020-08-13 11:35:36 --> Helper loaded: form_helper
+DEBUG - 2020-08-13 11:35:36 --> Database Driver Class Initialized
+DEBUG - 2020-08-13 11:35:36 --> Session Class Initialized
+DEBUG - 2020-08-13 11:35:36 --> Helper loaded: string_helper
+DEBUG - 2020-08-13 11:35:36 --> Session routines successfully run
+DEBUG - 2020-08-13 11:35:36 --> XML-RPC Class Initialized
+DEBUG - 2020-08-13 11:35:36 --> Pagination Class Initialized
+DEBUG - 2020-08-13 11:35:36 --> Controller Class Initialized
+DEBUG - 2020-08-13 11:35:36 --> Model Class Initialized
+DEBUG - 2020-08-13 11:35:36 --> Model Class Initialized
+ERROR - 2020-08-13 11:35:36 --> Severity: Notice  --> Undefined property: stdClass::$cat_name C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 23
+ERROR - 2020-08-13 11:35:36 --> Severity: Notice  --> Undefined property: stdClass::$cat_name C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 23
+DEBUG - 2020-08-13 11:35:36 --> File loaded: application/views/content/view_ajax.php
+DEBUG - 2020-08-13 11:35:36 --> Final output sent to browser
+DEBUG - 2020-08-13 11:35:36 --> Total execution time: 0.0760
+ERROR - 2020-08-13 11:37:55 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-08-13 11:37:55 --> Config Class Initialized
+DEBUG - 2020-08-13 11:37:55 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:37:55 --> Utf8 Class Initialized
+DEBUG - 2020-08-13 11:37:55 --> UTF-8 Support Enabled
+DEBUG - 2020-08-13 11:37:55 --> URI Class Initialized
+DEBUG - 2020-08-13 11:37:55 --> Router Class Initialized
+DEBUG - 2020-08-13 11:37:55 --> Output Class Initialized
+DEBUG - 2020-08-13 11:37:55 --> Security Class Initialized
+DEBUG - 2020-08-13 11:37:55 --> Input Class Initialized
+DEBUG - 2020-08-13 11:37:55 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-08-13 11:37:55 --> Language Class Initialized
+DEBUG - 2020-08-13 11:37:55 --> Loader Class Initialized
+DEBUG - 2020-08-13 11:37:55 --> Helper loaded: url_helper
+DEBUG - 2020-08-13 11:37:55 --> Helper loaded: file_helper
+DEBUG - 2020-08-13 11:37:55 --> Helper loaded: form_helper
+DEBUG - 2020-08-13 11:37:55 --> Database Driver Class Initialized
+DEBUG - 2020-08-13 11:37:55 --> Session Class Initialized
+DEBUG - 2020-08-13 11:37:55 --> Helper loaded: string_helper
+DEBUG - 2020-08-13 11:37:55 --> Session routines successfully run
+DEBUG - 2020-08-13 11:37:55 --> XML-RPC Class Initialized
+DEBUG - 2020-08-13 11:37:55 --> Pagination Class Initialized
+DEBUG - 2020-08-13 11:37:55 --> Controller Class Initialized
+DEBUG - 2020-08-13 11:37:55 --> Model Class Initialized
+DEBUG - 2020-08-13 11:37:55 --> Model Class Initialized
+DEBUG - 2020-08-13 11:37:55 --> File loaded: application/views/header/head.php
+DEBUG - 2020-08-13 11:37:55 --> File loaded: application/views/header/navigation.php
+DEBUG - 2020-08-13 11:37:55 --> File loaded: application/views/content/view_dashboard.php
+DEBUG - 2020-08-13 11:37:55 --> File loaded: application/views/footer/footer.php
+DEBUG - 2020-08-13 11:37:55 --> File loaded: application/views/main.php
+DEBUG - 2020-08-13 11:37:55 --> Final output sent to browser
+DEBUG - 2020-08-13 11:37:55 --> Total execution time: 0.1250
+ERROR - 2020-08-13 11:37:59 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-08-13 11:37:59 --> Config Class Initialized
+DEBUG - 2020-08-13 11:37:59 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:37:59 --> Utf8 Class Initialized
+DEBUG - 2020-08-13 11:37:59 --> UTF-8 Support Enabled
+DEBUG - 2020-08-13 11:37:59 --> URI Class Initialized
+DEBUG - 2020-08-13 11:37:59 --> Router Class Initialized
+DEBUG - 2020-08-13 11:37:59 --> Output Class Initialized
+DEBUG - 2020-08-13 11:37:59 --> Security Class Initialized
+DEBUG - 2020-08-13 11:37:59 --> Input Class Initialized
+DEBUG - 2020-08-13 11:37:59 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-08-13 11:37:59 --> Language Class Initialized
+DEBUG - 2020-08-13 11:37:59 --> Loader Class Initialized
+DEBUG - 2020-08-13 11:37:59 --> Helper loaded: url_helper
+DEBUG - 2020-08-13 11:37:59 --> Helper loaded: file_helper
+DEBUG - 2020-08-13 11:37:59 --> Helper loaded: form_helper
+DEBUG - 2020-08-13 11:37:59 --> Database Driver Class Initialized
+DEBUG - 2020-08-13 11:37:59 --> Session Class Initialized
+DEBUG - 2020-08-13 11:37:59 --> Helper loaded: string_helper
+DEBUG - 2020-08-13 11:37:59 --> Session routines successfully run
+DEBUG - 2020-08-13 11:37:59 --> XML-RPC Class Initialized
+DEBUG - 2020-08-13 11:37:59 --> Pagination Class Initialized
+DEBUG - 2020-08-13 11:37:59 --> Controller Class Initialized
+DEBUG - 2020-08-13 11:37:59 --> Model Class Initialized
+DEBUG - 2020-08-13 11:37:59 --> Model Class Initialized
+DEBUG - 2020-08-13 11:37:59 --> DB Transaction Failure
+ERROR - 2020-08-13 11:37:59 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'GROUP BY items.machine_type' at line 1
+DEBUG - 2020-08-13 11:37:59 --> Language file loaded: language/english/db_lang.php
+ERROR - 2020-08-13 11:38:20 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-08-13 11:38:20 --> Config Class Initialized
+DEBUG - 2020-08-13 11:38:20 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:38:20 --> Utf8 Class Initialized
+DEBUG - 2020-08-13 11:38:20 --> UTF-8 Support Enabled
+DEBUG - 2020-08-13 11:38:20 --> URI Class Initialized
+DEBUG - 2020-08-13 11:38:20 --> Router Class Initialized
+DEBUG - 2020-08-13 11:38:20 --> Output Class Initialized
+DEBUG - 2020-08-13 11:38:20 --> Security Class Initialized
+DEBUG - 2020-08-13 11:38:20 --> Input Class Initialized
+DEBUG - 2020-08-13 11:38:20 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-08-13 11:38:20 --> Language Class Initialized
+DEBUG - 2020-08-13 11:38:20 --> Loader Class Initialized
+DEBUG - 2020-08-13 11:38:20 --> Helper loaded: url_helper
+DEBUG - 2020-08-13 11:38:20 --> Helper loaded: file_helper
+DEBUG - 2020-08-13 11:38:20 --> Helper loaded: form_helper
+DEBUG - 2020-08-13 11:38:20 --> Database Driver Class Initialized
+DEBUG - 2020-08-13 11:38:20 --> Session Class Initialized
+DEBUG - 2020-08-13 11:38:20 --> Helper loaded: string_helper
+DEBUG - 2020-08-13 11:38:20 --> Session routines successfully run
+DEBUG - 2020-08-13 11:38:20 --> XML-RPC Class Initialized
+DEBUG - 2020-08-13 11:38:20 --> Pagination Class Initialized
+DEBUG - 2020-08-13 11:38:20 --> Controller Class Initialized
+DEBUG - 2020-08-13 11:38:20 --> Model Class Initialized
+DEBUG - 2020-08-13 11:38:20 --> Model Class Initialized
+ERROR - 2020-08-13 11:38:21 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:38:21 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:38:21 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:38:21 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:38:21 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:38:21 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:38:21 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:38:21 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:38:21 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:38:21 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+ERROR - 2020-08-13 11:38:21 --> Severity: Notice  --> Undefined property: stdClass::$machine_type C:\xampp\htdocs\mis_inventory\application\views\content\view_ajax.php 20
+DEBUG - 2020-08-13 11:38:21 --> File loaded: application/views/content/view_ajax.php
+DEBUG - 2020-08-13 11:38:21 --> Final output sent to browser
+DEBUG - 2020-08-13 11:38:21 --> Total execution time: 0.2730
+ERROR - 2020-08-13 11:39:03 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-08-13 11:39:03 --> Config Class Initialized
+DEBUG - 2020-08-13 11:39:03 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:39:03 --> Utf8 Class Initialized
+DEBUG - 2020-08-13 11:39:03 --> UTF-8 Support Enabled
+DEBUG - 2020-08-13 11:39:03 --> URI Class Initialized
+DEBUG - 2020-08-13 11:39:03 --> Router Class Initialized
+DEBUG - 2020-08-13 11:39:03 --> Output Class Initialized
+DEBUG - 2020-08-13 11:39:03 --> Security Class Initialized
+DEBUG - 2020-08-13 11:39:03 --> Input Class Initialized
+DEBUG - 2020-08-13 11:39:03 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-08-13 11:39:03 --> Language Class Initialized
+DEBUG - 2020-08-13 11:39:03 --> Loader Class Initialized
+DEBUG - 2020-08-13 11:39:03 --> Helper loaded: url_helper
+DEBUG - 2020-08-13 11:39:03 --> Helper loaded: file_helper
+DEBUG - 2020-08-13 11:39:03 --> Helper loaded: form_helper
+DEBUG - 2020-08-13 11:39:03 --> Database Driver Class Initialized
+DEBUG - 2020-08-13 11:39:03 --> Session Class Initialized
+DEBUG - 2020-08-13 11:39:03 --> Helper loaded: string_helper
+DEBUG - 2020-08-13 11:39:03 --> Session routines successfully run
+DEBUG - 2020-08-13 11:39:03 --> XML-RPC Class Initialized
+DEBUG - 2020-08-13 11:39:03 --> Pagination Class Initialized
+DEBUG - 2020-08-13 11:39:03 --> Controller Class Initialized
+DEBUG - 2020-08-13 11:39:03 --> Model Class Initialized
+DEBUG - 2020-08-13 11:39:03 --> Model Class Initialized
+DEBUG - 2020-08-13 11:39:03 --> DB Transaction Failure
+ERROR - 2020-08-13 11:39:03 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'GROUP BY items.machine_type' at line 1
+DEBUG - 2020-08-13 11:39:03 --> Language file loaded: language/english/db_lang.php
+ERROR - 2020-08-13 11:39:04 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-08-13 11:39:04 --> Config Class Initialized
+DEBUG - 2020-08-13 11:39:04 --> Hooks Class Initialized
+DEBUG - 2020-08-13 11:39:04 --> Utf8 Class Initialized
+DEBUG - 2020-08-13 11:39:04 --> UTF-8 Support Enabled
+DEBUG - 2020-08-13 11:39:04 --> URI Class Initialized
+DEBUG - 2020-08-13 11:39:04 --> Router Class Initialized
+DEBUG - 2020-08-13 11:39:04 --> Output Class Initialized
+DEBUG - 2020-08-13 11:39:04 --> Security Class Initialized
+DEBUG - 2020-08-13 11:39:04 --> Input Class Initialized
+DEBUG - 2020-08-13 11:39:04 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-08-13 11:39:04 --> Language Class Initialized
+DEBUG - 2020-08-13 11:39:04 --> Loader Class Initialized
+DEBUG - 2020-08-13 11:39:04 --> Helper loaded: url_helper
+DEBUG - 2020-08-13 11:39:04 --> Helper loaded: file_helper
+DEBUG - 2020-08-13 11:39:04 --> Helper loaded: form_helper
+DEBUG - 2020-08-13 11:39:04 --> Database Driver Class Initialized
+DEBUG - 2020-08-13 11:39:04 --> Session Class Initialized
+DEBUG - 2020-08-13 11:39:04 --> Helper loaded: string_helper
+DEBUG - 2020-08-13 11:39:04 --> Session routines successfully run
+DEBUG - 2020-08-13 11:39:04 --> XML-RPC Class Initialized
+DEBUG - 2020-08-13 11:39:04 --> Pagination Class Initialized
+DEBUG - 2020-08-13 11:39:04 --> Controller Class Initialized
+DEBUG - 2020-08-13 11:39:04 --> Model Class Initialized
+DEBUG - 2020-08-13 11:39:04 --> Model Class Initialized
+DEBUG - 2020-08-13 11:39:04 --> DB Transaction Failure
+ERROR - 2020-08-13 11:39:04 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'GROUP BY category.cat_name' at line 1
+DEBUG - 2020-08-13 11:39:04 --> Language file loaded: language/english/db_lang.php
