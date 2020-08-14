@@ -19,8 +19,10 @@
                         <?php
                             if($all_item->machine_type){
                                 echo $all_item->machine_type;  
-                            }else{
+                            }elseif($all_item->cat_name){
                                 echo $all_item->cat_name;
+                            }else{
+                                echo $all_item->model;
                             }  
                         ?>
 

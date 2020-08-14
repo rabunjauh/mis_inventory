@@ -5,11 +5,11 @@ class Dashboard_model extends CI_Model {
 	public function all_items($select_filter = ""){
 		if(!$select_filter == ""){
 			if($select_filter == "machine_type"){
-				$sql = "SELECT items.machine_type, SUM(inventory.inventory_quantity) as qty FROM inventory LEFT JOIN items ON items.item_id = inventory.item_id GROUP BY items.machine_type";
+				$sql = "SELECT items.machine_type, SUM(inventory.inventory_quantity) as qty FROM inventory LEFT JOIN items ON items.item_id = inventory.item_id GROUP BY LOWER(items.machine_type)";
 			}else if($select_filter == "category"){
-				$sql = "SELECT category.cat_name, SUM(inventory.inventory_quantity) as qty FROM category LEFT JOIN items ON items.cat_id = category.cat_id LEFT JOIN inventory ON items.item_id = inventory.item_id GROUP BY category.cat_name";
+				$sql = "SELECT category.cat_name, SUM(inventory.inventory_quantity) as qty FROM category LEFT JOIN items ON items.cat_id = category.cat_id LEFT JOIN inventory ON items.item_id = inventory.item_id GROUP BY LOWER(category.cat_name)";
 			}else{
-				$sql = "SELECT items.machine_type, SUM(inventory.inventory_quantity) as qty FROM inventory LEFT JOIN items ON items.item_id = inventory.item_id GROUP BY items.machine_type";
+				$sql = "SELECT items.model, SUM(inventory.inventory_quantity) as qty FROM inventory LEFT JOIN items ON items.item_id = inventory.item_id GROUP BY LOWER(items.model)";
 			}
 		}else{
 			$sql = "SELECT items.machine_type, invoice_purchase_details.item_id, SUM(quantities) as qty FROM invoice_purchase_details LEFT JOIN items ON items.item_id = invoice_purchase_details.item_id GROUP BY items.machine_type";
