@@ -263,6 +263,7 @@ class Items extends CI_Controller {
     $data['navigation'] = $this->load->view('header/navigation', $data, TRUE);
     $data['categories'] = $this->item_model->get_categories();
     $data['measurement'] = $this->settings_model->get_measurement();
+    // $data['machine_type'] = $this->settings_model->get_machine_type();
     $data['content'] = $this->load->view('forms/form_add_item', $data, TRUE);
     $data['footer'] = $this->load->view('footer/footer', '', TRUE);
     $this->load->view('main', $data);
@@ -501,6 +502,64 @@ class Items extends CI_Controller {
   }
 
   public function delete_category($id = '')
+  {
+    if (!$this->session->userdata('role') OR !is_numeric($id) OR is_null($id)) {
+      exit('<div class="alert alert-danger">Not allowed!</div>');
+    }
+    if (!$this->item_model->delete_category($id)) {
+      $message = '<div class="alert alert-danger">An ERROR occurred!</div>';
+      $this->session->set_flashdata('message', $message);
+      redirect(base_url('settings'));
+    } else {
+      $message = '<div class="alert alert-success alert-dismissable">'
+      . '<button type="button" class="close" data-dismiss="alert" aria-hidden="TRUE">&times;</button>'
+      . 'Category Deleted!'
+      . '</div>';
+      $this->session->set_flashdata('message', $message);
+      redirect(base_url('settings'));
+    }
+  }
+
+  public function add_machine_type()
+  {
+    $data = array();
+    $data['header'] = $this->load->view('header/head', '', TRUE);
+    $data['navigation'] = $this->load->view('header/navigation', $data, TRUE);
+    $data['content'] = $this->load->view('forms/form_add_machine_type', $data, TRUE);
+    $data['footer'] = $this->load->view('footer/footer', '', TRUE);
+    $this->load->view('main', $data);
+  }
+
+  public function save_machine_type()
+  {
+    if (!$this->session->userdata('role')) {
+      exit('<div class="alert alert-danger">Not allowed!</div>');
+    }
+    $this->load->library('form_validation');
+    $this->form_validation->set_rules('cat_name', 'Category Name', 'required|alpha_dash');
+    if ($this->form_validation->run() == FALSE) {
+      $this->session->set_flashdata('message', validation_errors('<div class="alert alert-danger">', '</div>'));
+      redirect(base_url('items/add_category'));
+    } else {
+      if (!$this->item_model->save_category()) {
+        $message = '<div class="alert alert-danger">An ERROR occurred!</div>';
+      } else {
+        $message = '<div class="alert alert-success alert-dismissable">'
+        . '<button type="button" class="close" data-dismiss="alert" aria-hidden="TRUE">&times;</button>'
+        . 'Category Added Successfully!'
+        . '</div>';
+      }
+      $this->session->set_flashdata('message', $message);
+      redirect(base_url('items/add_item'));
+    }
+  }
+
+  public function update_machine_type()
+  {
+    echo ($this->item_model->update_category()) ? 'TRUE' : 'FALSE';
+  }
+
+  public function delete_machine_type($id = '')
   {
     if (!$this->session->userdata('role') OR !is_numeric($id) OR is_null($id)) {
       exit('<div class="alert alert-danger">Not allowed!</div>');

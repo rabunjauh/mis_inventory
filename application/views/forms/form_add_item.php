@@ -27,6 +27,12 @@
             foreach ($measurement as $value) {
                     $optionMeasurement[$value->measurement_id] = $value->measurement;
             }
+
+            $option_machine_type = array();
+            $option_machine_type[0] = 'Select Machine Type';
+            foreach ($machine_types as $value) {
+                    $option_machine_type[$value->machine_type_id] = $value->machine_type;
+            }
             ?>
             <div class="form-group">
                 <label for="category_id" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Category: *</label>
@@ -137,6 +143,14 @@
                   <input type="text" name="machine_type" id="machine_type" class="form-control">
                 </div>
             </div>
+
+            <div class="form-group">
+                <label for="machine_type_id" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Machine Type: *</label>
+                <div class="col-sm-6 col-xs-12">
+                    <?=form_dropdown('machine_type_id', $option_machine_type, '', 'id="machine_type_id" class="form-control"') ?>
+                </div>
+            </div>
+
             <div class="form-group stock">
                 <label for="model" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Model: *</label>
                 <div class="col-sm-6 col-xs-12">

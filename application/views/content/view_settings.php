@@ -16,6 +16,7 @@ $str .= "]";
             <li><a href="#costcenter" data-toggle="tab"><strong>Cost Center</strong></a></li>
             <li><a href="#project" data-toggle="tab"><strong>Project</strong></a></li>
             <li><a href="#category" data-toggle="tab"><strong>Categories</strong></a></li>
+            <li><a href="#machine_type" data-toggle="tab"><strong>Machine Type</strong></a></li>
             <li><a href="#measurement" data-toggle="tab"><strong>Measurement</strong></a></li>
             <li><a href="#system" data-toggle="tab"><strong>System Settings</strong></a></li>
         </ul>
@@ -94,6 +95,7 @@ $str .= "]";
                         </tfoot>
                     </table>
                 </div><!-- .tab-pane -->
+
                 <div class="tab-pane" id="category">
                     <?php if ($this->session->userdata('role')): ?>
                         <div class="content-nav text-center">
@@ -151,6 +153,66 @@ $str .= "]";
                         </tfoot>
                     </table>
                 </div><!-- .tab-pane -->
+
+                <div class="tab-pane" id="machine_type">
+                    <?php if ($this->session->userdata('role')): ?>
+                        <div class="content-nav text-center">
+                            <div class="btn-group col-md-4 col-sm-8 col-xs-8 col-md-offset-4 col-sm-offset-2 col-xs-offset-2">
+                                <a href="<?php echo base_url('items/add_machine_type'); ?>" class="btn btn-default btn-flat"><i class="glyphicon glyphicon-plus-sign"></i> Add Machine Type </a>
+                                <a href="<?=base_url('csv/download_csv/machine_type'); ?>" class="btn btn-default btn-flat"><i class="glyphicon glyphicon-save"></i> Download csv</a>
+                            </div>
+                        </div><br/><br/><br/>
+                    <?php endif; ?>
+                    <table id="" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Machine Type ID</th>
+                                <th>Machine Type Description</th>
+                                <?php if ($this->session->userdata('role')): ?>
+                                    <th>Action</th>
+                                <?php endif; ?>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if (!empty($machine_types)): ?>
+                                <?php foreach ($machine_types as $machine_type): ?>
+                                    <tr>
+                                        <td><?php echo $machine_type->cat_id; ?>
+                                        </td>
+                                        <td>
+                                            <a href="#" data-name="machine_type_desc" data-type="text" data-url="<?= base_url('items/update_machine_type'); ?>" data-pk="<?= $machine_type->machine_type_id; ?>" class="data-modify-<?= $machine_type->machine_type_id; ?> no-style"><?= $machine_type->machine_type_desc; ?></a>
+                                        </td>
+                                        <?php if ($this->session->userdata('role')): ?>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a href="#" class="btn btn-sm btn-default modify" name="modify-<?= $machine_type->machine_type_id; ?>"><i class="glyphicon glyphicon-edit"></i><span class="hidden-sm hidden-xs">  Modify</span></a>
+                                                <a onclick="return confirm('Are you sure you want to delete this machine_type?')" href="<?= base_url('items/delete_machine_type/' . $machine_type->machine_type_id); ?>"  class="btn btn-sm btn-default"><i class="glyphicon glyphicon-trash"></i><span class="hidden-sm hidden-xs"> Delete</span></a>
+                                            </div>
+                                        </td>
+                                        <?php endif; ?>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                    <tr>
+                                        <td colspan="7">
+                                            <span>No data available.</span>
+                                        </td>
+                                    </tr>
+                            <?php endif; ?>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Category ID</th>
+                                <th>Category Name</th>
+                                <?php if ($this->session->userdata('role')): ?>
+                                    <th>Action</th>
+                                <?php endif; ?>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div><!-- .tab-pane -->
+
+
                 <div class="tab-pane" id="measurement">
                     <?php if ($this->session->userdata('role')): ?>
                         <div class="content-nav text-center">

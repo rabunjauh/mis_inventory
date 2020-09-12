@@ -124,6 +124,11 @@ class Item_model extends CI_Model {
         return $this->db->get('category')->result();
     }
 
+    public function get_get_machine_types()
+    {
+        return $this->db->get('machine_type')->result();
+    }
+
     public function get_items()
     {
       $this->db->select('*')->from('items');
@@ -249,7 +254,7 @@ class Item_model extends CI_Model {
             return FALSE;
         }
         $data = array();
-        $data['cat_name'] = $this->input->post('value', TRUE);
+        $data['cat_name'] = ucfirst($this->input->post('value', TRUE));
 
         $this->db->where('cat_id', (int) $this->input->post('pk', TRUE));
         $this->db->update('category', $data);

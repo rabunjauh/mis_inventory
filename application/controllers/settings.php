@@ -21,6 +21,7 @@ class Settings extends CI_Controller {
         $data['costcenter'] = $this->settings_model->get_costcenter();
         $data['project'] = $this->settings_model->get_project();
         $data['categories'] = $this->item_model->get_categories();
+        // $data['machine_types'] = $this->item_model->get_machine_types();
         $data['settings'] = $this->settings_model->index();
         $data['measurement'] = $this->settings_model->get_measurement();
         $data['extra_footer'] = $this->load->view('footer/x-editable_scripts', '', TRUE);
