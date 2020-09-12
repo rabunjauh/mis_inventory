@@ -1,0 +1,10 @@
+item_sn
+item_tag_number
+location
+item_status
+borrow_start_date
+borrow_end_date
+borrow_return_date
+borrow_userid
+item_remark
+warranty_status

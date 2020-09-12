@@ -192,7 +192,7 @@ class Item_model extends CI_Model {
     public function save_category()
     {
         $info = array();
-        $info['cat_name'] = addslashes($this->input->post('cat_name', TRUE));
+        $info['cat_name'] = addslashes(ucfirst($this->input->post('cat_name', TRUE)));
 
         $this->db->insert('category', $info);
         if ($this->db->affected_rows() == 1) {
