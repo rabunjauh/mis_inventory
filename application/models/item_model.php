@@ -124,9 +124,14 @@ class Item_model extends CI_Model {
         return $this->db->get('category')->result();
     }
 
-    public function get_get_machine_types()
+    public function get_machine_types()
     {
         return $this->db->get('machine_type')->result();
+    }
+
+    public function get_model()
+    {
+        return $this->db->get('model')->result();
     }
 
     public function get_items()
