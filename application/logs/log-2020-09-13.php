@@ -1916,3 +1916,217 @@ DEBUG - 2020-09-13 08:36:45 --> File loaded: application/views/footer/footer.php
 DEBUG - 2020-09-13 08:36:45 --> File loaded: application/views/main.php
 DEBUG - 2020-09-13 08:36:45 --> Final output sent to browser
 DEBUG - 2020-09-13 08:36:45 --> Total execution time: 1.2461
+ERROR - 2020-09-13 08:57:30 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-09-13 08:57:30 --> Config Class Initialized
+DEBUG - 2020-09-13 08:57:30 --> Hooks Class Initialized
+DEBUG - 2020-09-13 08:57:30 --> Utf8 Class Initialized
+DEBUG - 2020-09-13 08:57:30 --> UTF-8 Support Enabled
+DEBUG - 2020-09-13 08:57:30 --> URI Class Initialized
+DEBUG - 2020-09-13 08:57:30 --> Router Class Initialized
+DEBUG - 2020-09-13 08:57:30 --> Output Class Initialized
+DEBUG - 2020-09-13 08:57:30 --> Security Class Initialized
+DEBUG - 2020-09-13 08:57:30 --> Input Class Initialized
+DEBUG - 2020-09-13 08:57:30 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-09-13 08:57:30 --> Language Class Initialized
+DEBUG - 2020-09-13 08:57:31 --> Loader Class Initialized
+DEBUG - 2020-09-13 08:57:31 --> Helper loaded: url_helper
+DEBUG - 2020-09-13 08:57:31 --> Helper loaded: file_helper
+DEBUG - 2020-09-13 08:57:31 --> Helper loaded: form_helper
+DEBUG - 2020-09-13 08:57:31 --> Database Driver Class Initialized
+DEBUG - 2020-09-13 08:57:31 --> Session Class Initialized
+DEBUG - 2020-09-13 08:57:31 --> Helper loaded: string_helper
+DEBUG - 2020-09-13 08:57:31 --> Session routines successfully run
+DEBUG - 2020-09-13 08:57:31 --> XML-RPC Class Initialized
+DEBUG - 2020-09-13 08:57:31 --> Pagination Class Initialized
+DEBUG - 2020-09-13 08:57:31 --> Controller Class Initialized
+DEBUG - 2020-09-13 08:57:31 --> Model Class Initialized
+DEBUG - 2020-09-13 08:57:31 --> Model Class Initialized
+DEBUG - 2020-09-13 08:57:31 --> Model Class Initialized
+DEBUG - 2020-09-13 08:57:31 --> Model Class Initialized
+DEBUG - 2020-09-13 08:57:31 --> Model Class Initialized
+DEBUG - 2020-09-13 08:57:31 --> Pagination class already loaded. Second attempt ignored.
+DEBUG - 2020-09-13 08:57:31 --> File loaded: application/views/header/head.php
+DEBUG - 2020-09-13 08:57:31 --> File loaded: application/views/header/navigation.php
+DEBUG - 2020-09-13 08:57:31 --> File loaded: application/views/content/view_items_stock.php
+DEBUG - 2020-09-13 08:57:32 --> File loaded: application/views/footer/x-editable_scripts.php
+DEBUG - 2020-09-13 08:57:32 --> File loaded: application/views/footer/footer.php
+DEBUG - 2020-09-13 08:57:32 --> File loaded: application/views/main.php
+DEBUG - 2020-09-13 08:57:32 --> Final output sent to browser
+DEBUG - 2020-09-13 08:57:32 --> Total execution time: 1.3751
+ERROR - 2020-09-13 08:57:44 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-09-13 08:57:44 --> Config Class Initialized
+DEBUG - 2020-09-13 08:57:44 --> Hooks Class Initialized
+DEBUG - 2020-09-13 08:57:44 --> Utf8 Class Initialized
+DEBUG - 2020-09-13 08:57:44 --> UTF-8 Support Enabled
+DEBUG - 2020-09-13 08:57:44 --> URI Class Initialized
+DEBUG - 2020-09-13 08:57:44 --> Router Class Initialized
+DEBUG - 2020-09-13 08:57:44 --> Output Class Initialized
+DEBUG - 2020-09-13 08:57:44 --> Security Class Initialized
+DEBUG - 2020-09-13 08:57:44 --> Input Class Initialized
+DEBUG - 2020-09-13 08:57:44 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-09-13 08:57:44 --> Language Class Initialized
+DEBUG - 2020-09-13 08:57:44 --> Loader Class Initialized
+DEBUG - 2020-09-13 08:57:44 --> Helper loaded: url_helper
+DEBUG - 2020-09-13 08:57:44 --> Helper loaded: file_helper
+DEBUG - 2020-09-13 08:57:44 --> Helper loaded: form_helper
+DEBUG - 2020-09-13 08:57:44 --> Database Driver Class Initialized
+DEBUG - 2020-09-13 08:57:45 --> Session Class Initialized
+DEBUG - 2020-09-13 08:57:45 --> Helper loaded: string_helper
+DEBUG - 2020-09-13 08:57:45 --> Session routines successfully run
+DEBUG - 2020-09-13 08:57:45 --> XML-RPC Class Initialized
+DEBUG - 2020-09-13 08:57:45 --> Pagination Class Initialized
+DEBUG - 2020-09-13 08:57:45 --> Controller Class Initialized
+DEBUG - 2020-09-13 08:57:45 --> Model Class Initialized
+DEBUG - 2020-09-13 08:57:45 --> Model Class Initialized
+DEBUG - 2020-09-13 08:57:45 --> Model Class Initialized
+DEBUG - 2020-09-13 08:57:45 --> Model Class Initialized
+DEBUG - 2020-09-13 08:57:45 --> Model Class Initialized
+DEBUG - 2020-09-13 08:57:45 --> Pagination class already loaded. Second attempt ignored.
+DEBUG - 2020-09-13 08:57:45 --> File loaded: application/views/header/head.php
+DEBUG - 2020-09-13 08:57:45 --> File loaded: application/views/header/navigation.php
+DEBUG - 2020-09-13 08:57:45 --> File loaded: application/views/header/invoice.php
+ERROR - 2020-09-13 08:57:46 --> Severity: Notice  --> Undefined variable: borrow C:\xampp\htdocs\mis_inventory\application\views\content\item_details.php 113
+ERROR - 2020-09-13 08:57:46 --> Severity: Notice  --> Trying to get property 'note' of non-object C:\xampp\htdocs\mis_inventory\application\views\content\item_details.php 113
+DEBUG - 2020-09-13 08:57:46 --> File loaded: application/views/content/item_details.php
+DEBUG - 2020-09-13 08:57:46 --> File loaded: application/views/footer/footer.php
+DEBUG - 2020-09-13 08:57:46 --> File loaded: application/views/main.php
+DEBUG - 2020-09-13 08:57:46 --> Final output sent to browser
+DEBUG - 2020-09-13 08:57:46 --> Total execution time: 1.5631
+ERROR - 2020-09-13 08:59:55 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-09-13 08:59:55 --> Config Class Initialized
+DEBUG - 2020-09-13 08:59:55 --> Hooks Class Initialized
+DEBUG - 2020-09-13 08:59:55 --> Utf8 Class Initialized
+DEBUG - 2020-09-13 08:59:55 --> UTF-8 Support Enabled
+DEBUG - 2020-09-13 08:59:55 --> URI Class Initialized
+DEBUG - 2020-09-13 08:59:55 --> Router Class Initialized
+DEBUG - 2020-09-13 08:59:55 --> Output Class Initialized
+DEBUG - 2020-09-13 08:59:55 --> Security Class Initialized
+DEBUG - 2020-09-13 08:59:55 --> Input Class Initialized
+DEBUG - 2020-09-13 08:59:55 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-09-13 08:59:55 --> Language Class Initialized
+DEBUG - 2020-09-13 08:59:55 --> Loader Class Initialized
+DEBUG - 2020-09-13 08:59:55 --> Helper loaded: url_helper
+DEBUG - 2020-09-13 08:59:56 --> Helper loaded: file_helper
+DEBUG - 2020-09-13 08:59:56 --> Helper loaded: form_helper
+DEBUG - 2020-09-13 08:59:56 --> Database Driver Class Initialized
+DEBUG - 2020-09-13 08:59:56 --> Session Class Initialized
+DEBUG - 2020-09-13 08:59:56 --> Helper loaded: string_helper
+DEBUG - 2020-09-13 08:59:56 --> Session routines successfully run
+DEBUG - 2020-09-13 08:59:56 --> XML-RPC Class Initialized
+DEBUG - 2020-09-13 08:59:56 --> Pagination Class Initialized
+DEBUG - 2020-09-13 08:59:56 --> Controller Class Initialized
+DEBUG - 2020-09-13 08:59:56 --> Model Class Initialized
+DEBUG - 2020-09-13 08:59:56 --> Model Class Initialized
+DEBUG - 2020-09-13 08:59:56 --> Model Class Initialized
+DEBUG - 2020-09-13 08:59:56 --> Model Class Initialized
+DEBUG - 2020-09-13 08:59:56 --> Model Class Initialized
+DEBUG - 2020-09-13 08:59:56 --> Pagination class already loaded. Second attempt ignored.
+DEBUG - 2020-09-13 08:59:56 --> File loaded: application/views/header/head.php
+DEBUG - 2020-09-13 08:59:56 --> File loaded: application/views/header/navigation.php
+DEBUG - 2020-09-13 08:59:56 --> File loaded: application/views/header/invoice.php
+ERROR - 2020-09-13 08:59:56 --> Severity: Notice  --> Undefined variable: borrow C:\xampp\htdocs\mis_inventory\application\views\content\item_details.php 113
+ERROR - 2020-09-13 08:59:56 --> Severity: Notice  --> Trying to get property 'note' of non-object C:\xampp\htdocs\mis_inventory\application\views\content\item_details.php 113
+DEBUG - 2020-09-13 08:59:56 --> File loaded: application/views/content/item_details.php
+DEBUG - 2020-09-13 08:59:56 --> File loaded: application/views/footer/footer.php
+DEBUG - 2020-09-13 08:59:56 --> File loaded: application/views/main.php
+DEBUG - 2020-09-13 08:59:56 --> Final output sent to browser
+DEBUG - 2020-09-13 08:59:56 --> Total execution time: 1.2561
+ERROR - 2020-09-13 09:19:35 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-09-13 09:19:35 --> Config Class Initialized
+DEBUG - 2020-09-13 09:19:35 --> Hooks Class Initialized
+DEBUG - 2020-09-13 09:19:35 --> Utf8 Class Initialized
+DEBUG - 2020-09-13 09:19:36 --> UTF-8 Support Enabled
+DEBUG - 2020-09-13 09:19:36 --> URI Class Initialized
+DEBUG - 2020-09-13 09:19:36 --> Router Class Initialized
+DEBUG - 2020-09-13 09:19:36 --> Output Class Initialized
+DEBUG - 2020-09-13 09:19:36 --> Security Class Initialized
+DEBUG - 2020-09-13 09:19:36 --> Input Class Initialized
+DEBUG - 2020-09-13 09:19:36 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-09-13 09:19:36 --> Language Class Initialized
+DEBUG - 2020-09-13 09:19:36 --> Loader Class Initialized
+DEBUG - 2020-09-13 09:19:36 --> Helper loaded: url_helper
+DEBUG - 2020-09-13 09:19:36 --> Helper loaded: file_helper
+DEBUG - 2020-09-13 09:19:36 --> Helper loaded: form_helper
+DEBUG - 2020-09-13 09:19:36 --> Database Driver Class Initialized
+DEBUG - 2020-09-13 09:19:36 --> Session Class Initialized
+DEBUG - 2020-09-13 09:19:36 --> Helper loaded: string_helper
+DEBUG - 2020-09-13 09:19:36 --> Session routines successfully run
+DEBUG - 2020-09-13 09:19:36 --> XML-RPC Class Initialized
+DEBUG - 2020-09-13 09:19:36 --> Pagination Class Initialized
+DEBUG - 2020-09-13 09:19:36 --> Controller Class Initialized
+DEBUG - 2020-09-13 09:19:36 --> Model Class Initialized
+DEBUG - 2020-09-13 09:19:36 --> Model Class Initialized
+DEBUG - 2020-09-13 09:19:36 --> Model Class Initialized
+DEBUG - 2020-09-13 09:19:36 --> File loaded: application/views/header/head.php
+DEBUG - 2020-09-13 09:19:36 --> File loaded: application/views/header/navigation.php
+DEBUG - 2020-09-13 09:19:36 --> File loaded: application/views/content/view_inventory_stock.php
+DEBUG - 2020-09-13 09:19:36 --> File loaded: application/views/footer/footer.php
+DEBUG - 2020-09-13 09:19:36 --> File loaded: application/views/main.php
+DEBUG - 2020-09-13 09:19:36 --> Final output sent to browser
+DEBUG - 2020-09-13 09:19:36 --> Total execution time: 0.9231
+ERROR - 2020-09-13 09:19:40 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-09-13 09:19:40 --> Config Class Initialized
+DEBUG - 2020-09-13 09:19:40 --> Hooks Class Initialized
+DEBUG - 2020-09-13 09:19:40 --> Utf8 Class Initialized
+DEBUG - 2020-09-13 09:19:40 --> UTF-8 Support Enabled
+DEBUG - 2020-09-13 09:19:40 --> URI Class Initialized
+DEBUG - 2020-09-13 09:19:40 --> Router Class Initialized
+DEBUG - 2020-09-13 09:19:40 --> Output Class Initialized
+DEBUG - 2020-09-13 09:19:40 --> Security Class Initialized
+DEBUG - 2020-09-13 09:19:40 --> Input Class Initialized
+DEBUG - 2020-09-13 09:19:40 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-09-13 09:19:40 --> Language Class Initialized
+DEBUG - 2020-09-13 09:19:41 --> Loader Class Initialized
+DEBUG - 2020-09-13 09:19:41 --> Helper loaded: url_helper
+DEBUG - 2020-09-13 09:19:41 --> Helper loaded: file_helper
+DEBUG - 2020-09-13 09:19:41 --> Helper loaded: form_helper
+DEBUG - 2020-09-13 09:19:41 --> Database Driver Class Initialized
+DEBUG - 2020-09-13 09:19:41 --> Session Class Initialized
+DEBUG - 2020-09-13 09:19:41 --> Helper loaded: string_helper
+DEBUG - 2020-09-13 09:19:41 --> Session routines successfully run
+DEBUG - 2020-09-13 09:19:41 --> XML-RPC Class Initialized
+DEBUG - 2020-09-13 09:19:41 --> Pagination Class Initialized
+DEBUG - 2020-09-13 09:19:41 --> Controller Class Initialized
+DEBUG - 2020-09-13 09:19:41 --> Model Class Initialized
+DEBUG - 2020-09-13 09:19:41 --> Model Class Initialized
+DEBUG - 2020-09-13 09:19:41 --> Model Class Initialized
+DEBUG - 2020-09-13 09:19:41 --> Model Class Initialized
+DEBUG - 2020-09-13 09:19:41 --> Model Class Initialized
+DEBUG - 2020-09-13 09:19:55 --> File loaded: application/views/header/head.php
+DEBUG - 2020-09-13 09:19:55 --> File loaded: application/views/header/navigation.php
+DEBUG - 2020-09-13 09:19:56 --> File loaded: application/views/content/view_borrow.php
+DEBUG - 2020-09-13 09:19:56 --> File loaded: application/views/footer/footer.php
+DEBUG - 2020-09-13 09:19:56 --> File loaded: application/views/main.php
+DEBUG - 2020-09-13 09:19:56 --> Final output sent to browser
+DEBUG - 2020-09-13 09:19:56 --> Total execution time: 15.5949
+ERROR - 2020-09-13 09:20:04 --> Severity: Notice  --> Only variable references should be returned by reference C:\xampp\htdocs\mis_inventory\system\core\Common.php 257
+DEBUG - 2020-09-13 09:20:04 --> Config Class Initialized
+DEBUG - 2020-09-13 09:20:04 --> Hooks Class Initialized
+DEBUG - 2020-09-13 09:20:04 --> Utf8 Class Initialized
+DEBUG - 2020-09-13 09:20:04 --> UTF-8 Support Enabled
+DEBUG - 2020-09-13 09:20:04 --> URI Class Initialized
+DEBUG - 2020-09-13 09:20:04 --> Router Class Initialized
+DEBUG - 2020-09-13 09:20:04 --> Output Class Initialized
+DEBUG - 2020-09-13 09:20:04 --> Security Class Initialized
+DEBUG - 2020-09-13 09:20:04 --> Input Class Initialized
+DEBUG - 2020-09-13 09:20:04 --> Global POST and COOKIE data sanitized
+DEBUG - 2020-09-13 09:20:04 --> Language Class Initialized
+DEBUG - 2020-09-13 09:20:04 --> Loader Class Initialized
+DEBUG - 2020-09-13 09:20:04 --> Helper loaded: url_helper
+DEBUG - 2020-09-13 09:20:04 --> Helper loaded: file_helper
+DEBUG - 2020-09-13 09:20:04 --> Helper loaded: form_helper
+DEBUG - 2020-09-13 09:20:04 --> Database Driver Class Initialized
+DEBUG - 2020-09-13 09:20:04 --> Session Class Initialized
+DEBUG - 2020-09-13 09:20:04 --> Helper loaded: string_helper
+DEBUG - 2020-09-13 09:20:04 --> Session routines successfully run
+DEBUG - 2020-09-13 09:20:04 --> XML-RPC Class Initialized
+DEBUG - 2020-09-13 09:20:04 --> Pagination Class Initialized
+DEBUG - 2020-09-13 09:20:04 --> Controller Class Initialized
+DEBUG - 2020-09-13 09:20:04 --> Model Class Initialized
+DEBUG - 2020-09-13 09:20:04 --> Model Class Initialized
+DEBUG - 2020-09-13 09:20:04 --> Model Class Initialized
+DEBUG - 2020-09-13 09:20:04 --> Model Class Initialized
+DEBUG - 2020-09-13 09:20:04 --> Model Class Initialized
+DEBUG - 2020-09-13 09:20:05 --> DB Transaction Failure
+ERROR - 2020-09-13 09:20:05 --> Query error: Table 'wasco_fingerman.tbl_project' doesn't exist
+DEBUG - 2020-09-13 09:20:05 --> Language file loaded: language/english/db_lang.php
