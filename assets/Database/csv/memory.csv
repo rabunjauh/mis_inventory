@@ -1,0 +1,12 @@
+memory_id;memory_type;memory_size;memory_pair
+1;DDR2;1 GB;
+2;DDR2;2 GB;
+3;DDR3;1 GB;
+4;DDR3;3 GB;
+5;DDR3;4 GB;
+6;DDR3;6 GB;4 + 2
+7;DDR3;8 GB;
+8;DDR3;8 GB;4 + 4
+9;DDR3;12 GB;8 + 4
+10;DDR3;16 GB;8 + 8
+11;DDR3;32 GB;
