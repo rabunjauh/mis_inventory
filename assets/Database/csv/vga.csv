@@ -1,11 +1,11 @@
-vga_id;vga_manufacture;vga_desc;vga_size;;AMD ATI RADEON ;
-;AMD;ATI Radeon;;;AMD FirePro 2 G;2 GB
-;;Fire Pro;;;AMD FirePro 4 G;4 GB
-;;Fire Pro;;;AMD FirePro 4 G;
-;;;;;AMD Radeon HD 8;
-;;;;;ATI Radeon Fire;
-;;;;;ATI RADEON PRO ;
-;;;;;Nvidia Quadro;
-;;;;;MSI GeForce GTX;
-;;;;;Nvidia Geforce ;
-;;;;;Radeon™ Pro WX ;
+vga_id;vga_manufacture;vga_model;vga_memory
+1;AMD ;ATI RADEON;
+2;AMD;FirePro;2 GB
+3;AMD;FirePro;4 GB
+4;AMD;Radeon HD;8 GB
+5;AMD;Radeon Fire;
+6;AMD;RADEON PRO ;
+7;NVIDIA;QUAdro;
+8;MSI ;GeForce GTX;
+9;NVIDIA;Geforce ;
+10;AMD;Radeon Pro WX ;

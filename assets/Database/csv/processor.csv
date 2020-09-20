@@ -1,0 +1,10 @@
+processor_id;processor_manufacture;processor_desc;clock_speed
+1;Media Tek;Quad Core;1.5 GHz
+2;Intel;Core I7;
+3;Intel;Core I3;
+4;Intel;Core I5;
+5;Intel;Core 2 Duo;
+6;Intel;Dual Core;
+7;Intel;Intel Centrino;
+8;Qualcom Snapdragon;Octa Core;2.8 GHz
+9;Intel;XEON;

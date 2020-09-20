@@ -1,11 +1,11 @@
-hdd_id;hdd_size
-1;80 GB
-2;120 GB
-3;150 GB
-4;160 GB
-5;250 GB
-6;320 GB
-7;500 GB
-8;1000 GB
-9;2000 GB
-10;6000 GB
+hdd_id;hdd_size;hardi_disk_manufacture;hard_disk_type;hard_disk_physical
+1;80 GB;a;a;a
+2;120 GB;a;a;a
+3;150 GB;a;a;a
+4;160 GB;a;a;a
+5;250 GB;a;a;a
+6;320 GB;a;a;a
+7;500 GB;a;a;a
+8;1000 GB;a;a;a
+9;2000 GB;a;a;a
+10;6000 GB;a;a;a
