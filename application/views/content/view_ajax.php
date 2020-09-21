@@ -17,16 +17,15 @@
                     <td><?= $no; ?></td>
                     <td>
                         <?php
-                            if($all_item->machine_type){
-                                echo $all_item->machine_type;  
-                            }elseif($all_item->cat_name){
+                            if(isset($all_item->machine_type_desc)){
+                                echo $all_item->machine_type_desc;  
+                            }elseif(isset($all_item->cat_name)){
                                 echo $all_item->cat_name;
-                            }else{
-                                echo $all_item->model;
-                            }  
+                            }elseif(isset($all_item->model_desc)){
+                                echo $all_item->model_desc;
+                            }
                         ?>
-
-                        </td>
+                    </td>
                     <td><?= $all_item->qty; ?></td>                                    
                 </tr>
             <?php 

@@ -52,7 +52,7 @@
                                 ?>
                                     <tr>
                                         <td><?= $no; ?></td>
-                                        <td><?= $all_item->machine_type; ?></td>
+                                        <td><?= $all_item->machine_type_desc; ?></td>
                                         <td><?= $all_item->qty; ?></td>                                    
                                     </tr>
                                 <?php 
@@ -209,7 +209,7 @@ select_filter.addEventListener('change', function(){
     // check if ajax is ready
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4 && xhr.status == 200){
-            console.log('ajax ok');
+            console.log(select_filter.value);
             table_all_items.innerHTML = xhr.responseText;
         }
     }

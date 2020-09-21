@@ -49,25 +49,25 @@
             $option_processor = array();
             $option_processor[0] = 'Select Processor';
             foreach ($processors as $value) {
-                    $option_processor[$value->processor_id] = $value->processor_desc;
+                    $option_processor[$value->processor_id] = $value->processor_type;
             }
             
             $option_memory = array();
-                        $option_memory[0] = 'Select Processor';
-                        foreach ($memorys as $value) {
-                                $option_memory[$value->memory_id] = $value->memory_desc;
+                        $option_memory[0] = 'Select Memory';
+                        foreach ($memories as $value) {
+                                $option_memory[$value->memory_id] = $value->memory_size;
                         }
 
             $option_harddisk = array();
             $option_harddisk[0] = 'Select Hard Disk';
-            foreach ($harddisks as $value) {
-                    $option_harddisk[$value->harddisk_id] = $value->harddisk_desc;
+           foreach ($hard_disks as $hard_disk) {
+                    $option_harddisk[$hard_disk->hard_disk_id] = $hard_disk->hard_disk_size;
             }
 
             $option_vga = array();
             $option_vga[0] = 'Select VGA';
-            foreach ($vgas as $value) {
-                    $option_vga[$value->vga_id] = $value->vga_desc;
+            foreach ($vga as $value) {
+                    $option_vga[$value->vga_id] = $value->vga_model;
             }
 
             ?>
@@ -196,7 +196,7 @@
             <div class="form-group">
                 <label for="model_id" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Model: *</label>
                 <div class="col-sm-6 col-xs-12">
-                    <?=form_dropdown('model_id', $option_model, '', 'id="model_id" class="form-control"') ?>
+                    <?=form_dropdown('model_id', $option_model, '', 'id="model_id" class="form-control selectpicker" data-live-search="true"') ?>
                 </div>
             </div>
 

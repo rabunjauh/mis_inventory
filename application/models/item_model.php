@@ -164,9 +164,34 @@ class Item_model extends CI_Model {
         return $this->db->get('machine_type')->result();
     }
 
-    public function get_model()
+    public function get_models()
     {
         return $this->db->get('model')->result();
+    }
+
+    public function get_operating_systems()
+    {
+        return $this->db->get('operating_system')->result();
+    }
+
+    public function get_processors()
+    {
+        return $this->db->get('processor')->result();
+    }
+
+    public function get_memories()
+    {
+        return $this->db->get('memory')->result();
+    }
+
+    public function get_hard_disks()
+    {
+        return $this->db->get('hard_disk')->result();
+    }
+
+    public function get_vga()
+    {
+        return $this->db->get('vga')->result();
     }
 
     public function get_items()

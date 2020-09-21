@@ -271,7 +271,12 @@ class Items extends CI_Controller {
     $data['categories'] = $this->item_model->get_categories();
     $data['measurement'] = $this->settings_model->get_measurement();
     $data['machine_types'] = $this->item_model->get_machine_types();
-    // $data['models'] = $this->item_model->get_models();
+    $data['models'] = $this->item_model->get_models();
+    $data['operating_systems'] = $this->item_model->get_operating_systems();
+    $data['processors'] = $this->item_model->get_processors();
+    $data['memories'] = $this->item_model->get_memories();
+    $data['hard_disks'] = $this->item_model->get_hard_disks();
+    $data['vga'] = $this->item_model->get_vga();
     $data['content'] = $this->load->view('forms/form_add_item', $data, TRUE);
     $data['footer'] = $this->load->view('footer/footer', '', TRUE);
     $this->load->view('main', $data);
