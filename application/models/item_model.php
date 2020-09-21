@@ -94,20 +94,55 @@ class Item_model extends CI_Model {
       return $query->result();
     }
 
+    // public function fetch_data($limit, $offset,$type)
+    // {
+    //   $this->db->select('*')
+    //   ->join('category', 'items.cat_id = category.cat_id','left')
+    //   ->join('tbl_measurement', 'items.measurement_id = tbl_measurement.measurement_id','left');
+
+    //   if ($type == "consumable") {
+    //     $this->db->where('item_material_status', 0);
+    //   }else {
+    //     $this->db->where('item_material_status', 1);
+    //   }
+    //   if ($limit) {
+    //     $this->db->limit($limit,$offset);
+    //   }
+    //   $query = $this->db->get('items');
+    //   if ($query->num_rows() > 0) {
+    //     foreach ($query->result() as $row) {
+    //       $data[] = $row;
+    //     }
+
+    //     return $data;
+    //   }
+    //   return false;
+    // }
+
     public function fetch_data($limit, $offset,$type)
     {
       $this->db->select('*')
       ->join('category', 'items.cat_id = category.cat_id','left')
-      ->join('tbl_measurement', 'items.measurement_id = tbl_measurement.measurement_id','left');
+      ->join('tbl_measurement', 'items.measurement_id = tbl_measurement.measurement_id','left')
+      ->join('machine_type', 'items.machine_type = machine_type.machine_type_id', 'left')
+      ->join('manufacture', 'items.manufacture = manufacture.manufacture_id', 'left')
+      ->join('model', 'items.model = model.model_id', 'left')
+      ->join('operating_system', 'items.operating_system = operating_system.operating_system_id', 'left')
+      ->join('processor', 'items.processor = processor.processor_id', 'left')
+      ->join('memory', 'items.memory = memory.memory_id', 'left')
+      ->join('hard_disk', 'items.hdd = hard_disk.hard_disk_id', 'left')
+      ->join('vga', 'items.vga = vga.vga_id', 'left');
 
       if ($type == "consumable") {
         $this->db->where('item_material_status', 0);
       }else {
         $this->db->where('item_material_status', 1);
       }
+
       if ($limit) {
         $this->db->limit($limit,$offset);
       }
+
       $query = $this->db->get('items');
       if ($query->num_rows() > 0) {
         foreach ($query->result() as $row) {
