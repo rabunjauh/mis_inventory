@@ -164,6 +164,11 @@ class Item_model extends CI_Model {
         return $this->db->get('machine_type')->result();
     }
 
+    public function get_manufactures()
+    {
+        return $this->db->get('manufacture')->result();
+    }
+
     public function get_models()
     {
         return $this->db->get('model')->result();
@@ -208,6 +213,14 @@ class Item_model extends CI_Model {
               ->from('items')
               ->join('category', 'items.cat_id = category.cat_id','left')
               ->join('tbl_measurement', 'items.measurement_id = tbl_measurement.measurement_id','left')
+              ->join('machine_type', 'items.machine_type = machine_type.machine_type_id','left')
+              ->join('manufacture', 'items.manufacture = manufacture.manufacture_id','left')
+              ->join('model', 'items.model = model.model_id','left')
+              ->join('operating_system', 'items.operating_system = operating_system.operating_system_id','left')
+              ->join('processor', 'items.processor = processor.processor_id','left')
+              ->join('memory', 'items.memory = memory.memory_id','left')
+              ->join('hard_disk', 'items.hdd = hard_disk.hard_disk_id','left')
+              ->join('vga', 'items.vga = vga.vga_id','left')
               ->where('items.item_id',$id);
       $result = $this->db->get()->row();
       return $result;
@@ -234,6 +247,7 @@ class Item_model extends CI_Model {
         $info['service_tag'] = $input['service_tag'];
         $info['express_service'] = $input['express_service'];
         $info['machine_type'] = $input['machine_type'];
+        $info['manufacture'] = $input['manufacture'];
         $info['model'] = $input['model'];
         $info['operating_system'] = $input['operating_system'];
         $info['processor'] = $input['processor'];

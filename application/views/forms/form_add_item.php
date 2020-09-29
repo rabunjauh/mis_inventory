@@ -34,6 +34,12 @@
                     $option_machine_type[$value->machine_type_id] = $value->machine_type_desc;
             }
 
+            $option_manufacture = array();
+            $option_manufacture[0] = 'Select Machine Type';
+            foreach ($manufactures as $value) {
+                    $option_manufacture[$value->manufacture_id] = $value->manufacture_desc;
+            }
+
             $option_model = array();
             $option_model[0] = 'Select Model';
             foreach ($models as $value) {
@@ -172,101 +178,60 @@
                   <input type="text" name="express_service" id="express_service" class="form-control">
                 </div>
             </div>
-            <div class="form-group stock">
+
+            <div class="form-group">
                 <label for="machine_type" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Machine Type: *</label>
                 <div class="col-sm-6 col-xs-12">
-                  <input type="text" name="machine_type" id="machine_type" class="form-control">
+                    <?=form_dropdown('machine_type', $option_machine_type, '', 'id="machine_type" class="form-control"') ?>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="machine_type_id" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Machine Type: *</label>
+                <label for="option_manufacture" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Manufacture: *</label>
                 <div class="col-sm-6 col-xs-12">
-                    <?=form_dropdown('machine_type_id', $option_machine_type, '', 'id="machine_type_id" class="form-control"') ?>
+                    <?=form_dropdown('manufacture', $option_manufacture, '', 'id="manufacture" class="form-control"') ?>
                 </div>
             </div>
 
-            <div class="form-group stock">
+            <div class="form-group">
                 <label for="model" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Model: *</label>
                 <div class="col-sm-6 col-xs-12">
-                  <input type="text" name="model" id="model" class="form-control">
+                    <?=form_dropdown('model', $option_model, '', 'id="model" class="form-control selectpicker" data-live-search="true"') ?>
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="model_id" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Model: *</label>
-                <div class="col-sm-6 col-xs-12">
-                    <?=form_dropdown('model_id', $option_model, '', 'id="model_id" class="form-control selectpicker" data-live-search="true"') ?>
-                </div>
-            </div>
-
-            <div class="form-group stock">
+           <div class="form-group">
                 <label for="operating_system" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Operating System: *</label>
                 <div class="col-sm-6 col-xs-12">
-                  <input type="text" name="operating_system" id="operating_system" class="form-control">
+                    <?=form_dropdown('operating_system', $option_operating_system, '', 'id="operating_system" class="form-control"') ?>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="operating_system_id" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Operating System: *</label>
-                <div class="col-sm-6 col-xs-12">
-                    <?=form_dropdown('operating_system_id', $option_operating_system, '', 'id="operating_system_id" class="form-control"') ?>
-                </div>
-            </div>
-
-            <div class="form-group stock">
                 <label for="processor" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Processor: *</label>
                 <div class="col-sm-6 col-xs-12">
-                  <input type="text" name="processor" id="processor" class="form-control">
+                    <?=form_dropdown('processor', $option_processor, '', 'id="processor" class="form-control"') ?>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="processor_id" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Processor: *</label>
-                <div class="col-sm-6 col-xs-12">
-                    <?=form_dropdown('processor_id', $option_processor, '', 'id="processor_id" class="form-control"') ?>
-                </div>
-            </div>
-
-            <div class="form-group stock">
                 <label for="memory" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Memory: *</label>
                 <div class="col-sm-6 col-xs-12">
-                  <input type="text" name="memory" id="memory" class="form-control">
+                    <?=form_dropdown('memory', $option_memory, '', 'id="memory" class="form-control"') ?>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="memory_id" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Memory: *</label>
-                <div class="col-sm-6 col-xs-12">
-                    <?=form_dropdown('memory_id', $option_memory, '', 'id="memory_id" class="form-control"') ?>
-                </div>
-            </div>
-
-            <div class="form-group stock">
                 <label for="hdd" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Hard Disk Capacity: *</label>
                 <div class="col-sm-6 col-xs-12">
-                  <input type="text" name="hdd" id="hdd" class="form-control">
+                    <?=form_dropdown('hdd', $option_harddisk, '', 'id="hdd" class="form-control"') ?>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="harddisk_id" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Hard Disk Capacity: *</label>
-                <div class="col-sm-6 col-xs-12">
-                    <?=form_dropdown('harddisk_id', $option_harddisk, '', 'id="harddisk_id" class="form-control"') ?>
-                </div>
-            </div>
-
-            <div class="form-group stock">
                 <label for="vga" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">VGA: *</label>
                 <div class="col-sm-6 col-xs-12">
-                  <input type="text" name="vga" id="vga" class="form-control">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="vga_id" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">VGA: *</label>
-                <div class="col-sm-6 col-xs-12">
-                    <?=form_dropdown('vga_id', $option_vga, '', 'id="vga_id" class="form-control"') ?>
+                    <?=form_dropdown('vga', $option_vga, '', 'id="vga" class="form-control"') ?>
                 </div>
             </div>
 
@@ -276,6 +241,7 @@
                   <input type="text" name="computer_name" id="computer_name" class="form-control">
                 </div>
             </div>
+
             <div class="form-group stock">
                 <label for="warranty_status" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Warranty: *</label>
                 <div class="col-sm-6 col-xs-12">

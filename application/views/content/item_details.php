@@ -20,12 +20,12 @@
       <dl class="invoice-meta">
         <dt class="invoice-due">Service Tag</dt>
         <dd><?php echo $item->service_tag; ?></dd>
-        <dt class="invoice-number">Express Service</dt>
-        <dd><?php echo $item->express_service; ?></dd>
+        <dt class="invoice-number">Manufacture</dt>
+        <dd><?php echo $item->manufacture_desc; ?></dd>
         <dt class="invoice-date">Machine Type</dt>
-        <dd><?php echo $item->machine_type ?></dd>
+        <dd><?php echo $item->machine_type_desc ?></dd>
         <dt class="invoice-date">Model</dt>
-        <dd><?php echo $item->model ?></dd>
+        <dd><?php echo $item->model_desc ?></dd>
       </dl>
     </div>
   </header>
@@ -36,12 +36,12 @@
         <h2>Details:</h2>
         <div id="hcard-Admiral-Valdore" class="vcard">
           <div class="org">Asset ID: <?php echo $item->item_code; ?></div>
-          <div class="org">Operating System: <?php echo $item->operating_system; ?></div>
+          <div class="org">Operating System: <?php echo $item->operating_system_desc; ?></div>
           <div class="org">Computer Name: <?php echo $item->computer_name; ?></div>
-          <div class="org">Processor: <?php echo $item->processor; ?></div>
-          <div class="org">Memory: <?php echo $item->memory; ?></div>
-          <div class="org">Hardisk: <?php echo $item->hdd; ?></div>
-          <div class="org">VGA: <?php echo $item->vga; ?></div>
+          <div class="org">Processor: <?php echo $item->processor_type; ?></div>
+          <div class="org">Memory: <?php echo $item->memory_size; ?></div>
+          <div class="org">Hardisk: <?php echo $item->hard_disk_size; ?></div>
+          <div class="org">VGA: <?php echo $item->vga_model; ?></div>
           <br>
 
         </div><!-- e: vcard -->
