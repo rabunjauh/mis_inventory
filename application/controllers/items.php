@@ -706,19 +706,50 @@ class Items extends CI_Controller {
     }
   }
 
+  // public function view($id)
+  // {
+  //   $items = $this->item_model->get_item_by_id($id);
+  //   if ($items && $items->item_material_status == 1) {
+  //     $inventory = $this->inventory_model->get_inventory_by_item($id);
+  //     $borrowDetails = $this->borrow_model->get_borrowDetails_by_item($id);
+  //     $borrow = $this->borrow_model->get_borrow_by_item($id);
+  //     if ($borrow) {
+  //       array_push($borrowDetails,$borrow);
+  //     }
+  //     $data['borrowed'] = $this->count_borrowed($borrowDetails);
+  //     $data['item'] = $items;
+  //     // $data['inventory'] = $inventory;
+  //     $data['borrowDetails'] = $borrowDetails;
+  //     $data['header'] = $this->load->view('header/head', '', TRUE);
+  //     $data['navigation'] = $this->load->view('header/navigation', $data, TRUE);
+  //     $data['extra_head'] = $this->load->view('header/invoice', '', TRUE);
+  //     $data['content'] = $this->load->view('content/item_details', $data, TRUE);
+  //     $data['footer'] = $this->load->view('footer/footer', '', TRUE);
+  //     $this->load->view('main', $data);
+  //   }else {
+  //     $message = '<div class="alert alert-danger">Item Not Found!</div>';
+  //     $this->session->set_flashdata('message', $message);
+  //     redirect(base_url('items'));
+  //   }
+  // }
+
   public function view($id)
   {
     $items = $this->item_model->get_item_by_id($id);
     if ($items && $items->item_material_status == 1) {
       $inventory = $this->inventory_model->get_inventory_by_item($id);
-      $borrowDetails = $this->borrow_model->get_borrowDetails_by_item($id);
-      $borrow = $this->borrow_model->get_borrow_by_item($id);
-      if ($borrow) {
-        array_push($borrowDetails,$borrow);
+      if($items->accessories == 0){
+        $borrowDetails = $this->borrow_model->get_borrow_by_item($id);
+      }else{
+        $borrowDetails = $this->borrow_model->get_borrowDetails_by_item($id);
       }
+      // $borrow = $this->borrow_model->get_borrow_by_item($id);
+      // if ($borrow) {
+      //   array_push($borrowDetails,$borrow);
+      // }
       $data['borrowed'] = $this->count_borrowed($borrowDetails);
       $data['item'] = $items;
-      $data['inventory'] = $inventory;
+      // $data['inventory'] = $inventory;
       $data['borrowDetails'] = $borrowDetails;
       $data['header'] = $this->load->view('header/head', '', TRUE);
       $data['navigation'] = $this->load->view('header/navigation', $data, TRUE);

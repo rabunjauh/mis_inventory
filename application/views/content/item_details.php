@@ -71,6 +71,7 @@
           <thead>
             <tr>
               <th>Borrow By</th>
+              <th>Employee ID</th>
               <th>Project Name</th>
               <th>Warehouse Name</th>
               <th>Borrow Date</th>
@@ -85,6 +86,7 @@
               <?php foreach ($borrowDetails as $value): ?>
                 <tr>
                   <td><?php echo $value->employeename ?></td>
+                  <td><?php echo $value->fingerid ?></td>
                   <td><?php echo $value->project_name ?></td>
                   <td><?php echo $value->warehouse_name ?></td>
                   <td><?php echo $value->borrow_date ?></td>
