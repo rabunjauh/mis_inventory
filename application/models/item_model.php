@@ -71,8 +71,16 @@ class Item_model extends CI_Model {
       $opt = $this->get_query($filter);
       $sql = "SELECT * FROM items
       LEFT JOIN category ON items.cat_id = category.cat_id
-      LEFT JOIN tbl_measurement ON tbl_measurement.measurement_id = items.measurement_id";
-
+      LEFT JOIN tbl_measurement ON tbl_measurement.measurement_id = items.measurement_id
+      LEFT JOIN machine_type ON items.machine_type = machine_type.machine_type_id
+      LEFT JOIN manufacture ON items.manufacture = manufacture.manufacture_id
+      LEFT JOIN model ON items.model = model.model_id
+      LEFT JOIN operating_system ON items.operating_system = operating_system.operating_system_id
+      LEFT JOIN processor ON items.processor = processor.processor_id
+      LEFT JOIN memory ON items.memory = memory.memory_id
+      LEFT JOIN hard_disk ON items.hdd = hard_disk.hard_disk_id
+      LEFT JOIN vga ON items.vga = vga.vga_id";
+      
       if ($type == "consumable") {
         $sql .= " WHERE item_material_status = 0";
       }else {
