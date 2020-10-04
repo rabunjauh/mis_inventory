@@ -312,7 +312,8 @@ class Borrow_model extends CI_Model {
     ->join('wasco_fingerman.tblmas_employee', 'tblmas_employee.fingerid = item_borrow.taken_by_uid', 'left')
     ->join('warehouse', 'warehouse.warehouse_id = item_borrow.warehouse_id', 'left')
     ->join('project', 'project.project_uid = item_borrow.project_uid', 'left')
-    ->where('item_borrow.item_id =', $id);
+    ->where('item_borrow.item_id =', $id)
+    ->order_by('item_borrow.borrow_id', 'DESC');
     $result = $this->db->get()->result();
     return $result;
   }

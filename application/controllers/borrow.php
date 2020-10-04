@@ -490,6 +490,64 @@ class Borrow extends CI_Controller {
     $this->load->view('main', $data);
   }
 
+  // public function return_borrow($id)
+  // {
+  //   $data['borrow'] = $this->borrow_model->get_view_borrow($id);
+  //   $data['borrow_details'] = $this->borrow_model->get_borrow_details($id);
+  //   if (!$id) {
+  //     $message = '<div class="alert alert-danger">Not Found!</div>';
+  //     $this->session->set_flashdata('message', $message);
+  //     redirect(base_url('borrow'));
+  //   }
+  //   if (sizeof($data['borrow']) <= 0) {
+  //     $message = '<div class="alert alert-danger">Not Found!</div>';
+  //     $this->session->set_flashdata('message', $message);
+  //     redirect(base_url('borrow'));
+  //   }
+  //   if($this->input->post()){
+  //     $borrow_detail_id = $this->input->post('borrow_detail_id',true);
+  //     $return_quantity = $this->input->post('return_quantity',true);
+  //     $return_status = $this->input->post('return_status',true);
+
+  //     if ($return_status) {
+  //       $dataReturnItem['item_return_date'] = date('Y-m-d');
+  //       $this->borrow_model->updateBorrow($dataReturnItem,$id);
+  //       //
+  //       // //update inventory
+  //       $inventory = $this->inventory_model->get_inventory_by_item($data['borrow']->item_id);
+  //       $dataInv['inventory_quantity'] = $inventory->inventory_quantity + 1;
+  //       $this->inventory_model->update_inventory($dataInv,$data['borrow']->item_id);
+  //     }
+
+  //     //details
+  //     for ($i=0; $i < sizeof($borrow_detail_id); $i++) {
+
+  //       if ($borrow_detail_id[$i]) {
+  //         $borrowDetails = $this->borrow_model->get_borrow_details_byid($borrow_detail_id[$i]);
+  //         $inventory = $this->inventory_model->get_inventory_by_item($borrowDetails->item_id);
+
+  //         if ($return_quantity[$i] != '' && $return_quantity[$i] != 0 && $borrowDetails->return_date == '') {
+  //           $returnQty = $borrowDetails->return_quantity + $return_quantity[$i];
+  //           if ($returnQty >= $borrowDetails->quantities) {
+  //             $dataReturn['return_date'] =  date('Y-m-d');
+  //             $returnQty = $borrowDetails->quantities;
+  //             $return_quantity[$i] = $borrowDetails->quantities - $borrowDetails->return_quantity;
+  //           }
+  //           $dataReturn['return_quantity'] =  $returnQty;
+  //           $this->borrow_model->updateDetails($dataReturn,$borrow_detail_id[$i]);
+  //           $dataInv['inventory_quantity'] = $inventory->inventory_quantity + $return_quantity[$i];
+  //           $this->inventory_model->update_inventory($dataInv,$borrowDetails->item_id);
+  //         }
+  //       }
+
+  //     }
+
+  //     $this->borrow_model->return_borrow($id);
+  //     $message = '<div class="alert alert-success">Success</div>';
+  //     $this->session->set_flashdata('message', $message);
+  //     redirect(base_url('borrow'));
+  //   }
+
   public function return_borrow($id)
   {
     $data['borrow'] = $this->borrow_model->get_view_borrow($id);
@@ -511,6 +569,7 @@ class Borrow extends CI_Controller {
 
       if ($return_status) {
         $dataReturnItem['item_return_date'] = date('Y-m-d');
+        $dataReturnItem['borrow_status'] = $return_status;
         $this->borrow_model->updateBorrow($dataReturnItem,$id);
         //
         // //update inventory

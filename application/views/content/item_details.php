@@ -91,8 +91,16 @@
                   <td><?php echo $value->warehouse_name ?></td>
                   <td><?php echo $value->borrow_date ?></td>
                   <td><?php echo $value->note ?></td>
-                  <td><?php echo ($value->quantities) ? $value->quantities : '1';  ?></td>
-                  <td><?php echo (!$value->return_quantity && $value->return_date) ? '1' : $value->return_quantity; ?> </td>
+                  <td><?php echo isset(($value->quantities)) ? $value->quantities : '1';  ?></td>                 
+                  <td>
+                    <?php 
+                      if(isset($value->return_quantity)){
+                        echo $value->return_quantity; 
+                      }elseif(isset($value->return_date)){                                                 
+                        echo '1';                        
+                      }
+                    ?>
+                  </td>
                   <td><?php if($value->return_date == ''){echo "<p style='color:red;'>Not Return</p>";}else{echo "<p style='color:green;'>Return</p>";} ; ?></td>
                 </tr>
               <?php endforeach; ?>
@@ -112,7 +120,7 @@
 
     <br/><br/><br/>
 
-    <?php if ($borrow->note != '') { ?>
+    <?php if (isset($borrow->note) != '') { ?>
       <div class="invoice-notes col-xs-12">
         <h6>Note:</h6>
         <p><?php echo $borrow->note; ?></p>

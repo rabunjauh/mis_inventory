@@ -743,11 +743,11 @@ class Items extends CI_Controller {
       }else{
         $borrowDetails = $this->borrow_model->get_borrowDetails_by_item($id);
       }
-      // $borrow = $this->borrow_model->get_borrow_by_item($id);
+      $borrow = $this->borrow_model->get_borrow_by_item($id);
       // if ($borrow) {
       //   array_push($borrowDetails,$borrow);
       // }
-      $data['borrowed'] = $this->count_borrowed($borrowDetails);
+      // $data['borrowed'] = $this->count_borrowed($borrowDetails);
       $data['item'] = $items;
       // $data['inventory'] = $inventory;
       $data['borrowDetails'] = $borrowDetails;
