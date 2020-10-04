@@ -31,6 +31,7 @@
                       <th>Service Tag</th>
                       <th>Express Service Code</th>
                       <th>Machine Type</th>
+                      <th>Manufacture</th>
                       <th>Model</th>
                       <th>Operating System</th>
                       <th>Processor</th>
@@ -49,12 +50,13 @@
                               <td><?=$item->item_name; ?></td>
                               <td><?php echo $item->service_tag ?></td>
                               <td><?php echo $item->express_service ?></td>
-                              <td><?php echo $item->machine_type ?></td>
-                              <td><?php echo $item->model ?></td>
-                              <td><?php echo $item->operating_system ?></td>
-                              <td><?php echo $item->processor ?></td>
-                              <td><?php echo $item->memory ?></td>
-                              <td><?php echo $item->hdd ?></td>
+                              <td><?php echo $item->machine_type_desc ?></td>
+                              <td><?php echo $item->manufacture_desc ?></td>
+                              <td><?php echo $item->model_desc ?></td>
+                              <td><?php echo $item->operating_system_desc ?></td>
+                              <td><?php echo $item->processor_type ?></td>
+                              <td><?php echo $item->memory_size ?></td>
+                              <td><?php echo $item->hard_disk_size ?></td>
                               <td><?php echo $item->computer_name ?></td>
                               <td><?=$item->inventory_quantity; ?></td>
                               <td><?=$item->alert_qtt; ?></td>
@@ -73,6 +75,7 @@
                       <th>Service Tag</th>
                       <th>Express Service Code</th>
                       <th>Machine Type</th>
+                      <th>Manufacture</th>
                       <th>Model</th>
                       <th>Operating System</th>
                       <th>Processor</th>

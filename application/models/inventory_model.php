@@ -57,6 +57,45 @@ class Inventory_model extends CI_Model {
         return $query->row()->total;
     }
 
+    // public function fetch_data_inventory($limit, $offset, $type)
+    // {
+
+    //     if ($type == 'inventory') {
+    //         $this->db->select('*')
+    //         ->join('inventory', 'inventory.item_id = items.item_id', 'left')
+    //         ->join('tbl_measurement', 'tbl_measurement.measurement_id = items.measurement_id', 'left')
+    //         ->join('category', 'items.cat_id = category.cat_id', 'left');
+    //     }else{
+    //         $this->db->select('*')
+    //         ->join('items', 'inventory.item_id = items.item_id', 'left')
+    //         ->join('tbl_measurement', 'tbl_measurement.measurement_id = items.measurement_id', 'left')
+    //         ->join('category', 'items.cat_id = category.cat_id', 'left');
+    //     }
+
+    //     if ($type == 'consumable') {
+    //         $this->db->where('items.item_material_status =', 0);
+    //     }elseif ($type == "stock" || $type == 'all') {
+    //         $this->db->where('items.item_material_status =', 1);
+    //         $this->db->where('items.accessories =', 0);
+    //     }elseif ($type == "accessories") {
+    //         $this->db->where('items.accessories =', 1);
+    //     }
+    //     $this->db->order_by("inventory_update", "desc");
+    //     $this->db->limit($limit, $offset);
+    //     if ($type == 'inventory') {
+    //         $query = $this->db->get('items');
+    //     }else{
+    //         $query = $this->db->get('inventory');
+    //     }
+    //     if ($query->num_rows() > 0) {
+    //         foreach ($query->result() as $row) {
+    //             $data[] = $row;
+    //         }
+    //         return $data;
+    //     }
+    //     return false;
+    // }
+
     public function fetch_data_inventory($limit, $offset, $type)
     {
 
@@ -64,12 +103,28 @@ class Inventory_model extends CI_Model {
             $this->db->select('*')
             ->join('inventory', 'inventory.item_id = items.item_id', 'left')
             ->join('tbl_measurement', 'tbl_measurement.measurement_id = items.measurement_id', 'left')
-            ->join('category', 'items.cat_id = category.cat_id', 'left');
+            ->join('category', 'items.cat_id = category.cat_id', 'left')
+            ->join('machine_type', 'items.machine_type = machine_type.machine_type_id', 'left')
+            ->join('manufacture', 'items.manufacture = manufacture.manufacture_id', 'left')
+            ->join('model', 'items.model = model.model_id', 'left')
+            ->join('operating_system', 'items.operating_system = operating_system.operating_system_id', 'left')
+            ->join('processor', 'items.processor = processor.processor_id', 'left')
+            ->join('memory', 'items.memory = memory.memory_id', 'left')
+            ->join('hard_disk', 'items.hdd = hard_disk.hard_disk_id', 'left')
+            ->join('vga', 'items.vga = vga.vga_id', 'left');
         }else{
             $this->db->select('*')
             ->join('items', 'inventory.item_id = items.item_id', 'left')
             ->join('tbl_measurement', 'tbl_measurement.measurement_id = items.measurement_id', 'left')
-            ->join('category', 'items.cat_id = category.cat_id', 'left');
+            ->join('category', 'items.cat_id = category.cat_id', 'left')
+            ->join('machine_type', 'items.machine_type = machine_type.machine_type_id', 'left')
+            ->join('manufacture', 'items.manufacture = manufacture.manufacture_id', 'left')
+            ->join('model', 'items.model = model.model_id', 'left')
+            ->join('operating_system', 'items.operating_system = operating_system.operating_system_id', 'left')
+            ->join('processor', 'items.processor = processor.processor_id', 'left')
+            ->join('memory', 'items.memory = memory.memory_id', 'left')
+            ->join('hard_disk', 'items.hdd = hard_disk.hard_disk_id', 'left')
+            ->join('vga', 'items.vga = vga.vga_id', 'left');
         }
 
         if ($type == 'consumable') {
