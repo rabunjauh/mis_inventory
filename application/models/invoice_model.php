@@ -145,7 +145,7 @@ class Invoice_model extends CI_Model {
         return false;
     }
 
-    public function record_count_purchases($type) {
+    public function record_count_purchases($type = "") {
         return $this->db->count_all("invoice_purchase");
     }
 
