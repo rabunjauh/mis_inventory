@@ -10,8 +10,8 @@
                     <th>No</th>
                     <th>Machine Type</th>
                     <th>Total</th>
-                    <th>Borrowed</th>
                     <th>Spare</th>
+                    <th>Borrowed</th>
                     <th>Damage</th>
                 </tr>	
                 <?php 
@@ -21,10 +21,11 @@
                 <tr>
                     <td><?php echo $no ?></td>                    
                     <td><?php echo $machine_type->machine_type_desc ?></td>                    
-                    <td><?php echo $machine_type->total_qty ?></td>
-                    <td><?php echo $machine_type->borrowed_qty ?></td>
-                    <td>100</td>
-                    <td>100</td>
+                    <td><?php echo $machine_type->total ?></td>
+                    <td><?php echo $machine_type->spare ?></td>
+                    <td><?php echo ($machine_type->total-$machine_type->spare) - $machine_type->damage ?></td>
+                    <td><?php echo $machine_type->damage ?></td>
+                    
                 </tr>	
                 <?php
                     $no++;

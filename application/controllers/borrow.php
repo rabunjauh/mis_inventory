@@ -615,4 +615,27 @@ class Borrow extends CI_Controller {
 
   }
 
+  public function form_request_items(){
+    // if (!$this->session->userdata('role')) {
+    //   exit('<div class="alert alert-danger">Not allowed!</div>');
+    // }
+  
+    $data = array();
+    $data['header'] = $this->load->view('header/head', '', TRUE);
+    $data['navigation'] = $this->load->view('header/navigation', $data, TRUE);
+    // $data['categories'] = $this->item_model->get_categories();
+    // $data['measurement'] = $this->settings_model->get_measurement();
+    // $data['machine_types'] = $this->item_model->get_machine_types();
+    // $data['manufactures'] = $this->item_model->get_manufactures();
+    // $data['models'] = $this->item_model->get_models();
+    // $data['operating_systems'] = $this->item_model->get_operating_systems();
+    // $data['processors'] = $this->item_model->get_processors();
+    // $data['memories'] = $this->item_model->get_memories();
+    // $data['hard_disks'] = $this->item_model->get_hard_disks();
+    // $data['vga'] = $this->item_model->get_vga();
+    $data['content'] = $this->load->view('forms/form_request_items', $data, TRUE);
+    $data['footer'] = $this->load->view('footer/footer', '', TRUE);
+    $this->load->view('main', $data);
+  } 
+
 }
