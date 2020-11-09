@@ -1,4 +1,3 @@
-tes rumah
 <script src="<?php echo prefix_url;?>assets/js/jquery.js" type="text/javascript"></script>
 <script src="<?php echo prefix_url;?>assets/js/jquery.js" type="text/javascript"></script>
 <script src="<?php echo prefix_url;?>assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
@@ -82,13 +81,13 @@ tes rumah
             <div class="form-group">
                 <label for="lbl_employee_status" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Employee Status: *</label>
                 <div class="col-sm-8 col-xs-12">
-                    <input type="radio" id="radio_employee_status" name="radio_employee_status[]" value="male">
+                    <input type="radio" id="radio_employee_status" name="radio_employee_status" value="1">
                     <label for="male">New Staff</label><br>
-                    <input type="radio" id="radio_employee_status" name="radio_employee_status[]" value="female">
+                    <input type="radio" id="radio_employee_status" name="radio_employee_status" value="2">
                     <label for="female">Existing Staff</label><br>
-                    <input type="radio" id="radio_employee_status" name="radio_employee_status[]" value="other">
+                    <input type="radio" id="radio_employee_status" name="radio_employee_status" value="3">
                     <label for="other">Resignation</label>
-                    <input type="radio" id="radio_employee_status" name="radio_employee_status[]" value="other">
+                    <input type="radio" id="radio_employee_status" name="radio_employee_status" value="4">
                     <label for="other">Transfer</label>
                 </div>
             </div>
@@ -146,7 +145,40 @@ tes rumah
                   <input type="text" name="txt_phone" id="txt_phone" class="form-control">
                 </div>
             </div>
-
+            <table class="table table-bordered table-striped" id="softwareTable">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Items</th>
+                  <th>Yes / No</th>
+                  <th>Remark</th>
+                </tr>
+              </thead>
+              <tbody id="item_area">
+                <tr>
+                    <td class="numberRow-requestDetails"> </td>
+                    <td> <input type="text" name="software[]" class="form-control"> </td>
+                    <td> 
+                      <input type="radio" id="radio_yes" name="radio_option" value="1"><label for="radio_option">Yes</label> 
+                      <input type="radio" id="radio_no" name="radio_option" value="1"><label for="radio_option">No</label>
+                    </td>
+                    <td>
+                      <input type="text" name="textComputerRemark" class="form-control">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="numberRow-requestDetails"> </td>
+                    <td> <input type="text" name="software[]" class="form-control"> </td>
+                    <td> 
+                      <input type="radio" id="radio_yes" name="radio_option" value="1"><label for="radio_option">Yes</label> 
+                      <input type="radio" id="radio_no" name="radio_option" value="1"><label for="radio_option">No</label>
+                    </td>
+                    <td>
+                      <input type="text" name="textComputerRemark" class="form-control">
+                    </td>
+                </tr>
+              </tbody>
+            </table>
             <!--  -->
             <div class="form-group">
                 <label class="col-xs-offset-1 col-sm-offset-3">
@@ -188,11 +220,19 @@ tes rumah
 </div>
 
 <script>
-// $('.stock').hide();
+$(document).ready(function(){
+  // $('.stock').hide();
 // $('.calibration').hide();
 // $('.maintanance').hide();
 // $('.warranty').hide();
-
+reNumber('requestDetails');
+function reNumber(table) {
+	var i = 1;
+	$(".numberRow-"+table).each(function() {
+		$( this ).text( i );
+		i++
+	});
+}
 $('.datepicker').datepicker({
   autoclose : true
 });
@@ -227,5 +267,8 @@ function changeStatus(e,type) {
     $('.'+type).show();
   }
 }
+
+$()
+});
 
 </script>
