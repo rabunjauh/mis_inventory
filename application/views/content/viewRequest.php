@@ -62,7 +62,7 @@
                               <td><?php echo $value->company ?> </td>
                               <td><?php echo $value->dateOfJoin ?> </td>
                               <td><?php echo $value->dateOfRequest ?> </td>
-                              <td><?php echo $value->approvalStatus ?> </td>
+                              <td><?php echo $value->approvalDesc ?> </td>
                               
                               <?php if ($this->session->userdata('role')): ?>
                                   <td>

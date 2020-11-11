@@ -1,273 +1,219 @@
-<script src="<?php echo prefix_url;?>assets/js/jquery.js" type="text/javascript"></script>
-<script src="<?php echo prefix_url;?>assets/js/jquery.js" type="text/javascript"></script>
-<script src="<?php echo prefix_url;?>assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" href="<?php echo prefix_url;?>assets/css/datepicker.css" />
+<script src="<?php echo prefix_url; ?>assets/js/jquery.js" type="text/javascript"></script>
+<script src="<?php echo prefix_url; ?>assets/js/jquery.js" type="text/javascript"></script>
+<script src="<?php echo prefix_url; ?>assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo prefix_url; ?>assets/css/datepicker.css" />
 
 <div class="row">
-    <div class="col-xs-12">
-        <?=validation_errors('<div class="alert alert-danger">', '</div>'); ?>
-    </div>
+  <div class="col-xs-12">
+    <?= validation_errors('<div class="alert alert-danger">', '</div>'); ?>
+  </div>
 </div>
 <div class="row">
-    <div class="box">
-        <div class="box-header">
-            <h3 class="box-title">MIS Request Form</h3>
-        </div><!-- /.box-header -->
-        <div class="box-body">
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title">MIS Request Form</h3>
+    </div><!-- /.box-header -->
+    <div class="box-body">
 
-            <?=form_open_multipart(base_url().'items/add_item', 'role="form" class="form-horizontal"'); ?>
-            <?php
-            $option = array();
-            $option[0] = 'Select Category';
-            foreach ($categories as $value) {
-                    $option[$value->cat_id] = $value->cat_name;
-            }
+      <?= form_open_multipart(base_url() . 'items/add_item', 'role="form" class="form-horizontal"'); ?>
+      <?php
+      $optionDepartment = array();
+      $optionDepartment[0] = 'Select Group / Department';
+      foreach ($categories as $value) {
+        $option[$value->cat_id] = $value->cat_name;
+      }
 
-            $optionMeasurement = array();
-            $optionMeasurement[0] = 'Select Measurement';
-            foreach ($measurement as $value) {
-                    $optionMeasurement[$value->measurement_id] = $value->measurement;
-            }
+      $optionCompany = array();
+      $optionCompany[0] = 'Select Company';
+      foreach ($Company as $value) {
+        $optionCompany[$value->Company_id] = $value->Company;
+      }
 
-            $option_machine_type = array();
-            $option_machine_type[0] = 'Select Machine Type';
-            foreach ($machine_types as $value) {
-                    $option_machine_type[$value->machine_type_id] = $value->machine_type_desc;
-            }
+      $optionDesignation = array();
+      $optionDesignation[0] = 'Select Designation';
+      foreach ($machine_types as $value) {
+        $optionDesignation[$value->machine_type_id] = $value->machine_type_desc;
+      }
+      
+      $optionItems = array();
+      $optionItems[0] = 'Select Items';
+      foreach ($machine_types as $value) {
+        $optionItems[$value->machine_type_id] = $value->machine_type_desc;
+      }
+      ?>
+      <div class="form-group">
+        <label for="lbl_employee_status" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Employee Status: *</label>
+        <div class="col-sm-8 col-xs-12">
+          <input type="radio" id="radio_employee_status" name="radio_employee_status" value="1">
+          <label for="male">New Staff</label><br>
+          <input type="radio" id="radio_employee_status" name="radio_employee_status" value="2">
+          <label for="female">Existing Staff</label><br>
+          <input type="radio" id="radio_employee_status" name="radio_employee_status" value="3">
+          <label for="other">Resignation</label>
+          <input type="radio" id="radio_employee_status" name="radio_employee_status" value="4">
+          <label for="other">Transfer</label>
+        </div>
+      </div>
 
-            $option_manufacture = array();
-            $option_manufacture[0] = 'Select Machine Type';
-            foreach ($manufactures as $value) {
-                    $option_manufacture[$value->manufacture_id] = $value->manufacture_desc;
-            }
+      <div class="form-group">
+        <label for="lbl_employee" class="col-sm-2 hidden-xs control-label col-xs-offset-0 col-xs-2">Employee Name: *</label>
+        <div class="col-sm-6 col-xs-12">
+          <input type="text" class="form-control" readonly="readonly" value="<?php if (isset($borrow) && $borrow->employeename) {
+                                                                                echo $borrow->employeename;
+                                                                              } ?>" name="txtemployeename" id="txtemployeename" required placeholder="Employee Name" />
+          <input type="hidden" name="taken_by_uid" id="txtempid" value="<?php if (isset($borrow) && $borrow->taken_by_uid) {
+                                                                          echo $borrow->taken_by_uid;
+                                                                        } ?>" />
+          <input type="button" class="choose" name="choose" style="width: 20px; height: 20px; display:inline-block;" onclick="open_popup('inventory/employee/');" title="Browse Employee" />
+        </div>
+      </div>
 
-            $option_model = array();
-            $option_model[0] = 'Select Model';
-            foreach ($models as $value) {
-                    $option_model[$value->model_id] = $value->model_desc;
-            }
+      <div class="form-group">
+        <label for="labelDepartment" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Group / Department: *</label>
+        <div class="col-sm-6 col-xs-12">
+          <?= form_dropdown('dropdownDepartment', $optionDepartment, '', 'id="dropdownDepartment" class="form-control"') ?>
+        </div>
+      </div>
 
-            $option_operating_system = array();
-            $option_operating_system[0] = 'Select Operating System';
-            foreach ($operating_systems as $value) {
-                    $option_operating_system[$value->operating_system_id] = $value->operating_system_desc;
-            }
+      <div class="form-group">
+        <label for="labelDateOfJoin" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Date of Join: *</label>
+        <div class="col-sm-6 col-xs-12">
+          <input id="txtDateOfJoin" readonly data-date-format="yyyy-mm-dd" class="form-control datepicker" type="text" name="txtDateOfJoin" />
+        </div>
+      </div>
 
-            $option_processor = array();
-            $option_processor[0] = 'Select Processor';
-            foreach ($processors as $value) {
-                    $option_processor[$value->processor_id] = $value->processor_type;
-            }
-            
-            $option_memory = array();
-                        $option_memory[0] = 'Select Memory';
-                        foreach ($memories as $value) {
-                                $option_memory[$value->memory_id] = $value->memory_size;
-                        }
+      <div class="form-group">
+        <label for="lbl_date_of_request" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Date of Request: *</label>
+        <div class="col-sm-6 col-xs-12">
+          <input id="txtDateOfRequest" readonly data-date-format="yyyy-mm-dd" class="form-control datepicker" type="text" name="txtDateOfRequest" />
+        </div>
+      </div>
 
-            $option_harddisk = array();
-            $option_harddisk[0] = 'Select Hard Disk';
-           foreach ($hard_disks as $hard_disk) {
-                    $option_harddisk[$hard_disk->hard_disk_id] = $hard_disk->hard_disk_size;
-            }
+      <div class="form-group">
+        <label for="lblDesignation" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Designation: *</label>
+        <div class="col-sm-6 col-xs-12">
+          <?= form_dropdown('dropdownDesignation', $optionDesignation, '', 'id="dropdownDesignation" class="form-control"') ?>
+        </div>
+      </div>
 
-            $option_vga = array();
-            $option_vga[0] = 'Select VGA';
-            foreach ($vga as $value) {
-                    $option_vga[$value->vga_id] = $value->vga_model;
-            }
-
-            ?>
-            <div class="form-group">
-                <label for="lbl_employee_status" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Employee Status: *</label>
-                <div class="col-sm-8 col-xs-12">
-                    <input type="radio" id="radio_employee_status" name="radio_employee_status" value="1">
-                    <label for="male">New Staff</label><br>
-                    <input type="radio" id="radio_employee_status" name="radio_employee_status" value="2">
-                    <label for="female">Existing Staff</label><br>
-                    <input type="radio" id="radio_employee_status" name="radio_employee_status" value="3">
-                    <label for="other">Resignation</label>
-                    <input type="radio" id="radio_employee_status" name="radio_employee_status" value="4">
-                    <label for="other">Transfer</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="lbl_employee" class="col-sm-2 hidden-xs control-label col-xs-offset-0 col-xs-2">Employee Name: *</label>
-                <div class="col-sm-6 col-xs-12">
-                    <input type="text" class="form-control" readonly="readonly" value="<?php if(isset($borrow) && $borrow->employeename){echo $borrow->employeename;} ?>" name="txtemployeename" id="txtemployeename" required placeholder="Employee Name" />
-                    <input type="hidden" name="taken_by_uid" id="txtempid" value="<?php if(isset($borrow) && $borrow->taken_by_uid){echo $borrow->taken_by_uid;} ?>"/>
-                    <input type="button" class="choose" name="choose" style="width: 20px; height: 20px; display:inline-block;" onclick="open_popup('inventory/employee/');" title="Browse Employee" />
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="lbl_department" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Group / Department: *</label>
-                <div class="col-sm-6 col-xs-12">
-                    <?=form_dropdown('dropdown_department', $option_machine_type, '', 'id="dropdown_department" class="form-control"') ?>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="lbl_date_of_join" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Date of Join: *</label>
-                <div class="col-sm-6 col-xs-12">
-                  <input id="txt_date_of_join" readonly data-date-format="yyyy-mm-dd"  class="form-control datepicker"  type="text" name="txt_date_of_join" />
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="lbl_date_of_request" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Date of Request: *</label>
-                <div class="col-sm-6 col-xs-12">
-                  <input id="txt_date_of_request" readonly data-date-format="yyyy-mm-dd"  class="form-control datepicker"  type="text" name="txt_date_of_request" />
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="item_material_status" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Material Status: *</label>
-                <div class="col-sm-6 col-xs-12">
-                  <select name="item_material_status" id="item_material_status" class="form-control" onchange="changeMaterial(this)">
-                    <!--<option value="0">Consumable</option>-->
-                    <option value="1">Stock</option>
-                  </select>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="lbl_designation" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Designation: *</label>
-                <div class="col-sm-6 col-xs-12">
-                    <?=form_dropdown('dropdown_department', $option_machine_type, '', 'id="dropdown_department" class="form-control"') ?>
-                </div>
-            </div>
-
-            <div class="form-group stock">
-                <label for="lbl_phone" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Office Direct Line/Mobile No. : *</label>
-                <div class="col-sm-6 col-xs-12">
-                  <input type="text" name="txt_phone" id="txt_phone" class="form-control">
-                </div>
-            </div>
-            <table class="table table-bordered table-striped" id="softwareTable">
-              <thead>
-                <tr>
-                  <th>No.</th>
-                  <th>Items</th>
-                  <th>Yes / No</th>
-                  <th>Remark</th>
-                </tr>
-              </thead>
-              <tbody id="item_area">
-                <tr>
-                    <td class="numberRow-requestDetails"> </td>
-                    <td> <input type="text" name="software[]" class="form-control"> </td>
-                    <td> 
-                      <input type="radio" id="radio_yes" name="radio_option" value="1"><label for="radio_option">Yes</label> 
-                      <input type="radio" id="radio_no" name="radio_option" value="1"><label for="radio_option">No</label>
-                    </td>
-                    <td>
-                      <input type="text" name="textComputerRemark" class="form-control">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="numberRow-requestDetails"> </td>
-                    <td> <input type="text" name="software[]" class="form-control"> </td>
-                    <td> 
-                      <input type="radio" id="radio_yes" name="radio_option" value="1"><label for="radio_option">Yes</label> 
-                      <input type="radio" id="radio_no" name="radio_option" value="1"><label for="radio_option">No</label>
-                    </td>
-                    <td>
-                      <input type="text" name="textComputerRemark" class="form-control">
-                    </td>
-                </tr>
-              </tbody>
-            </table>
-            <!--  -->
-            <div class="form-group">
-                <label class="col-xs-offset-1 col-sm-offset-3">
-                    <p class="text-muted">* Required fields.</p>
-                </label>
-            </div>
-            <div>
-                <button type="submit" class="btn btn-primary btn-flat col-xs-6 col-xs-offset-2  col-sm-offset-3"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
-                <button type="reset" class="btn btn-default btn-flat">Reset</button>
-            </div>
-            <?=form_close(); ?>
-            <br/>
-        </div><!-- /.box-body -->
-    </div><!-- /.box -->
+      <div class="form-group stock">
+        <label for="lbl_phone" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Office Direct Line/Mobile No. : *</label>
+        <div class="col-sm-6 col-xs-12">
+          <input type="text" name="txt_phone" id="txt_phone" class="form-control">
+        </div>
+      </div>
+      <table class="table table-bordered table-striped" id="softwareTable">
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Items</th>
+            <th>Remark</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody id="item_area">
+          <tr>
+            <td class="numberRow-requestDetails"> </td>
+            <td> <?= form_dropdown('dropdownItems', $optionItems, '', 'id="dropdownItems" class="form-control"') ?> </td>
+            <td>
+              <input type="text" name="textComputerRemark" class="form-control">
+            </td>
+            <td>
+              <button type="button" class="btn btn-danger" onclick="deleteClone(this,'itemsTable')"> Delete </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!--  -->
+      <div class="form-group">
+        <label class="col-xs-offset-1 col-sm-offset-3">
+          <p class="text-muted">* Required fields.</p>
+        </label>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary btn-flat col-xs-6 col-xs-offset-2  col-sm-offset-3"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
+        <button type="reset" class="btn btn-default btn-flat">Reset</button>
+      </div>
+      <?= form_close(); ?>
+      <br />
+    </div><!-- /.box-body -->
+  </div><!-- /.box -->
 </div><!-- /.row -->
 <!-- Modal -->
 <div class="modal fade" id="catModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <?=form_open_multipart(base_url('items/save_category'), 'role="form" class="form-horizontal"'); ?>
+      <?= form_open_multipart(base_url('items/save_category'), 'role="form" class="form-horizontal"'); ?>
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="myModalLabel">Add New Category</h4>
       </div>
       <div class="modal-body">
         <div class="form-group">
-            <div class="col-sm-10 col-xs-12 col-sm-offset-1">
-                <?=form_input('cat_name', '', 'id="cat_name" placeholder="Category Name" class="form-control" required') ?>
-            </div>
+          <div class="col-sm-10 col-xs-12 col-sm-offset-1">
+            <?= form_input('cat_name', '', 'id="cat_name" placeholder="Category Name" class="form-control" required') ?>
+          </div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary col-xs-6 col-sm-offset-2 btn-flat"><i class="glyphicon glyphicon-ok"></i> Save</button>
         <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
       </div>
-      <?=form_close(); ?>
+      <?= form_close(); ?>
     </div>
   </div>
 </div>
 
 <script>
-$(document).ready(function(){
-  // $('.stock').hide();
-// $('.calibration').hide();
-// $('.maintanance').hide();
-// $('.warranty').hide();
-reNumber('requestDetails');
-function reNumber(table) {
-	var i = 1;
-	$(".numberRow-"+table).each(function() {
-		$( this ).text( i );
-		i++
-	});
-}
-$('.datepicker').datepicker({
-  autoclose : true
-});
+  $(document).ready(function() {
+    // $('.stock').hide();
+    // $('.calibration').hide();
+    // $('.maintanance').hide();
+    // $('.warranty').hide();
+    reNumber('requestDetails');
 
-function changeMaterial(e) {
-  var value = $(e).val();
-  if (value == 0) {
-    $('.stock').hide();
-    $('.calibration').hide();
-    $('.maintanance').hide();
-    $('.warranty').hide();
-    // var clearValue = $('.stock').find(':text');
-    // clearValue.each(function(index,data) {
-    //   $(data).val('');
-    // })
-  }else {
-    $('.stock').show();
-    $('.calibration').show();
-    $('.maintanance').show();
-    $('.warranty').show();
+    function reNumber(table) {
+      var i = 1;
+      $(".numberRow-" + table).each(function() {
+        $(this).text(i);
+        i++
+      });
+    }
+    $('.datepicker').datepicker({
+      autoclose: true
+    });
 
-  }
-}
+    function changeMaterial(e) {
+      var value = $(e).val();
+      if (value == 0) {
+        $('.stock').hide();
+        $('.calibration').hide();
+        $('.maintanance').hide();
+        $('.warranty').hide();
+        // var clearValue = $('.stock').find(':text');
+        // clearValue.each(function(index,data) {
+        //   $(data).val('');
+        // })
+      } else {
+        $('.stock').show();
+        $('.calibration').show();
+        $('.maintanance').show();
+        $('.warranty').show();
 
-function changeStatus(e,type) {
-  var value = $(e).val();
-  if (value == 0) {
-    $('.'+type).hide();
-    $('#'+type+'_start').val('');
-    $('#'+type+'_end').val('');
-  }else {
-    $('.'+type).show();
-  }
-}
+      }
+    }
 
-$()
-});
+    function changeStatus(e, type) {
+      var value = $(e).val();
+      if (value == 0) {
+        $('.' + type).hide();
+        $('#' + type + '_start').val('');
+        $('#' + type + '_end').val('');
+      } else {
+        $('.' + type).show();
+      }
+    }
+
+    $()
+  });
 </script>

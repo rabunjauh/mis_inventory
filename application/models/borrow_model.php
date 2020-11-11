@@ -406,7 +406,7 @@ class Borrow_model extends CI_Model {
     return $query->row()->total;
   }
   public function fetchRequestItems($limit, $offset){
-    $sql = "SELECT * FROM tblRequest";
+    $sql = "SELECT * FROM tblRequest LEFT JOIN tblApproval ON tblRequest.approvalStatusID = tblapproval.approvalID";
 
    if ($limit) {
       if(!$offset){

@@ -652,7 +652,7 @@ class Borrow extends CI_Controller {
     $this->load->view('main', $data);
   } 
   
-  public function form_request_items(){
+  public function formRequestItems(){
     // if (!$this->session->userdata('role')) {
     //   exit('<div class="alert alert-danger">Not allowed!</div>');
     // }
@@ -670,7 +670,7 @@ class Borrow extends CI_Controller {
     // $data['memories'] = $this->item_model->get_memories();
     // $data['hard_disks'] = $this->item_model->get_hard_disks();
     // $data['vga'] = $this->item_model->get_vga();
-    $data['content'] = $this->load->view('forms/form_request_items', $data, TRUE);
+    $data['content'] = $this->load->view('forms/formRequestItems', $data, TRUE);
     $data['footer'] = $this->load->view('footer/footer', '', TRUE);
     $this->load->view('main', $data);
   } 
