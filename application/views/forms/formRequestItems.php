@@ -270,5 +270,4 @@ function changeStatus(e,type) {
 
 $()
 });
-
 </script>

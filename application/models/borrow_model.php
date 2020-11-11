@@ -399,6 +399,27 @@ class Borrow_model extends CI_Model {
     return $result;
   }
 
+  public function countRequestItems()
+  {
+    $sql = "SELECT count(*) total FROM tblRequest";
+    $query = $this->db->query($sql);
+    return $query->row()->total;
+  }
+  public function fetchRequestItems($limit, $offset){
+    $sql = "SELECT * FROM tblRequest";
+
+   if ($limit) {
+      if(!$offset){
+        $sql .= " LIMIT $limit";
+      }else{
+        $sql .= " LIMIT $limit OFFSET $offset";
+      }
+    }
+
+    $query = $this->db->query($sql);
+    return $query->result();
+  }
+
 }
 
 ?>
