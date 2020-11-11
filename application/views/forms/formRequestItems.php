@@ -17,10 +17,11 @@
 
       <?= form_open_multipart(base_url() . 'items/add_item', 'role="form" class="form-horizontal"'); ?>
       <?php
+      // create array for dropdown list value
       $optionDepartment = array();
       $optionDepartment[0] = 'Select Group / Department';
-      foreach ($categories as $value) {
-        $option[$value->cat_id] = $value->cat_name;
+      foreach ($listDepartments as $listDepartment) {
+        $optionDepartment[$listDepartment->iddept] = $listDepartment->deptdesc;
       }
 
       $optionCompany = array();
@@ -31,39 +32,37 @@
 
       $optionDesignation = array();
       $optionDesignation[0] = 'Select Designation';
-      foreach ($machine_types as $value) {
-        $optionDesignation[$value->machine_type_id] = $value->machine_type_desc;
+      foreach ($listPositions as $listPosition) {
+        $optionDesignation[$listPosition->idposition] = $listPosition->positiondesc;
       }
-      
-      $optionItems = array();
-      $optionItems[0] = 'Select Items';
-      foreach ($machine_types as $value) {
-        $optionItems[$value->machine_type_id] = $value->machine_type_desc;
-      }
+
       ?>
       <div class="form-group">
-        <label for="lbl_employee_status" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Employee Status: *</label>
-        <div class="col-sm-8 col-xs-12">
-          <input type="radio" id="radio_employee_status" name="radio_employee_status" value="1">
-          <label for="male">New Staff</label><br>
-          <input type="radio" id="radio_employee_status" name="radio_employee_status" value="2">
-          <label for="female">Existing Staff</label><br>
-          <input type="radio" id="radio_employee_status" name="radio_employee_status" value="3">
-          <label for="other">Resignation</label>
-          <input type="radio" id="radio_employee_status" name="radio_employee_status" value="4">
-          <label for="other">Transfer</label>
+        <label for="lblEmployeeStatus" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Employee Status: *</label>
+        <div class="col-sm-6 col-xs-12">
+        <label class="radio-inline"><input type="radio" id="radioEmployeeStatus" name="radioEmployeeStatus" value="1">New Staff</label>
+        <label class="radio-inline"><input type="radio" id="radioEmployeeStatus" name="radioEmployeeStatus" value="2">Existing Staff</label>
+        <label class="radio-inline"><input type="radio" id="radioEmployeeStatus" name="radioEmployeeStatus" value="3">Resignation</label>
+        <label class="radio-inline"><input type="radio" id="radioEmployeeStatus" name="radioEmployeeStatus" value="4">Transfer</label>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="lbl_employee" class="col-sm-2 hidden-xs control-label col-xs-offset-0 col-xs-2">Employee Name: *</label>
+        <label for="lbl_employee" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Employee Name: *</label>
         <div class="col-sm-6 col-xs-12">
-          <input type="text" class="form-control" readonly="readonly" value="<?php if (isset($borrow) && $borrow->employeename) {
-                                                                                echo $borrow->employeename;
-                                                                              } ?>" name="txtemployeename" id="txtemployeename" required placeholder="Employee Name" />
-          <input type="hidden" name="taken_by_uid" id="txtempid" value="<?php if (isset($borrow) && $borrow->taken_by_uid) {
-                                                                          echo $borrow->taken_by_uid;
-                                                                        } ?>" />
+          <input type="text" class="form-control" readonly="readonly" value="
+          <?php 
+            if (isset($borrow) && $borrow->employeename) {
+              echo $borrow->employeename;
+            }
+          ?>" 
+          name="txtemployeename" id="txtemployeename" required placeholder="Employee Name" />
+          <input type="hidden" name="taken_by_uid" id="txtempid" value="
+          <?php 
+            if (isset($borrow) && $borrow->taken_by_uid) {
+              echo $borrow->taken_by_uid;
+            } 
+          ?>" />
           <input type="button" class="choose" name="choose" style="width: 20px; height: 20px; display:inline-block;" onclick="open_popup('inventory/employee/');" title="Browse Employee" />
         </div>
       </div>
