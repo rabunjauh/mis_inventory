@@ -1,7 +1,24 @@
 <script src="<?php echo prefix_url; ?>assets/js/jquery.js" type="text/javascript"></script>
-<script src="<?php echo prefix_url; ?>assets/js/jquery.js" type="text/javascript"></script>
 <script src="<?php echo prefix_url; ?>assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo prefix_url; ?>assets/css/datepicker.css" />
+
+<script>
+  function open_popup(url, value) {
+    $('#type_input').val(value);
+    window.open('<?php echo prefix_url; ?>' + url, 'popuppage', 'width=700,location=0,toolbar=0,menubar=0,resizable=1,scrollbars=yes,height=500,top=100,left=100');
+  }
+</script>
+
+<style>
+  .choose {
+    font-size: 10px;
+    font-style: normal;
+    border: none;
+    background: url(<?php echo prefix_url; ?>assets/images/browse.png) no-repeat;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: #ccc;
+  }
+</style>
 
 <div class="row">
   <div class="col-xs-12">
@@ -37,37 +54,31 @@
       }
 
       ?>
+
       <div class="form-group">
         <label for="lblEmployeeStatus" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Employee Status: *</label>
         <div class="col-sm-6 col-xs-12">
-        <label class="radio-inline"><input type="radio" id="radioEmployeeStatus" name="radioEmployeeStatus" value="1">New Staff</label>
-        <label class="radio-inline"><input type="radio" id="radioEmployeeStatus" name="radioEmployeeStatus" value="2">Existing Staff</label>
-        <label class="radio-inline"><input type="radio" id="radioEmployeeStatus" name="radioEmployeeStatus" value="3">Resignation</label>
-        <label class="radio-inline"><input type="radio" id="radioEmployeeStatus" name="radioEmployeeStatus" value="4">Transfer</label>
+          <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '1', TRUE); ?>New Staff</label>
+          <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '2', FALSE); ?>Existing Staff</label>
+          <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '3', FALSE); ?>Resignation</label>
+          <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '4', FALSE); ?>Transfer</label>
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="lbl_employee" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Employee Name: *</label>
+      <div class="form-group empStatus">
+        <label for="lblemployee" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Employee: </label>
         <div class="col-sm-6 col-xs-12">
-          <input type="text" class="form-control" readonly="readonly" value="
-          <?php 
-            if (isset($borrow) && $borrow->employeename) {
-              echo $borrow->employeename;
-            }
-          ?>" 
-          name="txtemployeename" id="txtemployeename" required placeholder="Employee Name" />
-          <input type="hidden" name="taken_by_uid" id="txtempid" value="
-          <?php 
-            if (isset($borrow) && $borrow->taken_by_uid) {
-              echo $borrow->taken_by_uid;
-            } 
-          ?>" />
+          <input type="text" class="form-control" readonly="readonly" value="<?php if (isset($borrow) && $borrow->employeename) {
+                                                                                echo $borrow->employeename;
+                                                                              } ?>" name="txtemployeename" id="txtemployeename" required placeholder="Employee Name" />
+          <input type="hidden" name="taken_by_uid" id="txtempid" value="<?php if (isset($borrow) && $borrow->taken_by_uid) {
+                                                                          echo $borrow->taken_by_uid;
+                                                                        } ?>" />
           <input type="button" class="choose" name="choose" style="width: 20px; height: 20px; display:inline-block;" onclick="open_popup('inventory/employee/');" title="Browse Employee" />
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group newEmpStatus">
         <label for="labelDepartment" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Group / Department: *</label>
         <div class="col-sm-6 col-xs-12">
           <?= form_dropdown('dropdownDepartment', $optionDepartment, '', 'id="dropdownDepartment" class="form-control"') ?>
@@ -88,14 +99,14 @@
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="lblDesignation" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Designation: *</label>
+      <div class="form-group newEmpStatus">
+        <label for="lblDesignation " class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Designation: *</label>
         <div class="col-sm-6 col-xs-12">
           <?= form_dropdown('dropdownDesignation', $optionDesignation, '', 'id="dropdownDesignation" class="form-control"') ?>
         </div>
       </div>
 
-      <div class="form-group stock">
+      <div class="form-group newEmpStatus">
         <label for="lbl_phone" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Office Direct Line/Mobile No. : *</label>
         <div class="col-sm-6 col-xs-12">
           <input type="text" name="txt_phone" id="txt_phone" class="form-control">
@@ -182,26 +193,6 @@
       autoclose: true
     });
 
-    function changeMaterial(e) {
-      var value = $(e).val();
-      if (value == 0) {
-        $('.stock').hide();
-        $('.calibration').hide();
-        $('.maintanance').hide();
-        $('.warranty').hide();
-        // var clearValue = $('.stock').find(':text');
-        // clearValue.each(function(index,data) {
-        //   $(data).val('');
-        // })
-      } else {
-        $('.stock').show();
-        $('.calibration').show();
-        $('.maintanance').show();
-        $('.warranty').show();
-
-      }
-    }
-
     function changeStatus(e, type) {
       var value = $(e).val();
       if (value == 0) {
@@ -213,6 +204,21 @@
       }
     }
 
-    $()
+    $('#txtemployeename').attr("readonly", false);
+    $('.choose').hide();
+    $('input[type=radio][name=radioEmployeeStatus]').change(function() {
+      if (this.value == 1) {
+        $('.choose').hide();
+        $('.newEmpStatus').show();
+        // $('.employee').hide();
+        $('#txtemployeename').attr("readonly", false);
+        $('#txtemployeename').val('');
+      } else {
+        $('#txtemployeename').attr("readonly", true);
+        $('.choose').show();
+        $('.newEmpStatus').hide();
+        $('.employee').show();
+      }
+    });
   });
 </script>
