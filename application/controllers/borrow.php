@@ -675,6 +675,13 @@ class Borrow extends CI_Controller {
     $data['content'] = $this->load->view('forms/formRequestItems', $data, TRUE);
     $data['footer'] = $this->load->view('footer/footer', '', TRUE);
     $this->load->view('main', $data);
-  } 
+  }
+
+  public function getDesignationByID(){
+    $designationID = $this->input->post('id', true);
+    $data = [];
+    $data['designation'] = $this->borrow_model->getDesignationByID($designationID);
+    // echo json_encode($data);
+  }
 
 }

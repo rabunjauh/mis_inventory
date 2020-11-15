@@ -210,7 +210,6 @@
       if (this.value == 1) {
         $('.choose').hide();
         $('.newEmpStatus').show();
-        // $('.employee').hide();
         $('#txtemployeename').attr("readonly", false);
         $('#txtemployeename').val('');
       } else {
@@ -219,6 +218,33 @@
         $('.newEmpStatus').hide();
         $('.employee').show();
       }
+    });
+
+    $('#dropdownDepartment').change(function() {
+      var id = $(this).val();
+      if(id != ''){
+        // ajax request
+        $.ajax({
+          url: "<?= base_url('borrow/getDesignationByID'); ?>",
+          method: "POST",
+          data: {
+            id: id
+          },
+          async: true,
+          dataType: 'json',
+          success: function(data) {
+            console.log(data);
+            $('#dropdownDesignation').html(data);
+            // let html = '';
+            // console.log(data);
+            // for (let i = 0; i < data.length; $i++) {
+            //   html += '<option value=' + data[i].idposition + '>' + data[i].positiondesc + '</option>';
+            // }
+            // $('#dropdownDesignation').html(html);
+          }
+        });
+      }
+      // return false;
     });
   });
 </script>
