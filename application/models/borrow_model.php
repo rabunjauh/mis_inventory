@@ -421,19 +421,20 @@ class Borrow_model extends CI_Model {
   }
 
   public function getDesignationByID($id){
-    $this->db->where('iddept', $id);
-    $query = $this->db->get('wasco_fingerman.tblfile_position');
-    $output = '<option value="">Select Group / Department </option>';
-    foreach($query->result() as $row){
-      $output.=
-      '<option value="' .  $row->idposition . '">' . $row->positiondesc . '</option>';
-      return $output;
-    }
-    // $this->db->select('*')
-    // ->from('wasco_fingerman.tblfile_position')
-    // ->where('iddept =', $id);
-    // $result = $this->db->get()->result();
-    // return $result;
+    // $this->db->where('iddept', $id);
+    // $query = $this->db->get('wasco_fingerman.tblfile_position');
+    // $output = '<option value="">Select Group / Department </option>';
+    // foreach($query->result() as $row){
+    //   $output.=
+    //   '<option value="' .  $row->idposition . '">' . $row->positiondesc . '</option>';
+    //   return $output;
+    // }
+    $this->db->select('*')
+    ->from('wasco_fingerman.tblfile_position')
+    ->where('iddept =', $id)
+    ->order_by('positiondesc', 'ASC');
+    $result = $this->db->get()->result();
+    return $result;
   }
 
 }

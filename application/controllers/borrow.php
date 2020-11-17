@@ -679,9 +679,12 @@ class Borrow extends CI_Controller {
 
   public function getDesignationByID(){
     $designationID = $this->input->post('id', true);
-    $data = [];
-    $data['designation'] = $this->borrow_model->getDesignationByID($designationID);
-    // echo json_encode($data);
+    if($designationID){
+      $data = $this->borrow_model->getDesignationByID($designationID);
+    }else{
+      $data = $this->inventory_model->get_position_list();
+    }
+    echo json_encode($data);
   }
 
 }

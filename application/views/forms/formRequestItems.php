@@ -109,7 +109,7 @@
       <div class="form-group newEmpStatus">
         <label for="lbl_phone" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Office Direct Line/Mobile No. : *</label>
         <div class="col-sm-6 col-xs-12">
-          <input type="text" name="txt_phone" id="txt_phone" class="form-control">
+          <input type="text" name="txtPhone" id="txtPhone" class="form-control">
         </div>
       </div>
       <table class="table table-bordered table-striped" id="softwareTable">
@@ -118,7 +118,7 @@
             <th>No.</th>
             <th>Items</th>
             <th>Remark</th>
-            <th>Delete</th>
+            <th><a class="btn btn-default btn-flat" type="button" onclick="addRow('softwareTable')"><i class="glyphicon glyphicon-plus-sign"></i> Add More Row</a></th>
           </tr>
         </thead>
         <tbody id="item_area">
@@ -222,7 +222,6 @@
 
     $('#dropdownDepartment').change(function() {
       var id = $(this).val();
-      if(id != ''){
         // ajax request
         $.ajax({
           url: "<?= base_url('borrow/getDesignationByID'); ?>",
@@ -233,18 +232,15 @@
           async: true,
           dataType: 'json',
           success: function(data) {
-            console.log(data);
             $('#dropdownDesignation').html(data);
-            // let html = '';
-            // console.log(data);
-            // for (let i = 0; i < data.length; $i++) {
-            //   html += '<option value=' + data[i].idposition + '>' + data[i].positiondesc + '</option>';
-            // }
-            // $('#dropdownDesignation').html(html);
+            let html = '';
+            for (let i = 0; i < data.length; i++) {
+              html += '<option value=' + data[i].idposition + '>' + data[i].positiondesc + '</option>';
+            }
+            $('#dropdownDesignation').html(html);
           }
         });
-      }
-      // return false;
+      return false;
     });
   });
 </script>
