@@ -663,15 +663,6 @@ class Borrow extends CI_Controller {
     $data['listPositions'] = $this->inventory_model->get_position_list();
     $data['listSupervisors'] = $this->inventory_model->get_supervisor_list();
     $data['listDepartments'] = $this->inventory_model->get_department_list();
-    // $data['measurement'] = $this->settings_model->get_measurement();
-    // $data['machine_types'] = $this->item_model->get_machine_types();
-    // $data['manufactures'] = $this->item_model->get_manufactures();
-    // $data['models'] = $this->item_model->get_models();
-    // $data['operating_systems'] = $this->item_model->get_operating_systems();
-    // $data['processors'] = $this->item_model->get_processors();
-    // $data['memories'] = $this->item_model->get_memories();
-    // $data['hard_disks'] = $this->item_model->get_hard_disks();
-    // $data['vga'] = $this->item_model->get_vga();
     $data['content'] = $this->load->view('forms/formRequestItems', $data, TRUE);
     $data['footer'] = $this->load->view('footer/footer', '', TRUE);
     $this->load->view('main', $data);

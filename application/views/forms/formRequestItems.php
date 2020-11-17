@@ -112,28 +112,30 @@
           <input type="text" name="txtPhone" id="txtPhone" class="form-control">
         </div>
       </div>
-      <table class="table table-bordered table-striped" id="softwareTable">
+
+      <table class="table table-bordered table-striped" id="requestItems">
         <thead>
           <tr>
             <th>No.</th>
             <th>Items</th>
             <th>Remark</th>
-            <th><a class="btn btn-default btn-flat" type="button" onclick="addRow('softwareTable')"><i class="glyphicon glyphicon-plus-sign"></i> Add More Row</a></th>
+            <th></th>
           </tr>
         </thead>
         <tbody id="item_area">
-          <tr>
-            <td class="numberRow-requestDetails"> </td>
+          <tr class="tr_clone">
+            <td class="numberRow-requestItems"> </td>
             <td> <?= form_dropdown('dropdownItems', $optionItems, '', 'id="dropdownItems" class="form-control"') ?> </td>
             <td>
               <input type="text" name="textComputerRemark" class="form-control">
             </td>
             <td>
-              <button type="button" class="btn btn-danger" onclick="deleteClone(this,'itemsTable')"> Delete </button>
+              <button type="button" class="btn btn-danger" onclick="deleteClone(this,'requestItems')"> Delete </button>
             </td>
           </tr>
         </tbody>
       </table>
+      <a class="btn btn-default btn-flat" type="button" onclick="addRow('requestItems')"><i class="glyphicon glyphicon-plus-sign"></i> Add More Row</a>
       <!--  -->
       <div class="form-group">
         <label class="col-xs-offset-1 col-sm-offset-3">
@@ -176,11 +178,11 @@
 
 <script>
   $(document).ready(function() {
-    // $('.stock').hide();
-    // $('.calibration').hide();
-    // $('.maintanance').hide();
-    // $('.warranty').hide();
-    reNumber('requestDetails');
+    $('.datepicker').datepicker({
+      autoclose: true
+    });
+
+    reNumber('requestItems');
 
     function reNumber(table) {
       var i = 1;
@@ -189,20 +191,36 @@
         i++
       });
     }
-    $('.datepicker').datepicker({
-      autoclose: true
-    });
 
-    function changeStatus(e, type) {
-      var value = $(e).val();
-      if (value == 0) {
-        $('.' + type).hide();
-        $('#' + type + '_start').val('');
-        $('#' + type + '_end').val('');
-      } else {
-        $('.' + type).show();
-      }
+    var arrObj = [];
+    get_arr_obj();
+
+    function addRow(table) {
+      // var $tr = $("#" + table).find('.tr_clone').last();
+      // var allTr = $("#" + table).find('.tr_clone');
+      // var $clone = $tr.clone();
+
+      // // $clone.find(':text').val('');
+      // var number = parseInt($('.numberRow-' + table).last().text());
+      // $tr.after($clone);
+      // //$clone.find(':text').attr('required',true);
+      // // $clone.find('input').val('');
+      // $clone.find('select').val('');
+      // reNumber(table);
+      // $clone.show();
     }
+
+    function get_arr_obj() {
+      $('.master_clone').each(function(index, obj) {
+        var target = $(obj);
+        var code = target.find('.item_code').val();
+        var qty = target.find('.quantities').val();
+        arrObj[code] = [];
+        arrObj[code]['qty'] = qty;
+        arrObj[code]['target'] = target;
+      })
+    }
+
 
     $('#txtemployeename').attr("readonly", false);
     $('.choose').hide();
@@ -222,24 +240,24 @@
 
     $('#dropdownDepartment').change(function() {
       var id = $(this).val();
-        // ajax request
-        $.ajax({
-          url: "<?= base_url('borrow/getDesignationByID'); ?>",
-          method: "POST",
-          data: {
-            id: id
-          },
-          async: true,
-          dataType: 'json',
-          success: function(data) {
-            $('#dropdownDesignation').html(data);
-            let html = '';
-            for (let i = 0; i < data.length; i++) {
-              html += '<option value=' + data[i].idposition + '>' + data[i].positiondesc + '</option>';
-            }
-            $('#dropdownDesignation').html(html);
+      // ajax request
+      $.ajax({
+        url: "<?= base_url('borrow/getDesignationByID'); ?>",
+        method: "POST",
+        data: {
+          id: id
+        },
+        async: true,
+        dataType: 'json',
+        success: function(data) {
+          $('#dropdownDesignation').html(data);
+          let html = '';
+          for (let i = 0; i < data.length; i++) {
+            html += '<option value=' + data[i].idposition + '>' + data[i].positiondesc + '</option>';
           }
-        });
+          $('#dropdownDesignation').html(html);
+        }
+      });
       return false;
     });
   });
