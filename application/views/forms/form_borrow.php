@@ -205,7 +205,7 @@ var arrObj = [];
 get_arr_obj();
 function addRow(table) {
     var $tr   = $("#"+table).find('.tr_clone').last();
-    var allTr = $("#"+table).find('.tr_clone');
+    // var allTr = $("#"+table).find('.tr_clone');
     var $clone = $tr.clone();
 
     $clone.find(':text').val('');

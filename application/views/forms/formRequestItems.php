@@ -7,6 +7,31 @@
     $('#type_input').val(value);
     window.open('<?php echo prefix_url; ?>' + url, 'popuppage', 'width=700,location=0,toolbar=0,menubar=0,resizable=1,scrollbars=yes,height=500,top=100,left=100');
   }
+
+  
+
+    function reNumber(table) {
+      var i = 1;
+      $(".numberRow-" + table).each(function() {
+        $(this).text(i);
+        i++
+      });
+    }
+
+  function addRow(table) {
+      var $tr = $("#" + table).find('.tr_clone').last();
+      var allTr = $("#" + table).find('.tr_clone');
+      var $clone = $tr.clone();
+
+      // $clone.find(':text').val('');
+      var number = parseInt($('.numberRow-' + table).last().text());
+      $tr.after($clone);
+      //$clone.find(':text').attr('required',true);
+      // $clone.find('input').val('');
+      $clone.find('select').val('');
+      reNumber(table);
+      $clone.show();
+    }
 </script>
 
 <style>
@@ -135,7 +160,7 @@
           </tr>
         </tbody>
       </table>
-      <a class="btn btn-default btn-flat" type="button" onclick="addRow('requestItems')"><i class="glyphicon glyphicon-plus-sign"></i> Add More Row</a>
+      <a class="btn btn-default btn-flat" type="button" onclick="addRow('requestItems');"><i class="glyphicon glyphicon-plus-sign"></i> Add More Row</a>
       <!--  -->
       <div class="form-group">
         <label class="col-xs-offset-1 col-sm-offset-3">
@@ -181,34 +206,29 @@
     $('.datepicker').datepicker({
       autoclose: true
     });
-
     reNumber('requestItems');
-
-    function reNumber(table) {
-      var i = 1;
-      $(".numberRow-" + table).each(function() {
-        $(this).text(i);
-        i++
-      });
-    }
+    
 
     var arrObj = [];
     get_arr_obj();
 
-    function addRow(table) {
-      // var $tr = $("#" + table).find('.tr_clone').last();
-      // var allTr = $("#" + table).find('.tr_clone');
-      // var $clone = $tr.clone();
+    // function addRow(table) {
+    //   console.log(table);
+    //   // var $tr = $("#" + table).find('.tr_clone').last();
+    //   // var allTr = $("#" + table).find('.tr_clone');
+    //   // var $clone = $tr.clone();
 
-      // // $clone.find(':text').val('');
-      // var number = parseInt($('.numberRow-' + table).last().text());
-      // $tr.after($clone);
-      // //$clone.find(':text').attr('required',true);
-      // // $clone.find('input').val('');
-      // $clone.find('select').val('');
-      // reNumber(table);
-      // $clone.show();
-    }
+    //   // // $clone.find(':text').val('');
+    //   // var number = parseInt($('.numberRow-' + table).last().text());
+    //   // $tr.after($clone);
+    //   // //$clone.find(':text').attr('required',true);
+    //   // // $clone.find('input').val('');
+    //   // $clone.find('select').val('');
+    //   // reNumber(table);
+    //   // $clone.show();
+    // }
+
+    // addRow('requestItems');
 
     function get_arr_obj() {
       $('.master_clone').each(function(index, obj) {
