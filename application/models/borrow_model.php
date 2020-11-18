@@ -437,6 +437,11 @@ class Borrow_model extends CI_Model {
     return $result;
   }
 
+  public function getSuggestion(){
+    $result = $this->db->get('');
+    return $result;
+  }
+
 }
 
 ?>

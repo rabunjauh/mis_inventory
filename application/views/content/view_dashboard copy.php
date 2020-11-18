@@ -220,3 +220,27 @@ select_filter.addEventListener('change', function(){
     xhr.send();
 })
 </script>
+
+<!-- numpang taro dari formRequestItems.php -->
+// $('#dropdownDepartment').change(function() {
+    //   var id = $(this).val();
+    //   // ajax request
+    //   $.ajax({
+    //     url: "<?= base_url('borrow/getDesignationByID'); ?>",
+    //     method: "POST",
+    //     data: {
+    //       id: id
+    //     },
+    //     async: true,
+    //     dataType: 'json',
+    //     success: function(data) {
+    //       $('#dropdownDesignation').html(data);
+    //       let html = '';
+    //       for (let i = 0; i < data.length; i++) {
+    //         html += '<option value=' + data[i].idposition + '>' + data[i].positiondesc + '</option>';
+    //       }
+    //       $('#dropdownDesignation').html(html);
+    //     }
+    //   });
+    //   return false;
+    // });

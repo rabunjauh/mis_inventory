@@ -678,4 +678,9 @@ class Borrow extends CI_Controller {
     echo json_encode($data);
   }
 
+  public function getSuggestion(){
+    // $data = $this->borrow_model->getSuggestion();
+    echo json_encode($data);
+  }
+
 }
