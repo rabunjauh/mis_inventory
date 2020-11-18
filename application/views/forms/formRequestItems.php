@@ -8,30 +8,61 @@
     window.open('<?php echo prefix_url; ?>' + url, 'popuppage', 'width=700,location=0,toolbar=0,menubar=0,resizable=1,scrollbars=yes,height=500,top=100,left=100');
   }
 
-  
-
-    function reNumber(table) {
-      var i = 1;
-      $(".numberRow-" + table).each(function() {
-        $(this).text(i);
-        i++
-      });
-    }
+  function reNumber(table) {
+    var i = 1;
+    $(".numberRow-" + table).each(function() {
+      $(this).text(i);
+      i++
+    });
+  }
 
   function addRow(table) {
-      var $tr = $("#" + table).find('.tr_clone').last();
-      var allTr = $("#" + table).find('.tr_clone');
-      var $clone = $tr.clone();
+    var $tr = $("#" + table).find('.tr_clone').last();
+    var allTr = $("#" + table).find('.tr_clone');
+    var $clone = $tr.clone();
 
-      // $clone.find(':text').val('');
-      var number = parseInt($('.numberRow-' + table).last().text());
-      $tr.after($clone);
-      //$clone.find(':text').attr('required',true);
-      // $clone.find('input').val('');
-      $clone.find('select').val('');
-      reNumber(table);
-      $clone.show();
+    // $clone.find(':text').val('');
+    var number = parseInt($('.numberRow-' + table).last().text());
+    $tr.after($clone);
+    //$clone.find(':text').attr('required',true);
+    // $clone.find('input').val('');
+    $clone.find('select').val('');
+    reNumber(table);
+    $clone.show();
+  }
+
+  function get_arr_obj() {
+    $('.master_clone').each(function(index, obj) {
+      var target = $(obj);
+      var code = target.find('.item_code').val();
+      var qty = target.find('.quantities').val();
+      arrObj[code] = [];
+      arrObj[code]['qty'] = qty;
+      arrObj[code]['target'] = target;
+    })
+  }
+
+  var arrObj = [];
+  get_arr_obj();
+
+  function deleteClone(e, table) {
+    var allTr = $("#" + table).find('.tr_clone');
+    var $tr = $(e).closest(".tr_clone");
+    var value_code = $tr.find('.item_code').val();
+    if (arrObj[value_code]) {
+      arrObj.splice(value_code, 1)
     }
+    if (allTr.length > 1) {
+      var $remove = $tr.remove();
+      reNumber(table);
+    } else {
+      check_master = $("#" + table).find('.master_clone');
+      if (check_master.length == 1) {
+        check_master.find(':input').val('');
+        check_master.hide();
+      }
+    }
+  }
 </script>
 
 <style>
@@ -150,10 +181,8 @@
         <tbody id="item_area">
           <tr class="tr_clone">
             <td class="numberRow-requestItems"> </td>
-            <td> <?= form_dropdown('dropdownItems', $optionItems, '', 'id="dropdownItems" class="form-control"') ?> </td>
-            <td>
-              <input type="text" name="textComputerRemark" class="form-control">
-            </td>
+            <td><input type="text" name="textItems[]" class="form-control suggestion"></td>
+            <td><input type="text" name="textRemarks[]" class="form-control"></td>
             <td>
               <button type="button" class="btn btn-danger" onclick="deleteClone(this,'requestItems')"> Delete </button>
             </td>
@@ -207,40 +236,6 @@
       autoclose: true
     });
     reNumber('requestItems');
-    
-
-    var arrObj = [];
-    get_arr_obj();
-
-    // function addRow(table) {
-    //   console.log(table);
-    //   // var $tr = $("#" + table).find('.tr_clone').last();
-    //   // var allTr = $("#" + table).find('.tr_clone');
-    //   // var $clone = $tr.clone();
-
-    //   // // $clone.find(':text').val('');
-    //   // var number = parseInt($('.numberRow-' + table).last().text());
-    //   // $tr.after($clone);
-    //   // //$clone.find(':text').attr('required',true);
-    //   // // $clone.find('input').val('');
-    //   // $clone.find('select').val('');
-    //   // reNumber(table);
-    //   // $clone.show();
-    // }
-
-    // addRow('requestItems');
-
-    function get_arr_obj() {
-      $('.master_clone').each(function(index, obj) {
-        var target = $(obj);
-        var code = target.find('.item_code').val();
-        var qty = target.find('.quantities').val();
-        arrObj[code] = [];
-        arrObj[code]['qty'] = qty;
-        arrObj[code]['target'] = target;
-      })
-    }
-
 
     $('#txtemployeename').attr("readonly", false);
     $('.choose').hide();
@@ -258,27 +253,56 @@
       }
     });
 
-    $('#dropdownDepartment').change(function() {
-      var id = $(this).val();
-      // ajax request
-      $.ajax({
-        url: "<?= base_url('borrow/getDesignationByID'); ?>",
-        method: "POST",
-        data: {
-          id: id
-        },
-        async: true,
-        dataType: 'json',
-        success: function(data) {
-          $('#dropdownDesignation').html(data);
-          let html = '';
-          for (let i = 0; i < data.length; i++) {
-            html += '<option value=' + data[i].idposition + '>' + data[i].positiondesc + '</option>';
+    // $('#dropdownDepartment').change(function() {
+    //   var id = $(this).val();
+    //   // ajax request
+    //   $.ajax({
+    //     url: "<?= base_url('borrow/getDesignationByID'); ?>",
+    //     method: "POST",
+    //     data: {
+    //       id: id
+    //     },
+    //     async: true,
+    //     dataType: 'json',
+    //     success: function(data) {
+    //       $('#dropdownDesignation').html(data);
+    //       let html = '';
+    //       for (let i = 0; i < data.length; i++) {
+    //         html += '<option value=' + data[i].idposition + '>' + data[i].positiondesc + '</option>';
+    //       }
+    //       $('#dropdownDesignation').html(html);
+    //     }
+    //   });
+    //   return false;
+    // });
+
+    function ajaxForm(element, targetUrl, ajaxMethod, elementEvent) {
+      $('#' + element).change(function() {
+        var id = $(this).val();
+        // ajax request
+        $.ajax({
+          url: targetUrl,
+          method: "POST",
+          data: {
+            id: id
+          },
+          async: true,
+          dataType: 'json',
+          success: function(data) {
+            $('#dropdownDesignation').html(data);
+            let html = '';
+            for (let i = 0; i < data.length; i++) {
+              html += '<option value=' + data[i].idposition + '>' + data[i].positiondesc + '</option>';
+            }
+            $('#dropdownDesignation').html(html);
           }
-          $('#dropdownDesignation').html(html);
-        }
+        });
+        return false;
       });
-      return false;
+    }
+
+    $('.suggestion').click(function() {
+      console.log('ok');
     });
   });
 </script>
