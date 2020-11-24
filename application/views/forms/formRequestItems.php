@@ -64,33 +64,37 @@
     }
   }
 
-  function ajaxForm(element, targetUrl, ajaxMethod, elementEvent) {
-    $(element).on(elementEvent, function() {
-      var id = $(this).val();
-      // ajax request
-      $.ajax({
-        url: targetUrl,
-        method: ajaxMethod,
-        if (ajaxMethod = "POST") {
-          data: {
-            id: id
-          }
-        },
-        async: true,
-        dataType: 'json',
-        success: function(data) {
-          console.log(data);
-          //   $('#dropdownDesignation').html(data);
-          //   let html = '';
-          //   for (let i = 0; i < data.length; i++) {
-          //     html += '<option value=' + data[i].idposition + '>' + data[i].positiondesc + '</option>';
-          //   }
-          //   $('#dropdownDesignation').html(html);
-        }
-      });
-      return false;
-    });
-  }
+  // function ajaxForm(element, targetUrl, ajaxMethod, elementEvent) {
+  //   $(element).on(elementEvent, function() {
+  //     var id = $(this).val();
+  //     // ajax request
+  //     $.ajax({
+  //       url: targetUrl,
+  //       method: ajaxMethod,
+  //       if (ajaxMethod = "POST") {
+  //         data: {
+  //           id: id
+  //         }
+  //       },
+  //       async: true,
+  //       dataType: 'json',
+  //       success: function(data) {
+  //         console.log(data);
+  //           // $('#dropdownDesignation').html(data);
+  //           // let html = '';
+  //           // for (let i = 0; i < data.length; i++) {
+  //           //   html += '<option value=' + data[i].idposition + '>' + data[i].positiondesc + '</option>';
+  //           // }
+  //           // $('#dropdownDesignation').html(html);
+  //       }
+  //     });
+  //     return false;
+  //   });
+  // }
+
+  // function ajaxForm(element, targetUrl, ajaxMethod, elementEvent) {
+
+  // }
 </script>
 
 <style>
@@ -209,7 +213,8 @@
         <tbody id="item_area">
           <tr class="tr_clone">
             <td class="numberRow-requestItems"> </td>
-            <td><input type="text" name="textItems[]" onclick="ajaxForm('.suggestion', '<?= base_url('borrow/getSuggestion'); ?>', 'GET', 'click');" class="form-control suggestion"></td>
+            <!-- <td><input type="text" name="textItems[]" onclick="ajaxForm('.suggestion', '<?= base_url('borrow/getSuggestion'); ?>', 'GET', 'click');" class="form-control suggestion"></td> -->
+            <td><input type="text" name="textItems[]" class="form-control suggestion"></td>
             <td><input type="text" name="textRemarks[]" class="form-control"></td>
             <td>
               <button type="button" class="btn btn-danger" onclick="deleteClone(this,'requestItems')"> Delete </button>
@@ -281,6 +286,27 @@
       }
     });
 
-
+    $('#dropdownDepartment').change(function() {
+      var id = $(this).val();
+      // ajax request
+      $.ajax({
+        url: "<?= base_url('borrow/getDesignationByID'); ?>",
+        method: "POST",
+        data: {
+          id: id
+        },
+        async: true,
+        dataType: 'json',
+        success: function(data) {
+          $('#dropdownDesignation').html(data);
+          let html = '';
+          for (let i = 0; i < data.length; i++) {
+            html += '<option value=' + data[i].idposition + '>' + data[i].positiondesc + '</option>';
+          }
+          $('#dropdownDesignation').html(html);
+        }
+      });
+      return false;
+    });
   });
 </script>
