@@ -201,6 +201,16 @@
         </div>
       </div>
 
+      <!-- tes -->
+      <!-- <input list="suggestionList" id="answerInput">
+      <datalist id="suggestionList">
+        <option data-value="42">The answer1</option>
+        <option data-value="43">The answer2</option>
+      </datalist>
+      <input type="hidden" name="answer" id="answerInput-hidden"> -->
+
+      <!--  -->
+
       <table class="table table-bordered table-striped" id="requestItems">
         <thead>
           <tr>
@@ -214,7 +224,7 @@
           <tr class="tr_clone">
             <td class="numberRow-requestItems"> </td>
             <!-- <td><input type="text" name="textItems[]" onclick="ajaxForm('.suggestion', '<?= base_url('borrow/getSuggestion'); ?>', 'GET', 'click');" class="form-control suggestion"></td> -->
-            <td><input type="text" name="textItems[]" class="form-control suggestion"></td>
+            <td><input type="text" name="textItems[]" class="form-control suggestion" list="suggestion"></td>
             <td><input type="text" name="textRemarks[]" class="form-control"></td>
             <td>
               <button type="button" class="btn btn-danger" onclick="deleteClone(this,'requestItems')"> Delete </button>
@@ -268,6 +278,7 @@
     $('.datepicker').datepicker({
       autoclose: true
     });
+
     reNumber('requestItems');
 
     $('#txtemployeename').attr("readonly", false);
@@ -308,5 +319,26 @@
       });
       return false;
     });
+
+    // tes
+    // document.querySelector('input[list]').addEventListener('input', function(e) {
+    //   var input = e.target,
+    //     list = input.getAttribute('list'),
+    //     options = document.querySelectorAll('#' + list + ' option'),
+    //     hiddenInput = document.getElementById(input.getAttribute('id') + '-hidden'),
+    //     inputValue = input.value;
+    //   hiddenInput.value = inputValue;
+
+    //   for (var i = 0; i < options.length; i++) {
+    //     var option = options[i];
+
+    //     if (option.innerText === inputValue) {
+    //       hiddenInput.value = option.getAttribute('data-value');
+    //       console.log(hiddenInput.value);
+    //       break;
+    //     }
+    //   }
+    // });
+    // // 
   });
 </script>
