@@ -140,7 +140,6 @@
       foreach ($listPositions as $listPosition) {
         $optionDesignation[$listPosition->idposition] = $listPosition->positiondesc;
       }
-
       ?>
 
       <div class="form-group">
@@ -201,16 +200,6 @@
         </div>
       </div>
 
-      <!-- tes -->
-      <!-- <input list="suggestionList" id="answerInput">
-      <datalist id="suggestionList">
-        <option data-value="42">The answer1</option>
-        <option data-value="43">The answer2</option>
-      </datalist>
-      <input type="hidden" name="answer" id="answerInput-hidden"> -->
-
-      <!--  -->
-
       <table class="table table-bordered table-striped" id="requestItems">
         <thead>
           <tr>
@@ -223,9 +212,8 @@
         <tbody id="item_area">
           <tr class="tr_clone">
             <td class="numberRow-requestItems"> </td>
-            <!-- <td><input type="text" name="textItems[]" onclick="ajaxForm('.suggestion', '<?= base_url('borrow/getSuggestion'); ?>', 'GET', 'click');" class="form-control suggestion"></td> -->
-            <td><input type="text" name="textItems[]" class="form-control suggestion" list="suggestion"></td>
-            <td><input type="text" name="textRemarks[]" class="form-control"></td>
+            <td><input type="text" name="textItems[]" class="form-control" placeholder="Request Items"></td>
+            <td><input type="text" name="textRemarks[]" class="form-control" placeholder="Items Remark"></td>
             <td>
               <button type="button" class="btn btn-danger" onclick="deleteClone(this,'requestItems')"> Delete </button>
             </td>
