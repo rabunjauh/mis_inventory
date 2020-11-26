@@ -392,6 +392,13 @@ class Inventory_model extends CI_Model {
         $query = $this->db->query($sql);
         return $query->result();
     }
+    
+    function get_employeeStatus()
+    {
+        $sql = "SELECT * FROM tbl_employee_status;";
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
 
 
     public function get_damage_items()

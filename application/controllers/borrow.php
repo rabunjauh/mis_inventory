@@ -656,13 +656,23 @@ class Borrow extends CI_Controller {
     // if (!$this->session->userdata('role')) {
     //   exit('<div class="alert alert-danger">Not allowed!</div>');
     // }
-  
+    if($this->input->post()){
+      $requestData['EmployeeStatus'] = $this->input->post('radioEmployeeStatus', true);
+      if($this->input->post('taken_by_uid')){
+        $requestData['taken_by_uid'] = $this->input->post('taken_by_uid', true);
+      }
+      $requestData['department'] = $this->input->post('dropdownDepartment', true);
+      $requestData['dateOfJoin'] = $this->input->post('txtDateOfJoin', true);
+      $requestData['DateOfRequest'] = $this->input->post('txtDateOfRequest', true);
+      $requestData['EmployeeStatus'] = $this->input->post('radioEmployeeStatus', true);
+    }
     $data = array();
     $data['header'] = $this->load->view('header/head', '', TRUE);
     $data['navigation'] = $this->load->view('header/navigation', $data, TRUE);
     $data['listPositions'] = $this->inventory_model->get_position_list();
     $data['listSupervisors'] = $this->inventory_model->get_supervisor_list();
     $data['listDepartments'] = $this->inventory_model->get_department_list();
+    $data['employeeStatuses'] = $this->inventory_model->get_employeeStatus();
     $data['content'] = $this->load->view('forms/formRequestItems', $data, TRUE);
     $data['footer'] = $this->load->view('footer/footer', '', TRUE);
     $this->load->view('main', $data);

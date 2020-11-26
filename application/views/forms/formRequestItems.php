@@ -120,7 +120,7 @@
     </div><!-- /.box-header -->
     <div class="box-body">
 
-      <?= form_open_multipart(base_url() . 'items/add_item', 'role="form" class="form-horizontal"'); ?>
+      <?= form_open_multipart(base_url() . 'borrow/formRequestItems', 'role="form" class="form-horizontal"'); ?>
       <?php
       // create array for dropdown list value
       $optionDepartment = array();
@@ -180,21 +180,21 @@
       </div>
 
       <div class="form-group">
-        <label for="lbl_date_of_request" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Date of Request: *</label>
+        <label for="labelDateOfRequest" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Date of Request: *</label>
         <div class="col-sm-6 col-xs-12">
           <input id="txtDateOfRequest" readonly data-date-format="yyyy-mm-dd" class="form-control datepicker" type="text" name="txtDateOfRequest" />
         </div>
       </div>
 
       <div class="form-group newEmpStatus">
-        <label for="lblDesignation " class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Designation: *</label>
+        <label for="labelDesignation " class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Designation: *</label>
         <div class="col-sm-6 col-xs-12">
           <?= form_dropdown('dropdownDesignation', $optionDesignation, '', 'id="dropdownDesignation" class="form-control"') ?>
         </div>
       </div>
 
       <div class="form-group newEmpStatus">
-        <label for="lbl_phone" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Office Direct Line/Mobile No. : *</label>
+        <label for="labelPhone" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Office Direct Line/Mobile No. : *</label>
         <div class="col-sm-6 col-xs-12">
           <input type="text" name="txtPhone" id="txtPhone" class="form-control">
         </div>
