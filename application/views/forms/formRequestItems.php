@@ -193,8 +193,8 @@
         </div>
       </div>
 
-      <div class="form-group newEmpStatus">
-        <label for="labelPhone" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Office Direct Line/Mobile No. : *</label>
+      <div class="form-group">
+        <label for="labelPhone" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Office Direct Line / Mobile No. : *</label>
         <div class="col-sm-6 col-xs-12">
           <input type="text" name="txtPhone" id="txtPhone" class="form-control">
         </div>
@@ -272,7 +272,7 @@
     $('#txtemployeename').attr("readonly", false);
     $('.choose').hide();
     $('input[type=radio][name=radioEmployeeStatus]').change(function() {
-      if (this.value == 1) {
+      if (this.value == 1 || this.value == 4) {
         $('.choose').hide();
         $('.newEmpStatus').show();
         $('#txtemployeename').attr("readonly", false);

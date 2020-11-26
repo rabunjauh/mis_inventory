@@ -656,15 +656,31 @@ class Borrow extends CI_Controller {
     // if (!$this->session->userdata('role')) {
     //   exit('<div class="alert alert-danger">Not allowed!</div>');
     // }
+
+    // check is there any data sent from formRequestItems
     if($this->input->post()){
-      $requestData['EmployeeStatus'] = $this->input->post('radioEmployeeStatus', true);
-      if($this->input->post('taken_by_uid')){
-        $requestData['taken_by_uid'] = $this->input->post('taken_by_uid', true);
+      // load form validation library
+      $this->load->library('form_validation');
+      // form validation configuration
+      $this->form_validation->set_rules('radioEmployeeStatus', 'Employee Status');
+      $this->form_validation->set_rules('txtemployeename', 'Employee Name', 'required|alpha_numeric_spaces');
+      $this->form_validation->set_rules('dropdownDepartment', 'Department', 'required');
+      $this->form_validation->set_rules('txtDateOfJoin', 'Date of Join');
+      $this->form_validation->set_rules('txtDateOfRequest', 'Date of Request', 'required');
+      $this->form_validation->set_rules('dropdownDesignation', 'Designation', 'required');
+      $this->form_validation->set_rules('txtPhone', 'Office Direct Line / Mobile No', 'required');
+      // if validation error error message will be displayed
+      if ($this->form_validation->run() != false) {
+        $requestData['employeeStatus'] = $this->input->post('radioEmployeeStatus', true);
+        $requestData['employeeName'] = $this->input->post('txtemployeename', true);
+        $requestData['department'] = $this->input->post('dropdownDepartment', true);
+        $requestData['dateOfJoin'] = $this->input->post('txtDateOfJoin', true);
+        $requestData['DateOfRequest'] = $this->input->post('txtDateOfRequest', true);
+        $requestData['designation'] = $this->input->post('dropdownDesignation', true);
+        $requestData['phone'] = $this->input->post('txtPhone', true);
+
+        
       }
-      $requestData['department'] = $this->input->post('dropdownDepartment', true);
-      $requestData['dateOfJoin'] = $this->input->post('txtDateOfJoin', true);
-      $requestData['DateOfRequest'] = $this->input->post('txtDateOfRequest', true);
-      $requestData['EmployeeStatus'] = $this->input->post('radioEmployeeStatus', true);
     }
     $data = array();
     $data['header'] = $this->load->view('header/head', '', TRUE);
@@ -672,7 +688,6 @@ class Borrow extends CI_Controller {
     $data['listPositions'] = $this->inventory_model->get_position_list();
     $data['listSupervisors'] = $this->inventory_model->get_supervisor_list();
     $data['listDepartments'] = $this->inventory_model->get_department_list();
-    $data['employeeStatuses'] = $this->inventory_model->get_employeeStatus();
     $data['content'] = $this->load->view('forms/formRequestItems', $data, TRUE);
     $data['footer'] = $this->load->view('footer/footer', '', TRUE);
     $this->load->view('main', $data);
@@ -688,9 +703,9 @@ class Borrow extends CI_Controller {
     echo json_encode($data);
   }
 
-  public function getSuggestion(){
-    // $data = $this->borrow_model->getSuggestion();
-    echo json_encode($data);
-  }
+  // public function getSuggestion(){
+  //   // $data = $this->borrow_model->getSuggestion();
+  //   echo json_encode($data);
+  // }
 
 }
