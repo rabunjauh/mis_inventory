@@ -442,6 +442,26 @@ class Borrow_model extends CI_Model {
     return $result;
   }
 
+  public function addNewRequest($newRequestData)
+  {
+    $this->db->insert('tblrequest', $newRequestData);
+    if ($this->db->affected_rows() == 1) {
+      return $this->db->insert_id();
+    } else {
+      return FALSE;
+    }
+  }
+ 
+  public function NewRequestDetails($requestDetails)
+  {
+    $this->db->insert('tblrequestedetails', $requestDetails);
+    if ($this->db->affected_rows() == 1) {
+      return $this->db->insert_id();
+    } else {
+      return FALSE;
+    }
+  }
+
 }
 
 ?>

@@ -9,9 +9,9 @@ class Borrow extends CI_Controller {
     $this->load->model('borrow_model');
     $this->load->model('settings_model');
     $this->load->model('inventory_model');
-    if (!$this->session->userdata('log')) {
-      redirect(base_url('login'));
-    }
+    // if (!$this->session->userdata('log')) {
+    //   redirect(base_url('login'));
+    // }
   }
 
   public function filter($txtfilterwarehouse=false,$txtfilterproject=false,$txtfilterstatus=false,$borrow_date=false,$user=false)
@@ -664,6 +664,9 @@ class Borrow extends CI_Controller {
       // form validation configuration
       $this->form_validation->set_rules('radioEmployeeStatus', 'Employee Status');
       $this->form_validation->set_rules('txtemployeename', 'Employee Name', 'required|alpha_numeric_spaces');
+      if(!$this->post->input('taken_by_uid')){
+        $this->form_validation->set_rules('textCompany', 'Company Name', 'required|alpha_numeric_spaces');
+      }
       $this->form_validation->set_rules('dropdownDepartment', 'Department', 'required');
       $this->form_validation->set_rules('txtDateOfJoin', 'Date of Join');
       $this->form_validation->set_rules('txtDateOfRequest', 'Date of Request', 'required');
@@ -671,15 +674,25 @@ class Borrow extends CI_Controller {
       $this->form_validation->set_rules('txtPhone', 'Office Direct Line / Mobile No', 'required');
       // if validation error error message will be displayed
       if ($this->form_validation->run() != false) {
-        $requestData['employeeStatus'] = $this->input->post('radioEmployeeStatus', true);
-        $requestData['employeeName'] = $this->input->post('txtemployeename', true);
+        $requestData['employeeStatus'] = htmlspecialchars($this->input->post('radioEmployeeStatus', true));
+        $requestData['employeeName'] = htmlspecialchars($this->input->post('txtemployeename', true));
+        $requestData['company'] = htmlspecialchars($this->input->post('textCompany', true));
         $requestData['department'] = $this->input->post('dropdownDepartment', true);
         $requestData['dateOfJoin'] = $this->input->post('txtDateOfJoin', true);
         $requestData['DateOfRequest'] = $this->input->post('txtDateOfRequest', true);
         $requestData['designation'] = $this->input->post('dropdownDesignation', true);
-        $requestData['phone'] = $this->input->post('txtPhone', true);
+        $requestData['phone'] = htmlspecialchars($this->input->post('txtPhone', true));
 
-        
+        $requestID = $this->borrow_model->addNewRequest($requestData);
+        if($requestID){
+          $itemsRequest = htmlspecialchars($this->input->post('textItems', true));
+          $itemsRequestRemark = htmlspecialchars($this->input->post('textRemarks', true));
+          for($i = 0; $i < sizeof($itemsRequest); $i++){
+            $requestDetails['items'] = $itemsRequest[$i];
+            $requestDetails['remark'] = $itemsRequestRemark[$i];
+            $requestDetails['requestID'] = $requestID;
+          }
+        }
       }
     }
     $data = array();

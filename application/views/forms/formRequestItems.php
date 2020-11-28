@@ -21,7 +21,7 @@
     var allTr = $("#" + table).find('.tr_clone');
     var $clone = $tr.clone();
 
-    // $clone.find(':text').val('');
+    $clone.find(':text').val('');
     var number = parseInt($('.numberRow-' + table).last().text());
     $tr.after($clone);
     //$clone.find(':text').attr('required',true);
@@ -166,6 +166,13 @@
       </div>
 
       <div class="form-group newEmpStatus">
+        <label for="textCompany" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Company: *</label>
+        <div class="col-sm-6 col-xs-12">
+          <input type="text" class="form-control" name="textCompany" id="textCompany" placeholder="Company Name">
+        </div>
+      </div>
+
+      <div class="form-group newEmpStatus">
         <label for="labelDepartment" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Group / Department: *</label>
         <div class="col-sm-6 col-xs-12">
           <?= form_dropdown('dropdownDepartment', $optionDepartment, '', 'id="dropdownDepartment" class="form-control"') ?>
@@ -212,7 +219,7 @@
         <tbody id="item_area">
           <tr class="tr_clone">
             <td class="numberRow-requestItems"> </td>
-            <td><input type="text" name="textItems[]" class="form-control" placeholder="Request Items"></td>
+            <td><input type="text" name="textItems[]" class="form-control textItems " placeholder="Request Items"></td>
             <td><input type="text" name="textRemarks[]" class="form-control" placeholder="Items Remark"></td>
             <td>
               <button type="button" class="btn btn-danger" onclick="deleteClone(this,'requestItems')"> Delete </button>
@@ -307,7 +314,6 @@
       });
       return false;
     });
-
     // tes
     // document.querySelector('input[list]').addEventListener('input', function(e) {
     //   var input = e.target,
