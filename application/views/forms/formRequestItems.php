@@ -140,12 +140,9 @@
       <div class="form-group">
         <label for="lblEmployeeStatus" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Employee Status: *</label>
         <div class="col-sm-6 col-xs-12">
-          <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '1', TRUE); ?>New Staff</label>
-          <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '2', FALSE); ?>Existing Staff</label>
-          <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '3', FALSE); ?>Resignation</label>
-          <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '4', FALSE); ?>Transfer</label>
+          
           <?php foreach ($listEmployeeStatuses as $listEmployeeStatus): ?>
-
+            <label class="radio-inline"><?= form_radio('radioEmployeeStatus', $listEmployeeStatus->statusID, $checked = $listEmployeeStatus->statusID == '1'? TRUE : FALSE) . $listEmployeeStatus->statusDesc; ?></label>
           <?php endforeach ?>  
         </div>
       </div>

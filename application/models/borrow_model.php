@@ -408,8 +408,10 @@ class Borrow_model extends CI_Model {
   public function fetchRequestItems($limit, $offset){
     $sql = "SELECT 
               tblRequest.requestID, tblRequest.employeeStatus, tblRequest.employeeName, tblRequest.designation, tblRequest.company, 
-              tblRequest.dateOfJoin, tblRequest.dateOfRequest, tblRequest.phone, tblApproval.approvalDesc, wasco_fingerman.tblfile_position.positiondesc, wasco_fingerman.tblfile_department.deptdesc 
-              FROM tblRequest 
+              tblRequest.dateOfJoin, tblRequest.dateOfRequest, tblRequest.phone, tblApproval.approvalDesc, wasco_fingerman.tblfile_position.positiondesc,
+              wasco_fingerman.tblfile_department.deptdesc, tblRequest_employeeStatus.statusDesc 
+              FROM tblRequest
+              LEFT JOIN tblRequest_employeeStatus ON tblRequest.employeeStatus = tblRequest_employeeStatus.statusID
               LEFT JOIN tblApproval ON tblRequest.approvalStatusID = tblapproval.approvalID 
               LEFT JOIN wasco_fingerman.tblfile_position on tblRequest.designation = wasco_fingerman.tblfile_position.idposition
               LEFT JOIN wasco_fingerman.tblfile_department on tblRequest.department = wasco_fingerman.tblfile_department.iddept
@@ -472,7 +474,7 @@ class Borrow_model extends CI_Model {
   public function get_employeeStatus_list(){
     $sql = "SELECT * FROM tblrequest_employeestatus";
     $query = $this->db->query($sql);
-    return $query;
+    return $query->result();
   }
 
 }

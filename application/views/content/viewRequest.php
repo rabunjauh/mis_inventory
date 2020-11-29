@@ -53,7 +53,7 @@
                       <?php foreach ($results as $value): ?>
                           <tr>
                               <td><?php echo $value->requestID ?> </td>
-                              <td><?php echo $value->employeeStatus ?> </td>
+                              <td><?php echo $value->statusDesc ?> </td>
                               <td><?php echo $value->employeeName ?> </td>
                               <td><?php echo $value->positiondesc ?> </td>
                               <td><?php echo $value->deptdesc ?> </td>

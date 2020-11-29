@@ -665,26 +665,22 @@ class Borrow extends CI_Controller {
       // form validation configuration
       $this->form_validation->set_rules('radioEmployeeStatus', 'Employee Status');
       $this->form_validation->set_rules('txtemployeename', 'Employee Name', 'required|alpha_numeric_spaces');
-      $userID = $this->post->input('taken_by_uid');
-      if($userID == ""){
-          $this->form_validation->set_rules('textCompany', 'Company Name', 'required|alpha_numeric_spaces');
-        }
-        $this->form_validation->set_rules('dropdownDepartment', 'Department', 'required');
-        $this->form_validation->set_rules('txtDateOfJoin', 'Date of Join');
-        $this->form_validation->set_rules('txtDateOfRequest', 'Date of Request', 'required');
-        $this->form_validation->set_rules('dropdownDesignation', 'Designation', 'required');
-        $this->form_validation->set_rules('txtPhone', 'Office Direct Line / Mobile No', 'required');
-        // if validation error error message will be displayed
-        if ($this->form_validation->run() != false) {
-          $requestData['employeeStatus'] = htmlspecialchars($this->input->post('radioEmployeeStatus', true));
-          $requestData['employeeName'] = ucwords(htmlspecialchars($this->input->post('txtemployeename', true)));
-          $requestData['company'] = ucwords(htmlspecialchars($this->input->post('textCompany', true)));
-          $requestData['department'] = $this->input->post('dropdownDepartment', true);
-          $requestData['dateOfJoin'] = $this->input->post('txtDateOfJoin', true);
-          $requestData['DateOfRequest'] = $this->input->post('txtDateOfRequest', true);
-          $requestData['designation'] = $this->input->post('dropdownDesignation', true);
-          $requestData['phone'] = htmlspecialchars($this->input->post('txtPhone', true));
-          var_dump($requestData);die;
+      // $this->form_validation->set_rules('textCompany', 'Company Name', 'required|alpha_numeric_spaces');
+      $this->form_validation->set_rules('dropdownDepartment', 'Department', 'required');
+      $this->form_validation->set_rules('txtDateOfJoin', 'Date of Join');
+      $this->form_validation->set_rules('txtDateOfRequest', 'Date of Request', 'required');
+      $this->form_validation->set_rules('dropdownDesignation', 'Designation', 'required');
+      $this->form_validation->set_rules('txtPhone', 'Office Direct Line / Mobile No', 'required');
+      // if validation error, error message will be displayed
+      if ($this->form_validation->run() != false) {
+        $requestData['employeeStatus'] = htmlspecialchars($this->input->post('radioEmployeeStatus', true));
+        $requestData['employeeName'] = ucwords(htmlspecialchars($this->input->post('txtemployeename', true)));
+        $requestData['company'] = ucwords(htmlspecialchars($this->input->post('textCompany', true)));
+        $requestData['department'] = $this->input->post('dropdownDepartment', true);
+        $requestData['dateOfJoin'] = $this->input->post('txtDateOfJoin', true);
+        $requestData['DateOfRequest'] = $this->input->post('txtDateOfRequest', true);
+        $requestData['designation'] = $this->input->post('dropdownDesignation', true);
+        $requestData['phone'] = htmlspecialchars($this->input->post('txtPhone', true));
 
         $requestID = $this->borrow_model->addNewRequest($requestData);
         if($requestID > 0){
@@ -695,18 +691,19 @@ class Borrow extends CI_Controller {
             $requestDetails['items'] = $itemsRequest[$i];
             $requestDetails['remarks'] = $itemsRequestRemark[$i];
             $requestDetails['requestID'] = $requestID;
-            if($this->borrow_model->NewRequestDetails($requestDetails)){
-              $message = ',div class = "alert alert-success">Request detail has successfully created</div>';
+            if($this->borrow_model->NewRequestDetails($requestDetails) > 0){
+              $message = '<div class = "alert alert-success">Request detail has successfully created</div>';
               $this->session->set_flashdata('message', $message);
             }else{
-              $message = ',div class = "alert alert-danger">Create request detail fail!</div>';
+              $message = '<div class = "alert alert-danger">Create request detail fail!</div>';
               $this->session->set_flashdata('message', $message);
             }
           }
-          $message = ',div class = "alert alert-success">Request has successfully created</div>';
+          $message = '<div class = "alert alert-success">Request has successfully created</div>';
           $this->session->set_flashdata('message', $message);
+          redirect(base_url('borrow/requestItems'));
         }else{
-          $message = ',div class = "alert alert-danger">Create request fail!</div>';
+          $message = '<div class = "alert alert-danger">Create request fail!</div>';
           $this->session->set_flashdata('message', $message);
         }
       }
