@@ -406,7 +406,14 @@ class Borrow_model extends CI_Model {
     return $query->row()->total;
   }
   public function fetchRequestItems($limit, $offset){
-    $sql = "SELECT * FROM tblRequest LEFT JOIN tblApproval ON tblRequest.approvalStatusID = tblapproval.approvalID";
+    $sql = "SELECT 
+              tblRequest.requestID, tblRequest.employeeStatus, tblRequest.employeeName, tblRequest.designation, tblRequest.company, 
+              tblRequest.dateOfJoin, tblRequest.dateOfRequest, tblRequest.phone, tblApproval.approvalDesc, wasco_fingerman.tblfile_position.positiondesc, wasco_fingerman.tblfile_department.deptdesc 
+              FROM tblRequest 
+              LEFT JOIN tblApproval ON tblRequest.approvalStatusID = tblapproval.approvalID 
+              LEFT JOIN wasco_fingerman.tblfile_position on tblRequest.designation = wasco_fingerman.tblfile_position.idposition
+              LEFT JOIN wasco_fingerman.tblfile_department on tblRequest.department = wasco_fingerman.tblfile_department.iddept
+              ORDER BY tblRequest.requestID DESC";
 
    if ($limit) {
       if(!$offset){
@@ -437,10 +444,10 @@ class Borrow_model extends CI_Model {
     return $result;
   }
 
-  public function getSuggestion(){
-    $result = $this->db->get('');
-    return $result;
-  }
+  // public function getSuggestion(){
+  //   $result = $this->db->get('');
+  //   return $result;
+  // }
 
   public function addNewRequest($newRequestData)
   {
@@ -460,6 +467,12 @@ class Borrow_model extends CI_Model {
     } else {
       return FALSE;
     }
+  }
+
+  public function get_employeeStatus_list(){
+    $sql = "SELECT * FROM tblrequest_employeestatus";
+    $query = $this->db->query($sql);
+    return $query;
   }
 
 }

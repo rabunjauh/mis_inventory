@@ -38,8 +38,7 @@
                   <tr>
                       <th>Request ID</th>
                       <th>Employee Status</th>
-                      <th>Employee First Name</th>
-                      <th>Employee Last Name</th>
+                      <th>Employee Name</th>
                       <th>Designation</th>
                       <th>Department</th>
                       <th>Company</th>
@@ -55,10 +54,9 @@
                           <tr>
                               <td><?php echo $value->requestID ?> </td>
                               <td><?php echo $value->employeeStatus ?> </td>
-                              <td><?php echo $value->employeeFirstName ?> </td>
-                              <td><?php echo $value->employeeLastName ?> </td>
-                              <td><?php echo $value->designation ?> </td>
-                              <td><?php echo $value->department ?> </td>
+                              <td><?php echo $value->employeeName ?> </td>
+                              <td><?php echo $value->positiondesc ?> </td>
+                              <td><?php echo $value->deptdesc ?> </td>
                               <td><?php echo $value->company ?> </td>
                               <td><?php echo $value->dateOfJoin ?> </td>
                               <td><?php echo $value->dateOfRequest ?> </td>
@@ -66,11 +64,11 @@
                               
                               <?php if ($this->session->userdata('role')): ?>
                                   <td>
-                                      <a href="<?=base_url('borrow/view/'.$value->borrow_id); ?>" data-toggle="tooltip" data-placement="top" title="View"><i class="glyphicon glyphicon-eye-open"></i></a>&nbsp;
-                                      <a href="<?=base_url('borrow/print_view/'.$value->borrow_id); ?>" data-toggle="tooltip" data-placement="top" title="Print"><i class="glyphicon glyphicon-print"></i></a>&nbsp;
-                                      <a href="<?=base_url('borrow/return_borrow/'.$value->borrow_id); ?>" data-toggle="tooltip" data-placement="top" title="Return"><i class="glyphicon glyphicon-retweet"></i></a>&nbsp;
-                                      <a href="<?=base_url('borrow/modify/'.$value->borrow_id); ?>" data-toggle="tooltip" data-placement="top" title="Modify"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;
-                                      <a data-toggle="tooltip" data-placement="top" title="Delete" onclick="return confirm('Are you sure you want to delete this item?')" href="<?=base_url('borrow/delete/'.$value->borrow_id); ?>" class=""><i class="glyphicon glyphicon-trash"></i></a>
+                                      <a href="<?=base_url('borrow/view/'.$value->requestID); ?>" data-toggle="tooltip" data-placement="top" title="View"><i class="glyphicon glyphicon-eye-open"></i></a>&nbsp;
+                                      <a href="<?=base_url('borrow/print_view/'.$value->requestID); ?>" data-toggle="tooltip" data-placement="top" title="Print"><i class="glyphicon glyphicon-print"></i></a>&nbsp;
+                                      <a href="<?=base_url('borrow/return_borrow/'.$value->requestID); ?>" data-toggle="tooltip" data-placement="top" title="Return"><i class="glyphicon glyphicon-retweet"></i></a>&nbsp;
+                                      <a href="<?=base_url('borrow/modify/'.$value->requestID); ?>" data-toggle="tooltip" data-placement="top" title="Modify"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;
+                                      <a data-toggle="tooltip" data-placement="top" title="Delete" onclick="return confirm('Are you sure you want to delete this item?')" href="<?=base_url('borrow/delete/'.$value->requestID); ?>" class=""><i class="glyphicon glyphicon-trash"></i></a>
                                   </td>
                               <?php endif; ?>
                           </tr>
@@ -86,7 +84,7 @@
 
                   </tfoot>
               </table>
-              <?php if ($borrow_total > 9): ?>
+              <?php if ($request_total > 9): ?>
                   <tr>
                       <td colspan="5">
                           <?php echo $this->pagination->create_links(); ?>

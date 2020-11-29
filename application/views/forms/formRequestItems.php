@@ -129,17 +129,12 @@
         $optionDepartment[$listDepartment->iddept] = $listDepartment->deptdesc;
       }
 
-      $optionCompany = array();
-      $optionCompany[0] = 'Select Company';
-      foreach ($Company as $value) {
-        $optionCompany[$value->Company_id] = $value->Company;
-      }
-
       $optionDesignation = array();
       $optionDesignation[0] = 'Select Designation';
       foreach ($listPositions as $listPosition) {
         $optionDesignation[$listPosition->idposition] = $listPosition->positiondesc;
       }
+
       ?>
 
       <div class="form-group">
@@ -149,6 +144,9 @@
           <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '2', FALSE); ?>Existing Staff</label>
           <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '3', FALSE); ?>Resignation</label>
           <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '4', FALSE); ?>Transfer</label>
+          <?php foreach ($listEmployeeStatuses as $listEmployeeStatus): ?>
+
+          <?php endforeach ?>  
         </div>
       </div>
 
@@ -308,7 +306,9 @@
           let html = '';
           for (let i = 0; i < data.length; i++) {
             html += '<option value=' + data[i].idposition + '>' + data[i].positiondesc + '</option>';
+            console.log(html);
           }
+          console.log(html)
           $('#dropdownDesignation').html(html);
         }
       });
