@@ -303,9 +303,7 @@
           let html = '';
           for (let i = 0; i < data.length; i++) {
             html += '<option value=' + data[i].idposition + '>' + data[i].positiondesc + '</option>';
-            console.log(html);
           }
-          console.log(html)
           $('#dropdownDesignation').html(html);
         }
       });

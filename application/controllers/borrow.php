@@ -665,7 +665,9 @@ class Borrow extends CI_Controller {
       // form validation configuration
       $this->form_validation->set_rules('radioEmployeeStatus', 'Employee Status');
       $this->form_validation->set_rules('txtemployeename', 'Employee Name', 'required|alpha_numeric_spaces');
-      // $this->form_validation->set_rules('textCompany', 'Company Name', 'required|alpha_numeric_spaces');
+      if($this->input->post('taken_by_uid') == ""){
+        $this->form_validation->set_rules('textCompany', 'Company Name', 'required|alpha_numeric_spaces');
+      }
       $this->form_validation->set_rules('dropdownDepartment', 'Department', 'required');
       $this->form_validation->set_rules('txtDateOfJoin', 'Date of Join');
       $this->form_validation->set_rules('txtDateOfRequest', 'Date of Request', 'required');
@@ -681,7 +683,8 @@ class Borrow extends CI_Controller {
         $requestData['DateOfRequest'] = $this->input->post('txtDateOfRequest', true);
         $requestData['designation'] = $this->input->post('dropdownDesignation', true);
         $requestData['phone'] = htmlspecialchars($this->input->post('txtPhone', true));
-
+        var_dump($requestData);
+        die;
         $requestID = $this->borrow_model->addNewRequest($requestData);
         if($requestID > 0){
           $itemsRequest = $this->input->post('textItems', true);
@@ -722,7 +725,6 @@ class Borrow extends CI_Controller {
 
   public function getDesignationByID(){
     $designationID = $this->input->post('id', true);
-    var_dump($designationID);
     if($designationID){
       $data = $this->borrow_model->getDesignationByID($designationID);
     }else{
