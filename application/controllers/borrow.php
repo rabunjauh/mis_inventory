@@ -677,6 +677,10 @@ class Borrow extends CI_Controller {
       if ($this->form_validation->run() != false) {
         $requestData['employeeStatus'] = htmlspecialchars($this->input->post('radioEmployeeStatus', true));
         $requestData['employeeName'] = ucwords(htmlspecialchars($this->input->post('txtemployeename', true)));
+        $requestData['takenByUID'] = ucwords(htmlspecialchars($this->input->post('taken_by_uid', true)));
+        // if($requestData['takenByUID']){
+          
+        // }
         $requestData['company'] = ucwords(htmlspecialchars($this->input->post('textCompany', true)));
         $requestData['department'] = $this->input->post('dropdownDepartment', true);
         $requestData['dateOfJoin'] = $this->input->post('txtDateOfJoin', true);

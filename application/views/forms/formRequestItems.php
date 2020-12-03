@@ -140,10 +140,10 @@
       <div class="form-group">
         <label for="lblEmployeeStatus" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Employee Status: *</label>
         <div class="col-sm-6 col-xs-12">
-          
-          <?php foreach ($listEmployeeStatuses as $listEmployeeStatus): ?>
-            <label class="radio-inline"><?= form_radio('radioEmployeeStatus', $listEmployeeStatus->statusID, $checked = $listEmployeeStatus->statusID == '1'? TRUE : FALSE) . $listEmployeeStatus->statusDesc; ?></label>
-          <?php endforeach ?>  
+
+          <?php foreach ($listEmployeeStatuses as $listEmployeeStatus) : ?>
+            <label class="radio-inline"><?= form_radio('radioEmployeeStatus', $listEmployeeStatus->statusID, $checked = $listEmployeeStatus->statusID == '1' ? TRUE : FALSE) . $listEmployeeStatus->statusDesc; ?></label>
+          <?php endforeach ?>
         </div>
       </div>
 
@@ -174,7 +174,7 @@
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group newEmpStatus">
         <label for="labelDateOfJoin" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Date of Join: *</label>
         <div class="col-sm-6 col-xs-12">
           <input id="txtDateOfJoin" readonly data-date-format="yyyy-mm-dd" class="form-control datepicker" type="text" name="txtDateOfJoin" />
