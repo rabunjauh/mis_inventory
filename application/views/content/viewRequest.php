@@ -52,15 +52,29 @@
                   <?php if (!empty($results)): ?>
                       <?php foreach ($results as $value): ?>
                           <tr>
-                              <td><?php echo $value->requestID ?> </td>
-                              <td><?php echo $value->statusDesc ?> </td>
-                              <td><?php echo $value->employeeName ?> </td>
-                              <td><?php echo $value->positiondesc ?> </td>
-                              <td><?php echo $value->deptdesc ?> </td>
-                              <td><?php echo $value->company ?> </td>
-                              <td><?php echo $value->dateOfJoin ?> </td>
-                              <td><?php echo $value->dateOfRequest ?> </td>
-                              <td><?php echo $value->approvalDesc ?> </td>
+                            <?php 
+                              if($value->uid){
+                                $employeeName = $value->employeename;
+                                $dateOfJoin = $value->join_date;
+                                $position = $value->position;
+                                $department = $value->department;
+                              }else{
+                                $employeeName = $value->employeeName;
+                                $dateOfJoin = $value->dateOfJoin;
+                                $position = $value->positiondesc;
+                                $department = $value->deptdesc;
+                              }
+                            ?>
+                              <td><?= $value->requestID ?></td>
+                              <td><?= $value->statusDesc ?></td>
+                              <td><?= $employeeName ?></td>
+                              <td><?= $position ?></td>
+                              <td><?= $department ?></td>
+                              <td><?= $value->company ?></td>
+                              <td><?= $dateOfJoin ?></td>
+                              <td><?= $value->dateOfRequest ?></td>
+                              <td><?= $value->approvalDesc ?></td>
+                              <td><?= $value->department ?></td>
                               
                               <?php if ($this->session->userdata('role')): ?>
                                   <td>

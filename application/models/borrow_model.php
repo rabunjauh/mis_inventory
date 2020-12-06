@@ -408,10 +408,19 @@ class Borrow_model extends CI_Model {
   public function fetchRequestItems($limit, $offset){
     $sql = "SELECT 
               tblRequest.requestID, tblRequest.employeeStatus, tblRequest.employeeName, tblRequest.designation, tblRequest.company, 
-              tblRequest.dateOfJoin, tblRequest.dateOfRequest, tblRequest.phone, tblApproval.approvalDesc, wasco_fingerman.tblfile_position.positiondesc,
-              wasco_fingerman.tblfile_department.deptdesc, tblRequest_employeeStatus.statusDesc 
+              tblRequest.dateOfJoin, tblRequest.dateOfRequest, tblRequest.phone, tblRequest.uid, wasco_fingerman.tblmas_employee.employeename,
+              wasco_fingerman.tblmas_employee.join_date, 
+              (SELECT positiondesc FROM wasco_fingerman.tblfile_position WHERE idposition = (
+                SELECT idposition FROM wasco_fingerman.tblmas_employee WHERE fingerid = tblRequest.uid
+                )
+              ) AS position, 
+              (SELECT deptdesc FROM wasco_fingerman.tblfile_department WHERE iddept = (
+                SELECT iddept FROM wasco_fingerman.tblmas_employee WHERE fingerid = tblRequest.uid
+                )
+              ) AS department, tblApproval.approvalDesc, wasco_fingerman.tblfile_position.positiondesc, wasco_fingerman.tblfile_department.deptdesc, tblRequest_employeeStatus.statusDesc 
               FROM tblRequest
               LEFT JOIN tblRequest_employeeStatus ON tblRequest.employeeStatus = tblRequest_employeeStatus.statusID
+              LEFT JOIN wasco_fingerman.tblmas_employee ON tblRequest.uid = wasco_fingerman.tblmas_employee.fingerid
               LEFT JOIN tblApproval ON tblRequest.approvalStatusID = tblapproval.approvalID 
               LEFT JOIN wasco_fingerman.tblfile_position on tblRequest.designation = wasco_fingerman.tblfile_position.idposition
               LEFT JOIN wasco_fingerman.tblfile_department on tblRequest.department = wasco_fingerman.tblfile_department.iddept

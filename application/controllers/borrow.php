@@ -676,19 +676,21 @@ class Borrow extends CI_Controller {
       // if validation error, error message will be displayed
       if ($this->form_validation->run() != false) {
         $requestData['employeeStatus'] = htmlspecialchars($this->input->post('radioEmployeeStatus', true));
-        $requestData['employeeName'] = ucwords(htmlspecialchars($this->input->post('txtemployeename', true)));
-        $requestData['takenByUID'] = ucwords(htmlspecialchars($this->input->post('taken_by_uid', true)));
-        // if($requestData['takenByUID']){
+        if ($this->input->post('taken_by_uid') == "") {                    
+          $requestData['employeeName'] = ucwords(htmlspecialchars($this->input->post('txtemployeename', true)));
+          $requestData['company'] = ucwords(htmlspecialchars($this->input->post('textCompany', true)));
+          $requestData['department'] = $this->input->post('dropdownDepartment', true);
+          $requestData['dateOfJoin'] = $this->input->post('txtDateOfJoin', true);
+          $requestData['DateOfRequest'] = $this->input->post('txtDateOfRequest', true);
+          $requestData['designation'] = $this->input->post('dropdownDesignation', true);
+          $requestData['phone'] = htmlspecialchars($this->input->post('txtPhone', true));
           
-        // }
-        $requestData['company'] = ucwords(htmlspecialchars($this->input->post('textCompany', true)));
-        $requestData['department'] = $this->input->post('dropdownDepartment', true);
-        $requestData['dateOfJoin'] = $this->input->post('txtDateOfJoin', true);
-        $requestData['DateOfRequest'] = $this->input->post('txtDateOfRequest', true);
-        $requestData['designation'] = $this->input->post('dropdownDesignation', true);
-        $requestData['phone'] = htmlspecialchars($this->input->post('txtPhone', true));
-        var_dump($requestData);
-        die;
+        }else{
+          $requestData['uid'] = ucwords(htmlspecialchars($this->input->post('taken_by_uid', true)));
+          $requestData['company'] = ucwords(htmlspecialchars($this->input->post('textCompany', true)));
+          $requestData['DateOfRequest'] = $this->input->post('txtDateOfRequest', true);
+          $requestData['phone'] = htmlspecialchars($this->input->post('txtPhone', true));
+        }
         $requestID = $this->borrow_model->addNewRequest($requestData);
         if($requestID > 0){
           $itemsRequest = $this->input->post('textItems', true);

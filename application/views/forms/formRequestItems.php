@@ -214,8 +214,8 @@
         <tbody id="item_area">
           <tr class="tr_clone">
             <td class="numberRow-requestItems"> </td>
-            <td><input type="text" name="textItems[]" class="form-control textItems " placeholder="Request Items"></td>
-            <td><input type="text" name="textRemarks[]" class="form-control" placeholder="Items Remark"></td>
+            <td><input type="text" name="textItems[]" class="form-control textItems" placeholder="Request Items"></td>
+            <td><input type="text" name="textRemarks[]" class="form-control textRemark" placeholder="Items Remark"></td>
             <td>
               <button type="button" class="btn btn-danger" onclick="deleteClone(this,'requestItems')"> Delete </button>
             </td>
@@ -264,6 +264,11 @@
 </div>
 
 <script>
+  var items = document.getElementsByClassName('textItems');
+  for (let i = 0; i < items.length; i++) {
+    console.log(items[i].value);
+  }
+
   $(document).ready(function() {
     $('.datepicker').datepicker({
       autoclose: true
@@ -309,6 +314,13 @@
       });
       return false;
     });
+
+    // $('.textItems').change(function(e) {
+    //   let input = e.target;
+    //   let inputValue = input.value;
+    //   console.log(inputValue);
+    // });
+
     // tes
     // document.querySelector('input[list]').addEventListener('input', function(e) {
     //   var input = e.target,
@@ -328,6 +340,14 @@
     //     }
     //   }
     // });
+
+    $('.textItems').each(function(index, obj) {
+      $(this).change(function(){
+        console.log(index);
+      });
+      // console.log(index);
+    })
+
     // // 
   });
 </script>
