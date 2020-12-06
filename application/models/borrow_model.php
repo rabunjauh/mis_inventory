@@ -406,7 +406,25 @@ class Borrow_model extends CI_Model {
     return $query->row()->total;
   }
   public function fetchRequestItems($limit, $offset){
-    $sql = "SELECT * FROM tblRequest LEFT JOIN tblApproval ON tblRequest.approvalStatusID = tblapproval.approvalID";
+    $sql = "SELECT 
+              tblRequest.requestID, tblRequest.employeeStatus, tblRequest.employeeName, tblRequest.designation, tblRequest.company, 
+              tblRequest.dateOfJoin, tblRequest.dateOfRequest, tblRequest.phone, tblRequest.uid, wasco_fingerman.tblmas_employee.employeename,
+              wasco_fingerman.tblmas_employee.join_date, 
+              (SELECT positiondesc FROM wasco_fingerman.tblfile_position WHERE idposition = (
+                SELECT idposition FROM wasco_fingerman.tblmas_employee WHERE fingerid = tblRequest.uid
+                )
+              ) AS position, 
+              (SELECT deptdesc FROM wasco_fingerman.tblfile_department WHERE iddept = (
+                SELECT iddept FROM wasco_fingerman.tblmas_employee WHERE fingerid = tblRequest.uid
+                )
+              ) AS department, tblApproval.approvalDesc, wasco_fingerman.tblfile_position.positiondesc, wasco_fingerman.tblfile_department.deptdesc, tblRequest_employeeStatus.statusDesc 
+              FROM tblRequest
+              LEFT JOIN tblRequest_employeeStatus ON tblRequest.employeeStatus = tblRequest_employeeStatus.statusID
+              LEFT JOIN wasco_fingerman.tblmas_employee ON tblRequest.uid = wasco_fingerman.tblmas_employee.fingerid
+              LEFT JOIN tblApproval ON tblRequest.approvalStatusID = tblapproval.approvalID 
+              LEFT JOIN wasco_fingerman.tblfile_position on tblRequest.designation = wasco_fingerman.tblfile_position.idposition
+              LEFT JOIN wasco_fingerman.tblfile_department on tblRequest.department = wasco_fingerman.tblfile_department.iddept
+              ORDER BY tblRequest.requestID DESC";
 
    if ($limit) {
       if(!$offset){
@@ -437,9 +455,35 @@ class Borrow_model extends CI_Model {
     return $result;
   }
 
-  public function getSuggestion(){
-    $result = $this->db->get('');
-    return $result;
+  // public function getSuggestion(){
+  //   $result = $this->db->get('');
+  //   return $result;
+  // }
+
+  public function addNewRequest($newRequestData)
+  {
+    $this->db->insert('tblrequest', $newRequestData);
+    if ($this->db->affected_rows() == 1) {
+      return $this->db->insert_id();
+    } else {
+      return FALSE;
+    }
+  }
+ 
+  public function NewRequestDetails($requestDetails)
+  {
+    $this->db->insert('tblrequestedetails', $requestDetails);
+    if ($this->db->affected_rows() == 1) {
+      return $this->db->insert_id();
+    } else {
+      return FALSE;
+    }
+  }
+
+  public function get_employeeStatus_list(){
+    $sql = "SELECT * FROM tblrequest_employeestatus";
+    $query = $this->db->query($sql);
+    return $query->result();
   }
 
 }

@@ -656,15 +656,66 @@ class Borrow extends CI_Controller {
     // if (!$this->session->userdata('role')) {
     //   exit('<div class="alert alert-danger">Not allowed!</div>');
     // }
+
+    // check is there any data sent from formRequestItems
     if($this->input->post()){
-      $requestData['EmployeeStatus'] = $this->input->post('radioEmployeeStatus', true);
-      if($this->input->post('taken_by_uid')){
-        $requestData['taken_by_uid'] = $this->input->post('taken_by_uid', true);
+      // var_dump($this->input->post());die;
+      // load form validation library
+      $this->load->library('form_validation');
+      // form validation configuration
+      $this->form_validation->set_rules('radioEmployeeStatus', 'Employee Status');
+      $this->form_validation->set_rules('txtemployeename', 'Employee Name', 'required|alpha_numeric_spaces');
+      if($this->input->post('taken_by_uid') == ""){
+        $this->form_validation->set_rules('textCompany', 'Company Name', 'required|alpha_numeric_spaces');
       }
-      $requestData['department'] = $this->input->post('dropdownDepartment', true);
-      $requestData['dateOfJoin'] = $this->input->post('txtDateOfJoin', true);
-      $requestData['DateOfRequest'] = $this->input->post('txtDateOfRequest', true);
-      $requestData['EmployeeStatus'] = $this->input->post('radioEmployeeStatus', true);
+      $this->form_validation->set_rules('dropdownDepartment', 'Department', 'required');
+      $this->form_validation->set_rules('txtDateOfJoin', 'Date of Join');
+      $this->form_validation->set_rules('txtDateOfRequest', 'Date of Request', 'required');
+      $this->form_validation->set_rules('dropdownDesignation', 'Designation', 'required');
+      $this->form_validation->set_rules('txtPhone', 'Office Direct Line / Mobile No', 'required');
+      // if validation error, error message will be displayed
+      if ($this->form_validation->run() != false) {
+        $requestData['employeeStatus'] = htmlspecialchars($this->input->post('radioEmployeeStatus', true));
+        if ($this->input->post('taken_by_uid') == "") {                    
+          $requestData['employeeName'] = ucwords(htmlspecialchars($this->input->post('txtemployeename', true)));
+          $requestData['company'] = ucwords(htmlspecialchars($this->input->post('textCompany', true)));
+          $requestData['department'] = $this->input->post('dropdownDepartment', true);
+          $requestData['dateOfJoin'] = $this->input->post('txtDateOfJoin', true);
+          $requestData['DateOfRequest'] = $this->input->post('txtDateOfRequest', true);
+          $requestData['designation'] = $this->input->post('dropdownDesignation', true);
+          $requestData['phone'] = htmlspecialchars($this->input->post('txtPhone', true));
+          
+        }else{
+          $requestData['uid'] = ucwords(htmlspecialchars($this->input->post('taken_by_uid', true)));
+          $requestData['company'] = ucwords(htmlspecialchars($this->input->post('textCompany', true)));
+          $requestData['DateOfRequest'] = $this->input->post('txtDateOfRequest', true);
+          $requestData['phone'] = htmlspecialchars($this->input->post('txtPhone', true));
+        }
+        $requestID = $this->borrow_model->addNewRequest($requestData);
+        if($requestID > 0){
+          $itemsRequest = $this->input->post('textItems', true);
+          $itemsRequestRemark = $this->input->post('textRemarks', true);
+          // var_dump($itemsRequest);
+          for($i = 0; $i < sizeof($itemsRequest); $i++){
+            $requestDetails['items'] = $itemsRequest[$i];
+            $requestDetails['remarks'] = $itemsRequestRemark[$i];
+            $requestDetails['requestID'] = $requestID;
+            if($this->borrow_model->NewRequestDetails($requestDetails) > 0){
+              $message = '<div class = "alert alert-success">Request detail has successfully created</div>';
+              $this->session->set_flashdata('message', $message);
+            }else{
+              $message = '<div class = "alert alert-danger">Create request detail fail!</div>';
+              $this->session->set_flashdata('message', $message);
+            }
+          }
+          $message = '<div class = "alert alert-success">Request has successfully created</div>';
+          $this->session->set_flashdata('message', $message);
+          redirect(base_url('borrow/requestItems'));
+        }else{
+          $message = '<div class = "alert alert-danger">Create request fail!</div>';
+          $this->session->set_flashdata('message', $message);
+        }
+      }
     }
     $data = array();
     $data['header'] = $this->load->view('header/head', '', TRUE);
@@ -672,7 +723,7 @@ class Borrow extends CI_Controller {
     $data['listPositions'] = $this->inventory_model->get_position_list();
     $data['listSupervisors'] = $this->inventory_model->get_supervisor_list();
     $data['listDepartments'] = $this->inventory_model->get_department_list();
-    $data['employeeStatuses'] = $this->inventory_model->get_employeeStatus();
+    $data['listEmployeeStatuses'] = $this->borrow_model->get_employeeStatus_list();
     $data['content'] = $this->load->view('forms/formRequestItems', $data, TRUE);
     $data['footer'] = $this->load->view('footer/footer', '', TRUE);
     $this->load->view('main', $data);
@@ -688,9 +739,9 @@ class Borrow extends CI_Controller {
     echo json_encode($data);
   }
 
-  public function getSuggestion(){
-    // $data = $this->borrow_model->getSuggestion();
-    echo json_encode($data);
-  }
+  // public function getSuggestion(){
+  //   // $data = $this->borrow_model->getSuggestion();
+  //   echo json_encode($data);
+  // }
 
 }

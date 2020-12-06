@@ -16,7 +16,7 @@
 			tableRow.style.backgroundColor = '';
 		}
 	}
-	function send_emp(code,desc){
+	function send_emp(code, desc, date){
 		if (window.opener.document.getElementById('txtempid')) {
 			window.opener.document.getElementById('txtempid').value = code;
 			window.opener.document.getElementById('txtemployeename').value = desc;
@@ -183,6 +183,9 @@
 									<td bgcolor="#555555"><div align="center" class="style2">
 										Supervisor
 									</div></td>
+									<td bgcolor="#555555"><div align="center" class="style2">
+										Join Date
+									</div></td>
 								</tr>
 								<?php
 								$a=1;
@@ -193,14 +196,17 @@
 									}else{
 										$bg="bgcolor=\"#eeeeee\"";
 									}
+									$slashdate = $item->join_date;	
+									$date = date_create_from_format('j-M-Y', $slashdate);
 									?>
-									<tr <?php echo $bg; ?> style="cursor:pointer;" onmouseover="ChangeColor(this, true);" onmouseout="ChangeColor(this, false);" onClick="send_emp('<?php  echo $item->fingerid;?>','<?php echo addslashes($item->employeename); ?>')">
+									<tr <?php echo $bg; ?> style="cursor:pointer;" onmouseover="ChangeColor(this, true);" onmouseout="ChangeColor(this, false);" onClick="send_emp('<?php  echo $item->fingerid;?>','<?php echo addslashes($item->employeename); ?>', '<?= date_format($date, 'Y-m-d') ?>')">
 										<td><?php echo ($offset+$a);  ?></td>
 										<td align="center"><?php echo $item->employeeno;?></td>
 										<td align="center"><?php echo $item->employeename;?></td>
 										<td align="center"><?php echo $item->emp_dept;?></td>
 										<td align="center"><?php echo $item->emp_pos;?></td>
 										<td align="center"><?php echo $item->supervisor_name;?></td>
+										<td align="center"><?php echo $item->join_date;?></td>
 									</tr>
 									<?php $a++; } ?>
 

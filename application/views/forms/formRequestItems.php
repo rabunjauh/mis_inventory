@@ -21,7 +21,7 @@
     var allTr = $("#" + table).find('.tr_clone');
     var $clone = $tr.clone();
 
-    // $clone.find(':text').val('');
+    $clone.find(':text').val('');
     var number = parseInt($('.numberRow-' + table).last().text());
     $tr.after($clone);
     //$clone.find(':text').attr('required',true);
@@ -129,26 +129,21 @@
         $optionDepartment[$listDepartment->iddept] = $listDepartment->deptdesc;
       }
 
-      $optionCompany = array();
-      $optionCompany[0] = 'Select Company';
-      foreach ($Company as $value) {
-        $optionCompany[$value->Company_id] = $value->Company;
-      }
-
       $optionDesignation = array();
       $optionDesignation[0] = 'Select Designation';
       foreach ($listPositions as $listPosition) {
         $optionDesignation[$listPosition->idposition] = $listPosition->positiondesc;
       }
+
       ?>
 
       <div class="form-group">
         <label for="lblEmployeeStatus" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Employee Status: *</label>
         <div class="col-sm-6 col-xs-12">
-          <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '1', TRUE); ?>New Staff</label>
-          <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '2', FALSE); ?>Existing Staff</label>
-          <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '3', FALSE); ?>Resignation</label>
-          <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '4', FALSE); ?>Transfer</label>
+
+          <?php foreach ($listEmployeeStatuses as $listEmployeeStatus) : ?>
+            <label class="radio-inline"><?= form_radio('radioEmployeeStatus', $listEmployeeStatus->statusID, $checked = $listEmployeeStatus->statusID == '1' ? TRUE : FALSE) . $listEmployeeStatus->statusDesc; ?></label>
+          <?php endforeach ?>
         </div>
       </div>
 
@@ -166,13 +161,20 @@
       </div>
 
       <div class="form-group newEmpStatus">
+        <label for="textCompany" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Company: *</label>
+        <div class="col-sm-6 col-xs-12">
+          <input type="text" class="form-control" name="textCompany" id="textCompany" placeholder="Company Name">
+        </div>
+      </div>
+
+      <div class="form-group newEmpStatus">
         <label for="labelDepartment" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Group / Department: *</label>
         <div class="col-sm-6 col-xs-12">
           <?= form_dropdown('dropdownDepartment', $optionDepartment, '', 'id="dropdownDepartment" class="form-control"') ?>
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group newEmpStatus">
         <label for="labelDateOfJoin" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Date of Join: *</label>
         <div class="col-sm-6 col-xs-12">
           <input id="txtDateOfJoin" readonly data-date-format="yyyy-mm-dd" class="form-control datepicker" type="text" name="txtDateOfJoin" />
@@ -193,8 +195,8 @@
         </div>
       </div>
 
-      <div class="form-group newEmpStatus">
-        <label for="labelPhone" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Office Direct Line/Mobile No. : *</label>
+      <div class="form-group">
+        <label for="labelPhone" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Office Direct Line / Mobile No. : *</label>
         <div class="col-sm-6 col-xs-12">
           <input type="text" name="txtPhone" id="txtPhone" class="form-control">
         </div>
@@ -212,8 +214,8 @@
         <tbody id="item_area">
           <tr class="tr_clone">
             <td class="numberRow-requestItems"> </td>
-            <td><input type="text" name="textItems[]" class="form-control" placeholder="Request Items"></td>
-            <td><input type="text" name="textRemarks[]" class="form-control" placeholder="Items Remark"></td>
+            <td><input type="text" name="textItems[]" class="form-control textItems" placeholder="Request Items"></td>
+            <td><input type="text" name="textRemarks[]" class="form-control textRemark" placeholder="Items Remark"></td>
             <td>
               <button type="button" class="btn btn-danger" onclick="deleteClone(this,'requestItems')"> Delete </button>
             </td>
@@ -262,6 +264,11 @@
 </div>
 
 <script>
+  var items = document.getElementsByClassName('textItems');
+  for (let i = 0; i < items.length; i++) {
+    console.log(items[i].value);
+  }
+
   $(document).ready(function() {
     $('.datepicker').datepicker({
       autoclose: true
@@ -272,7 +279,7 @@
     $('#txtemployeename').attr("readonly", false);
     $('.choose').hide();
     $('input[type=radio][name=radioEmployeeStatus]').change(function() {
-      if (this.value == 1) {
+      if (this.value == 1 || this.value == 4) {
         $('.choose').hide();
         $('.newEmpStatus').show();
         $('#txtemployeename').attr("readonly", false);
@@ -308,6 +315,12 @@
       return false;
     });
 
+    // $('.textItems').change(function(e) {
+    //   let input = e.target;
+    //   let inputValue = input.value;
+    //   console.log(inputValue);
+    // });
+
     // tes
     // document.querySelector('input[list]').addEventListener('input', function(e) {
     //   var input = e.target,
@@ -327,6 +340,14 @@
     //     }
     //   }
     // });
+
+    $('.textItems').each(function(index, obj) {
+      $(this).change(function(){
+        console.log(index);
+      });
+      // console.log(index);
+    })
+
     // // 
   });
 </script>
