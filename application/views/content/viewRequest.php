@@ -20,11 +20,8 @@
     <span class="box-title">Request</span>
     <?php if ($this->session->userdata('role')): ?>
       <div class="content-nav">
-        <div class="btn-group col-sm-8 col-xs-10 col-sm-offset-3 col-xs-offset-2">
-          <!-- <a href="<?=base_url('borrow/add'); ?>" class="btn btn-default btn-flat "><i class="glyphicon glyphicon-plus-sign"></i> New Borrow</a> -->
-          <!-- <a href="<?=base_url('inventory/stock'); ?>" class="btn btn-default btn-flat "><i class="glyphicon glyphicon-ok-sign"></i> Stock</a> -->
-          <!-- <a href="<?=base_url('inventory/item_in'); ?>" class="btn btn-default btn-flat "><i class="glyphicon glyphicon-plus-sign"></i> Inventory In</a> -->
-          <!-- <a href="<?=base_url('inventory/item_out'); ?>" class="btn btn-default btn-flat "><i class="glyphicon glyphicon-minus-sign"></i> Inventory Out</a> -->
+        <div class="btn-group col-sm-8 col-xs-10 col-sm-offset-4 col-xs-offset-2">
+          <a href="<?=base_url('borrow/formRequestItems'); ?>" class="btn btn-default btn-flat "><i class="glyphicon glyphicon-plus-sign"></i> New Request</a>
           <a href="<?=base_url('csv/download_borrow'); ?>" class="btn btn-default btn-flat"><i class="glyphicon glyphicon-save"></i><span class="hidden-xs"> Download</span></a>
           <a href="#" data-toggle="modal" data-target="#filterModal" class="btn btn-default btn-flat"><i class="glyphicon glyphicon-search"></i><span class="hidden-xs"> Filter</span></a>
         </div>
@@ -56,13 +53,15 @@
                               if($value->uid){
                                 $employeeName = $value->employeename;
                                 $dateOfJoin = $value->join_date;
-                                $position = $value->position;
-                                $department = $value->department;
+                                $position = $value->positionExisting;
+                                $department = $value->departmentExisting;
+                                $company = $value->companyExisting;
                               }else{
                                 $employeeName = $value->employeeName;
                                 $dateOfJoin = $value->dateOfJoin;
                                 $position = $value->positiondesc;
                                 $department = $value->deptdesc;
+                                $company = $value->company; 
                               }
                             ?>
                               <td><?= $value->requestID ?></td>
@@ -70,12 +69,10 @@
                               <td><?= $employeeName ?></td>
                               <td><?= $position ?></td>
                               <td><?= $department ?></td>
-                              <td><?= $value->company ?></td>
+                              <td><?= $company ?></td>
                               <td><?= $dateOfJoin ?></td>
                               <td><?= $value->dateOfRequest ?></td>
                               <td><?= $value->approvalDesc ?></td>
-                              <td><?= $value->department ?></td>
-                              
                               <?php if ($this->session->userdata('role')): ?>
                                   <td>
                                       <a href="<?=base_url('borrow/view/'.$value->requestID); ?>" data-toggle="tooltip" data-placement="top" title="View"><i class="glyphicon glyphicon-eye-open"></i></a>&nbsp;

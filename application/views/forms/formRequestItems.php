@@ -148,7 +148,7 @@
       </div>
 
       <div class="form-group empStatus">
-        <label for="lblemployee" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Employee: </label>
+        <label for="lblemployee" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Employee: *</label>
         <div class="col-sm-6 col-xs-12">
           <input type="text" class="form-control" readonly="readonly" value="<?php if (isset($borrow) && $borrow->employeename) {
                                                                                 echo $borrow->employeename;

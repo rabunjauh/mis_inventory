@@ -407,24 +407,25 @@ class Borrow_model extends CI_Model {
   }
   public function fetchRequestItems($limit, $offset){
     $sql = "SELECT 
-              tblRequest.requestID, tblRequest.employeeStatus, tblRequest.employeeName, tblRequest.designation, tblRequest.company, 
-              tblRequest.dateOfJoin, tblRequest.dateOfRequest, tblRequest.phone, tblRequest.uid, wasco_fingerman.tblmas_employee.employeename,
-              wasco_fingerman.tblmas_employee.join_date, 
-              (SELECT positiondesc FROM wasco_fingerman.tblfile_position WHERE idposition = (
-                SELECT idposition FROM wasco_fingerman.tblmas_employee WHERE fingerid = tblRequest.uid
-                )
-              ) AS position, 
-              (SELECT deptdesc FROM wasco_fingerman.tblfile_department WHERE iddept = (
-                SELECT iddept FROM wasco_fingerman.tblmas_employee WHERE fingerid = tblRequest.uid
-                )
-              ) AS department, tblApproval.approvalDesc, wasco_fingerman.tblfile_position.positiondesc, wasco_fingerman.tblfile_department.deptdesc, tblRequest_employeeStatus.statusDesc 
-              FROM tblRequest
-              LEFT JOIN tblRequest_employeeStatus ON tblRequest.employeeStatus = tblRequest_employeeStatus.statusID
-              LEFT JOIN wasco_fingerman.tblmas_employee ON tblRequest.uid = wasco_fingerman.tblmas_employee.fingerid
-              LEFT JOIN tblApproval ON tblRequest.approvalStatusID = tblapproval.approvalID 
-              LEFT JOIN wasco_fingerman.tblfile_position on tblRequest.designation = wasco_fingerman.tblfile_position.idposition
-              LEFT JOIN wasco_fingerman.tblfile_department on tblRequest.department = wasco_fingerman.tblfile_department.iddept
-              ORDER BY tblRequest.requestID DESC";
+              tr.requestID, tr.employeeStatus, tr.employeeName, tr.designation,
+              tr.company, tr.phone, tr.uid, te.employeename,
+              ta.approvalDesc, tp.positiondesc, td.deptdesc, tres.statusDesc, 
+              DATE_FORMAT(tr.dateOfJoin,'%d/%m/%Y')AS dateOfJoin,
+              DATE_FORMAT(tr.dateOfRequest,'%d/%m/%Y')AS dateOfRequest,
+              DATE_FORMAT(te.join_date,'%d/%m/%Y')AS join_date,
+              (SELECT positiondesc FROM wasco_fingerman.tblfile_position  WHERE idposition = 
+                (SELECT idposition FROM wasco_fingerman.tblmas_employee WHERE fingerid = tr.uid)) AS positionExisting, 
+              (SELECT deptdesc FROM wasco_fingerman.tblfile_department WHERE iddept = 
+                (SELECT iddept FROM wasco_fingerman.tblmas_employee WHERE fingerid = tr.uid)) AS departmentExisting,
+              (SELECT groupdesc FROM wasco_fingerman.tblfile_group WHERE idgroup = 
+                (SELECT idgroup FROM wasco_fingerman.tblmas_employee WHERE fingerid = tr.uid)) AS companyExisting
+              FROM tblRequest tr
+              LEFT JOIN tblRequest_employeeStatus tres ON tr.employeeStatus = tres.statusID
+              LEFT JOIN wasco_fingerman.tblmas_employee te ON tr.uid = te.fingerid
+              LEFT JOIN tblApproval ta ON tr.approvalStatusID = ta.approvalID 
+              LEFT JOIN wasco_fingerman.tblfile_position tp on tr.designation = tp.idposition
+              LEFT JOIN wasco_fingerman.tblfile_department td on tr.department = td.iddept
+              ORDER BY tr.requestID DESC";
 
    if ($limit) {
       if(!$offset){

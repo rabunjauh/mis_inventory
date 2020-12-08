@@ -653,9 +653,9 @@ class Borrow extends CI_Controller {
   } 
   
   public function formRequestItems(){
-    // if (!$this->session->userdata('role')) {
-    //   exit('<div class="alert alert-danger">Not allowed!</div>');
-    // }
+    if (!$this->session->userdata('role')) {
+      exit('<div class="alert alert-danger">Not allowed!</div>');
+    }
 
     // check is there any data sent from formRequestItems
     if($this->input->post()){
@@ -683,23 +683,26 @@ class Borrow extends CI_Controller {
           $requestData['dateOfJoin'] = $this->input->post('txtDateOfJoin', true);
           $requestData['DateOfRequest'] = $this->input->post('txtDateOfRequest', true);
           $requestData['designation'] = $this->input->post('dropdownDesignation', true);
-          $requestData['phone'] = htmlspecialchars($this->input->post('txtPhone', true));
-          
+          $requestData['phone'] = htmlspecialchars($this->input->post('txtPhone', true));          
         }else{
           $requestData['uid'] = ucwords(htmlspecialchars($this->input->post('taken_by_uid', true)));
           $requestData['company'] = ucwords(htmlspecialchars($this->input->post('textCompany', true)));
           $requestData['DateOfRequest'] = $this->input->post('txtDateOfRequest', true);
           $requestData['phone'] = htmlspecialchars($this->input->post('txtPhone', true));
         }
+        // insert data to request table
         $requestID = $this->borrow_model->addNewRequest($requestData);
+        // if insert data successfull inserted id will be returned
         if($requestID > 0){
           $itemsRequest = $this->input->post('textItems', true);
           $itemsRequestRemark = $this->input->post('textRemarks', true);
           // var_dump($itemsRequest);
+          // loop for get input data from form in table items and itemsRemark
           for($i = 0; $i < sizeof($itemsRequest); $i++){
             $requestDetails['items'] = $itemsRequest[$i];
             $requestDetails['remarks'] = $itemsRequestRemark[$i];
             $requestDetails['requestID'] = $requestID;
+            // insert data to table requesDetails
             if($this->borrow_model->NewRequestDetails($requestDetails) > 0){
               $message = '<div class = "alert alert-success">Request detail has successfully created</div>';
               $this->session->set_flashdata('message', $message);
