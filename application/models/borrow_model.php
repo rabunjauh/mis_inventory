@@ -486,6 +486,12 @@ class Borrow_model extends CI_Model {
     $query = $this->db->query($sql);
     return $query->result();
   }
+  
+  public function getRequestItemsSuggestion(){
+    $sql = "SELECT * FROM tblRequestItemssuggestion";
+    $query = $this->db->query($sql);
+    return $query->result();
+  }
 
 }
 

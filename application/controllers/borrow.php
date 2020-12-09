@@ -659,7 +659,7 @@ class Borrow extends CI_Controller {
 
     // check is there any data sent from formRequestItems
     if($this->input->post()){
-      // var_dump($this->input->post());die;
+      var_dump($this->input->post());die;
       // load form validation library
       $this->load->library('form_validation');
       // form validation configuration
@@ -727,6 +727,7 @@ class Borrow extends CI_Controller {
     $data['listSupervisors'] = $this->inventory_model->get_supervisor_list();
     $data['listDepartments'] = $this->inventory_model->get_department_list();
     $data['listEmployeeStatuses'] = $this->borrow_model->get_employeeStatus_list();
+    $data['listRequestItemsSuggestion'] = $this->borrow_model->getRequestItemsSuggestion();
     $data['content'] = $this->load->view('forms/formRequestItems', $data, TRUE);
     $data['footer'] = $this->load->view('footer/footer', '', TRUE);
     $this->load->view('main', $data);

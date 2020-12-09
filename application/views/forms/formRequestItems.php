@@ -63,38 +63,6 @@
       }
     }
   }
-
-  // function ajaxForm(element, targetUrl, ajaxMethod, elementEvent) {
-  //   $(element).on(elementEvent, function() {
-  //     var id = $(this).val();
-  //     // ajax request
-  //     $.ajax({
-  //       url: targetUrl,
-  //       method: ajaxMethod,
-  //       if (ajaxMethod = "POST") {
-  //         data: {
-  //           id: id
-  //         }
-  //       },
-  //       async: true,
-  //       dataType: 'json',
-  //       success: function(data) {
-  //         console.log(data);
-  //           // $('#dropdownDesignation').html(data);
-  //           // let html = '';
-  //           // for (let i = 0; i < data.length; i++) {
-  //           //   html += '<option value=' + data[i].idposition + '>' + data[i].positiondesc + '</option>';
-  //           // }
-  //           // $('#dropdownDesignation').html(html);
-  //       }
-  //     });
-  //     return false;
-  //   });
-  // }
-
-  // function ajaxForm(element, targetUrl, ajaxMethod, elementEvent) {
-
-  // }
 </script>
 
 <style>
@@ -133,6 +101,12 @@
       $optionDesignation[0] = 'Select Designation';
       foreach ($listPositions as $listPosition) {
         $optionDesignation[$listPosition->idposition] = $listPosition->positiondesc;
+      }
+
+      $optionRequestItems = array();
+      $optionRequestItems[0] = 'Select Items';
+      foreach ($listRequestItemsSuggestion as $listRequestItemSuggestion) {
+        $optionRequestItems[$listRequestItemSuggestion->suggestionID] = $listRequestItemSuggestion->suggestion;
       }
 
       ?>
@@ -214,7 +188,8 @@
         <tbody id="item_area">
           <tr class="tr_clone">
             <td class="numberRow-requestItems"> </td>
-            <td><input type="text" name="textItems[]" class="form-control textItems" placeholder="Request Items"></td>
+            <!-- <td><input type="text" name="textItems[]" class="form-control textItems" placeholder="Request Items"></td> -->
+            <td><?= form_dropdown('optionRequestItems[]', $optionRequestItems, '', 'id="optionRequestItems" class="form-control optionRequestItems"') ?></td>
             <td><input type="text" name="textRemarks[]" class="form-control textRemark" placeholder="Items Remark"></td>
             <td>
               <button type="button" class="btn btn-danger" onclick="deleteClone(this,'requestItems')"> Delete </button>
@@ -230,7 +205,7 @@
         </label>
       </div>
       <div>
-        <button type="submit" class="btn btn-primary btn-flat col-xs-6 col-xs-offset-2  col-sm-offset-3"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
+        <button type="submit" class="btn btn-primary btn-flat col-xs-6 col-xs-offset-2  col-sm-offset-3" id="saveRequest"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;
         <button type="reset" class="btn btn-default btn-flat">Reset</button>
       </div>
       <?= form_close(); ?>
@@ -264,11 +239,6 @@
 </div>
 
 <script>
-  var items = document.getElementsByClassName('textItems');
-  for (let i = 0; i < items.length; i++) {
-    console.log(items[i].value);
-  }
-
   $(document).ready(function() {
     $('.datepicker').datepicker({
       autoclose: true
@@ -315,39 +285,13 @@
       return false;
     });
 
-    // $('.textItems').change(function(e) {
-    //   let input = e.target;
-    //   let inputValue = input.value;
-    //   console.log(inputValue);
+  });
+  let saveBtn = document.getElementById('saveRequest');
+  $(saveBtn).click(function(e) {
+    // console.log($('.optionRequestItems'));
+    // $('.optionRequesItems').each(function(index) {
+    //   console.log('ok');
     // });
-
-    // tes
-    // document.querySelector('input[list]').addEventListener('input', function(e) {
-    //   var input = e.target,
-    //     list = input.getAttribute('list'),
-    //     options = document.querySelectorAll('#' + list + ' option'),
-    //     hiddenInput = document.getElementById(input.getAttribute('id') + '-hidden'),
-    //     inputValue = input.value;
-    //   hiddenInput.value = inputValue;
-
-    //   for (var i = 0; i < options.length; i++) {
-    //     var option = options[i];
-
-    //     if (option.innerText === inputValue) {
-    //       hiddenInput.value = option.getAttribute('data-value');
-    //       console.log(hiddenInput.value);
-    //       break;
-    //     }
-    //   }
-    // });
-
-    $('.textItems').each(function(index, obj) {
-      $(this).change(function(){
-        console.log(index);
-      });
-      // console.log(index);
-    })
-
-    // // 
+    e.preventDefault(e);
   });
 </script>
