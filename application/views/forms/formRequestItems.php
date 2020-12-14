@@ -3,66 +3,71 @@
 <link rel="stylesheet" type="text/css" href="<?php echo prefix_url; ?>assets/css/datepicker.css" />
 
 <script>
-  function open_popup(url, value) {
-    $('#type_input').val(value);
-    window.open('<?php echo prefix_url; ?>' + url, 'popuppage', 'width=700,location=0,toolbar=0,menubar=0,resizable=1,scrollbars=yes,height=500,top=100,left=100');
-  }
+  // function open_popup(url, value) {
+  //   $('#type_input').val(value);
+  //   window.open('<?php echo prefix_url; ?>' + url, 'popuppage', 'width=700,location=0,toolbar=0,menubar=0,resizable=1,scrollbars=yes,height=500,top=100,left=100');
+  // }
 
-  function reNumber(table) {
-    var i = 1;
-    $(".numberRow-" + table).each(function() {
-      $(this).text(i);
-      i++
-    });
-  }
+  // function reNumber(table) {
+  //   var i = 1;
+  //   $(".numberRow-" + table).each(function() {
+  //     $(this).text(i);
+  //     i++
+  //   });
+  // }
 
-  function addRow(table) {
-    var $tr = $("#" + table).find('.tr_clone').last();
-    var allTr = $("#" + table).find('.tr_clone');
-    var $clone = $tr.clone();
+  // function addRow(table) {
+  //   var $tr = $("#" + table).find('.tr_clone').last();
+  //   var allTr = $("#" + table).find('.tr_clone');
+  //   var $clone = $tr.clone();
 
-    $clone.find(':text').val('');
-    var number = parseInt($('.numberRow-' + table).last().text());
-    $tr.after($clone);
-    //$clone.find(':text').attr('required',true);
-    // $clone.find('input').val('');
-    $clone.find('select').val('');
-    reNumber(table);
-    $clone.show();
-  }
+  //   $clone.find(':text').val('');
+  //   var number = parseInt($('.numberRow-' + table).last().text());
+  //   $tr.after($clone);
+  //   //$clone.find(':text').attr('required',true);
+  //   // $clone.find('input').val('');
+  //   $clone.find('select').val('');
+  //   reNumber(table);
+  //   $clone.show();
 
-  function get_arr_obj() {
-    $('.master_clone').each(function(index, obj) {
-      var target = $(obj);
-      var code = target.find('.item_code').val();
-      var qty = target.find('.quantities').val();
-      arrObj[code] = [];
-      arrObj[code]['qty'] = qty;
-      arrObj[code]['target'] = target;
-    })
-  }
 
-  var arrObj = [];
-  get_arr_obj();
+  //   // $('.optionRequestItems').change(function(e) {
+  //   //   console.log(e.value);
+  //   // });
+  // }
 
-  function deleteClone(e, table) {
-    var allTr = $("#" + table).find('.tr_clone');
-    var $tr = $(e).closest(".tr_clone");
-    var value_code = $tr.find('.item_code').val();
-    if (arrObj[value_code]) {
-      arrObj.splice(value_code, 1)
-    }
-    if (allTr.length > 1) {
-      var $remove = $tr.remove();
-      reNumber(table);
-    } else {
-      check_master = $("#" + table).find('.master_clone');
-      if (check_master.length == 1) {
-        check_master.find(':input').val('');
-        check_master.hide();
-      }
-    }
-  }
+  // function get_arr_obj() {
+  //   $('.master_clone').each(function(index, obj) {
+  //     var target = $(obj);
+  //     var code = target.find('.item_code').val();
+  //     var qty = target.find('.quantities').val();
+  //     arrObj[code] = [];
+  //     arrObj[code]['qty'] = qty;
+  //     arrObj[code]['target'] = target;
+  //   })
+  // }
+
+  // var arrObj = [];
+  // get_arr_obj();
+
+  // function deleteClone(e, table) {
+  //   var allTr = $("#" + table).find('.tr_clone');
+  //   var $tr = $(e).closest(".tr_clone");
+  //   var value_code = $tr.find('.item_code').val();
+  //   if (arrObj[value_code]) {
+  //     arrObj.splice(value_code, 1)
+  //   }
+  //   if (allTr.length > 1) {
+  //     var $remove = $tr.remove();
+  //     reNumber(table);
+  //   } else {
+  //     check_master = $("#" + table).find('.master_clone');
+  //     if (check_master.length == 1) {
+  //       check_master.find(':input').val('');
+  //       check_master.hide();
+  //     }
+  //   }
+  // }
 </script>
 
 <style>
@@ -92,19 +97,19 @@
       <?php
       // create array for dropdown list value
       $optionDepartment = array();
-      $optionDepartment[0] = 'Select Group / Department';
+      $optionDepartment[''] = 'Select Group / Department';
       foreach ($listDepartments as $listDepartment) {
         $optionDepartment[$listDepartment->iddept] = $listDepartment->deptdesc;
       }
 
       $optionDesignation = array();
-      $optionDesignation[0] = 'Select Designation';
+      $optionDesignation[''] = 'Select Designation';
       foreach ($listPositions as $listPosition) {
         $optionDesignation[$listPosition->idposition] = $listPosition->positiondesc;
       }
 
       $optionRequestItems = array();
-      $optionRequestItems[0] = 'Select Items';
+      $optionRequestItems[''] = 'Select Items';
       foreach ($listRequestItemsSuggestion as $listRequestItemSuggestion) {
         $optionRequestItems[$listRequestItemSuggestion->suggestionID] = $listRequestItemSuggestion->suggestion;
       }
@@ -144,7 +149,7 @@
       <div class="form-group newEmpStatus">
         <label for="labelDepartment" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Group / Department: *</label>
         <div class="col-sm-6 col-xs-12">
-          <?= form_dropdown('dropdownDepartment', $optionDepartment, '', 'id="dropdownDepartment" class="form-control"') ?>
+          <?= form_dropdown('dropdownDepartment', $optionDepartment, '', 'id="dropdownDepartment" class="form-control" required') ?>
         </div>
       </div>
 
@@ -165,7 +170,7 @@
       <div class="form-group newEmpStatus">
         <label for="labelDesignation " class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Designation: *</label>
         <div class="col-sm-6 col-xs-12">
-          <?= form_dropdown('dropdownDesignation', $optionDesignation, '', 'id="dropdownDesignation" class="form-control"') ?>
+          <?= form_dropdown('dropdownDesignation', $optionDesignation, '', 'id="dropdownDesignation" class="form-control" required') ?>
         </div>
       </div>
 
@@ -189,8 +194,8 @@
           <tr class="tr_clone">
             <td class="numberRow-requestItems"> </td>
             <!-- <td><input type="text" name="textItems[]" class="form-control textItems" placeholder="Request Items"></td> -->
-            <td><?= form_dropdown('optionRequestItems[]', $optionRequestItems, '', 'id="optionRequestItems" class="form-control optionRequestItems"') ?></td>
-            <td><input type="text" name="textRemarks[]" class="form-control textRemark" placeholder="Items Remark"></td>
+            <td class="itemsColumn"><?= form_dropdown('optionRequestItems[]', $optionRequestItems, '', 'id="optionRequestItems" class="form-control optionRequestItems" required') ?></td>
+            <td class="remarkColumn"><input type="text" name="textRemarks[]" class="form-control textRemark" placeholder="Items Remark"></td>
             <td>
               <button type="button" class="btn btn-danger" onclick="deleteClone(this,'requestItems')"> Delete </button>
             </td>
@@ -213,30 +218,6 @@
     </div><!-- /.box-body -->
   </div><!-- /.box -->
 </div><!-- /.row -->
-<!-- Modal -->
-<div class="modal fade" id="catModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <?= form_open_multipart(base_url('items/save_category'), 'role="form" class="form-horizontal"'); ?>
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Add New Category</h4>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <div class="col-sm-10 col-xs-12 col-sm-offset-1">
-            <?= form_input('cat_name', '', 'id="cat_name" placeholder="Category Name" class="form-control" required') ?>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary col-xs-6 col-sm-offset-2 btn-flat"><i class="glyphicon glyphicon-ok"></i> Save</button>
-        <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
-      </div>
-      <?= form_close(); ?>
-    </div>
-  </div>
-</div>
 
 <script>
   $(document).ready(function() {
@@ -284,14 +265,106 @@
       });
       return false;
     });
+  });
 
-  });
-  let saveBtn = document.getElementById('saveRequest');
-  $(saveBtn).click(function(e) {
-    // console.log($('.optionRequestItems'));
-    // $('.optionRequesItems').each(function(index) {
-    //   console.log('ok');
+  function open_popup(url, value) {
+    $('#type_input').val(value);
+    window.open('<?php echo prefix_url; ?>' + url, 'popuppage', 'width=700,location=0,toolbar=0,menubar=0,resizable=1,scrollbars=yes,height=500,top=100,left=100');
+  }
+
+  function reNumber(table) {
+    var i = 1;
+    $(".numberRow-" + table).each(function() {
+      $(this).text(i);
+      i++
+    });
+  }
+
+  function addRow(table) {
+    var $tr = $("#" + table).find('.tr_clone').last();
+    // var allTr = $("#" + table).find('.tr_clone');
+    var $clone = $tr.clone();
+
+    $clone.find(':text').val('');
+    // var number = parseInt($('.numberRow-' + table).last().text());
+    $tr.after($clone);
+    $clone.find('.textRemark').attr('placeholder', 'Items Remark');
+    //$clone.find(':text').attr('required',true);
+    // $clone.find('input').val('');
+    // $clone.find('select').val('');
+    reNumber(table);
+    $clone.show();
+
+    itemsValidation();
+    // $('.optionRequestItems').change(function(e) {
+    //   console.log(e.value);
     // });
-    e.preventDefault(e);
-  });
+  }
+
+  function get_arr_obj() {
+    $('.master_clone').each(function(index, obj) {
+      var target = $(obj);
+      var code = target.find('.item_code').val();
+      var qty = target.find('.quantities').val();
+      arrObj[code] = [];
+      arrObj[code]['qty'] = qty;
+      arrObj[code]['target'] = target;
+    })
+  }
+
+  var arrObj = [];
+  get_arr_obj();
+
+  function deleteClone(e, table) {
+    var allTr = $("#" + table).find('.tr_clone');
+    var $tr = $(e).closest(".tr_clone");
+    var value_code = $tr.find('.item_code').val();
+    if (arrObj[value_code]) {
+      arrObj.splice(value_code, 1)
+    }
+    if (allTr.length > 1) {
+      var $remove = $tr.remove();
+      reNumber(table);
+    } else {
+      check_master = $("#" + table).find('.master_clone');
+      if (check_master.length == 1) {
+        check_master.find(':input').val('');
+        check_master.hide();
+      }
+    }
+  }
+
+
+  // let saveBtn = document.getElementById('saveRequest');
+
+
+
+  // $(saveBtn).click(function(e) {
+
+  //   e.preventDefault();
+  // });
+
+  function itemsValidation() {
+    let optionRequestItems = document.querySelectorAll('.optionRequestItems');
+    let itemRemarkValidation = document.querySelectorAll('.textRemark');
+    for (let i = 0; i < optionRequestItems.length; i++) {
+      optionRequestItems[i].addEventListener('change', function() {
+        let validationPlaceholder = '';
+        if (optionRequestItems[i].value === '1') {
+          let validationRequired = itemRemarkValidation[i].setAttribute('required', true);
+          validationPlaceholder += 'Desktop / Laptop';
+        } else if (optionRequestItems[i].value === '2') {
+          validationPlaceholder += 'Email Address';
+        } else {
+          validationPlaceholder += 'Items Remark';
+          let validationRequired = itemRemarkValidation[i].setAttribute('required', false);
+        }
+
+        itemRemarkValidation[i].setAttribute('Placeholder', validationPlaceholder);
+        validationRequired;
+      });
+    }
+  }
+
+  itemsValidation();
 </script>

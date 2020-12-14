@@ -75,7 +75,7 @@
                               <td><?= $value->approvalDesc ?></td>
                               <?php if ($this->session->userdata('role')): ?>
                                   <td>
-                                      <a href="<?=base_url('borrow/view/'.$value->requestID); ?>" data-toggle="tooltip" data-placement="top" title="View"><i class="glyphicon glyphicon-eye-open"></i></a>&nbsp;
+                                      <a href="<?=base_url('borrow/requestDetails/'.$value->requestID); ?>" data-toggle="tooltip" data-placement="top" title="View"><i class="glyphicon glyphicon-eye-open"></i></a>&nbsp;
                                       <a href="<?=base_url('borrow/print_view/'.$value->requestID); ?>" data-toggle="tooltip" data-placement="top" title="Print"><i class="glyphicon glyphicon-print"></i></a>&nbsp;
                                       <a href="<?=base_url('borrow/return_borrow/'.$value->requestID); ?>" data-toggle="tooltip" data-placement="top" title="Return"><i class="glyphicon glyphicon-retweet"></i></a>&nbsp;
                                       <a href="<?=base_url('borrow/modify/'.$value->requestID); ?>" data-toggle="tooltip" data-placement="top" title="Modify"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;

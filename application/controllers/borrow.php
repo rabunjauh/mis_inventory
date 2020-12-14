@@ -659,7 +659,7 @@ class Borrow extends CI_Controller {
 
     // check is there any data sent from formRequestItems
     if($this->input->post()){
-      var_dump($this->input->post());die;
+      // var_dump($this->input->post());die;
       // load form validation library
       $this->load->library('form_validation');
       // form validation configuration
@@ -694,14 +694,29 @@ class Borrow extends CI_Controller {
         $requestID = $this->borrow_model->addNewRequest($requestData);
         // if insert data successfull inserted id will be returned
         if($requestID > 0){
-          $itemsRequest = $this->input->post('textItems', true);
+          $this->form_validation->set_rules('optionRequestItems', 'Request Item');
+          if($this->input->post('optionRequestItems') == '1'){
+            $validationLabel = 'Desktop / Laptop';
+            $validationRule = 'required|alpha_numeric_spaces';
+          }else if($this->input->post('optionRequestItems') == '2'){
+            $validationLabel = 'Email Address';
+            $validationRule = 'required|valid_email|is_unique[tblrequestdetails.remarks]';
+          } elseif ($this->input->post('optionRequestItems') == '7') {
+            $validationRule = 'required|alpha_numeric_spaces';
+          }else{
+            $validationLabel = 'Items Remark';
+            $validationRule = 'required|alpha_numeric_spaces';
+          }
+          $this->form_validation->set_rules('textRemarks', $validationLabel, $validationRule);
+
+          $itemsRequest = $this->input->post('optionRequestItems', true);
           $itemsRequestRemark = $this->input->post('textRemarks', true);
-          // var_dump($itemsRequest);
           // loop for get input data from form in table items and itemsRemark
           for($i = 0; $i < sizeof($itemsRequest); $i++){
             $requestDetails['items'] = $itemsRequest[$i];
             $requestDetails['remarks'] = $itemsRequestRemark[$i];
             $requestDetails['requestID'] = $requestID;
+            // var_dump($requestDetails);die;
             // insert data to table requesDetails
             if($this->borrow_model->NewRequestDetails($requestDetails) > 0){
               $message = '<div class = "alert alert-success">Request detail has successfully created</div>';
@@ -748,4 +763,34 @@ class Borrow extends CI_Controller {
   //   echo json_encode($data);
   // }
 
+  public function requestDetails($id)
+  {
+    if (!$this->session->userdata('role')) {
+      $message = '<div class="alert alert-danger">You are not allowed to do this!</div>';
+      $this->session->set_flashdata('message', $message);
+      redirect(base_url('borrow'));
+    }
+    if (!$id) {
+      $message = '<div class="alert alert-danger">Not Found!</div>';
+      $this->session->set_flashdata('message', $message);
+      redirect(base_url('borrow'));
+    }
+    $data['header'] = $this->load->view('header/head', '', TRUE);
+    $data['navigation'] = $this->load->view('header/navigation', $data, TRUE);
+    $data['extra_head'] = $this->load->view('header/borrow', '',
+      TRUE
+    );
+
+    $data['request'] = $this->borrow_model->getRequest($id);
+    if (isset($data['request']) > 0) {
+      // $data['requestDetail'] = $this->borrow_model->getRequestDetail($id);
+      $data['content'] = $this->load->view('content/requestDetails', $data, TRUE);
+      $data['footer'] = $this->load->view('footer/footer', '', TRUE);
+      $this->load->view('main', $data);
+    } else {
+      $message = '<div class="alert alert-danger">Not Found!</div>';
+      $this->session->set_flashdata('message', $message);
+      redirect(base_url('borrow'));
+    }
+  }
 }

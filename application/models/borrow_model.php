@@ -493,6 +493,31 @@ class Borrow_model extends CI_Model {
     return $query->result();
   }
 
+  public function getRequest($id){
+    $sql = "SELECT 
+              tr.requestID, tr.employeeStatus, tr.employeeName, tr.designation,
+              tr.company, tr.phone, tr.uid, te.employeename,
+              ta.approvalDesc, tp.positiondesc, td.deptdesc, tres.statusDesc, 
+              DATE_FORMAT(tr.dateOfJoin,'%d/%m/%Y')AS dateOfJoin,
+              DATE_FORMAT(tr.dateOfRequest,'%d/%m/%Y')AS dateOfRequest,
+              DATE_FORMAT(te.join_date,'%d/%m/%Y')AS join_date,
+              (SELECT positiondesc FROM wasco_fingerman.tblfile_position  WHERE idposition = 
+                (SELECT idposition FROM wasco_fingerman.tblmas_employee WHERE fingerid = tr.uid)) AS positionExisting, 
+              (SELECT deptdesc FROM wasco_fingerman.tblfile_department WHERE iddept = 
+                (SELECT iddept FROM wasco_fingerman.tblmas_employee WHERE fingerid = tr.uid)) AS departmentExisting,
+              (SELECT groupdesc FROM wasco_fingerman.tblfile_group WHERE idgroup = 
+                (SELECT idgroup FROM wasco_fingerman.tblmas_employee WHERE fingerid = tr.uid)) AS companyExisting
+              FROM tblRequest tr
+              LEFT JOIN tblRequest_employeeStatus tres ON tr.employeeStatus = tres.statusID
+              LEFT JOIN wasco_fingerman.tblmas_employee te ON tr.uid = te.fingerid
+              LEFT JOIN tblApproval ta ON tr.approvalStatusID = ta.approvalID 
+              LEFT JOIN wasco_fingerman.tblfile_position tp on tr.designation = tp.idposition
+              LEFT JOIN wasco_fingerman.tblfile_department td on tr.department = td.iddept
+              WHERE tr.requestID = '$id'";
+  $query = $this->db->query($sql);
+  return $query->row();
+  }
 }
+
 
 ?>
