@@ -783,7 +783,7 @@ class Borrow extends CI_Controller {
 
     $data['request'] = $this->borrow_model->getRequest($id);
     if (isset($data['request']) > 0) {
-      // $data['requestDetail'] = $this->borrow_model->getRequestDetail($id);
+      $data['requestDetails'] = $this->borrow_model->getRequestDetail($id);
       $data['content'] = $this->load->view('content/requestDetails', $data, TRUE);
       $data['footer'] = $this->load->view('footer/footer', '', TRUE);
       $this->load->view('main', $data);

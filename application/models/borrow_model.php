@@ -517,6 +517,12 @@ class Borrow_model extends CI_Model {
   $query = $this->db->query($sql);
   return $query->row();
   }
+
+  public function getRequestDetail($id){
+    $sql = "SELECT * FROM tblRequestDetails WHERE requestID = '$id' ORDER BY requestDetailsID ASC";
+    $query = $this->db->query($sql);
+    return $query->result();
+  }
 }
 
 
