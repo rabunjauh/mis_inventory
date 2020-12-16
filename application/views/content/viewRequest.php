@@ -29,80 +29,80 @@
     <?php endif; ?>
   </div><!-- /.box-header -->
   <div class="box-body table-responsive">
-      <div style="overflow-x:auto;">
-          <table id="example" class="table table-bordered table-striped">
-              <thead>
-                  <tr>
-                      <th>Request ID</th>
-                      <th>Employee Status</th>
-                      <th>Employee Name</th>
-                      <th>Designation</th>
-                      <th>Department</th>
-                      <th>Company</th>
-                      <th>Date Of Join</th>
-                      <th>Date of Request</th>
-                      <th>Status</th>
-                      <th>Action</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <?php if (!empty($results)): ?>
-                      <?php foreach ($results as $value): ?>
-                          <tr>
-                            <?php 
-                              if($value->uid){
-                                $employeeName = $value->employeename;
-                                $dateOfJoin = $value->join_date;
-                                $position = $value->positionExisting;
-                                $department = $value->departmentExisting;
-                                $company = $value->companyExisting;
-                              }else{
-                                $employeeName = $value->employeeName;
-                                $dateOfJoin = $value->dateOfJoin;
-                                $position = $value->positiondesc;
-                                $department = $value->deptdesc;
-                                $company = $value->company; 
-                              }
-                            ?>
-                              <td><?= $value->requestID ?></td>
-                              <td><?= $value->statusDesc ?></td>
-                              <td><?= $employeeName ?></td>
-                              <td><?= $position ?></td>
-                              <td><?= $department ?></td>
-                              <td><?= $company ?></td>
-                              <td><?= $dateOfJoin ?></td>
-                              <td><?= $value->dateOfRequest ?></td>
-                              <td><?= $value->approvalDesc ?></td>
-                              <?php if ($this->session->userdata('role')): ?>
-                                  <td>
-                                      <a href="<?=base_url('borrow/requestDetails/'.$value->requestID); ?>" data-toggle="tooltip" data-placement="top" title="View"><i class="glyphicon glyphicon-eye-open"></i></a>&nbsp;
-                                      <a href="<?=base_url('borrow/print_view/'.$value->requestID); ?>" data-toggle="tooltip" data-placement="top" title="Print"><i class="glyphicon glyphicon-print"></i></a>&nbsp;
-                                      <a href="<?=base_url('borrow/return_borrow/'.$value->requestID); ?>" data-toggle="tooltip" data-placement="top" title="Return"><i class="glyphicon glyphicon-retweet"></i></a>&nbsp;
-                                      <a href="<?=base_url('borrow/modify/'.$value->requestID); ?>" data-toggle="tooltip" data-placement="top" title="Modify"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;
-                                      <a data-toggle="tooltip" data-placement="top" title="Delete" onclick="return confirm('Are you sure you want to delete this item?')" href="<?=base_url('borrow/delete/'.$value->requestID); ?>" class=""><i class="glyphicon glyphicon-trash"></i></a>
-                                  </td>
-                              <?php endif; ?>
-                          </tr>
-                      <?php endforeach; ?>
-                  <?php else: ?>
-                      <tr>
-                          <td colspan="8">
-                              No Data
-                          </td>
-                      <?php endif; ?>
-                  </tbody>
-                  <tfoot>
-
-                  </tfoot>
-              </table>
-              <?php if ($request_total > 9): ?>
-                  <tr>
-                      <td colspan="5">
-                          <?php echo $this->pagination->create_links(); ?>
+    <div style="overflow-x:auto;">
+      <table id="example" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Request ID</th>
+                <th>Employee Status</th>
+                <th>Employee Name</th>
+                <th>Designation</th>
+                <th>Department</th>
+                <th>Company</th>
+                <th>Date Of Join</th>
+                <th>Date of Request</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+          <?php if (!empty($results)): ?>
+              <?php foreach ($results as $value): ?>
+                <tr>
+                  <?php 
+                    if($value->uid){
+                      $employeeName = $value->employeename;
+                      $dateOfJoin = $value->join_date;
+                      $position = $value->positionExisting;
+                      $department = $value->departmentExisting;
+                      $company = $value->companyExisting;
+                    }else{
+                      $employeeName = $value->employeeName;
+                      $dateOfJoin = $value->dateOfJoin;
+                      $position = $value->positiondesc;
+                      $department = $value->deptdesc;
+                      $company = $value->company; 
+                    }
+                  ?>
+                    <td><?= $value->requestID ?></td>
+                    <td><?= $value->statusDesc ?></td>
+                    <td><?= $employeeName ?></td>
+                    <td><?= $position ?></td>
+                    <td><?= $department ?></td>
+                    <td><?= $company ?></td>
+                    <td><?= $dateOfJoin ?></td>
+                    <td><?= $value->dateOfRequest ?></td>
+                    <td><?= $value->approvalDesc ?></td>
+                    <?php if ($this->session->userdata('role')): ?>
+                      <td>
+                        <a href="<?=base_url('borrow/requestDetails/'.$value->requestID); ?>" data-toggle="tooltip" data-placement="top" title="View"><i class="glyphicon glyphicon-eye-open"></i></a>&nbsp;
+                        <a href="<?=base_url('borrow/modify/'.$value->requestID); ?>" data-toggle="tooltip" data-placement="top" title="Modify"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;
+                        <a data-toggle="tooltip" data-placement="top" title="Delete" onclick="return confirm('Are you sure you want to delete this item?')" href="<?=base_url('borrow/delete/'.$value->requestID); ?>" class=""><i class="glyphicon glyphicon-trash"></i></a>
                       </td>
-                  </tr>
-              <?php endif; ?>
-      </div>
+                    <?php endif; ?>
+                </tr>
+              <?php endforeach; ?>
+          <?php else: ?>
+            <tr>
+              <td colspan="8">
+                  No Data
+              </td>
+            </tr>    
+          <?php endif; ?>
+        </tbody>
+
+        <tfoot>
+
+        </tfoot>
+      </table>
+            <?php if ($request_total > 9): ?>
+                <tr>
+                    <td colspan="5">
+                        <?php echo $this->pagination->create_links(); ?>
+                    </td>
+                </tr>
+            <?php endif; ?>
+    </div>
   </div><!-- /.box-body -->
 </div><!-- /.box -->
 <form id="form" action="<?php echo base_url() ?>borrow/filter" method="post"  enctype="multipart/form-data" >
@@ -183,41 +183,4 @@
   </div>
 </div>
 </form>
-<script>
 
-function open_popup() {
-  window.open('<?php echo prefix_url;?>inventory/employee/', 'popuppage', 'width=700,location=0,toolbar=0,menubar=0,resizable=1,scrollbars=yes,height=500,top=100,left=100');
-}
-
-function clearEmployee() {
-  $('#txtemployeename').val('');
-  $('#txtempid').val('');
-}
-$('.datepicker-date').datepicker();
-
-/*
-function submitFilter() {
-  var borrow_status = $( "#borrow_status" ).val();
-  var project_uid = $( "#project_uid" ).val();
-  var warehouse_id = $( "#warehouse_id" ).val();
-  var url = "<?php echo base_url()."borrow/filter?"; ?>";
-
-  if (borrow_status == "") {
-    url += "borrow_status=all&";
-  }else {
-    url += "borrow_status="+borrow_status+"&";
-  }
-  if (project_uid == "") {
-    url += "project_uid=all&";
-  }else {
-    url += "project_uid="+project_uid+"&";
-  }
-  if (warehouse_id == "") {
-    url += "warehouse_id=all";
-  }else {
-    url += "warehouse_id="+warehouse_id;
-  }
-  location.replace(url);
-
-}*/
-</script>

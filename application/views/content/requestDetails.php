@@ -56,7 +56,7 @@
                                 echo $no;
                               ?>
                             </td>
-                            <td><?= $value->items ?></td>
+                            <td><?= $value->suggestion ?></td>
                             <td><?= $value->remarks ?></td>
                         </tr>
                     <?php 

@@ -519,7 +519,7 @@ class Borrow_model extends CI_Model {
   }
 
   public function getRequestDetail($id){
-    $sql = "SELECT * FROM tblRequestDetails WHERE requestID = '$id' ORDER BY requestDetailsID ASC";
+    $sql = "SELECT * FROM tblRequestDetails rd LEFT JOIN tblrequestitemssuggestion ris ON rd.items = ris.suggestionID WHERE requestID = '$id' ORDER BY requestDetailsID ASC";
     $query = $this->db->query($sql);
     return $query->result();
   }
