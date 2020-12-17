@@ -76,8 +76,8 @@
                     <?php if ($this->session->userdata('role')): ?>
                       <td>
                         <a href="<?=base_url('borrow/requestDetails/'.$value->requestID); ?>" data-toggle="tooltip" data-placement="top" title="View"><i class="glyphicon glyphicon-eye-open"></i></a>&nbsp;
-                        <a href="<?=base_url('borrow/modify/'.$value->requestID); ?>" data-toggle="tooltip" data-placement="top" title="Modify"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;
-                        <a data-toggle="tooltip" data-placement="top" title="Delete" onclick="return confirm('Are you sure you want to delete this item?')" href="<?=base_url('borrow/delete/'.$value->requestID); ?>" class=""><i class="glyphicon glyphicon-trash"></i></a>
+                        <a href="<?=base_url('borrow/modifyRequest/'.$value->requestID); ?>" data-toggle="tooltip" data-placement="top" title="Modify"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;
+                        <a data-toggle="tooltip" data-placement="top" title="Delete" onclick="return confirm('Are you sure you want to delete this item?')" href="<?=base_url('borrow/deleteRequest/'.$value->requestID); ?>" class=""><i class="glyphicon glyphicon-trash"></i></a>
                       </td>
                     <?php endif; ?>
                 </tr>

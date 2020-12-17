@@ -2,74 +2,6 @@
 <script src="<?php echo prefix_url; ?>assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo prefix_url; ?>assets/css/datepicker.css" />
 
-<script>
-  // function open_popup(url, value) {
-  //   $('#type_input').val(value);
-  //   window.open('<?php echo prefix_url; ?>' + url, 'popuppage', 'width=700,location=0,toolbar=0,menubar=0,resizable=1,scrollbars=yes,height=500,top=100,left=100');
-  // }
-
-  // function reNumber(table) {
-  //   var i = 1;
-  //   $(".numberRow-" + table).each(function() {
-  //     $(this).text(i);
-  //     i++
-  //   });
-  // }
-
-  // function addRow(table) {
-  //   var $tr = $("#" + table).find('.tr_clone').last();
-  //   var allTr = $("#" + table).find('.tr_clone');
-  //   var $clone = $tr.clone();
-
-  //   $clone.find(':text').val('');
-  //   var number = parseInt($('.numberRow-' + table).last().text());
-  //   $tr.after($clone);
-  //   //$clone.find(':text').attr('required',true);
-  //   // $clone.find('input').val('');
-  //   $clone.find('select').val('');
-  //   reNumber(table);
-  //   $clone.show();
-
-
-  //   // $('.optionRequestItems').change(function(e) {
-  //   //   console.log(e.value);
-  //   // });
-  // }
-
-  // function get_arr_obj() {
-  //   $('.master_clone').each(function(index, obj) {
-  //     var target = $(obj);
-  //     var code = target.find('.item_code').val();
-  //     var qty = target.find('.quantities').val();
-  //     arrObj[code] = [];
-  //     arrObj[code]['qty'] = qty;
-  //     arrObj[code]['target'] = target;
-  //   })
-  // }
-
-  // var arrObj = [];
-  // get_arr_obj();
-
-  // function deleteClone(e, table) {
-  //   var allTr = $("#" + table).find('.tr_clone');
-  //   var $tr = $(e).closest(".tr_clone");
-  //   var value_code = $tr.find('.item_code').val();
-  //   if (arrObj[value_code]) {
-  //     arrObj.splice(value_code, 1)
-  //   }
-  //   if (allTr.length > 1) {
-  //     var $remove = $tr.remove();
-  //     reNumber(table);
-  //   } else {
-  //     check_master = $("#" + table).find('.master_clone');
-  //     if (check_master.length == 1) {
-  //       check_master.find(':input').val('');
-  //       check_master.hide();
-  //     }
-  //   }
-  // }
-</script>
-
 <style>
   .choose {
     font-size: 10px;
@@ -86,21 +18,31 @@
     <?= validation_errors('<div class="alert alert-danger">', '</div>'); ?>
   </div>
 </div>
+
 <div class="row">
   <div class="box">
     <div class="box-header">
       <h3 class="box-title">MIS Request Form</h3>
     </div><!-- /.box-header -->
     <div class="box-body">
-
-      <?= form_open_multipart(base_url() . 'borrow/formRequestItems', 'role="form" class="form-horizontal"'); ?>
       <?php
+        if(isset($request)){
+          echo form_open_multipart(base_url() . 'borrow/updateRequest', 'role="form" class="form-horizontal"'); 
+        }else{
+          echo form_open_multipart(base_url() . 'borrow/formRequestItems', 'role="form" class="form-horizontal"'); 
+        }  
       // create array for dropdown list value
-      $optionDepartment = array();
-      $optionDepartment[''] = 'Select Group / Department';
-      foreach ($listDepartments as $listDepartment) {
-        $optionDepartment[$listDepartment->iddept] = $listDepartment->deptdesc;
+      var_dump($request);
+      if(isset($request) && $request->department){
+        // $optionDepartment = array(
+        //   1 => $request->departmentExisting
+        // );
       }
+      // $optionDepartment = array();
+      // $optionDepartment[''] = 'Select Group / Department';
+      // foreach ($listDepartments as $listDepartment) {
+      //   $optionDepartment[$listDepartment->iddept] = $listDepartment->deptdesc;
+      // }
 
       $optionDesignation = array();
       $optionDesignation[''] = 'Select Designation';
@@ -113,7 +55,6 @@
       foreach ($listRequestItemsSuggestion as $listRequestItemSuggestion) {
         $optionRequestItems[$listRequestItemSuggestion->suggestionID] = $listRequestItemSuggestion->suggestion;
       }
-
       ?>
 
       <div class="form-group">
@@ -129,11 +70,11 @@
       <div class="form-group empStatus">
         <label for="lblemployee" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Employee: *</label>
         <div class="col-sm-6 col-xs-12">
-          <input type="text" class="form-control" readonly="readonly" value="<?php if (isset($borrow) && $borrow->employeename) {
-                                                                                echo $borrow->employeename;
+          <input type="text" class="form-control" readonly="readonly" value="<?php if (isset($request) && $request->employeeName) {
+                                                                                echo $request->employeeName;
                                                                               } ?>" name="txtemployeename" id="txtemployeename" required placeholder="Employee Name" />
-          <input type="hidden" name="taken_by_uid" id="txtempid" value="<?php if (isset($borrow) && $borrow->taken_by_uid) {
-                                                                          echo $borrow->taken_by_uid;
+          <input type="hidden" name="taken_by_uid" id="txtempid" value="<?php if (isset($request) && $request->uid) {
+                                                                          echo $request->uid;
                                                                         } ?>" />
           <input type="button" class="choose" name="choose" style="width: 20px; height: 20px; display:inline-block;" onclick="open_popup('inventory/employee/');" title="Browse Employee" />
         </div>
@@ -142,7 +83,7 @@
       <div class="form-group newEmpStatus">
         <label for="textCompany" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Company: *</label>
         <div class="col-sm-6 col-xs-12">
-          <input type="text" class="form-control" name="textCompany" id="textCompany" placeholder="Company Name">
+          <input type="text" class="form-control" name="textCompany" value="<?php if(isset($request) && $request->company){ echo $request->company; } ?>" id="textCompany" placeholder="Company Name">
         </div>
       </div>
 

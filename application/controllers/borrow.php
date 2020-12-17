@@ -74,12 +74,10 @@ class Borrow extends CI_Controller {
 
   }
 
-
   public function index()
   {
     $data = array();
     $config = array();
-
     $config['full_tag_open'] = '<ul class="pagination">';
     $config['full_tag_close'] = '</ul>';
     $config['num_tag_open'] = '<li>';
@@ -182,17 +180,14 @@ class Borrow extends CI_Controller {
         $this->session->set_flashdata('message', $message);
         redirect(base_url('borrow/add'));
       }
-
     }
     $data = array();
-
     $data['header'] = $this->load->view('header/head', '', TRUE);
     $data['navigation'] = $this->load->view('header/navigation', $data, TRUE);
     $data['item_accessories'] = $this->inventory_model->item_accessories();
     $data['items'] = $this->inventory_model->itemBorrow();
     $data['project'] = $this->settings_model->get_project();
     $data['warehouses'] = $this->settings_model->get_warehouses();
-
     $data['content'] = $this->load->view('forms/form_borrow', $data, TRUE);
     $data['footer'] = $this->load->view('footer/footer', '', TRUE);
     $this->load->view('main', $data);
@@ -792,5 +787,32 @@ class Borrow extends CI_Controller {
       $this->session->set_flashdata('message', $message);
       redirect(base_url('borrow'));
     }
+  }
+
+  public function modifyRequest($id)
+  {
+    if (!$this->session->userdata('role')) {
+      $message = '<div class="alert alert-danger">You are not allowed to do this!</div>';
+      $this->session->set_flashdata('message', $message);
+      redirect(base_url('borrow'));
+    }
+    if (!$id) {
+      $message = '<div class="alert alert-danger">Not Found!</div>';
+      $this->session->set_flashdata('message', $message);
+      redirect(base_url('borrow'));
+    }
+
+    $data['request'] = $this->borrow_model->getRequest($id);
+    if (sizeof($data['request']) <= 0) {
+      $message = '<div class="alert alert-danger">Not Found!</div>';
+      $this->session->set_flashdata('message', $message);
+      redirect(base_url('borrow/requestItems'));
+    }
+    $data['borrow_details'] = $this->borrow_model->get_borrow_details($id);
+    $data['header'] = $this->load->view('header/head', '', TRUE);
+    $data['navigation'] = $this->load->view('header/navigation', $data, TRUE);
+    $data['content'] = $this->load->view('forms/formRequestItems', $data, TRUE);
+    $data['footer'] = $this->load->view('footer/footer', '', TRUE);
+    $this->load->view('main', $data);
   }
 }
