@@ -32,17 +32,24 @@
           echo form_open_multipart(base_url() . 'borrow/formRequestItems', 'role="form" class="form-horizontal"'); 
         }  
       // create array for dropdown list value
-      var_dump($request);
-      if(isset($request) && $request->department){
-        // $optionDepartment = array(
-        //   1 => $request->departmentExisting
-        // );
+      $optionDepartment = array();
+      // if (isset($request) && ($request->department || $request->idDepartmentExisting)) {
+      //   if (isset($request->department) ){
+      //     $departmentID = $request->department;
+      //     $departmentDesc = $request->deptdesc;
+      //   }elseif (isset($request->idDepartmentExisting)) {
+      //     $departmentID = $request->idDepartmentExisting;
+      //     $departmentDesc = $request->departmentExisting;
+      //   } 
+      //   $optionDepartment['departmentID'] = $departmentDesc;
+      //   foreach ($listDepartments as $listDepartment) {
+      //     $optionDepartment[$listDepartment->iddept] = $listDepartment->deptdesc;
+      //   }
+      // }else{
+       $optionDepartment[''] = 'Select Group / Department';
+     foreach ($listDepartments as $listDepartment) {
+        $optionDepartment[$listDepartment->iddept] = $listDepartment->deptdesc;
       }
-      // $optionDepartment = array();
-      // $optionDepartment[''] = 'Select Group / Department';
-      // foreach ($listDepartments as $listDepartment) {
-      //   $optionDepartment[$listDepartment->iddept] = $listDepartment->deptdesc;
-      // }
 
       $optionDesignation = array();
       $optionDesignation[''] = 'Select Designation';
@@ -90,7 +97,7 @@
       <div class="form-group newEmpStatus">
         <label for="labelDepartment" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Group / Department: *</label>
         <div class="col-sm-6 col-xs-12">
-          <?= form_dropdown('dropdownDepartment', $optionDepartment, '', 'id="dropdownDepartment" class="form-control" required') ?>
+         <?= form_dropdown('dropdownDepartment', $optionDepartment, $selected, 'id="dropdownDepartment" class="form-control" required') ?>
         </div>
       </div>
 

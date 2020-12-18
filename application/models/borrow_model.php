@@ -405,7 +405,9 @@ class Borrow_model extends CI_Model {
     $query = $this->db->query($sql);
     return $query->row()->total;
   }
-  public function fetchRequestItems($limit, $offset){
+
+  public function fetchRequestItems($limit, $offset)
+  {
     $sql = "SELECT 
               tr.requestID, tr.employeeStatus, tr.employeeName, tr.designation,
               tr.company, tr.phone, tr.uid, te.employeename,
@@ -439,7 +441,8 @@ class Borrow_model extends CI_Model {
     return $query->result();
   }
 
-  public function getDesignationByID($id){
+  public function getDesignationByID($id)
+  {
     // $this->db->where('iddept', $id);
     // $query = $this->db->get('wasco_fingerman.tblfile_position');
     // $output = '<option value="">Select Group / Department </option>';
@@ -481,21 +484,24 @@ class Borrow_model extends CI_Model {
     }
   }
 
-  public function get_employeeStatus_list(){
+  public function get_employeeStatus_list()
+  {
     $sql = "SELECT * FROM tblrequest_employeestatus";
     $query = $this->db->query($sql);
     return $query->result();
   }
   
-  public function getRequestItemsSuggestion(){
+  public function getRequestItemsSuggestion()
+  {
     $sql = "SELECT * FROM tblRequestItemssuggestion";
     $query = $this->db->query($sql);
     return $query->result();
   }
 
-  public function getRequest($id){
+  public function getRequest($id)
+  {
     $sql = "SELECT 
-              tr.requestID, tr.employeeStatus, tr.employeeName, tr.designation,
+              tr.requestID, tr.employeeStatus, tr.employeeName, tr.department, tr.designation,
               tr.company, tr.phone, tr.uid, te.employeename,
               ta.approvalDesc, tp.positiondesc, td.deptdesc, tres.statusDesc, 
               DATE_FORMAT(tr.dateOfJoin,'%d/%m/%Y')AS dateOfJoin,
@@ -503,10 +509,16 @@ class Borrow_model extends CI_Model {
               DATE_FORMAT(te.join_date,'%d/%m/%Y')AS join_date,
               (SELECT positiondesc FROM wasco_fingerman.tblfile_position  WHERE idposition = 
                 (SELECT idposition FROM wasco_fingerman.tblmas_employee WHERE fingerid = tr.uid)) AS positionExisting, 
+              (SELECT idposition FROM wasco_fingerman.tblfile_position  WHERE idposition = 
+                (SELECT idposition FROM wasco_fingerman.tblmas_employee WHERE fingerid = tr.uid)) AS idPositionExisting, 
               (SELECT deptdesc FROM wasco_fingerman.tblfile_department WHERE iddept = 
                 (SELECT iddept FROM wasco_fingerman.tblmas_employee WHERE fingerid = tr.uid)) AS departmentExisting,
+              (SELECT iddept FROM wasco_fingerman.tblfile_department WHERE iddept = 
+                (SELECT iddept FROM wasco_fingerman.tblmas_employee WHERE fingerid = tr.uid)) AS idDepartmentExisting,
               (SELECT groupdesc FROM wasco_fingerman.tblfile_group WHERE idgroup = 
-                (SELECT idgroup FROM wasco_fingerman.tblmas_employee WHERE fingerid = tr.uid)) AS companyExisting
+                (SELECT idgroup FROM wasco_fingerman.tblmas_employee WHERE fingerid = tr.uid)) AS companyExisting,
+              (SELECT idgroup FROM wasco_fingerman.tblfile_group WHERE idgroup = 
+                (SELECT idgroup FROM wasco_fingerman.tblmas_employee WHERE fingerid = tr.uid)) AS idCompanyExisting
               FROM tblRequest tr
               LEFT JOIN tblRequest_employeeStatus tres ON tr.employeeStatus = tres.statusID
               LEFT JOIN wasco_fingerman.tblmas_employee te ON tr.uid = te.fingerid
@@ -518,7 +530,8 @@ class Borrow_model extends CI_Model {
   return $query->row();
   }
 
-  public function getRequestDetail($id){
+  public function getRequestDetail($id)
+  {
     $sql = "SELECT * FROM tblRequestDetails rd LEFT JOIN tblrequestitemssuggestion ris ON rd.items = ris.suggestionID WHERE requestID = '$id' ORDER BY requestDetailsID ASC";
     $query = $this->db->query($sql);
     return $query->result();
