@@ -28,6 +28,15 @@
       <?php
       if (isset($request)) {
         echo form_open_multipart(base_url() . 'borrow/updateRequest', 'role="form" class="form-horizontal"');
+        $textRequestID = array(
+          'name' => 'textRequestID',
+          'id' => 'textRequestID',
+          'type' => 'hidden',
+          'value' => $request->requestID
+        );
+
+        echo form_input($textRequestID);
+
       } else {
         echo form_open_multipart(base_url() . 'borrow/formRequestItems', 'role="form" class="form-horizontal"');
       }

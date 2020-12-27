@@ -1,0 +1,10 @@
+<?php foreach ($listEmployeeStatuses as $listEmployeeStatus) : ?>
+            <label class="radio-inline"><?= form_radio('radioEmployeeStatus', $listEmployeeStatus->statusID, $checked = $listEmployeeStatus->statusID == '1' ? TRUE : FALSE) . $listEmployeeStatus->statusDesc; ?></label>
+          <?php endforeach ?>
+- formRequestItems (add)
+  -required dateOfJoin blm berfungsi
+  -datetime picker validation (join date tidak boleh lebih akhir dari request date dan sebaliknya request date tidak boleh lebih akhir dari request date)
+  - datetime picker saat di click dateofJoin yg di dateofrequest tidak hilang 
+- formRequestItems (modify)
+  -saat modify form input employee tidak menyesuaikan form_radio, seharusnya jika status form_radio existing/resign/transfer javascript 
+    seharusnya menampilkan tombol search employee 

@@ -763,12 +763,12 @@ class Borrow extends CI_Controller {
     if (!$this->session->userdata('role')) {
       $message = '<div class="alert alert-danger">You are not allowed to do this!</div>';
       $this->session->set_flashdata('message', $message);
-      redirect(base_url('borrow'));
+      redirect(base_url('borrow/requestDetails'));
     }
     if (!$id) {
       $message = '<div class="alert alert-danger">Not Found!</div>';
       $this->session->set_flashdata('message', $message);
-      redirect(base_url('borrow'));
+      redirect(base_url('borrow/requestItems'));
     }
     $data['header'] = $this->load->view('header/head', '', TRUE);
     $data['navigation'] = $this->load->view('header/navigation', $data, TRUE);
@@ -785,22 +785,24 @@ class Borrow extends CI_Controller {
     } else {
       $message = '<div class="alert alert-danger">Not Found!</div>';
       $this->session->set_flashdata('message', $message);
-      redirect(base_url('borrow'));
+      redirect(base_url('borrow/requestDetails'));
     }
   }
 
-  public function modifyRequest($id)
+  public function modifyRequest($id = '')
   {
     if (!$this->session->userdata('role')) {
       $message = '<div class="alert alert-danger">You are not allowed to do this!</div>';
       $this->session->set_flashdata('message', $message);
-      redirect(base_url('borrow'));
+      redirect(base_url('borrow/modifyRequest'));
     }
     if (!$id) {
       $message = '<div class="alert alert-danger">Not Found!</div>';
       $this->session->set_flashdata('message', $message);
-      redirect(base_url('borrow'));
+      redirect(base_url('borrow/modifyRequest'));
     }
+
+   
 
     $data['request'] = $this->borrow_model->getRequest($id);
     if (sizeof($data['request']) <= 0) {
@@ -821,110 +823,108 @@ class Borrow extends CI_Controller {
     $this->load->view('main', $data);
   }
 
-  public function updateRequest($id){
-    if (!$this->session->userdata('role'))
+  public function updateRequest()
+  {
+    if ($this->input->post()) 
     {
-      $message = '<div class="alert alert-danger">You are not allowed to do this!</div>';
-      $this->session->set_flashdata('message', $message);
-      redirect(base_url('borrow/requestItems'));
-    }
-    if (!$id) 
-    {
-      $message = '<div class="alert alert-danger">Not Found!</div>';
-      $this->session->set_flashdata('message', $message);
-      redirect(base_url('borrow/requestItems'));
-    }
+      // load form validation library
+      $this->load->library('form_validation');
+      // form validation configuration
+      $this->form_validation->set_rules('radioEmployeeStatus', 'Employee Status');
+      $this->form_validation->set_rules('txtemployeename', 'Employee Name', 'required|alpha_numeric_spaces');
 
-    $this->load->library('form_validation');
-    // form validation configuration
-    $this->form_validation->set_rules('radioEmployeeStatus', 'Employee Status');
-    $this->form_validation->set_rules('txtemployeename', 'Employee Name', 'required|alpha_numeric_spaces');
-    if ($this->input->post('taken_by_uid') == "") 
-    {
-      $this->form_validation->set_rules('textCompany', 'Company Name', 'required|alpha_numeric_spaces');
-    }
-    $this->form_validation->set_rules('dropdownDepartment', 'Department', 'required');
-    $this->form_validation->set_rules('txtDateOfJoin', 'Date of Join');
-    $this->form_validation->set_rules('txtDateOfRequest', 'Date of Request', 'required');
-    $this->form_validation->set_rules('dropdownDesignation', 'Designation', 'required');
-    $this->form_validation->set_rules('txtPhone', 'Office Direct Line / Mobile No', 'required');
-    // if validation error, error message will be displayed
-    if ($this->form_validation->run() != false) 
-    {
-      $requestData['employeeStatus'] = htmlspecialchars($this->input->post('radioEmployeeStatus', true));
-      if ($this->input->post('taken_by_uid') == "")
+      if ($this->input->post('taken_by_uid') == "") 
       {
-        $requestData['employeeName'] = ucwords(htmlspecialchars($this->input->post('txtemployeename', true)));
-        $requestData['company'] = ucwords(htmlspecialchars($this->input->post('textCompany', true)));
-        $requestData['department'] = $this->input->post('dropdownDepartment', true);
-        $requestData['dateOfJoin'] = $this->input->post('txtDateOfJoin', true);
-        $requestData['DateOfRequest'] = $this->input->post('txtDateOfRequest', true);
-        $requestData['designation'] = $this->input->post('dropdownDesignation', true);
-        $requestData['phone'] = htmlspecialchars($this->input->post('txtPhone', true));
+        $this->form_validation->set_rules('textCompany', 'Company Name', 'required|alpha_numeric_spaces');
       }
-      else 
+
+      $this->form_validation->set_rules('dropdownDepartment', 'Department', 'required');
+      $this->form_validation->set_rules('txtDateOfJoin', 'Date of Join');
+      $this->form_validation->set_rules('txtDateOfRequest', 'Date of Request', 'required');
+      $this->form_validation->set_rules('dropdownDesignation', 'Designation', 'required');
+      $this->form_validation->set_rules('txtPhone', 'Office Direct Line / Mobile No', 'required');
+
+      // if validation error, error message will be displayed
+      if ($this->form_validation->run() != false) 
       {
-        $requestData['uid'] = ucwords(htmlspecialchars($this->input->post('taken_by_uid', true)));
-        $requestData['company'] = ucwords(htmlspecialchars($this->input->post('textCompany', true)));
-        $requestData['DateOfRequest'] = $this->input->post('txtDateOfRequest', true);
-        $requestData['phone'] = htmlspecialchars($this->input->post('txtPhone', true));
-      }
-      // insert data to request table
-      $requestID = $this->borrow_model->addNewRequest($requestData);
-      // if insert data successfull inserted id will be returned
-      if ($requestID > 0) 
-      {
-        // form validation for requestDetails
-        $this->form_validation->set_rules('optionRequestItems', 'Request Item');
-        if ($this->input->post('optionRequestItems') == '1') 
+        $requestData['employeeStatus'] = htmlspecialchars($this->input->post('radioEmployeeStatus', true));
+
+        // if new employee
+        if ($this->input->post('taken_by_uid') == "") 
         {
-          $validationLabel = 'Desktop / Laptop';
-          $validationRule = 'required|alpha_numeric_spaces';
+          $requestData['employeeName'] = ucwords(htmlspecialchars($this->input->post('txtemployeename', true)));
+          $requestData['company'] = ucwords(htmlspecialchars($this->input->post('textCompany', true)));
+          $requestData['department'] = $this->input->post('dropdownDepartment', true);
+          $requestData['dateOfJoin'] = $this->input->post('txtDateOfJoin', true);
+          $requestData['DateOfRequest'] = $this->input->post('txtDateOfRequest', true);
+          $requestData['designation'] = $this->input->post('dropdownDesignation', true);
+          $requestData['phone'] = htmlspecialchars($this->input->post('txtPhone', true));        
         }
-        else if ($this->input->post('optionRequestItems') == '2') 
-        {
-          $validationLabel = 'Email Address';
-          $validationRule = 'required|valid_email|is_unique[tblrequestdetails.remarks]';
-        } elseif ($this->input->post('optionRequestItems') == '7') 
-        {
-          $validationRule = 'required|alpha_numeric_spaces';
-        }
+        // existing employee
         else 
         {
-          $validationLabel = 'Items Remark';
-          $validationRule = 'required|alpha_numeric_spaces';
+          $requestData['uid'] = ucwords(htmlspecialchars($this->input->post('taken_by_uid', true)));
+          $requestData['company'] = ucwords(htmlspecialchars($this->input->post('textCompany', true)));
+          $requestData['DateOfRequest'] = $this->input->post('txtDateOfRequest', true);
+          $requestData['phone'] = htmlspecialchars($this->input->post('txtPhone', true));
         }
-        $this->form_validation->set_rules('textRemarks', $validationLabel, $validationRule);
-        
-        $itemsRequest = $this->input->post('optionRequestItems', true);
-        $itemsRequestRemark = $this->input->post('textRemarks', true);
-        // loop for get input data from form in table items and itemsRemark
-        for ($i = 0; $i < sizeof($itemsRequest); $i++) 
+
+        $requestID = htmlspecialchars($this->input->post('textRequestID', true));
+      
+        if ($this->borrow_model->modifyRequest($requestData, $requestID)) 
         {
-          $requestDetails['items'] = $itemsRequest[$i];
-          $requestDetails['remarks'] = $itemsRequestRemark[$i];
-          $requestDetails['requestID'] = $requestID;
-          // var_dump($requestDetails);die;
-          // insert data to table requesDetails
-          if ($this->borrow_model->NewRequestDetails($requestDetails) > 0) 
+          $this->borrow_model->delRequestDetail($requestID);
+          $this->form_validation->set_rules('optionRequestItems', 'Request Item');
+
+          if ($this->input->post('optionRequestItems') == '1') 
           {
-            $message = '<div class = "alert alert-success">Request detail has successfully created</div>';
-            $this->session->set_flashdata('message', $message);
-          }
-          else
+            $validationLabel = 'Desktop / Laptop';
+            $validationRule = 'required|alpha_numeric_spaces';
+          } 
+          else if ($this->input->post('optionRequestItems') == '2') 
           {
-            $message = '<div class = "alert alert-danger">Create request detail fail!</div>';
-            $this->session->set_flashdata('message', $message);
+            $validationLabel = 'Email Address';
+            $validationRule = 'required|valid_email|is_unique[tblrequestdetails.remarks]';
+          } 
+          elseif ($this->input->post('optionRequestItems') == '7') 
+          {
+            $validationRule = 'required|alpha_numeric_spaces';
+          } 
+          else 
+          {
+            $validationLabel = 'Items Remark';
+            $validationRule = 'required|alpha_numeric_spaces';
           }
+
+          $this->form_validation->set_rules('textRemarks', $validationLabel, $validationRule);
+
+          $itemsRequest = $this->input->post('optionRequestItems', true);
+          $itemsRequestRemark = $this->input->post('textRemarks', true);
+          
+          // loop for get input data from form in table items and itemsRemark
+          for ($i = 0; $i < sizeof($itemsRequest); $i++) 
+          {
+            $requestDetails['items'] = $itemsRequest[$i];
+            $requestDetails['remarks'] = $itemsRequestRemark[$i];
+            $requestDetails['requestID'] = $requestID;
+
+            // insert data to table requesDetails
+            if ($this->borrow_model->NewRequestDetails($requestDetails) > 0) 
+            {
+              $message = '<div class = "alert alert-success">Request detail has successfully modified</div>';
+              $this->session->set_flashdata('message', $message);
+            } 
+            else 
+            {
+              $message = '<div class = "alert alert-danger">Modify request detail fail!</div>';
+              $this->session->set_flashdata('message', $message);
+            }
+          }
+
+          $message = '<div class = "alert alert-success">Request has successfully modified</div>';
+          $this->session->set_flashdata('message', $message);
+          redirect(base_url('borrow/requestItems'));
         }
-        $message = '<div class = "alert alert-success">Request has successfully created</div>';
-        $this->session->set_flashdata('message', $message);
-        redirect(base_url('borrow/requestItems'));
-      }
-      else
-      {
-        $message = '<div class = "alert alert-danger">Create request fail!</div>';
-        $this->session->set_flashdata('message', $message);
       }
     }
 

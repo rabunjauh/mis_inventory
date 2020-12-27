@@ -536,6 +536,24 @@ class Borrow_model extends CI_Model {
     $query = $this->db->query($sql);
     return $query->result();
   }
+
+  public function delRequestDetail($requestID)
+  {
+    $this->db->where('requestID', $requestID);
+    $this->db->delete('tblrequestdetails');
+
+    if ($this->db->affected_rows() == 1)
+    {
+      return TRUE;
+    }
+  }
+
+  public function modifyRequest($requestData, $requestId)
+  {
+    $this->db->where('requestID', $requestId);
+    $this->db->update('tblRequest', $requestData);
+    return TRUE;
+  }
 }
 
 
