@@ -36,7 +36,6 @@
         );
 
         echo form_input($textRequestID);
-
       } else {
         echo form_open_multipart(base_url() . 'borrow/formRequestItems', 'role="form" class="form-horizontal"');
       }
@@ -56,6 +55,20 @@
         }
       } else {
         $selected = '';
+      }
+
+      if ($request->uid) {
+        $employeeName = $request->employeename;
+        $dateOfJoin = $request->join_date;
+        $position = $request->positionExisting;
+        $department = $request->departmentExisting;
+        $company = $request->companyExisting;
+      } else {
+        $employeeName = $request->employeeName;
+        $dateOfJoin = $request->dateOfJoin;
+        $position = $request->positiondesc;
+        $department = $request->deptdesc;
+        $company = $request->company;
       }
 
       $optionDepartment[''] = 'Select Group / Department';
@@ -85,17 +98,17 @@
             <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '2', TRUE) ?>Existing Staff</label>
             <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '3', FALSE) ?>Transfer</label>
             <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '4', FALSE) ?>Resignation</label>
-          <?php elseif (isset($request->employeeStatus) && $request->employeeStatus == 3): ?>
+          <?php elseif (isset($request->employeeStatus) && $request->employeeStatus == 3) : ?>
             <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '1', FALSE) ?>New Staff</label>
             <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '2', FALSE) ?>Existing Staff</label>
             <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '3', TRUE) ?>Transfer</label>
             <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '4', FALSE) ?>Resignation</label>
-          <?php elseif (isset($request->employeeStatus) && $request->employeeStatus == 4): ?>
+          <?php elseif (isset($request->employeeStatus) && $request->employeeStatus == 4) : ?>
             <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '1', FALSE) ?>New Staff</label>
             <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '2', FALSE) ?>Existing Staff</label>
             <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '3', FALSE) ?>Transfer</label>
             <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '4', TRUE) ?>Resignation</label>
-          <?php else: ?>
+          <?php else : ?>
             <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '1', TRUE) ?>New Staff</label>
             <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '2', FALSE) ?>Existing Staff</label>
             <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '3', FALSE) ?>Transfer</label>
@@ -107,12 +120,7 @@
       <div class="form-group empStatus">
         <label for="lblemployee" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Employee: *</label>
         <div class="col-sm-6 col-xs-12">
-          <input type="text" class="form-control" readonly="readonly" value="<?php if (isset($request) && $request->employeeName) {
-                                                                                echo $request->employeeName;
-                                                                              } else {
-                                                                                echo $request->employeename;
-                                                                              }
-                                                                              ?>" name="txtemployeename" id="txtemployeename" required placeholder="Employee Name" />
+          <input type="text" class="form-control" readonly="readonly" value="<?php echo $employeeName ?>" name="txtemployeename" id="txtemployeename" required placeholder="Employee Name" />
           <input type="hidden" name="taken_by_uid" id="txtempid" value="<?php if (isset($request) && $request->uid) {
                                                                           echo $request->uid;
                                                                         } ?>" />
@@ -123,25 +131,21 @@
       <div class="form-group newEmpStatus">
         <label for="textCompany" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Company: *</label>
         <div class="col-sm-6 col-xs-12">
-          <input type="text" class="form-control" name="textCompany" value="<?php if (isset($request) && $request->company) {
-                                                                              echo $request->company;
-                                                                            } ?>" id="textCompany" placeholder="Company Name" required>
+          <input type="text" class="form-control newEmpStatus" name="textCompany" value="<?php echo $company; ?>" id="textCompany" placeholder="Company Name" required>
         </div>
       </div>
 
       <div class="form-group newEmpStatus">
         <label for="labelDepartment" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Group / Department: *</label>
         <div class="col-sm-6 col-xs-12">
-          <?= form_dropdown('dropdownDepartment', $optionDepartment, $departmentSelected, 'id="dropdownDepartment" class="form-control" required') ?>
+          <?= form_dropdown('dropdownDepartment', $optionDepartment, $departmentSelected, 'id="dropdownDepartment" class="form-control newEmpStatus" required') ?>
         </div>
       </div>
 
       <div class="form-group newEmpStatus">
         <label for="labelDateOfJoin" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Date of Join: *</label>
         <div class="col-sm-6 col-xs-12">
-          <input id="txtDateOfJoin" readonly data-date-format="yyyy-mm-dd" class="form-control datepicker" type="text" name="txtDateOfJoin" value="<?php if (isset($request) && $request->dateOfJoin) {
-                                                                                                                                                      echo $request->dateOfJoin;
-                                                                                                                                                    } ?>" />
+          <input id="txtDateOfJoin" readonly data-date-format="yyyy-mm-dd" class="form-control datepicker newEmpStatus" type="text" name="txtDateOfJoin" value="<?php echo $dateOfJoin;  ?>" />
         </div>
       </div>
 
@@ -150,14 +154,14 @@
         <div class="col-sm-6 col-xs-12">
           <input id="txtDateOfRequest" readonly data-date-format="yyyy-mm-dd" class="form-control datepicker" type="text" name="txtDateOfRequest" value="<?php if (isset($request) && $request->dateOfRequest) {
                                                                                                                                                             echo $request->dateOfRequest;
-                                                                                                                                                          } ?>" required/>
+                                                                                                                                                          } ?>" required />
         </div>
       </div>
 
       <div class="form-group newEmpStatus">
         <label for="labelDesignation " class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Designation: *</label>
         <div class="col-sm-6 col-xs-12">
-          <?= form_dropdown('dropdownDesignation', $optionDesignation, $designationSelected, 'id="dropdownDesignation" class="form-control" required') ?>
+          <?= form_dropdown('dropdownDesignation', $optionDesignation, $designationSelected, 'id="dropdownDesignation" class="form-control newEmpStatus" required') ?>
         </div>
       </div>
 
@@ -180,7 +184,7 @@
           </tr>
         </thead>
         <tbody id="item_area">
-          <?php if (isset($requestDetails) && $request != NULL) : ?>
+          <?php if (isset($requestDetails)) : ?>
             <?php foreach ($requestDetails as $requestDetail) : ?>
               <tr class="tr_clone">
                 <td class="numberRow-requestItems"> </td>
@@ -222,8 +226,14 @@
 
 <script>
   $(document).ready(function() {
-    $('.datepicker').datepicker({
-      autoclose: true
+
+    $('#txtDateOfJoin').datepicker({
+      format: "dd/mm/yyyy"
+    });
+
+
+    $('#txtDateOfRequest').datepicker({
+      format: "dd/mm/yyyy"
     });
 
     reNumber('requestItems');
@@ -238,7 +248,7 @@
       } else {
         $('#txtemployeename').attr("readonly", true);
         $('.choose').show();
-        $('.newEmpStatus').hide();
+        $('.newEmpStatus').hide().prop('required', false);
         $('.employee').show();
       }
     });
@@ -370,6 +380,12 @@
       });
     }
   }
+
+  // function datepicker(dateFormID) {
+  //    $('#' + dateFormID).datepicker({
+  //     format: "dd/mm/yyyy"
+  //   });
+  // }
 
   itemsValidation();
 </script>

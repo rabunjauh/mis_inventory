@@ -662,29 +662,28 @@ class Borrow extends CI_Controller {
       $this->form_validation->set_rules('txtemployeename', 'Employee Name', 'required|alpha_numeric_spaces');
       if($this->input->post('taken_by_uid') == ""){
         $this->form_validation->set_rules('textCompany', 'Company Name', 'required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('dropdownDepartment', 'Department', 'required');
+        $this->form_validation->set_rules('txtDateOfJoin', 'Date of Join');
+        $this->form_validation->set_rules('dropdownDesignation', 'Designation', 'required');
       }
-      $this->form_validation->set_rules('dropdownDepartment', 'Department', 'required');
-      $this->form_validation->set_rules('txtDateOfJoin', 'Date of Join');
       $this->form_validation->set_rules('txtDateOfRequest', 'Date of Request', 'required');
-      $this->form_validation->set_rules('dropdownDesignation', 'Designation', 'required');
       $this->form_validation->set_rules('txtPhone', 'Office Direct Line / Mobile No', 'required');
       // if validation error, error message will be displayed
       if ($this->form_validation->run() != false) {
         $requestData['employeeStatus'] = htmlspecialchars($this->input->post('radioEmployeeStatus', true));
+        $requestData['employeeName'] = ucwords(htmlspecialchars($this->input->post('txtemployeename', true)));
         if ($this->input->post('taken_by_uid') == "") {                    
-          $requestData['employeeName'] = ucwords(htmlspecialchars($this->input->post('txtemployeename', true)));
           $requestData['company'] = ucwords(htmlspecialchars($this->input->post('textCompany', true)));
           $requestData['department'] = $this->input->post('dropdownDepartment', true);
-          $requestData['dateOfJoin'] = $this->input->post('txtDateOfJoin', true);
-          $requestData['DateOfRequest'] = $this->input->post('txtDateOfRequest', true);
-          $requestData['designation'] = $this->input->post('dropdownDesignation', true);
-          $requestData['phone'] = htmlspecialchars($this->input->post('txtPhone', true));          
+          $requestData['dateOfJoin'] = date("Y-m-d", strtotime(str_replace("/", "-", $this->input->post('txtDateOfJoin', TRUE))));
+          $requestData['designation'] = $this->input->post('dropdownDesignation', true);        
+          $requestData['DateOfRequest'] = date("Y-m-d", strtotime(str_replace("/", "-", $this->input->post('txtDateOfRequest', TRUE))));
         }else{
           $requestData['uid'] = ucwords(htmlspecialchars($this->input->post('taken_by_uid', true)));
           $requestData['company'] = ucwords(htmlspecialchars($this->input->post('textCompany', true)));
-          $requestData['DateOfRequest'] = $this->input->post('txtDateOfRequest', true);
-          $requestData['phone'] = htmlspecialchars($this->input->post('txtPhone', true));
+          $requestData['DateOfRequest'] = date("Y-m-d", strtotime(str_replace("/", "-", $this->input->post('txtDateOfRequest', TRUE))));
         }
+        $requestData['phone'] = htmlspecialchars($this->input->post('txtPhone', true));
         // insert data to request table
         $requestID = $this->borrow_model->addNewRequest($requestData);
         // if insert data successfull inserted id will be returned
@@ -825,49 +824,39 @@ class Borrow extends CI_Controller {
 
   public function updateRequest()
   {
-    if ($this->input->post()) 
+    if ($this->input->post())
     {
       // load form validation library
       $this->load->library('form_validation');
       // form validation configuration
       $this->form_validation->set_rules('radioEmployeeStatus', 'Employee Status');
       $this->form_validation->set_rules('txtemployeename', 'Employee Name', 'required|alpha_numeric_spaces');
-
-      if ($this->input->post('taken_by_uid') == "") 
-      {
+      if ($this->input->post('taken_by_uid') == "") {
         $this->form_validation->set_rules('textCompany', 'Company Name', 'required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('dropdownDepartment', 'Department', 'required');
+        $this->form_validation->set_rules('txtDateOfJoin', 'Date of Join');
+        $this->form_validation->set_rules('dropdownDesignation', 'Designation', 'required');
       }
-
-      $this->form_validation->set_rules('dropdownDepartment', 'Department', 'required');
-      $this->form_validation->set_rules('txtDateOfJoin', 'Date of Join');
       $this->form_validation->set_rules('txtDateOfRequest', 'Date of Request', 'required');
-      $this->form_validation->set_rules('dropdownDesignation', 'Designation', 'required');
       $this->form_validation->set_rules('txtPhone', 'Office Direct Line / Mobile No', 'required');
 
       // if validation error, error message will be displayed
       if ($this->form_validation->run() != false) 
       {
         $requestData['employeeStatus'] = htmlspecialchars($this->input->post('radioEmployeeStatus', true));
-
-        // if new employee
-        if ($this->input->post('taken_by_uid') == "") 
-        {
-          $requestData['employeeName'] = ucwords(htmlspecialchars($this->input->post('txtemployeename', true)));
+        $requestData['employeeName'] = ucwords(htmlspecialchars($this->input->post('txtemployeename', true)));
+        if ($this->input->post('taken_by_uid') == "") {
           $requestData['company'] = ucwords(htmlspecialchars($this->input->post('textCompany', true)));
           $requestData['department'] = $this->input->post('dropdownDepartment', true);
-          $requestData['dateOfJoin'] = $this->input->post('txtDateOfJoin', true);
-          $requestData['DateOfRequest'] = $this->input->post('txtDateOfRequest', true);
+          $requestData['dateOfJoin'] = date("Y-m-d", strtotime(str_replace("/", "-", $this->input->post('txtDateOfJoin', TRUE))));
           $requestData['designation'] = $this->input->post('dropdownDesignation', true);
-          $requestData['phone'] = htmlspecialchars($this->input->post('txtPhone', true));        
-        }
-        // existing employee
-        else 
-        {
+          $requestData['DateOfRequest'] = date("Y-m-d", strtotime(str_replace("/", "-", $this->input->post('txtDateOfRequest', TRUE))));
+        } else {
           $requestData['uid'] = ucwords(htmlspecialchars($this->input->post('taken_by_uid', true)));
           $requestData['company'] = ucwords(htmlspecialchars($this->input->post('textCompany', true)));
-          $requestData['DateOfRequest'] = $this->input->post('txtDateOfRequest', true);
-          $requestData['phone'] = htmlspecialchars($this->input->post('txtPhone', true));
+          $requestData['DateOfRequest'] = date("Y-m-d", strtotime(str_replace("/", "-", $this->input->post('txtDateOfRequest', TRUE))));
         }
+        $requestData['phone'] = htmlspecialchars($this->input->post('txtPhone', true));
 
         $requestID = htmlspecialchars($this->input->post('textRequestID', true));
       
