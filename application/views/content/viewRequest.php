@@ -41,7 +41,7 @@
                 <th>Company</th>
                 <th>Date Of Join</th>
                 <th>Date of Request</th>
-                <th>Status</th>
+                <th>Request Status</th>
                 <th>Action</th>
             </tr>
         </thead>

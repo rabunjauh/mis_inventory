@@ -927,6 +927,40 @@ class Borrow extends CI_Controller {
         }
       }
     }
+  }
 
+  public function deleteRequest($requestID)
+  {
+    if (!$this->session->userdata('role')) 
+    {
+      $message = '<div class="alert alert-danger">You are not allowed to do this!</div>';
+      $this->session->set_flashdata('message', $message);
+      redirect(base_url('borrow'));
+    }
+    if (!$requestID) 
+    {
+      $message = '<div class="alert alert-danger">Not Found!</div>';
+      $this->session->set_flashdata('message', $message);
+      redirect(base_url('borrow/requestItems'));
+    }
+
+    if ($this->borrow_model->delRequest($requestID))
+    {
+      if (!$this->borrow_model->delRequestDetail($requestID)){
+        $message = '<div class="alert alert-danger">Delete request detail fail!</div>';
+        $this->session->set_flashdata('message', $message);
+        redirect(base_url('borrow/requestItems'));
+      }
+
+      $message = '<div class="alert alert-success">Delete request success!</div>';
+      $this->session->set_flashdata('message', $message);
+      redirect(base_url('borrow/requestItems'));
+    }
+    else
+    {
+      $message = '<div class="alert alert-danger">Delete request fail!</div>';
+        $this->session->set_flashdata('message', $message);
+        redirect(base_url('borrow/requestItems'));
+    }
   }
 }
