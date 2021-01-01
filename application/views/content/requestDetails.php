@@ -12,22 +12,25 @@
               $position = $request->positionExisting;
               $department = $request->departmentExisting;
               $company = $request->companyExisting;
+              $employeeno = $request->employeeno;
             }else{
               $employeeName = $request->employeeName;
               $dateOfJoin = $request->dateOfJoin;
               $position = $request->positiondesc;
               $department = $request->deptdesc;
-              $company = $request->company; 
+              $company = $request->company;
+              $employeeno = "-"; 
             }
           ?>
           <p>Request ID : <?= $request->requestID ?></p>
           <p>Employee Status : <?= $request->employeeStatus ?></p>
+          <p>Employee No : <?= $request->employeeno ?></p>
           <p>Employee Name : <?= $employeeName ?></p>
           <p>Company : <?= $company ?></p>
-          <p>Phone : <?= $request->phone ?></p>
         </div>
 
         <div class="col-lg-6">
+          <p>Phone : <?= $request->phone ?></p>
           <p>Department : <?= $department ?></p>
           <p>Designation : <?= $position ?></p>
           <p>Join Date : <?= $dateOfJoin ?></p>

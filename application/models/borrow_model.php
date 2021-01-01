@@ -502,7 +502,7 @@ class Borrow_model extends CI_Model {
   {
     $sql = "SELECT 
               tr.requestID, tr.employeeStatus, tr.employeeName, tr.department, tr.designation,
-              tr.company, tr.phone, tr.uid, te.employeename,
+              tr.company, tr.phone, tr.uid, te.employeename, te.employeeno,
               ta.approvalDesc, tp.positiondesc, td.deptdesc, tres.statusDesc, 
               DATE_FORMAT(tr.dateOfJoin,'%d/%m/%Y')AS dateOfJoin,
               DATE_FORMAT(tr.dateOfRequest,'%d/%m/%Y')AS dateOfRequest,

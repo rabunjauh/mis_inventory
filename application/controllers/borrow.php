@@ -659,8 +659,8 @@ class Borrow extends CI_Controller {
       $this->load->library('form_validation');
       // form validation configuration
       $this->form_validation->set_rules('radioEmployeeStatus', 'Employee Status');
-      $this->form_validation->set_rules('txtemployeename', 'Employee Name', 'required|alpha_numeric_spaces');
       if($this->input->post('taken_by_uid') == ""){
+        $this->form_validation->set_rules('txtemployeename', 'Employee Name', 'required|alpha_numeric_spaces');
         $this->form_validation->set_rules('textCompany', 'Company Name', 'required|alpha_numeric_spaces');
         $this->form_validation->set_rules('dropdownDepartment', 'Department', 'required');
         $this->form_validation->set_rules('txtDateOfJoin', 'Date of Join');
@@ -671,8 +671,8 @@ class Borrow extends CI_Controller {
       // if validation error, error message will be displayed
       if ($this->form_validation->run() != false) {
         $requestData['employeeStatus'] = htmlspecialchars($this->input->post('radioEmployeeStatus', true));
-        $requestData['employeeName'] = ucwords(htmlspecialchars($this->input->post('txtemployeename', true)));
         if ($this->input->post('taken_by_uid') == "") {                    
+          $requestData['employeeName'] = ucwords(htmlspecialchars($this->input->post('txtemployeename', true)));
           $requestData['company'] = ucwords(htmlspecialchars($this->input->post('textCompany', true)));
           $requestData['department'] = $this->input->post('dropdownDepartment', true);
           $requestData['dateOfJoin'] = date("Y-m-d", strtotime(str_replace("/", "-", $this->input->post('txtDateOfJoin', TRUE))));
