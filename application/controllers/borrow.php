@@ -935,7 +935,7 @@ class Borrow extends CI_Controller {
 
     if ($this->borrow_model->delRequest($requestID))
     {
-      if (!$this->borrow_model->delRequestDetail($requestID)){
+      if (!$this->borrow_model->delRequestDetail($requestID)){        
         $message = '<div class="alert alert-danger">Delete request detail fail!</div>';
         $this->session->set_flashdata('message', $message);
         redirect(base_url('borrow/requestItems'));

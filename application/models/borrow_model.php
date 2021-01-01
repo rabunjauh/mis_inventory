@@ -542,7 +542,7 @@ class Borrow_model extends CI_Model {
     $this->db->where('requestID', $requestID);
     $this->db->delete('tblrequestdetails');
 
-    if ($this->db->affected_rows() == 1)
+    if ($this->db->affected_rows() > 0)
     {
       return TRUE;
     }
@@ -558,9 +558,9 @@ class Borrow_model extends CI_Model {
   public function delRequest($requestID)
   {
     $this->db->where('requestID', $requestID);
-    $this->db->delete('$tblRequest');
+    $this->db->delete('tblRequest');
 
-    if ($this->db->affected_rows() == 1)
+    if ($this->db->affected_rows() > 0)
     {
       return TRUE;
     }

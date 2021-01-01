@@ -84,7 +84,7 @@
               <?php endforeach; ?>
           <?php else: ?>
             <tr>
-              <td colspan="8">
+              <td colspan="10">
                   No Data
               </td>
             </tr>    
