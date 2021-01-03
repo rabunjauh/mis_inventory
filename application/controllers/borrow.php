@@ -844,8 +844,8 @@ class Borrow extends CI_Controller {
       if ($this->form_validation->run() != false) 
       {
         $requestData['employeeStatus'] = htmlspecialchars($this->input->post('radioEmployeeStatus', true));
-        $requestData['employeeName'] = ucwords(htmlspecialchars($this->input->post('txtemployeename', true)));
         if ($this->input->post('taken_by_uid') == "") {
+          $requestData['employeeName'] = ucwords(htmlspecialchars($this->input->post('txtemployeename', true)));
           $requestData['company'] = ucwords(htmlspecialchars($this->input->post('textCompany', true)));
           $requestData['department'] = $this->input->post('dropdownDepartment', true);
           $requestData['dateOfJoin'] = date("Y-m-d", strtotime(str_replace("/", "-", $this->input->post('txtDateOfJoin', TRUE))));
@@ -853,7 +853,6 @@ class Borrow extends CI_Controller {
           $requestData['DateOfRequest'] = date("Y-m-d", strtotime(str_replace("/", "-", $this->input->post('txtDateOfRequest', TRUE))));
         } else {
           $requestData['uid'] = ucwords(htmlspecialchars($this->input->post('taken_by_uid', true)));
-          $requestData['company'] = ucwords(htmlspecialchars($this->input->post('textCompany', true)));
           $requestData['DateOfRequest'] = date("Y-m-d", strtotime(str_replace("/", "-", $this->input->post('txtDateOfRequest', TRUE))));
         }
         $requestData['phone'] = htmlspecialchars($this->input->post('txtPhone', true));
