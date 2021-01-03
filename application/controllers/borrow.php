@@ -852,6 +852,7 @@ class Borrow extends CI_Controller {
           $requestData['designation'] = $this->input->post('dropdownDesignation', true);
           $requestData['DateOfRequest'] = date("Y-m-d", strtotime(str_replace("/", "-", $this->input->post('txtDateOfRequest', TRUE))));
         } else {
+          $requestData['employeeName'] = NULL;
           $requestData['uid'] = ucwords(htmlspecialchars($this->input->post('taken_by_uid', true)));
           $requestData['DateOfRequest'] = date("Y-m-d", strtotime(str_replace("/", "-", $this->input->post('txtDateOfRequest', TRUE))));
         }
