@@ -918,5 +918,52 @@ class Csv extends CI_Controller {
     return $total;
   }
 
+  public function downloadRequest()
+  {
+    $item = $this->item_model->fetch_data(null, null, 'consumable');
+    date_default_timezone_set('Asia/Jakarta');
+    $getdate = date("Y-m-d");
+    if (count($item) != 0) {
+      $EXCEL_OUT = "";
+      $EXCEL_OUT .= "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+      <table style='border:solid 1px #848484' border='1'>
+      <tr>
+      <th style='border:solid 1px #848484;font-size:16px;' colspan='3'>Borrow Report : " . $getdate . "</th>
+      </tr>
+      <tr>
+      <th style='border:solid 1px #848484'>No</th>
+      <th style='border:solid 1px #848484'>Items Code</th>
+      <th style='border:solid 1px #848484'>Items</th>
+      <th style='border:solid 1px #848484'>Category</th>
+      <th style='border:solid 1px #848484'>Item Description</th>
+      <th style='border:solid 1px #848484'>Quantity</th>
+      <th style='border:solid 1px #848484'>Measurement</th>";
+
+      $a = 1;
+
+      foreach ($item as $value) {
+        $inventory = $this->inventory_model->get_inventory_by_item($value->item_id);
+        $EXCEL_OUT .= "<tr>";
+        $EXCEL_OUT .= "<td>" . $a . "</td>";
+        $EXCEL_OUT .= "<td>" . $value->item_code . "</td>";
+        $EXCEL_OUT .= "<td>" . $value->item_name . "</td>";
+        $EXCEL_OUT .= "<td>" . $value->cat_name . "</td>";
+        $EXCEL_OUT .= "<td>" . $value->item_description . "</td>";
+        $EXCEL_OUT .= "<td>" . $inventory->inventory_quantity . "</td>";
+        $EXCEL_OUT .= "<td>" . $value->measurement . "</td>";
+        $EXCEL_OUT .= "</tr>";
+        $a++;
+      }
+      $EXCEL_OUT .= "</table>";
+    } else {
+      $EXCEL_OUT = "No data found...";
+    }
+
+    Header("Content-type: application/vnd.ms-excel; charset=UTF-8");
+    Header("Content-Disposition: attachment; filename=item_consumable_report_" . date('Y-m-d') . ".xls");
+
+    echo $EXCEL_OUT;
+  }
+
 
 }
