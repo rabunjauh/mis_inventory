@@ -406,7 +406,7 @@ class Borrow_model extends CI_Model {
     return $query->row()->total;
   }
 
-  public function fetchRequestItems($limit, $offset)
+  public function fetchRequestItems($limit = NULL, $offset = NULL)
   {
     $sql = "SELECT 
               tr.requestID, tr.employeeStatus, tr.employeeName, tr.designation,
@@ -532,7 +532,11 @@ class Borrow_model extends CI_Model {
 
   public function getRequestDetail($id)
   {
-    $sql = "SELECT * FROM tblRequestDetails rd LEFT JOIN tblrequestitemssuggestion ris ON rd.items = ris.suggestionID WHERE requestID = '$id' ORDER BY requestDetailsID ASC";
+    $sql = "SELECT * FROM 
+            tblRequestDetails rd 
+            LEFT JOIN tblrequestitemssuggestion ris ON rd.items = ris.suggestionID 
+            WHERE requestID = '$id' 
+            ORDER BY requestDetailsID ASC";
     $query = $this->db->query($sql);
     return $query->result();
   }

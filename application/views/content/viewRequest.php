@@ -22,7 +22,7 @@
       <div class="content-nav">
         <div class="btn-group col-sm-8 col-xs-10 col-sm-offset-4 col-xs-offset-2">
           <a href="<?=base_url('borrow/formRequestItems'); ?>" class="btn btn-default btn-flat "><i class="glyphicon glyphicon-plus-sign"></i> New Request</a>
-          <a href="<?=base_url('csv/download_borrow'); ?>" class="btn btn-default btn-flat"><i class="glyphicon glyphicon-save"></i><span class="hidden-xs"> Download</span></a>
+          <a href="<?=base_url('csv/downloadRequest'); ?>" class="btn btn-default btn-flat"><i class="glyphicon glyphicon-save"></i><span class="hidden-xs"> Download</span></a>
           <a href="#" data-toggle="modal" data-target="#filterModal" class="btn btn-default btn-flat"><i class="glyphicon glyphicon-search"></i><span class="hidden-xs"> Filter</span></a>
         </div>
       </div>
