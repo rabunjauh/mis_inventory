@@ -93,27 +93,22 @@
       <div class="form-group">
         <label for="lblEmployeeStatus" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Employee Status: *</label>
         <div class="col-sm-6 col-xs-12">
-          <?php if (!empty($request->employeeStatus) && $request->employeeStatus == 2) : ?>
-            <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '1', FALSE) ?>New Staff</label>
-            <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '2', TRUE) ?>Existing Staff</label>
-            <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '3', FALSE) ?>Transfer</label>
-            <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '4', FALSE) ?>Resignation</label>
-          <?php elseif (!empty($request->employeeStatus) && $request->employeeStatus == 3) : ?>
-            <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '1', FALSE) ?>New Staff</label>
-            <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '2', FALSE) ?>Existing Staff</label>
-            <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '3', TRUE) ?>Transfer</label>
-            <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '4', FALSE) ?>Resignation</label>
-          <?php elseif (!empty($request->employeeStatus) && $request->employeeStatus == 4) : ?>
-            <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '1', FALSE) ?>New Staff</label>
-            <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '2', FALSE) ?>Existing Staff</label>
-            <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '3', FALSE) ?>Transfer</label>
-            <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '4', TRUE) ?>Resignation</label>
-          <?php else : ?>
-            <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '1', TRUE) ?>New Staff</label>
-            <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '2', FALSE) ?>Existing Staff</label>
-            <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '3', FALSE) ?>Transfer</label>
-            <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '4', FALSE) ?>Resignation</label>
-          <?php endif ?>
+        
+          <?php
+            foreach ($listEmployeeStatuses as $value) :
+              if (!empty($request->employeeStatus)) {
+                ($request->employeeStatus == $value->statusID) ? $checked = TRUE : $checked = FALSE;
+              } else {
+                ($value->statusID == 1) ? $checked = TRUE : $checked = FALSE;
+              }
+          ?>
+
+            <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '$value->statusID', $checked) . $value->statusDesc ?></label>
+          
+          <?php
+            endforeach
+          ?>
+
         </div>
       </div>
 
@@ -256,13 +251,13 @@
     var radioValChecked = $('input[type=radio][name=radioEmployeeStatus]:checked').val();
     if (radioValChecked == 1) {
       $('.choose').hide();
-        $('.newEmpStatus').show();
-        $('#txtemployeename').attr("readonly", false);
+      $('.newEmpStatus').show();
+      $('#txtemployeename').attr("readonly", false);
     } else {
       $('#txtemployeename').attr("readonly", true);
-        $('.choose').show();
-        $('.newEmpStatus').hide().prop('required', false);
-        $('.employee').show();
+      $('.choose').show();
+      $('.newEmpStatus').hide().prop('required', false);
+      $('.employee').show();
     }
 
     $('#dropdownDepartment').change(function() {
