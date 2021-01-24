@@ -399,10 +399,50 @@ class Borrow_model extends CI_Model {
     return $result;
   }
 
-  public function countRequestItems()
+  public function countRequestItems($employeeStatus = FALSE, $employeeName = FALSE, $company = FALSE, $dateOfJoin = FALSE, $dateOfRequest = FALSE, $uid = FALSE, $filter = FALSE)
   {
-    $sql = "SELECT count(*) total FROM tblRequest";
+    var_dump($employeeStatus);
+    echo "</br>";
+    var_dump($employeeName);
+    echo "</br>";
+    var_dump($company);
+    echo "</br>";
+    var_dump($dateOfJoin);
+    echo "</br>";
+    var_dump($dateOfRequest);
+    echo "</br>";
+    var_dump($uid);
+    echo "</br>";
+    if (!$filter)
+    {
+      $filter = "";
+    }
+    else
+    {
+      if ($employeeStatus !== "" && $employeeName == "" && $company == "" && $dateOfJoin == "" && $dateOfRequest == "" && $uid == "")
+      {
+        $filter = " WHERE employeeStatus = $employeeStatus ";
+      }
+      else
+      {
+        $filter .= " AND employeeStatus = $employeeStatus ";
+      }
+      
+      if ($employeeStatus == "" && $employeeName !== "" && $company == "" && $dateOfJoin == "" && $dateOfRequest == "" && $uid == "") {
+        $filter = " WHERE employeeName = '$employeeName'";
+      } else {
+        $filter .= " AND employeeName = '$employeeName'";
+      }  
+    }  
+
+
+     
+
+    $sql = "SELECT count(*) total FROM tblRequest $filter";
     $query = $this->db->query($sql);
+    var_dump($sql);
+    echo '</br>';
+    var_dump($query->row()->total);
     return $query->row()->total;
   }
 
@@ -488,6 +528,12 @@ class Borrow_model extends CI_Model {
   {
     $sql = "SELECT * FROM tblrequest_employeestatus";
     $query = $this->db->query($sql);
+    return $query->result();
+  }
+  
+  public function getApproval()
+  {
+    $query = $this->db->get('tblApproval');;
     return $query->result();
   }
   

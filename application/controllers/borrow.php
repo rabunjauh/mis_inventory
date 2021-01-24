@@ -611,6 +611,7 @@ class Borrow extends CI_Controller {
   }
 
   public function requestItems(){
+    
     $data = array();
     $config = array();
 
@@ -632,7 +633,7 @@ class Borrow extends CI_Controller {
     $config['first_tag_close'] = '</li>';
     $config['last_tag_open'] = '<li>';
     $config['last_tag_close'] = '</li>';
-    $data['request_total'] =  $this->borrow_model->countRequestItems();
+    $data['request_total'] =  $this->borrow_model->countRequestItems($employeeStatus, $employeeName, $company, $dateOfJoin, $dateOfRequest, $uid);
     $config["base_url"] = base_url() . "borrow/requestItems";
     $config['total_rows'] = $data['request_total'];
     $config['per_page'] = '10';
@@ -643,6 +644,58 @@ class Borrow extends CI_Controller {
     $data['header'] = $this->load->view('header/head', '', TRUE);
     $data['navigation'] = $this->load->view('header/navigation', $data, TRUE);
     $data['listEmployeeStatuses'] = $this->borrow_model->get_employeeStatus_list();  
+    $data['listApprovals'] = $this->borrow_model->getApproval();  
+    $data['content'] = $this->load->view('content/viewRequest', $data, TRUE);
+    $data['footer'] = $this->load->view('footer/footer', '', TRUE);
+    $this->load->view('main', $data);
+  } 
+  
+  public function requesItemsfilter(){
+    $employeeStatus = htmlspecialchars($this->input->post('radioEmployeeStatus', TRUE));
+    $employeeName = htmlspecialchars($this->input->post('txtemployeename', TRUE));
+    $company = htmlspecialchars($this->input->post('textCompany', TRUE));
+    if ($this->input->post('txtDateOfJoin', TRUE) !== "" && $this->input->post('txtDateOfRequest', TRUE) !== "")
+    {
+      $dateOfJoin = date("Y-m-d", strtotime(str_replace("/", "-", $this->input->post('txtDateOfJoin', TRUE))));
+      $dateOfRequest = date("Y-m-d", strtotime(str_replace("/", "-", $this->input->post('txtDateOfRequest', TRUE))));
+    }
+    $dateOfJoin = $this->input->post('txtDateOfJoin', TRUE);
+    $dateOfRequest = $this->input->post('txtDateOfRequest', TRUE);
+    $uid = htmlspecialchars($this->input->post('taken_by_uid', TRUE));
+    
+    $data = array();
+    $config = array();
+
+    $config['full_tag_open'] = '<ul class="pagination">';
+    $config['full_tag_close'] = '</ul>';
+    $config['num_tag_open'] = '<li>';
+    $config['num_tag_close'] = '</li>';
+    $config['cur_tag_open'] = '<li class="active"><span>';
+    $config['cur_tag_close'] = '<span class="sr-only">(current)</span></span></li>';
+    $config['prev_tag_open'] = '<li>';
+    $config['prev_tag_close'] = '</li>';
+    $config['next_tag_open'] = '<li>';
+    $config['next_tag_close'] = '</li>';
+    $config['first_link'] = '&laquo;';
+    $config['prev_link'] = '&lsaquo;';
+    $config['last_link'] = '&raquo;';
+    $config['next_link'] = '&rsaquo;';
+    $config['first_tag_open'] = '<li>';
+    $config['first_tag_close'] = '</li>';
+    $config['last_tag_open'] = '<li>';
+    $config['last_tag_close'] = '</li>';
+    $data['request_total'] =  $this->borrow_model->countRequestItems($employeeStatus, $employeeName, $company, $dateOfJoin, $dateOfRequest, $uid, 'filter');
+    $config["base_url"] = base_url() . "borrow/requestItems";
+    $config['total_rows'] = $data['request_total'];
+    $config['per_page'] = '10';
+    $config['uri_segment'] = '3';
+    $this->pagination->initialize($config);
+
+    $data["results"] = $this->borrow_model->fetchRequestItems($config["per_page"], $this->uri->segment(3));
+    $data['header'] = $this->load->view('header/head', '', TRUE);
+    $data['navigation'] = $this->load->view('header/navigation', $data, TRUE);
+    $data['listEmployeeStatuses'] = $this->borrow_model->get_employeeStatus_list();  
+    $data['listApprovals'] = $this->borrow_model->getApproval();  
     $data['content'] = $this->load->view('content/viewRequest', $data, TRUE);
     $data['footer'] = $this->load->view('footer/footer', '', TRUE);
     $this->load->view('main', $data);
@@ -673,15 +726,15 @@ class Borrow extends CI_Controller {
       if ($this->form_validation->run() != false) {
         $requestData['employeeStatus'] = htmlspecialchars($this->input->post('radioEmployeeStatus', true));
         if ($this->input->post('taken_by_uid') == "") {                    
-          $requestData['employeeName'] = ucwords(htmlspecialchars($this->input->post('txtemployeename', true)));
-          $requestData['company'] = ucwords(htmlspecialchars($this->input->post('textCompany', true)));
+          $requestData['employeeName'] = strtoupper(htmlspecialchars($this->input->post('txtemployeename', true)));
+          $requestData['company'] = strtoupper(htmlspecialchars($this->input->post('textCompany', true)));
           $requestData['department'] = $this->input->post('dropdownDepartment', true);
           $requestData['dateOfJoin'] = date("Y-m-d", strtotime(str_replace("/", "-", $this->input->post('txtDateOfJoin', TRUE))));
           $requestData['designation'] = $this->input->post('dropdownDesignation', true);        
           $requestData['DateOfRequest'] = date("Y-m-d", strtotime(str_replace("/", "-", $this->input->post('txtDateOfRequest', TRUE))));
         }else{
-          $requestData['uid'] = ucwords(htmlspecialchars($this->input->post('taken_by_uid', true)));
-          $requestData['company'] = ucwords(htmlspecialchars($this->input->post('textCompany', true)));
+          $requestData['uid'] = htmlspecialchars($this->input->post('taken_by_uid', true));
+          $requestData['company'] = strtoupper(htmlspecialchars($this->input->post('textCompany', true)));
           $requestData['DateOfRequest'] = date("Y-m-d", strtotime(str_replace("/", "-", $this->input->post('txtDateOfRequest', TRUE))));
         }
         $requestData['phone'] = htmlspecialchars($this->input->post('txtPhone', true));
@@ -846,15 +899,15 @@ class Borrow extends CI_Controller {
       {
         $requestData['employeeStatus'] = htmlspecialchars($this->input->post('radioEmployeeStatus', true));
         if ($this->input->post('taken_by_uid') == "") {
-          $requestData['employeeName'] = ucwords(htmlspecialchars($this->input->post('txtemployeename', true)));
-          $requestData['company'] = ucwords(htmlspecialchars($this->input->post('textCompany', true)));
+          $requestData['employeeName'] = strtoupper(htmlspecialchars($this->input->post('txtemployeename', true)));
+          $requestData['company'] = strtoupper(htmlspecialchars($this->input->post('textCompany', true)));
           $requestData['department'] = $this->input->post('dropdownDepartment', true);
           $requestData['dateOfJoin'] = date("Y-m-d", strtotime(str_replace("/", "-", $this->input->post('txtDateOfJoin', TRUE))));
           $requestData['designation'] = $this->input->post('dropdownDesignation', true);
           $requestData['DateOfRequest'] = date("Y-m-d", strtotime(str_replace("/", "-", $this->input->post('txtDateOfRequest', TRUE))));
         } else {
           $requestData['employeeName'] = NULL;
-          $requestData['uid'] = ucwords(htmlspecialchars($this->input->post('taken_by_uid', true)));
+          $requestData['uid'] = htmlspecialchars($this->input->post('taken_by_uid', true));
           $requestData['DateOfRequest'] = date("Y-m-d", strtotime(str_replace("/", "-", $this->input->post('txtDateOfRequest', TRUE))));
         }
         $requestData['phone'] = htmlspecialchars($this->input->post('txtPhone', true));

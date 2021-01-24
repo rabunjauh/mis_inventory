@@ -110,7 +110,7 @@
     </div>
   </div><!-- /.box-body -->
 </div><!-- /.box -->
-<form id="form" action="<?php echo base_url() ?>borrow/filter" method="post" enctype="multipart/form-data">
+<form id="form" action="<?php echo base_url() ?>borrow/requesItemsfilter" method="post" enctype="multipart/form-data">
   <div id="filterModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
@@ -121,58 +121,63 @@
           <h4 class="modal-title">Filter</h4>
         </div>
         <div class="modal-body">
+          <div class="form-group">
+            <label for="lblEmployeeStatus" class="control-label">Employee Status:</label>
+            <div class="">
+              <?php
+                foreach ($listEmployeeStatuses as $value) :
+              ?>
+
+                <label class="radio-inline"><?= form_radio('radioEmployeeStatus', $value->statusID) . $value->statusDesc ?></label>
+
+              <?php
+                endforeach
+              ?>
+            </div>
+          </div>
 
           <div class="form-group">
             <label for="lblemployee" class="control-label">Employee: </label>
             <div class="">
-              <input type="text" class="form-control" readonly="readonly" value="<?php echo (isset($user)) ? $user : '' ?>" name="txtemployeename" id="txtemployeename" required placeholder="Employee Name" />
+              <input type="text" class="form-control" readonly="readonly" value="<?php echo (isset($user)) ? $user : '' ?>" name="txtemployeename" id="txtemployeename" placeholder="Employee Name" />
               <input type="hidden" name="taken_by_uid" id="txtempid" value="<?php echo (isset($user_id)) ? $user_id : '' ?>" />
               <input type="button" class="choose" name="choose" style="width: 20px; height: 20px; display:inline-block;" onclick="open_popup('inventory/employee/');" title="Browse Employee" />
-              <button type="button" class="btn btn-xs btn-danger" name="button" onclick="clearEmployee()">Clear</button>
-            </div>
-          </div>
-
-
-
-          <div class="form-group">
-            <label for="lblEmployeeStatus" class="control-label">Employee Status:</label>
-            <div class="">
-              <select name="warehouse_id" id="warehouse_id" class="form-control">
-                <option value="all" <?php echo (isset($warehouse) && $warehouse == 'all') ? 'selected' : ''; ?>>All</option>
-                <?php foreach ($listEmployeeStatuses as $value) : ?>
-                  <option value="<?php echo $value->warehouse_id ?>" <?php echo (isset($warehouse) && $warehouse == $value->warehouse_id) ? 'selected' : ''; ?>><?php echo $value->warehouse_name ?></option>
-                <?php endforeach; ?>
-              </select>
+              <button type="button" class="btn btn-xs btn-danger" name="button" id="btnClear" onclick="clearEmployee()">Clear</button>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="borrow_status" class="control-label">Date:</label>
+            <label for="borrow_status" class="control-label newEmpStatus">Company:</label>
             <div class="">
-              <input id="borrow_date" name="borrow_date" data-date-format="yyyy-mm-dd" value="<?php echo (isset($borrow_date)) ? $borrow_date : '' ?>" class="form-control datepicker datepicker-date" placeholder="Borrow Date" type="text" />
+              <input type="text" class="form-control newEmpStatus" name="textCompany" id="textCompany" placeholder="Company Name">
             </div>
           </div>
 
           <div class="form-group">
-            <label for="project_uid" class="control-label">Project: </label>
+            <label for="borrow_status" class="control-label">Date Of Join:</label>
             <div class="">
-              <select name="project_uid" id="project_uid" class="form-control">
-                <option value="all" <?php echo (isset($project_filter) && $project_filter == 'all') ? 'selected' : '' ?>>All</option>
-                <?php foreach ($project as $value) : ?>
-                  <option value="<?php echo $value->project_uid ?>" <?php echo (isset($project_filter) && $project_filter == $value->project_uid) ? 'selected' : '' ?>><?php echo $value->project_name ?></option>
-                <?php endforeach; ?>
-              </select>
+              <input id="txtDateOfJoin" readonly data-date-format="yyyy-mm-dd" class="form-control datepicker" type="text" name="txtDateOfJoin" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="borrow_status" class="control-label">Date Of Request:</label>
+            <div class="">
+              <input id="txtDateOfRequest" readonly data-date-format="yyyy-mm-dd" class="form-control datepicker" type="text" name="txtDateOfRequest" />
             </div>
           </div>
 
           <div class="form-group">
             <label for="borrow_status" class="control-label">Status:</label>
             <div class="">
-              <select name="borrow_status" id="borrow_status" class="form-control">
-                <option value="all" <?php echo (isset($borrow_status) && $borrow_status == 'all') ? 'selected' : '' ?>>All</option>
-                <option value="0" <?php echo (isset($borrow_status) && $borrow_status == '0') ? 'selected' : '' ?>>Borrowed</option>
-                <option value="1" <?php echo (isset($borrow_status) && $borrow_status == '1') ? 'selected' : '' ?>>Returned</option>
-              </select>
+              <?php
+              $optionApproval = array();
+              $optionApproval[''] = 'All';
+              foreach ($listApprovals as $listApproval) {
+                $optionApproval[$listApproval->approvalID] = $listApproval->approvalDesc;
+              }
+              ?>
+              <?= form_dropdown('dropdownApproval', $optionApproval, '', 'id="dropdownApproval" class="form-control"') ?>
             </div>
           </div>
           <div class="form-group">
@@ -200,4 +205,36 @@
     $('#txtemployeename').val('');
     $('#txtempid').val('');
   }
+
+  $('.datepicker').datepicker({
+    format: "dd/mm/yyyy"
+  });
+
+  $(document).ready(function() {
+    function newEmployeeFormValidation() {
+      $('.choose').hide();
+      $('#btnClear').hide();
+      $('.newEmpStatus').show();
+      $('#txtemployeename').attr("readonly", false);
+    }
+
+    function existingEmployeeFormValidation() {
+      $('#txtemployeename').attr("readonly", true);
+      $('.choose').show();
+      $('#btnClear').show();
+      $('.newEmpStatus').hide().prop('required', false);
+      $('.employee').show();
+    }
+
+    $('#txtemployeename').attr("readonly", false);
+    $('.choose').hide();
+    $('#btnClear').hide();
+    $('input[type=radio][name=radioEmployeeStatus]').change(function() {
+      if (this.value == 1) {
+        newEmployeeFormValidation();
+      } else {
+        existingEmployeeFormValidation();
+      }
+    });
+  });
 </script>

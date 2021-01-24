@@ -96,9 +96,12 @@
 
           <?php
           foreach ($listEmployeeStatuses as $value) :
-            if (!empty($request->employeeStatus)) {
+            if (!empty($request->employeeStatus)) 
+            {
               ($request->employeeStatus == $value->statusID) ? $checked = TRUE : $checked = FALSE;
-            } else {
+            }
+            else
+            {
               ($value->statusID == 1) ? $checked = TRUE : $checked = FALSE;
             }
           ?>
