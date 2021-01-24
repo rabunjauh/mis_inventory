@@ -642,6 +642,7 @@ class Borrow extends CI_Controller {
     $data["results"] = $this->borrow_model->fetchRequestItems($config["per_page"], $this->uri->segment(3));
     $data['header'] = $this->load->view('header/head', '', TRUE);
     $data['navigation'] = $this->load->view('header/navigation', $data, TRUE);
+    $data['listEmployeeStatuses'] = $this->borrow_model->get_employeeStatus_list();  
     $data['content'] = $this->load->view('content/viewRequest', $data, TRUE);
     $data['footer'] = $this->load->view('footer/footer', '', TRUE);
     $this->load->view('main', $data);
