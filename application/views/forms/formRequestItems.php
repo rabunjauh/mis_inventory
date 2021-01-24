@@ -93,20 +93,20 @@
       <div class="form-group">
         <label for="lblEmployeeStatus" class="col-sm-2 hidden-xs control-label col-xs-offset-1 col-xs-2">Employee Status: *</label>
         <div class="col-sm-6 col-xs-12">
-        
+
           <?php
-            foreach ($listEmployeeStatuses as $value) :
-              if (!empty($request->employeeStatus)) {
-                ($request->employeeStatus == $value->statusID) ? $checked = TRUE : $checked = FALSE;
-              } else {
-                ($value->statusID == 1) ? $checked = TRUE : $checked = FALSE;
-              }
+          foreach ($listEmployeeStatuses as $value) :
+            if (!empty($request->employeeStatus)) {
+              ($request->employeeStatus == $value->statusID) ? $checked = TRUE : $checked = FALSE;
+            } else {
+              ($value->statusID == 1) ? $checked = TRUE : $checked = FALSE;
+            }
           ?>
 
-            <label class="radio-inline"><?= form_radio('radioEmployeeStatus', '$value->statusID', $checked) . $value->statusDesc ?></label>
-          
+            <label class="radio-inline"><?= form_radio('radioEmployeeStatus', $value->statusID, $checked) . $value->statusDesc ?></label>
+
           <?php
-            endforeach
+          endforeach
           ?>
 
         </div>
@@ -233,31 +233,34 @@
 
     reNumber('requestItems');
 
+    function newEmployeeFormValidation() {
+      $('.choose').hide();
+      $('.newEmpStatus').show();
+      $('#txtemployeename').attr("readonly", false);
+    }
+
+    function existingEmployeeFormValidation() {
+      $('#txtemployeename').attr("readonly", true);
+      $('.choose').show();
+      $('.newEmpStatus').hide().prop('required', false);
+      $('.employee').show();
+    }
+
     $('#txtemployeename').attr("readonly", false);
     $('.choose').hide();
     $('input[type=radio][name=radioEmployeeStatus]').change(function() {
       if (this.value == 1) {
-        $('.choose').hide();
-        $('.newEmpStatus').show();
-        $('#txtemployeename').attr("readonly", false);
+        newEmployeeFormValidation();
       } else {
-        $('#txtemployeename').attr("readonly", true);
-        $('.choose').show();
-        $('.newEmpStatus').hide().prop('required', false);
-        $('.employee').show();
+        existingEmployeeFormValidation();
       }
     });
 
     var radioValChecked = $('input[type=radio][name=radioEmployeeStatus]:checked').val();
     if (radioValChecked == 1) {
-      $('.choose').hide();
-      $('.newEmpStatus').show();
-      $('#txtemployeename').attr("readonly", false);
+      newEmployeeFormValidation();
     } else {
-      $('#txtemployeename').attr("readonly", true);
-      $('.choose').show();
-      $('.newEmpStatus').hide().prop('required', false);
-      $('.employee').show();
+      existingEmployeeFormValidation();
     }
 
     $('#dropdownDepartment').change(function() {
