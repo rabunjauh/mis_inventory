@@ -401,18 +401,6 @@ class Borrow_model extends CI_Model {
 
   public function countRequestItems($employeeStatus = FALSE, $employeeName = FALSE, $company = FALSE, $dateOfJoin = FALSE, $dateOfRequest = FALSE, $uid = FALSE, $filter = FALSE)
   {
-    var_dump($employeeStatus);
-    echo "</br>";
-    var_dump($employeeName);
-    echo "</br>";
-    var_dump($company);
-    echo "</br>";
-    var_dump($dateOfJoin);
-    echo "</br>";
-    var_dump($dateOfRequest);
-    echo "</br>";
-    var_dump($uid);
-    echo "</br>";
     if (!$filter)
     {
       $filter = "";
@@ -440,9 +428,6 @@ class Borrow_model extends CI_Model {
 
     $sql = "SELECT count(*) total FROM tblRequest $filter";
     $query = $this->db->query($sql);
-    var_dump($sql);
-    echo '</br>';
-    var_dump($query->row()->total);
     return $query->row()->total;
   }
 
