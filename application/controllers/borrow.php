@@ -274,6 +274,9 @@ class Borrow extends CI_Controller {
       redirect(base_url('borrow'));
     }
     $data['borrow_details'] = $this->borrow_model->get_borrow_details($id);
+    print_r("<pre>");
+    print_r($data['borrow_details']);
+    print_r("</pre>");
     $data['software'] = $this->borrow_model->get_software_details($id);
     $data['header'] = $this->load->view('header/head', '', TRUE);
     $data['navigation'] = $this->load->view('header/navigation', $data, TRUE);
@@ -338,6 +341,7 @@ class Borrow extends CI_Controller {
       $quantities = $this->input->post('quantities',true);
       $end_date = $this->input->post('end_date',true);
       $borrow_detail_id = $this->input->post('borrow_detail_id',true);
+      var_dump($borrow_detail_id);die;
       //update
       $i=0;
       $detailsCount = 0;
