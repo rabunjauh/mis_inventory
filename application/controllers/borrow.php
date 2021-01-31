@@ -274,9 +274,6 @@ class Borrow extends CI_Controller {
       redirect(base_url('borrow'));
     }
     $data['borrow_details'] = $this->borrow_model->get_borrow_details($id);
-    print_r("<pre>");
-    print_r($data['borrow_details']);
-    print_r("</pre>");
     $data['software'] = $this->borrow_model->get_software_details($id);
     $data['header'] = $this->load->view('header/head', '', TRUE);
     $data['navigation'] = $this->load->view('header/navigation', $data, TRUE);
@@ -341,6 +338,9 @@ class Borrow extends CI_Controller {
       $quantities = $this->input->post('quantities',true);
       $end_date = $this->input->post('end_date',true);
       $borrow_detail_id = $this->input->post('borrow_detail_id',true);
+      echo "<br>";
+      echo "borrow detail id:";
+      var_dump($borrow_detail_id);
       //update
       $i=0;
       $detailsCount = 0;
@@ -348,7 +348,13 @@ class Borrow extends CI_Controller {
       for ($i; $i < sizeof($borrow_detail_id); $i++) {
         if ($borrow_detail_id[$i]) {
           $borrowDetails = $this->borrow_model->get_borrow_details_byid($borrow_detail_id[$i]);
+          echo "<br>";
+          echo "borrow details:";
+          var_dump($borrowDetails);
           $inventory = $this->inventory_model->get_inventory_by_item($borrowDetails->item_id);
+          echo "<br>";
+          echo "inventory:";
+          var_dump($inventory);
           if ($inventory && $inventory->inventory_quantity >= $quantities[$i]) {
             $tmp['item_id'] = $item_id[$i];
             $tmp['quantities'] = $quantities[$i];
@@ -365,23 +371,29 @@ class Borrow extends CI_Controller {
         //delete
       }
 	  
-      $currentBorrowDetails = $this->borrow_model->getCurrentBorrowDetails($id);
-      foreach ($currentBorrowDetails as $currentBorrowDetail) {
-        $currentRows[] = $currentBorrowDetail->item_id;      
-      }
-
-      // update inventory 
-      $differentBorrowDetail = array_diff($currentRows, $item_id);
-
-      if ($differentBorrowDetail){
-        foreach ($differentBorrowDetail as $value){
-          $getBorrowDetailQuantity = $this->borrow_model->getBorrowDetailsQuantityByID($value, $id);
-          $getInventoryQuantity = $this->inventory_model->getInventoryQuantityByID(intval($value));
-          $updateQuantity = $getInventoryQuantity->inventory_quantity + $getBorrowDetailQuantity;
-          $this->inventory_model->updateInventoryModifyBorrow($value, $updateQuantity);
-        }
-      }
-
+      // $currentBorrowDetails = $this->borrow_model->getCurrentBorrowDetails($id);
+      // foreach ($currentBorrowDetails as $currentBorrowDetail) {
+      //   $currentRows[] = $currentBorrowDetail->item_id;      
+      // }
+      // echo "<br>";
+      // echo "current row borrow detail item_id:";
+      // var_dump($currentRows);
+      // // update inventory 
+      // $differentBorrowDetail = array_diff($currentRows, $item_id);
+      // echo "<br>";
+      // echo "different";
+      // var_dump($differentBorrowDetail);
+      // if ($differentBorrowDetail){
+      //   foreach ($differentBorrowDetail as $value){
+      //     $getBorrowDetailQuantity = $this->borrow_model->getBorrowDetailsQuantityByID($value, $id);
+      //     $getInventoryQuantity = $this->inventory_model->getInventoryQuantityByID(intval($value));
+      //     $updateQuantity = $getInventoryQuantity->inventory_quantity + $getBorrowDetailQuantity;
+      //     $this->inventory_model->updateInventoryModifyBorrow($value, $updateQuantity);
+      //   }
+      // }
+      // echo "<br>";
+      // echo "tmp:";
+      var_dump($tmpID);die;
       $deleteDetails = $this->borrow_model->removeBorrowDetails($tmpID,$id);
       $i = $detailsCount;
       //add

@@ -372,22 +372,25 @@ class Borrow_model extends CI_Model {
     $count = sizeof($arrId);
     $i = 1;
 	
-	if(count($arrId) > 0){
-	
-		$sql = "DELETE FROM item_borrow_detail WHERE borrow_id = '$borrowId' AND borrow_detail_id NOT IN ('";
-		foreach ($arrId as $value) {
-		  if ($count == $i) {
-			$sql .= $value."')";
-		  }else {
-			$sql .= $value."','";
-		  }
-		  $i++;
-		}
-		$query = $this->db->query($sql);
-		return $query;
-	}else{
-		return 1;
-	}
+    if(count($arrId) > 0)
+    {    
+      $sql = "DELETE FROM item_borrow_detail WHERE borrow_id = '$borrowId' AND borrow_detail_id NOT IN ('";
+      foreach ($arrId as $value) 
+      {
+        if ($count == $i) {
+        $sql .= $value."')";
+        }else {
+        $sql .= $value."','";
+        }
+        $i++;
+      }
+      $query = $this->db->query($sql);
+      return $query;
+    }
+    else
+    {
+      return 1;
+    }
   }
 
   public function getCurrentBorrowDetails($id){
