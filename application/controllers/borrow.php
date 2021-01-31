@@ -274,6 +274,9 @@ class Borrow extends CI_Controller {
       redirect(base_url('borrow'));
     }
     $data['borrow_details'] = $this->borrow_model->get_borrow_details($id);
+    print_r("<pre>");
+    print_r($data['borrow_details']);
+    print_r("</pre>");
     $data['software'] = $this->borrow_model->get_software_details($id);
     $data['header'] = $this->load->view('header/head', '', TRUE);
     $data['navigation'] = $this->load->view('header/navigation', $data, TRUE);
@@ -362,8 +365,23 @@ class Borrow extends CI_Controller {
         //delete
       }
 	  
-	  
-	  
+      $currentBorrowDetails = $this->borrow_model->getCurrentBorrowDetails($id);
+      foreach ($currentBorrowDetails as $currentBorrowDetail) {
+        $currentRows[] = $currentBorrowDetail->item_id;      
+      }
+
+      // update inventory 
+      $differentBorrowDetail = array_diff($currentRows, $item_id);
+
+      if ($differentBorrowDetail){
+        foreach ($differentBorrowDetail as $value){
+          $getBorrowDetailQuantity = $this->borrow_model->getBorrowDetailsQuantityByID($value, $id);
+          $getInventoryQuantity = $this->inventory_model->getInventoryQuantityByID(intval($value));
+          $updateQuantity = $getInventoryQuantity->inventory_quantity + $getBorrowDetailQuantity;
+          $this->inventory_model->updateInventoryModifyBorrow($value, $updateQuantity);
+        }
+      }
+
       $deleteDetails = $this->borrow_model->removeBorrowDetails($tmpID,$id);
       $i = $detailsCount;
       //add
