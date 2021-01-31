@@ -390,6 +390,16 @@ class Borrow_model extends CI_Model {
 	}
   }
 
+  public function getCurrentBorrowDetails($id){
+    $result = $this->db->get_where('item_borrow_detail', ['borrow_id' => $id])->result();
+    return $result;
+  }
+
+  public function getBorrowDetailsQuantityByID($item_id, $borrow_id){
+    $result = $this->db->get_where('item_borrow_detail', ['item_id' => $item_id, 'borrow_id' => $borrow_id])->row();
+    return $result;
+  }
+
   public function get_user_by_fingerid($id)
   {
     $this->db->select('*')

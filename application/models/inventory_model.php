@@ -652,7 +652,13 @@ class Inventory_model extends CI_Model {
         ->where('item_id =', $item_id);
         $result = $this->db->get()->row();
         return $result;
-    }
+		}
+
+	public function getInventoryQuantityByID($item_id)
+	{
+		$result = $this->db->get_where('inventory', ['item_id' => $item_id])->row();
+		return $result;
+	}
 
     public function update_inventory($data,$item_id)
     {
@@ -686,7 +692,23 @@ class Inventory_model extends CI_Model {
             ORDER BY it.item_name ASC");
             $count = $query->num_rows();
             return $count;
-        }
-
-
     }
+
+    public function updateInventoryModifyBorrow($item_id, $quantity){
+			echo "model item_id:";
+			var_dump($item_id);
+			$intItemID = intval($item_id);
+			echo "<br>";
+			echo "model quantity:";
+			var_dump($quantity);
+			
+			// $data = array(
+			// 					'inventory_quantity' => $quantity
+			// );
+			// $this->db->where('item_id', $item_id);
+			// $this->db->update('inventory', $data);
+			$sql = "update inventory set inventory_quantity = $quantity where item_id = $item_id";
+			$query = $this->db->query($sql); 
+    }
+
+}

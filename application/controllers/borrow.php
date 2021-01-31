@@ -341,7 +341,6 @@ class Borrow extends CI_Controller {
       $quantities = $this->input->post('quantities',true);
       $end_date = $this->input->post('end_date',true);
       $borrow_detail_id = $this->input->post('borrow_detail_id',true);
-      var_dump($borrow_detail_id);die;
       //update
       $i=0;
       $detailsCount = 0;
@@ -366,8 +365,23 @@ class Borrow extends CI_Controller {
         //delete
       }
 	  
-	  
-	  
+      $currentBorrowDetails = $this->borrow_model->getCurrentBorrowDetails($id);
+      foreach ($currentBorrowDetails as $currentBorrowDetail) {
+        $currentRows[] = $currentBorrowDetail->item_id;      
+      }
+
+      // update inventory 
+      $differentBorrowDetail = array_diff($currentRows, $item_id);
+
+      if ($differentBorrowDetail){
+        foreach ($differentBorrowDetail as $value){
+          $getBorrowDetailQuantity = $this->borrow_model->getBorrowDetailsQuantityByID($value, $id);
+          $getInventoryQuantity = $this->inventory_model->getInventoryQuantityByID(intval($value));
+          $updateQuantity = $getInventoryQuantity->inventory_quantity + $getBorrowDetailQuantity;
+          $this->inventory_model->updateInventoryModifyBorrow($value, $updateQuantity);
+        }
+      }
+
       $deleteDetails = $this->borrow_model->removeBorrowDetails($tmpID,$id);
       $i = $detailsCount;
       //add
