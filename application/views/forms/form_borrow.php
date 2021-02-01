@@ -141,7 +141,7 @@ function open_popup(url,value) {
                 <td> <input type="text" name="end_date[]" class="form-control datepicker"  placeholder="Return Date" data-date-format="yyyy-mm-dd"> </td>
                 <td>
                   <button type="button" class="btn btn-danger" onclick="deleteClone(this,'itemsTable')"> Delete </button>
-                  <input type="hidden" name="borrow_detail_id[]" value="<?php echo $valueDetails->borrow_detail_id ?>">
+                  <input type="hidden" name="borrow_detail_id[]" value="">
                 </td>
               </tr>
           <?php endif; ?>
@@ -229,6 +229,25 @@ function get_arr_obj() {
     })
 }
 
+// function deleteClone(e,table) {
+// 	var allTr = $("#"+table).find('.tr_clone');
+//     var $tr = $(e).closest(".tr_clone");
+//     var value_code = $tr.find('.item_code').val();
+//     if (arrObj[value_code]) {
+//         arrObj.splice(value_code,1)
+//     }
+// 	if (allTr.length > 1) {
+// 		var $remove = $tr.remove();
+// 		reNumber(table);
+// 	}else {
+//         check_master = $("#"+table).find('.master_clone');
+//         if (check_master.length == 1) {
+//             check_master.find(':input').val('');
+//             check_master.hide();
+//         }
+//     }
+// }
+
 function deleteClone(e,table) {
 	var allTr = $("#"+table).find('.tr_clone');
     var $tr = $(e).closest(".tr_clone");
@@ -236,16 +255,16 @@ function deleteClone(e,table) {
     if (arrObj[value_code]) {
         arrObj.splice(value_code,1)
     }
-	if (allTr.length > 1) {
+	// if (allTr.length > 1) {
 		var $remove = $tr.remove();
 		reNumber(table);
-	}else {
-        check_master = $("#"+table).find('.master_clone');
-        if (check_master.length == 1) {
-            check_master.find(':input').val('');
-            check_master.hide();
-        }
-    }
+	// }else {
+  //       check_master = $("#"+table).find('.master_clone');
+  //       if (check_master.length == 1) {
+  //           check_master.find(':input').val('');
+  //           check_master.hide();
+  //       }
+  //   }
 }
 
 function reNumber(table) {
