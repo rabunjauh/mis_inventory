@@ -393,12 +393,18 @@ class Borrow_model extends CI_Model {
     }
   }
 
-  public function deleteAllBorrowDetail($borrow_id)
+  public function deleteAllBorrowDetail($item_id, $borrow_id)
   {
-    $this->db->where('borrow_id', $borrow_id);
+    // var_dump($borrow_id);die;
+    $whereClause =  [
+                      'item_id' => $item_id,
+                      'borrow_id' => $borrow_id
+    ];
+    $this->db->where($whereClause);
     $this->db->delete('item_borrow_detail');
     if ($this->db->affected_rows() > 0)
     {
+      echo "berhasil delete";
       return TRUE;
     }
   }
