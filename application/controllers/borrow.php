@@ -411,47 +411,6 @@ class Borrow extends CI_Controller {
             $dataItem['inventory_quantity'] = $inventory->inventory_quantity -  $quantities[$i];
             $this->inventory_model->update_inventory($dataItem,$item_id[$i]);
           }
-<<<<<<< HEAD
-          $tmpID[$detailsCount] = $borrow_detail_id[$i];
-          $detailsCount++;
-        }
-        //delete
-      }
-       // update inventory quantity
-      $currentBorrowDetails = $this->borrow_model->getCurrentBorrowDetails($id);
-      foreach ($currentBorrowDetails as $currentBorrowDetail) {
-        $currentRows[] = $currentBorrowDetail->item_id;      
-      }
-
-      $differentBorrowDetail = array_diff($currentRows, $item_id);
-
-      if ($differentBorrowDetail){
-        foreach ($differentBorrowDetail as $value){
-          $getBorrowDetailQuantity = $this->borrow_model->getBorrowDetailsQuantityByID($value, $id);
-          $getInventoryQuantity = $this->inventory_model->getInventoryQuantityByID(intval($value));
-          $updateQuantity = $getInventoryQuantity->inventory_quantity + $getBorrowDetailQuantity;
-          $this->inventory_model->updateInventoryModifyBorrow($value, $updateQuantity);
-        }
-      }
-
-      $deleteDetails = $this->borrow_model->removeBorrowDetails($tmpID,$id);
-      $i = $detailsCount;
-      //add
-      for ($i; $i < sizeof($item_id); $i++) {
-        $inventory = $this->inventory_model->get_inventory_by_item($item_id[$i]);
-		//echo "inventory_quantity:".$inventory->inventory_quantity."<br>";
-		//echo "quantities:".$quantities[$i]."<br>";
-		//echo "item_id:".$item_id[$i]."<br>";
-        if ($inventory && $inventory->inventory_quantity >= $quantities[$i]) {
-          $tmp['item_id'] = $item_id[$i];
-          $tmp['quantities'] = $quantities[$i];
-          $tmp['end_date'] = $end_date[$i];
-          $tmp['borrow_id'] = $id;
-          $this->borrow_model->save_details($tmp);
-          $dataItem = array();
-          $dataItem['inventory_quantity'] = $inventory->inventory_quantity -  $quantities[$i];
-          $this->inventory_model->update_inventory($dataItem,$item_id[$i]);
-=======
         }      
       }
       else
@@ -462,7 +421,6 @@ class Borrow extends CI_Controller {
           $updateQuantity = $getInventoryQuantity->inventory_quantity + $getBorrowDetailQuantity->quantities;
           $this->inventory_model->updateInventoryModifyBorrow($currentRow, $updateQuantity);
           $this->borrow_model->deleteAllBorrowDetail($currentRow, $id);
->>>>>>> inventoryQuantityBugFix
         }
       }
       
