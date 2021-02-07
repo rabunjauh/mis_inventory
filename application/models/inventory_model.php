@@ -44,8 +44,23 @@ class Inventory_model extends CI_Model {
     //consumable
     public function record_count_inventory($type)
     {
-        $sql = "SELECT count(*) total FROM inventory
-        INNER JOIN items ON items.item_id = inventory.item_id";
+        // $sql = "SELECT count(*) total FROM inventory
+        // INNER JOIN items ON items.item_id = inventory.item_id";
+        
+        $sql = "SELECT count(*) total 
+        FROM (`items`) 
+        LEFT JOIN `inventory` ON `inventory`.`item_id` = `items`.`item_id` 
+        LEFT JOIN `tbl_measurement` ON `tbl_measurement`.`measurement_id` = `items`.`measurement_id` 
+        LEFT JOIN `category` ON `items`.`cat_id` = `category`.`cat_id` 
+        LEFT JOIN `machine_type` ON `items`.`machine_type` = `machine_type`.`machine_type_id` 
+        LEFT JOIN `manufacture` ON `items`.`manufacture` = `manufacture`.`manufacture_id` 
+        LEFT JOIN `model` ON `items`.`model` = `model`.`model_id` 
+        LEFT JOIN `operating_system` ON `items`.`operating_system` = `operating_system`.`operating_system_id` 
+        LEFT JOIN `processor` ON `items`.`processor` = `processor`.`processor_id` 
+        LEFT JOIN `memory` ON `items`.`memory` = `memory`.`memory_id` 
+        LEFT JOIN `hard_disk` ON `items`.`hdd` = `hard_disk`.`hard_disk_id` 
+        LEFT JOIN `vga` ON `items`.`vga` = `vga`.`vga_id`";
+        
         if ($type == "consumable") {
             $sql .= " WHERE items.item_material_status = 0";
         }elseif ($type == "stock" || $type == 'all') {
@@ -53,6 +68,7 @@ class Inventory_model extends CI_Model {
         }elseif ($type == "accessories") {
             $sql .= " WHERE items.accessories = 1";
         }
+
         $query = $this->db->query($sql);
         return $query->row()->total;
     }
@@ -98,50 +114,50 @@ class Inventory_model extends CI_Model {
 
     public function fetch_data_inventory($limit, $offset, $type)
     {
-
         if ($type == 'inventory') {
-            $this->db->select('*')
-            ->join('inventory', 'inventory.item_id = items.item_id', 'left')
-            ->join('tbl_measurement', 'tbl_measurement.measurement_id = items.measurement_id', 'left')
-            ->join('category', 'items.cat_id = category.cat_id', 'left')
-            ->join('machine_type', 'items.machine_type = machine_type.machine_type_id', 'left')
-            ->join('manufacture', 'items.manufacture = manufacture.manufacture_id', 'left')
-            ->join('model', 'items.model = model.model_id', 'left')
-            ->join('operating_system', 'items.operating_system = operating_system.operating_system_id', 'left')
-            ->join('processor', 'items.processor = processor.processor_id', 'left')
-            ->join('memory', 'items.memory = memory.memory_id', 'left')
-            ->join('hard_disk', 'items.hdd = hard_disk.hard_disk_id', 'left')
-            ->join('vga', 'items.vga = vga.vga_id', 'left');
+            $this->db->select('it.item_id, it.item_code, it.item_name, it.service_tag, it.express_service, ma.manufacture_desc, inv.inventory_quantity, inv.alert_qtt, mt.machine_type_desc, mo.model_desc, os.operating_system_desc, p.processor_type, me.memory_size, hd.hard_disk_size, it.computer_name')
+            ->join('inventory inv', 'inv.item_id = it.item_id', 'left')
+            ->join('tbl_measurement tm', 'tm.measurement_id = it.measurement_id', 'left')
+            ->join('category c', 'it.cat_id = c.cat_id', 'left')
+            ->join('machine_type mt', 'it.machine_type = mt.machine_type_id', 'left')
+            ->join('manufacture ma', 'it.manufacture = ma.manufacture_id', 'left')
+            ->join('model mo', 'it.model = mo.model_id', 'left')
+            ->join('operating_system os', 'it.operating_system = os.operating_system_id', 'left')
+            ->join('processor p', 'it.processor = p.processor_id', 'left')
+            ->join('memory me', 'it.memory = me.memory_id', 'left')
+            ->join('hard_disk hd', 'it.hdd = hd.hard_disk_id', 'left')
+            ->join('vga v', 'it.vga = v.vga_id', 'left');
         }else{
-            $this->db->select('*')
-            ->join('items', 'inventory.item_id = items.item_id', 'left')
-            ->join('tbl_measurement', 'tbl_measurement.measurement_id = items.measurement_id', 'left')
-            ->join('category', 'items.cat_id = category.cat_id', 'left')
-            ->join('machine_type', 'items.machine_type = machine_type.machine_type_id', 'left')
-            ->join('manufacture', 'items.manufacture = manufacture.manufacture_id', 'left')
-            ->join('model', 'items.model = model.model_id', 'left')
-            ->join('operating_system', 'items.operating_system = operating_system.operating_system_id', 'left')
-            ->join('processor', 'items.processor = processor.processor_id', 'left')
-            ->join('memory', 'items.memory = memory.memory_id', 'left')
-            ->join('hard_disk', 'items.hdd = hard_disk.hard_disk_id', 'left')
-            ->join('vga', 'items.vga = vga.vga_id', 'left');
+            $this->db->select('it.item_id, it.item_code, it.item_name, it.service_tag, it.express_service, ma.manufacture_desc, inv.inventory_quantity, inv.alert_qtt, mt.machine_type_desc, mo.model_desc, os.operating_system_desc, p.processor_type, me.memory_size, hd.hard_disk_size, it.computer_name')
+            ->join('items it', 'inv.item_id = it.item_id', 'left')
+            ->join('tbl_measurement', 'tbl_measurement.measurement_id = it.measurement_id', 'left')
+            ->join('category c', 'it.cat_id = c.cat_id', 'left')
+            ->join('machine_type mt', 'it.machine_type = mt.machine_type_id', 'left')
+            ->join('manufacture ma', 'it.manufacture = ma.manufacture_id', 'left')
+            ->join('model mo', 'it.model = mo.model_id', 'left')
+            ->join('operating_system os', 'it.operating_system = os.operating_system_id', 'left')
+            ->join('processor p', 'it.processor = p.processor_id', 'left')
+            ->join('memory me', 'it.memory = me.memory_id', 'left')
+            ->join('hard_disk hd', 'it.hdd = hd.hard_disk_id', 'left')
+            ->join('vga v', 'it.vga = v.vga_id', 'left');
         }
 
         if ($type == 'consumable') {
-            $this->db->where('items.item_material_status =', 0);
+            $this->db->where('it.item_material_status =', 0);
         }elseif ($type == "stock" || $type == 'all') {
-            $this->db->where('items.item_material_status =', 1);
-            $this->db->where('items.accessories =', 0);
+            $this->db->where('it.item_material_status =', 1);
+            $this->db->where('it.accessories =', 0);
         }elseif ($type == "accessories") {
-            $this->db->where('items.accessories =', 1);
+            $this->db->where('it.accessories =', 1);
         }
         $this->db->order_by("inventory_update", "desc");
         $this->db->limit($limit, $offset);
         if ($type == 'inventory') {
-            $query = $this->db->get('items');
+            $query = $this->db->get('items it');
         }else{
-            $query = $this->db->get('inventory');
+            $query = $this->db->get('inventory inv');
         }
+
         if ($query->num_rows() > 0) {
             foreach ($query->result() as $row) {
                 $data[] = $row;
@@ -150,7 +166,7 @@ class Inventory_model extends CI_Model {
         }
         return false;
     }
-    //
+    
 
     //search
 
@@ -186,7 +202,7 @@ class Inventory_model extends CI_Model {
     public function fetch_data_inventory_search($limit, $offset, $type,$txtsearchby,$txtsearch)
     {
         if ($type == 'inventory') {
-            $this->db->select('items.*,tbl_measurement.*,category.*')
+            $this->db->select('items.*,tbl_measurement.*,category.*, inventory.*')
             ->join('inventory', 'inventory.item_id = items.item_id', 'left')
             ->join('tbl_measurement', 'tbl_measurement.measurement_id = items.measurement_id', 'left')
             ->join('category', 'items.cat_id = category.cat_id', 'left');
@@ -434,6 +450,7 @@ class Inventory_model extends CI_Model {
         $info['date'] = date('Y-m-d');
         $this->db->insert('invoice_purchase', $info);
         $item_in_id = $this->db->insert_id();
+        
 
         foreach ($items as $key => $item) { 
 			$i = 0;

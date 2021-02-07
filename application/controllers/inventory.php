@@ -477,6 +477,7 @@ class Inventory extends CI_Controller {
         $data['total_rows'] = $total_row;
         $data["category"] = $this->item_model->get_categories();
         $data["results"] = $this->inventory_model->fetch_data_inventory($config["per_page"], $page,$type);
+        // var_dump($data["results"]);die;
         $str_links = $this->pagination->create_links();
         $data["links"] = explode('&nbsp;',$str_links );
         $data["category"] = $this->item_model->get_categories();

@@ -217,8 +217,8 @@
 							<td align="center"><?php echo $item->inventory_quantity;?></td>
 							<td align="center"><?php echo $item->service_tag;?></td>
 							<td align="center"><?php echo $item->express_service;?></td>
-							<td align="center"><?php echo $item->machine_type;?></td>
-							<td align="center"><?php echo $item->model;?></td>
+							<td align="center"><?php echo $item->machine_type_desc;?></td>
+							<td align="center"><?php echo $item->model_desc;?></td>
 						</tr>
 						<?php $a++; } ?>
 
