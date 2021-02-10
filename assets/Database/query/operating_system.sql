@@ -1,0 +1,1 @@
+SELECT * FROM operating_system
