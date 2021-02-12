@@ -44,22 +44,8 @@ class Inventory_model extends CI_Model {
     //consumable
     public function record_count_inventory($type)
     {
-        // $sql = "SELECT count(*) total FROM inventory
-        // INNER JOIN items ON items.item_id = inventory.item_id";
-        
-        $sql = "SELECT count(*) total 
-        FROM (`items`) 
-        LEFT JOIN `inventory` ON `inventory`.`item_id` = `items`.`item_id` 
-        LEFT JOIN `tbl_measurement` ON `tbl_measurement`.`measurement_id` = `items`.`measurement_id` 
-        LEFT JOIN `category` ON `items`.`cat_id` = `category`.`cat_id` 
-        LEFT JOIN `machine_type` ON `items`.`machine_type` = `machine_type`.`machine_type_id` 
-        LEFT JOIN `manufacture` ON `items`.`manufacture` = `manufacture`.`manufacture_id` 
-        LEFT JOIN `model` ON `items`.`model` = `model`.`model_id` 
-        LEFT JOIN `operating_system` ON `items`.`operating_system` = `operating_system`.`operating_system_id` 
-        LEFT JOIN `processor` ON `items`.`processor` = `processor`.`processor_id` 
-        LEFT JOIN `memory` ON `items`.`memory` = `memory`.`memory_id` 
-        LEFT JOIN `hard_disk` ON `items`.`hdd` = `hard_disk`.`hard_disk_id` 
-        LEFT JOIN `vga` ON `items`.`vga` = `vga`.`vga_id`";
+        $sql = "SELECT count(*) total FROM inventory
+        INNER JOIN items ON items.item_id = inventory.item_id";
         
         if ($type == "consumable") {
             $sql .= " WHERE items.item_material_status = 0";
@@ -115,8 +101,23 @@ class Inventory_model extends CI_Model {
     public function fetch_data_inventory($limit, $offset, $type)
     {
         if ($type == 'inventory') {
-            $this->db->select('it.item_id, it.item_code, it.item_name, it.service_tag, it.express_service, ma.manufacture_desc, inv.inventory_quantity, inv.alert_qtt, mt.machine_type_desc, mo.model_desc, os.operating_system_desc, p.processor_type, me.memory_size, hd.hard_disk_size, it.computer_name')
-            ->join('inventory inv', 'inv.item_id = it.item_id', 'left')
+            $this->db->select('
+                it.item_id, 
+                it.item_code, 
+                it.item_name, 
+                it.service_tag, 
+                it.express_service, 
+                ma.manufacture_desc, 
+                inv.inventory_quantity, 
+                inv.alert_qtt, 
+                mt.machine_type_desc, 
+                mo.model_desc, 
+                os.operating_system_desc, 
+                p.processor_type, 
+                me.memory_size, 
+                hd.hard_disk_size, 
+                it.computer_name
+            ')
             ->join('tbl_measurement tm', 'tm.measurement_id = it.measurement_id', 'left')
             ->join('category c', 'it.cat_id = c.cat_id', 'left')
             ->join('machine_type mt', 'it.machine_type = mt.machine_type_id', 'left')
@@ -126,10 +127,27 @@ class Inventory_model extends CI_Model {
             ->join('processor p', 'it.processor = p.processor_id', 'left')
             ->join('memory me', 'it.memory = me.memory_id', 'left')
             ->join('hard_disk hd', 'it.hdd = hd.hard_disk_id', 'left')
-            ->join('vga v', 'it.vga = v.vga_id', 'left');
+            ->join('vga v', 'it.vga = v.vga_id', 'left')
+            ->join('inventory inv', 'inv.item_id = it.item_id');
         }else{
-            $this->db->select('it.item_id, it.item_code, it.item_name, it.service_tag, it.express_service, ma.manufacture_desc, inv.inventory_quantity, inv.alert_qtt, mt.machine_type_desc, mo.model_desc, os.operating_system_desc, p.processor_type, me.memory_size, hd.hard_disk_size, it.computer_name')
-            ->join('items it', 'inv.item_id = it.item_id', 'left')
+            $this->db->select('
+                it.item_id, 
+                it.item_code, 
+                it.item_name, 
+                it.service_tag, 
+                it.express_service, 
+                ma.manufacture_desc, 
+                inv.inventory_quantity, 
+                inv.alert_qtt, 
+                mt.machine_type_desc, 
+                mo.model_desc, 
+                os.operating_system_desc, 
+                p.processor_type, 
+                me.memory_size, 
+                hd.hard_disk_size, 
+                it.computer_name
+            ')
+            ->join('items it', 'inv.item_id = it.item_id')
             ->join('tbl_measurement', 'tbl_measurement.measurement_id = it.measurement_id', 'left')
             ->join('category c', 'it.cat_id = c.cat_id', 'left')
             ->join('machine_type mt', 'it.machine_type = mt.machine_type_id', 'left')
@@ -202,15 +220,63 @@ class Inventory_model extends CI_Model {
     public function fetch_data_inventory_search($limit, $offset, $type,$txtsearchby,$txtsearch)
     {
         if ($type == 'inventory') {
-            $this->db->select('items.*,tbl_measurement.*,category.*, inventory.*')
-            ->join('inventory', 'inventory.item_id = items.item_id', 'left')
-            ->join('tbl_measurement', 'tbl_measurement.measurement_id = items.measurement_id', 'left')
-            ->join('category', 'items.cat_id = category.cat_id', 'left');
+            $this->db->select('
+                it.item_id, 
+                it.item_code, 
+                it.item_name, 
+                it.service_tag, 
+                it.express_service, 
+                ma.manufacture_desc, 
+                inv.inventory_quantity, 
+                inv.alert_qtt, 
+                mt.machine_type_desc, 
+                mo.model_desc, 
+                os.operating_system_desc, 
+                p.processor_type, 
+                me.memory_size, 
+                hd.hard_disk_size, 
+                it.computer_name
+            ')
+            ->join('tbl_measurement tm', 'tm.measurement_id = it.measurement_id', 'left')
+            ->join('category c', 'it.cat_id = c.cat_id', 'left')
+            ->join('machine_type mt', 'it.machine_type = mt.machine_type_id', 'left')
+            ->join('manufacture ma', 'it.manufacture = ma.manufacture_id', 'left')
+            ->join('model mo', 'it.model = mo.model_id', 'left')
+            ->join('operating_system os', 'it.operating_system = os.operating_system_id', 'left')
+            ->join('processor p', 'it.processor = p.processor_id', 'left')
+            ->join('memory me', 'it.memory = me.memory_id', 'left')
+            ->join('hard_disk hd', 'it.hdd = hd.hard_disk_id', 'left')
+            ->join('vga v', 'it.vga = v.vga_id', 'left')
+            ->join('inventory inv', 'inv.item_id = it.item_id');
         }else{
-            $this->db->select('*')
-            ->join('items', 'inventory.item_id = items.item_id', 'left')
-            ->join('tbl_measurement', 'tbl_measurement.measurement_id = items.measurement_id', 'left')
-            ->join('category', 'items.cat_id = category.cat_id', 'left');
+            $this->db->select('
+                it.item_id, 
+                it.item_code, 
+                it.item_name, 
+                it.service_tag, 
+                it.express_service, 
+                ma.manufacture_desc, 
+                inv.inventory_quantity, 
+                inv.alert_qtt, 
+                mt.machine_type_desc, 
+                mo.model_desc, 
+                os.operating_system_desc, 
+                p.processor_type, 
+                me.memory_size, 
+                hd.hard_disk_size, 
+                it.computer_name
+            ')
+            ->join('items it', 'inv.item_id = it.item_id')
+            ->join('tbl_measurement', 'tbl_measurement.measurement_id = it.measurement_id', 'left')
+            ->join('category c', 'it.cat_id = c.cat_id', 'left')
+            ->join('machine_type mt', 'it.machine_type = mt.machine_type_id', 'left')
+            ->join('manufacture ma', 'it.manufacture = ma.manufacture_id', 'left')
+            ->join('model mo', 'it.model = mo.model_id', 'left')
+            ->join('operating_system os', 'it.operating_system = os.operating_system_id', 'left')
+            ->join('processor p', 'it.processor = p.processor_id', 'left')
+            ->join('memory me', 'it.memory = me.memory_id', 'left')
+            ->join('hard_disk hd', 'it.hdd = hd.hard_disk_id', 'left')
+            ->join('vga v', 'it.vga = v.vga_id', 'left');
         }
 
 
@@ -275,15 +341,38 @@ class Inventory_model extends CI_Model {
     public function fetch_data_inventory_filter($limit, $offset, $filter,$material)
     {
         $opt = $this->get_query($filter);
-        $sql = "SELECT * FROM inventory
-        left JOIN items ON items.item_id = inventory.item_id
-        left JOIN tbl_measurement ON items.measurement_id = tbl_measurement.measurement_id
-        left JOIN category ON items.cat_id = category.cat_id
-        WHERE items.item_material_status = '$material'";
+        $sql = "SELECT 
+                    it.item_code, 
+                    it.item_name, 
+                    it.service_tag,
+                    it.express_service,
+                    it.computer_name,
+                    mt.machine_type_desc, 
+                    ma.manufacture_desc,
+                    mo.model_desc, 
+                    os.operating_system_desc,
+                    p.processor_type,
+                    me.memory_size, 
+                    hd.hard_disk_size, 
+                    it.item_id AS item_item_id,
+                    inv.item_id AS inventory_item_id,
+                    inv.inventory_quantity, 
+                    inv.alert_qtt 
+        FROM inventory inv
+        JOIN items it ON it.item_id = inv.item_id 
+        LEFT JOIN machine_type mt ON it.machine_type = mt.machine_type_id
+        LEFT JOIN manufacture ma ON it.manufacture = ma.manufacture_id
+        LEFT JOIN model mo ON it.model = mo.model_id
+        LEFT JOIN operating_system os ON it.operating_system = os.operating_system_id
+        LEFT JOIN processor p ON it.processor = p.processor_id
+        LEFT JOIN memory me ON it.memory = me.memory_id
+        LEFT JOIN hard_disk hd ON it.hdd = hd.hard_disk_id
+        
+        WHERE it.item_material_status = '$material'";
         if ($opt != '') {
             $sql .= " AND ".$opt;
         }
-        $sql .= " ORDER BY inventory.inventory_update DESC";
+        $sql .= " ORDER BY inv.inventory_update DESC";
         if(!$offset){
             $sql .= " LIMIT $limit";
         }else{
