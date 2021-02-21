@@ -120,7 +120,6 @@ class Borrow extends CI_Controller {
       $dataBorrow['warehouse_id'] =  $this->input->post('warehouse_id', TRUE);
       $dataBorrow['taken_by_uid'] =  $this->input->post('taken_by_uid', TRUE);
       $dataBorrow['project_uid'] =  $this->input->post('project_uid', TRUE);
-      $dataBorrow['project_uid'] =  $this->input->post('project_uid', TRUE);
       $dataBorrow['note'] =  $this->input->post('note', TRUE);
       $dataBorrow['borrow_status'] =  0;
       $dataBorrow['created_date'] =  date('Y-m-d');

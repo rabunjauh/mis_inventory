@@ -44,15 +44,17 @@ class Inventory_model extends CI_Model {
     //consumable
     public function record_count_inventory($type)
     {
-        $sql = "SELECT count(*) total FROM inventory
-        INNER JOIN items ON items.item_id = inventory.item_id";
+        $sql = "SELECT count(*) total FROM inventory inv
+        INNER JOIN items it ON it.item_id = inv.item_id";
         
         if ($type == "consumable") {
-            $sql .= " WHERE items.item_material_status = 0";
+            $sql .= " WHERE it.item_material_status = 0";
         }elseif ($type == "stock" || $type == 'all') {
-            $sql .= " WHERE items.item_material_status = 1 AND items.accessories = 0";
+            $sql .= " WHERE it.item_material_status = 1 AND it.accessories = 0";
         }elseif ($type == "accessories") {
-            $sql .= " WHERE items.accessories = 1";
+            $sql .= " WHERE it.accessories = 1 AND it.cat_id != 34";
+        }elseif ($type == "software") {
+            $sql .= " WHERE it.cat_id = 34";
         }
 
         $query = $this->db->query($sql);
@@ -167,6 +169,9 @@ class Inventory_model extends CI_Model {
             $this->db->where('it.accessories =', 0);
         }elseif ($type == "accessories") {
             $this->db->where('it.accessories =', 1);
+            $this->db->where('it.cat_id !=', 34);
+        }elseif ($type == "software") {
+            $this->db->where('it.cat_id =', 34);
         }
         $this->db->order_by("inventory_update", "desc");
         $this->db->limit($limit, $offset);
@@ -175,7 +180,6 @@ class Inventory_model extends CI_Model {
         }else{
             $query = $this->db->get('inventory inv');
         }
-
         if ($query->num_rows() > 0) {
             foreach ($query->result() as $row) {
                 $data[] = $row;

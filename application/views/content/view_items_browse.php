@@ -16,14 +16,42 @@
 			tableRow.style.backgroundColor = '';
 		}
 	}
-	function send_item(code,desc,item_id){
+	// function send_item(code,desc,item_id, service_tag){
+	// 	var this_ = window.opener;
+	// 	var type_input = this_.$('#type_input').val();
+	// 	if (type_input == 'item') {
+	// 		this_.$('#item_id').val(item_id);
+	// 		this_.$('#item_code').val(code);
+	// 		this_.$('#item_name').val(desc);
+	// 		this_.$('#service_tag').val(service_tag);
+	// 	}else if (type_input == 'accessories' || type_input == 'inventory' || type_input == 'software') {
+	// 		var clone_check = this_.$('.master_clone');
+	// 		if (clone_check.css('display') == 'none') {
+	// 			clone_check.show();
+	// 			var check_obj = check_obj_arr(this_,code,desc,item_id,clone_check);
+	// 		}else {
+	// 			if (!this_.arrObj[code]) {
+	// 				this_.addRow('itemsTable');
+	// 				var target = this_.$('.master_clone').last();
+	// 			}else {
+	// 				target = this_.arrObj[code]['target'];
+	// 			}
+	// 			var check_obj = check_obj_arr(this_,code,desc,item_id,target);
+	// 		}
+	// 		if (type_input == 'accessories') {
+	// 			this_.datePicker();
+	// 		}
+	// 	}
+	// 	window.close();
+	// }
+	function send_item(code,desc,item_id, service_tag){
 		var this_ = window.opener;
 		var type_input = this_.$('#type_input').val();
-		console.log(type_input);
 		if (type_input == 'item') {
 			this_.$('#item_id').val(item_id);
 			this_.$('#item_code').val(code);
 			this_.$('#item_name').val(desc);
+			this_.$('#service_tag').val(service_tag);
 		}else if (type_input == 'accessories' || type_input == 'inventory') {
 			var clone_check = this_.$('.master_clone');
 			if (clone_check.css('display') == 'none') {
@@ -41,8 +69,25 @@
 			if (type_input == 'accessories') {
 				this_.datePicker();
 			}
+		}else if (type_input == 'software') {
+			var clone_check = this_.$('.master_clone_software');
+			if (clone_check.css('display') == 'none') {
+				clone_check.show();
+				var check_obj = check_obj_arr_software(this_,code,desc,item_id,clone_check);
+			}else {
+				if (!this_.arrObj[code]) {
+					this_.addRow('softwareTable');
+					var target = this_.$('.master_clone_software').last();
+				}else {
+					target = this_.arrObj[code]['target'];
+				}
+				var check_obj = check_obj_arr_software(this_,code,desc,item_id,target);
+			}
+			if (type_input == 'accessories') {
+				this_.datePicker();
+			}
 		}
-		window.close();
+		// window.close();
 	}
 
 	function check_obj_arr(this_,code,desc,item_id,target) {
@@ -61,6 +106,22 @@
 			return false;
 		}
 	}
+	
+	function check_obj_arr_software(this_,code,desc,item_id,target) {
+		if (!this_.arrObj[code]) {
+			this_.arrObj[code] = [];
+			this_.arrObj[code]['qty'] = 1;
+			this_.arrObj[code]['target'] = target;
+			target.find('.item_name').val(desc);
+			target.find('.item_code').val(code);
+			target.find('.item_id').val(item_id);
+			target.find('.quantities').val(this_.arrObj[code]['qty']);
+			return true;
+		}else {
+			alert('This software is already added!');
+		}
+	}
+
 	$(document).ready(function(e) {
 		$("#p").change(function(e) {
 			var searchby = $("#p").val();
@@ -210,7 +271,7 @@
 							$bg="bgcolor=\"#eeeeee\"";
 						}
 						?>
-						<tr <?php echo $bg; ?> style="cursor:pointer;" onmouseover="ChangeColor(this, true);" onmouseout="ChangeColor(this, false);" onClick="send_item('<?php  echo $item->item_code;?>','<?php echo $item->item_name; ?>','<?php echo $item->item_id; ?>')">
+						<tr <?php echo $bg; ?> style="cursor:pointer;" onmouseover="ChangeColor(this, true);" onmouseout="ChangeColor(this, false);" onClick="send_item('<?php  echo $item->item_code;?>','<?php echo $item->item_name; ?>','<?php echo $item->item_id; ?>','<?php echo $item->service_tag; ?>')">
 							<td><?php echo ($offset+$a);  ?></td>
 							<td align="center"><?php echo $item->item_code;?></td>
 							<td align="center"><?php echo $item->item_name;?></td>
