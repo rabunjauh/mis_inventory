@@ -629,6 +629,10 @@ class Borrow_model extends CI_Model {
       return TRUE;
     }
   }
+
+  public function getBorrowedItemCheck($dataBorrow['taken_by_uid']) {
+    
+  }
 }
 
 

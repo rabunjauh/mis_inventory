@@ -130,6 +130,8 @@ class Borrow extends CI_Controller {
 
       $inventory = $this->inventory_model->get_inventory_by_item($dataBorrow['item_id']);
 
+      $item_borrow = $this->borrow_model->getBorrowedItemCheck($dataBorrow['taken_by_uid']);
+
       if ($inventory && $inventory->inventory_quantity != 0) {
         $dataItem['inventory_quantity'] = $inventory->inventory_quantity -  1;
         $this->inventory_model->update_inventory($dataItem,$dataBorrow['item_id']);
