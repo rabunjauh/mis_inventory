@@ -77,16 +77,31 @@ function open_popup(url,value) {
         </div>
       </div>
       <input type="hidden" name="type_input" id="type_input" value="">
+
+      <div class="form-group">
+        <label for="lblITemID" class="col-sm-2 hidden-xs control-label col-xs-offset-0 col-xs-2">Item ID: </label>
+        <div class="col-sm-6 col-xs-12">
+        <input type="text" class="form-control" readonly="readonly" value="<?php echo (isset($borrow)) ? $borrow->item_code : ''; ?>" name="item_master_code" id="item_code" placeholder="Item ID" />
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="lblServiceTag" class="col-sm-2 hidden-xs control-label col-xs-offset-0 col-xs-2">Service Tag: </label>
+        <div class="col-sm-6 col-xs-12">
+        <input type="text" class="form-control" readonly="readonly" value="<?php echo (isset($borrow)) ? $borrow->service_tag : ''; ?>" name="item_master_code" id="service_tag" placeholder="Service Tag" />
+        </div>
+      </div>
+
       <div class="form-group">
         <label for="lblproject" class="col-sm-2 hidden-xs control-label col-xs-offset-0 col-xs-2">Item: </label>
         <div class="col-sm-6 col-xs-12">
-            <input type="text" class="form-control" readonly="readonly" value="<?php echo (isset($borrow)) ? $borrow->item_name : ''; ?>" name="item_master_name" id="item_name" required placeholder="Item Name" />
+            <input type="text" class="form-control" readonly="readonly" value="<?php echo (isset($borrow)) ? $borrow->item_name : ''; ?>" name="item_master_name" id="item_name" placeholder="Item Name" />
             <input type="hidden" name="item_master_id" id="item_id" value="<?php echo (isset($borrow)) ? $borrow->item_id : ''; ?>"/>
-            <input type="hidden" name="item_master_code" id="item_code" value="<?php echo (isset($borrow)) ? $borrow->item_code : ''; ?>"/>
             <input type="button" class="choose" name="choose" style="width: 20px; height: 20px; display:inline-block;"
             onclick="open_popup('inventory/browse_item/all','item');" title="Browse Item" />
         </div>
       </div>
+      
       <div class="form-group">
         <label for="lblproject" class="col-sm-2 hidden-xs control-label col-xs-offset-0 col-xs-2">Return Date: </label>
         <div class="col-sm-6 col-xs-12">
@@ -147,47 +162,64 @@ function open_popup(url,value) {
           <?php endif; ?>
 
         </tbody>
-      </table><br/>
-      <a class="btn btn-default btn-flat" type="button" onclick="open_popup('inventory/browse_item/accessories','accessories')"><i class="fa fa-search"></i> Browse</a>
+      </table>
+      <br/>
+      <a class="btn btn-default btn-flat" type="button" onclick="open_popup('inventory/browse_item/accessories','accessories')"><i class="fa fa-search"></i> Browse Item</a>
       <!-- <a class="btn btn-default btn-flat" type="button" onclick="addRow(this,'itemsTable')"><i class="glyphicon glyphicon-plus-sign"></i> Add More Row</a> -->
-      <br/><br/>
-
+      <br/>
+      <br/>
+      
       <table class="table table-bordered table-striped" id="softwareTable">
         <thead>
           <tr>
             <th>No.</th>
             <th>Software</th>
-            <th>Description</th>
+            <th>Quantity</th>
+            <th>Date</th>
             <th>Delete</th>
           </tr>
         </thead>
         <tbody id="item_area">
-          <?php if (isset($software) && $software != null): ?>
-            <?php foreach ($software as $value): ?>
-              <tr class="tr_clone">
-                <td class="numberRow-softwareTable"> </td>
-                <td> <input type="text" name="software[]" class="form-control" value="<?php echo $value->software_name ?>"> </td>
-                <td> <input type="text" name="description[]" class="form-control" value="<?php echo $value->software_description ?>"> </td>
+          <?php if (isset($borrow_details) && $borrow_details != null): ?>
+            <?php foreach ($borrow_details as $valueDetails): ?>
+              <tr class="tr_clone master_clone_software">
+                <td class="numberRow-softwareTable">
+                </td>
+                <td>
+                    <input type="text" name="item_name[]" class="form-control item_name" readonly value="<?php echo $valueDetails->item_name ?>">
+                    <input type="hidden" name="item_id[]" class="item_id" value="<?php echo $valueDetails->item_id ?>">
+                    <input type="hidden" name="item_code[]" class="item_code" value="<?php echo $valueDetails->item_code ?>">
+                </td>
+                <td> <input type="text" name="quantities[]" class="form-control quantities" value="<?php echo $valueDetails->quantities; ?>" > </td>
+                <td> <input type="text" name="end_date[]" class="form-control datepicker"   value="<?php echo $valueDetails->end_date; ?>" placeholder="Return Date" data-date-format="yyyy-mm-dd"> </td>
                 <td>
                   <button type="button" class="btn btn-danger" onclick="deleteClone(this,'softwareTable')"> Delete </button>
-                  <input type="hidden" name="software_id[]" value="<?php echo $value->software_id ?>">
+                  <input type="hidden" name="borrow_detail_id[]" value="<?php echo $valueDetails->borrow_detail_id ?>">
                 </td>
               </tr>
             <?php endforeach; ?>
-          <?php else: ?>
-            <tr class="tr_clone">
-              <td class="numberRow-softwareTable"> </td>
-              <td> <input type="text" name="software[]" class="form-control"> </td>
-              <td> <input type="text" name="description[]" class="form-control"> </td>
-              <td>
-                <button type="button" class="btn btn-danger" onclick="deleteClone(this,'softwareTable')"> Delete </button>
-                <input type="hidden" name="software_id[]">
-              </td>
-            </tr>
+
+            <?php else: ?>
+              <tr class="tr_clone master_clone_software" style="display:none;">
+                <td class="numberRow-softwareTable"> </td>
+                <td>
+                    <input type="text" name="item_name[]" class="form-control item_name" readonly value="">
+                    <input type="hidden" name="item_id[]" class="item_id" value="">
+                    <input type="hidden" name="item_code[]" class="item_code" value="">
+                </td>
+                <td> <input type="text" name="quantities[]" class="form-control quantities" > </td>
+                <td> <input type="text" name="end_date[]" class="form-control datepicker"  placeholder="Return Date" data-date-format="yyyy-mm-dd"> </td>
+                <td>
+                  <button type="button" class="btn btn-danger" onclick="deleteClone(this,'softwareTable')"> Delete </button>
+                  <input type="hidden" name="borrow_detail_id[]" value="">
+                </td>
+              </tr>
           <?php endif; ?>
+
         </tbody>
       </table><br/>
-      <a class="btn btn-default btn-flat" type="button" onclick="addRow('softwareTable')"><i class="glyphicon glyphicon-plus-sign"></i> Add More Row</a>
+      <a class="btn btn-default btn-flat" type="button" onclick="open_popup('inventory/browse_item/software','software')"><i class="fa fa-search"></i> Browse Software</a>
+      <!-- <a class="btn btn-default btn-flat" type="button" onclick="addRow(this,'itemsTable')"><i class="glyphicon glyphicon-plus-sign"></i> Add More Row</a> -->
       <br/><br/>
       <div>
         <button type="submit" class="btn btn-primary btn-flat col-xs-6 col-xs-offset-2  col-sm-offset-3"><i class="glyphicon glyphicon-ok"></i> Save</button>&nbsp;

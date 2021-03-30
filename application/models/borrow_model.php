@@ -76,6 +76,7 @@ class Borrow_model extends CI_Model {
     ->join('items', 'items.item_id = item_borrow_detail.item_id', 'left')
     ->join('tbl_measurement', 'items.measurement_id = tbl_measurement.measurement_id', 'left')
     ->where('borrow_id =', $id);
+    $this->db->where_not_in('items.cat_id', 34);
     $query = $this->db->get();
 
     if ($query->num_rows() > 0) {
@@ -109,26 +110,66 @@ class Borrow_model extends CI_Model {
     return $query->row();
   }
 
-
   public function get_view_borrow($id)
   {
-    $sql = "SELECT ib.*,it.*,wh.warehouse_name,us.user_full_name, pj.project_name,
-    (SELECT employeename FROM wasco_fingerman.tblmas_employee WHERE fingerid=ib.taken_by_uid)AS employee_name,
-    (SELECT status_employee FROM wasco_fingerman.tblmas_employee WHERE fingerid=ib.taken_by_uid)AS status_employee,
-    (SELECT positiondesc FROM wasco_fingerman.tblfile_position WHERE idposition = emp.idposition)AS emp_pos,
-    (SELECT project FROM wasco_fingerman.tbl_project WHERE project_id = emp.project_id)AS emp_project,
-    (SELECT deptdesc FROM wasco_fingerman.tblfile_department WHERE iddept = emp.iddept)AS emp_dept
+    $sql = "SELECT 
+              ib.*,
+              it.*,
+              wh.warehouse_name,
+              us.user_full_name, 
+              pj.project_name,
+              mt.machine_type_desc,
+              p.processor_type,
+              os.operating_system_desc,
+              mo.model_desc,
+              me.memory_size,
+              hdd.hard_disk_size,
+              v.vga_manufacture,
+              v.vga_model,
+              (SELECT employeename FROM wasco_fingerman.tblmas_employee WHERE fingerid=ib.taken_by_uid)AS employee_name,
+              (SELECT status_employee FROM wasco_fingerman.tblmas_employee WHERE fingerid=ib.taken_by_uid)AS status_employee,
+              (SELECT positiondesc FROM wasco_fingerman.tblfile_position WHERE idposition = emp.idposition)AS emp_pos,
+              (SELECT project FROM wasco_fingerman.tbl_project WHERE project_id = emp.project_id)AS emp_project,
+              (SELECT deptdesc FROM wasco_fingerman.tblfile_department WHERE iddept = emp.iddept)AS emp_dept
     FROM item_borrow ib
     LEFT OUTER JOIN  warehouse wh ON wh.warehouse_id = ib.warehouse_id
     LEFT OUTER JOIN  project pj ON pj.project_uid = ib.project_uid
     LEFT OUTER JOIN  user us ON us.user_id = ib.created_by
     LEFT OUTER JOIN  items it ON it.item_id = ib.item_id
     LEFT OUTER JOIN  wasco_fingerman.tblmas_employee emp ON emp.fingerid = ib.taken_by_uid
+    JOIN machine_type mt ON it.machine_type = mt.machine_type_id
+    JOIN processor p ON it.processor = p.processor_id
+    JOIN operating_system os ON it.operating_system = os.operating_system_id
+    JOIN model mo ON it.model = mo.model_id
+    JOIN memory me ON it.memory = me.memory_id
+    JOIN hard_disk hdd ON it.hdd = hdd.hard_disk_id
+    JOIN vga v ON it.vga = v.vga_id
     WHERE ib.dlt = 0 AND ib.borrow_id = $id";
     $query = $this->db->query($sql);
     return $query->row();
 
   }
+
+
+  // public function get_view_borrow($id)
+  // {
+  //   $sql = "SELECT ib.*,it.*,wh.warehouse_name,us.user_full_name, pj.project_name,
+  //   (SELECT employeename FROM wasco_fingerman.tblmas_employee WHERE fingerid=ib.taken_by_uid)AS employee_name,
+  //   (SELECT status_employee FROM wasco_fingerman.tblmas_employee WHERE fingerid=ib.taken_by_uid)AS status_employee,
+  //   (SELECT positiondesc FROM wasco_fingerman.tblfile_position WHERE idposition = emp.idposition)AS emp_pos,
+  //   (SELECT project FROM wasco_fingerman.tbl_project WHERE project_id = emp.project_id)AS emp_project,
+  //   (SELECT deptdesc FROM wasco_fingerman.tblfile_department WHERE iddept = emp.iddept)AS emp_dept
+  //   FROM item_borrow ib
+  //   LEFT OUTER JOIN  warehouse wh ON wh.warehouse_id = ib.warehouse_id
+  //   LEFT OUTER JOIN  project pj ON pj.project_uid = ib.project_uid
+  //   LEFT OUTER JOIN  user us ON us.user_id = ib.created_by
+  //   LEFT OUTER JOIN  items it ON it.item_id = ib.item_id
+  //   LEFT OUTER JOIN  wasco_fingerman.tblmas_employee emp ON emp.fingerid = ib.taken_by_uid
+  //   WHERE ib.dlt = 0 AND ib.borrow_id = $id";
+  //   $query = $this->db->query($sql);
+  //   return $query->row();
+
+  // }
 
   public function delete($id)
   {
@@ -330,9 +371,11 @@ class Borrow_model extends CI_Model {
 
   public function get_software_details($id)
   {
-    $this->db->select('*')
-    ->from('items_software')
-    ->where('borrow_id =', $id);
+    $this->db->select('*');
+    $this->db->from('item_borrow_detail ibd');
+    $this->db->join('items i', 'ibd.item_id = i.item_id');
+    $this->db->where('ibd.borrow_id', $id);
+    $this->db->where('i.cat_id', 34);
     $query = $this->db->get();
 
     if ($query->num_rows() > 0) {
@@ -343,6 +386,22 @@ class Borrow_model extends CI_Model {
     }
     return false;
   }
+
+  // public function get_software_details($id)
+  // {
+  //   $this->db->select('*')
+  //   ->from('items_software')
+  //   ->where('borrow_id =', $id);
+  //   $query = $this->db->get();
+
+  //   if ($query->num_rows() > 0) {
+  //     foreach ($query->result() as $row) {
+  //       $data[] = $row;
+  //     }
+  //     return $data;
+  //   }
+  //   return false;
+  // }
 
   public function updateSoftware($data,$id)
   {
@@ -628,6 +687,17 @@ class Borrow_model extends CI_Model {
     {
       return TRUE;
     }
+  }
+
+  public function getBorrowedItemCheck($uid) {
+    $this->db->select('ibd.item_id');
+    $this->db->from('item_borrow ib');
+    $this->db->join('item_borrow_detail ibd', 'ibd.borrow_id = ib.borrow_id');
+    $this->db->join('items i', 'ibd.item_id = i.item_id');
+    $this->db->where('ib.taken_by_uid', $uid);
+    $this->db->where('i.cat_id', 34);
+    $result = $this->db->get();
+    return $result->result_array();
   }
 }
 
