@@ -436,9 +436,8 @@ class Inventory extends CI_Controller {
         }
     }
 
-    public function browse_item($type, $uid = NULL)
+    public function browse_item($type)
     {
-        var_dump($uid);die;
         $data = array();
         $config = array();
         $config["base_url"] = base_url() . "inventory/browse_item/".$type;

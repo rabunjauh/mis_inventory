@@ -91,11 +91,11 @@
             <tr>
               <td class="content-first"> Machine Type</td>
               <td class="content-space"> : </td>
-              <td class="content-text"> <?php echo $borrow->machine_type; ?> </td>
+              <td class="content-text"> <?php echo $borrow->machine_type_desc; ?> </td>
               <td class="content-space">&nbsp;</td>
               <td class="content-first"> Model</td>
               <td class="content-space"> : </td>
-              <td class="content-text"> <?php echo $borrow->model; ?> </td>
+              <td class="content-text"> <?php echo $borrow->model_desc; ?> </td>
             </tr>
             <tr>
               <td class="content-first"> Serial No./Service Tag</td>
@@ -104,25 +104,25 @@
               <td class="content-space">&nbsp;</td>
               <td class="content-first"> Memory</td>
               <td class="content-space"> : </td>
-              <td class="content-text"> <?php echo $borrow->memory; ?> </td>
+              <td class="content-text"> <?php echo $borrow->memory_size; ?> </td>
             </tr>
             <tr>
               <td class="content-first"> Processor</td>
               <td class="content-space"> : </td>
-              <td class="content-text"> <?php echo $borrow->processor; ?> </td>
+              <td class="content-text"> <?php echo $borrow->processor_type; ?> </td>
               <td class="content-space">&nbsp;</td>
               <td class="content-first"> Hardisk</td>
               <td class="content-space"> : </td>
-              <td class="content-text"> <?php echo $borrow->hdd; ?> </td>
+              <td class="content-text"> <?php echo $borrow->hard_disk_size; ?> </td>
             </tr>
             <tr>
               <td class="content-first"> Operating System</td>
               <td class="content-space"> : </td>
-              <td class="content-text"> <?php echo $borrow->operating_system; ?> </td>
+              <td class="content-text"> <?php echo $borrow->operating_system_desc; ?> </td>
               <td class="content-space">&nbsp;</td>
               <td class="content-first"> VGA Type</td>
               <td class="content-space"> : </td>
-              <td class="content-text"> <?php echo $borrow->vga; ?> </td>
+              <td class="content-text"> <?php echo $borrow->manufacture . " " . $borrow->vga_model; ?> </td>
             </tr>
           </table>
 
@@ -158,17 +158,21 @@
           <table class="content-table software">
             <tr>
               <th colspan="2">No. </th>
-              <th colspan="2">Software. </th>
-              <th colspan="2">Description. </th>
+              <th colspan="2">Software Id. </th>
+              <th colspan="2">Software Description. </th>
+              <th>Quantity. </th>
             </tr>
             <?php $i = 1; ?>
             <?php foreach ($software as $value): ?>
             <tr>
-              <td class="software-first"><?php echo $i ?> </td>
-              <td class="software-space">&nbsp; </td>
-              <td class="software-code"><?php echo $value->software_name ?> </td>
-              <td class="software-space"> &nbsp;</th>
-              <td class="software-text"><?php echo $value->software_description ?> </td>
+            <td class="accesories-first"><?php echo $i ?> </td>
+              <td class="accesories-space">&nbsp; </td>
+              <td class="accesories-code"><?php echo $value->item_code ?> </td>
+              <td class="accesories-space">&nbsp; </td>
+              <td class="accesories-text"><?php echo $value->item_name ?> </td>
+              <td class="accesories-space">&nbsp; </td>
+              <td class="accesories-first"><?php echo $value->quantities ?> </td>
+              <td >&nbsp; </td>
             </tr>
 
               <?php $i++; ?>

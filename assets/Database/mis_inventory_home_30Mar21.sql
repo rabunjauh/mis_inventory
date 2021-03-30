@@ -217,7 +217,7 @@ INSERT INTO `inventory` (`inventory_id`, `item_id`, `inventory_quantity`, `alert
 	(106, 103, 1, 1, 0, '2017-04-11', '2020-06-10'),
 	(107, 104, 1, 0, 0, '2017-04-11', '2020-08-13'),
 	(108, 105, 1, 0, 0, '2017-04-11', '2020-08-13'),
-	(109, 106, 3, 1, 0, '2017-04-11', '2020-08-26'),
+	(109, 106, 2, 1, 0, '2017-04-11', '2021-03-30'),
 	(110, 107, 0, 0, 0, '2017-04-11', '2018-07-18'),
 	(111, 108, 0, 0, 0, '2017-04-11', '2020-01-13'),
 	(112, 109, 2, 0, 0, '2017-04-11', '2020-08-19'),
@@ -260,7 +260,7 @@ INSERT INTO `inventory` (`inventory_id`, `item_id`, `inventory_quantity`, `alert
 	(149, 147, 1, 0, 0, '2017-04-11', '2020-04-15'),
 	(150, 148, 0, 0, 0, '2017-04-11', '2020-04-16'),
 	(151, 149, 0, 0, 0, '2017-04-11', '2020-08-26'),
-	(152, 150, 1, 0, 0, '2017-04-11', '2021-02-13'),
+	(152, 150, 0, 0, 0, '2017-04-11', '2021-03-30'),
 	(153, 151, 0, 0, 0, '2017-04-11', '2020-08-18'),
 	(154, 152, 0, 0, 0, '2017-04-11', '2020-08-04'),
 	(155, 153, 0, 0, 0, '2017-04-11', '2018-07-17'),
@@ -472,7 +472,7 @@ INSERT INTO `inventory` (`inventory_id`, `item_id`, `inventory_quantity`, `alert
 	(387, 428, 1, 1, 0, '2018-08-23', '2020-08-04'),
 	(388, 1656, 1, 1, 0, '2020-08-04', '2020-08-04'),
 	(389, 430, 1, 0, 0, '2018-08-23', '2020-05-29'),
-	(390, 431, 6, 1, 0, '2018-08-23', '2021-02-02'),
+	(390, 431, 5, 1, 0, '2018-08-23', '2021-03-30'),
 	(391, 432, 1, 0, 0, '2018-08-23', '2018-08-23'),
 	(392, 433, 1, 0, 0, '2018-08-23', '2019-03-13'),
 	(393, 434, 1, 0, 0, '2018-08-23', '2018-08-23'),
@@ -564,7 +564,7 @@ INSERT INTO `inventory` (`inventory_id`, `item_id`, `inventory_quantity`, `alert
 	(479, 520, 1, 0, 0, '2018-08-23', '2018-08-23'),
 	(480, 521, 1, 0, 0, '2018-08-23', '2019-07-11'),
 	(481, 522, 1, 0, 0, '2018-08-23', '2019-07-05'),
-	(482, 523, 15, 5, 0, '2018-08-23', '2021-02-02'),
+	(482, 523, 14, 5, 0, '2018-08-23', '2021-03-30'),
 	(483, 524, 1, 0, 0, '2018-08-23', '2018-08-23'),
 	(484, 525, 1, 0, 0, '2018-08-23', '2018-08-23'),
 	(485, 526, 1, 0, 0, '2018-08-23', '2018-08-23'),
@@ -974,7 +974,7 @@ INSERT INTO `inventory` (`inventory_id`, `item_id`, `inventory_quantity`, `alert
 	(889, 1120, 1, 0, 0, '2019-06-18', '2020-06-15'),
 	(890, 1528, 2, 0, 0, '2020-01-29', '2020-01-29'),
 	(891, 1122, 1, 0, 0, '2019-07-04', '2019-08-01'),
-	(892, 1123, 1, 1, 0, '2019-07-05', '2021-02-02'),
+	(892, 1123, 0, 1, 0, '2019-07-05', '2021-03-30'),
 	(893, 862, 2, 1, 0, '2019-12-06', '2020-06-12'),
 	(894, 1125, 1, 1, 0, '2019-07-05', '2019-10-21'),
 	(895, 1279, 2, 1, 0, '2019-12-30', '2020-06-11'),
@@ -987,7 +987,7 @@ INSERT INTO `inventory` (`inventory_id`, `item_id`, `inventory_quantity`, `alert
 	(902, 1214, 1, 0, 0, '2019-09-12', '2020-06-12'),
 	(903, 1215, 1, 0, 0, '2019-09-12', '2020-06-12'),
 	(904, 1216, 0, 0, 0, '2019-09-12', '2019-09-12'),
-	(905, 1363, 1, 0, 0, '2019-10-01', '2020-06-11'),
+	(905, 1363, 0, 0, 0, '2019-10-01', '2021-03-30'),
 	(906, 1272, 1, 0, 0, '2019-10-01', '2020-06-11'),
 	(907, 1444, 1, 0, 0, '2019-10-01', '2020-06-11'),
 	(908, 1455, 1, 0, 0, '2019-10-04', '2020-05-29'),
@@ -1310,7 +1310,7 @@ INSERT INTO `inventory` (`inventory_id`, `item_id`, `inventory_quantity`, `alert
 	(1225, 1662, 0, 0, 0, '2020-08-11', '2020-08-11'),
 	(1226, 1057, 0, 0, 0, '2020-08-18', '2020-08-18'),
 	(1227, 1664, 0, 0, 0, '2020-08-24', '2020-08-24'),
-	(1228, 1361, 2, 0, 0, '2021-02-07', '2021-02-07');
+	(1228, 1361, 1, 0, 0, '2021-02-07', '2021-03-30');
 /*!40000 ALTER TABLE `inventory` ENABLE KEYS */;
 
 -- Dumping structure for table mis_inventory.invoice_out
@@ -4352,7 +4352,7 @@ CREATE TABLE IF NOT EXISTS `items_software` (
   `software_description` varchar(255) DEFAULT NULL,
   `borrow_id` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`software_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=756 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=758 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table mis_inventory.items_software: ~747 rows (approximately)
 /*!40000 ALTER TABLE `items_software` DISABLE KEYS */;
@@ -5104,7 +5104,9 @@ INSERT INTO `items_software` (`software_id`, `software_name`, `software_descript
 	(752, '', '', '628'),
 	(753, '', '', '629'),
 	(754, '', '', '630'),
-	(755, '', '', '631');
+	(755, '', '', '631'),
+	(756, NULL, NULL, '632'),
+	(757, NULL, NULL, '633');
 /*!40000 ALTER TABLE `items_software` ENABLE KEYS */;
 
 -- Dumping structure for table mis_inventory.item_borrow
@@ -5128,7 +5130,7 @@ CREATE TABLE IF NOT EXISTS `item_borrow` (
   `item_return_date` date DEFAULT NULL,
   `return_date` date DEFAULT NULL,
   PRIMARY KEY (`borrow_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=632 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=634 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table mis_inventory.item_borrow: ~629 rows (approximately)
 /*!40000 ALTER TABLE `item_borrow` DISABLE KEYS */;
@@ -5762,7 +5764,9 @@ INSERT INTO `item_borrow` (`borrow_id`, `warehouse_id`, `taken_by_uid`, `project
 	(628, 3, 5404, 'EXYlKXb1Pw', '2020-08-26', 0, 122, '0000-00-00', 'Old Accessories Still In use', 1, '2020-08-26', 2020, NULL, NULL, NULL, 0, NULL, NULL),
 	(629, 3, 5163, 'EXYlKXb1Pw', '2020-08-26', 0, 149, '0000-00-00', 'Previous accessories is still in use', 1, '2020-08-26', NULL, NULL, NULL, NULL, 0, NULL, NULL),
 	(630, 3, 5396, 'EXYlKXb1Pw', '2020-08-27', 0, 52, '0000-00-00', 'Previous accessories still in use', 1, '2020-08-27', 2021, NULL, NULL, NULL, 0, NULL, NULL),
-	(631, 3, 5690, 'pIeYmQ78aU', '2021-02-13', 0, 150, '0000-00-00', '', 1, '2021-02-13', NULL, NULL, NULL, NULL, 0, NULL, NULL);
+	(631, 3, 5690, 'pIeYmQ78aU', '2021-02-13', 0, 150, '0000-00-00', '', 1, '2021-02-13', NULL, NULL, NULL, NULL, 0, NULL, NULL),
+	(632, 3, 5679, 'EXYlKXb1Pw', '2021-03-30', 0, 150, '0000-00-00', '', 1, '2021-03-30', NULL, NULL, NULL, NULL, 0, NULL, NULL),
+	(633, 3, 5691, 'EXYlKXb1Pw', '2021-03-30', 0, 106, '0000-00-00', '', 1, '2021-03-30', NULL, NULL, NULL, NULL, 0, NULL, NULL);
 /*!40000 ALTER TABLE `item_borrow` ENABLE KEYS */;
 
 -- Dumping structure for table mis_inventory.item_borrow_detail
@@ -5775,7 +5779,7 @@ CREATE TABLE IF NOT EXISTS `item_borrow_detail` (
   `quantities` int(10) DEFAULT NULL,
   `return_quantity` int(10) DEFAULT 0,
   PRIMARY KEY (`borrow_detail_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1455 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1460 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table mis_inventory.item_borrow_detail: ~1.354 rows (approximately)
 /*!40000 ALTER TABLE `item_borrow_detail` DISABLE KEYS */;
@@ -7128,7 +7132,12 @@ INSERT INTO `item_borrow_detail` (`borrow_detail_id`, `borrow_id`, `item_id`, `e
 	(1434, 625, 1034, '0000-00-00', NULL, 1, 0),
 	(1435, 625, 1035, '0000-00-00', NULL, 1, 0),
 	(1436, 628, 1071, '0000-00-00', '2020-08-26', 1, 1),
-	(1441, 630, 523, '0000-00-00', NULL, 1, 0);
+	(1441, 630, 523, '0000-00-00', NULL, 1, 0),
+	(1455, 632, 431, '0000-00-00', NULL, 1, 0),
+	(1456, 632, 1123, '0000-00-00', NULL, 1, 0),
+	(1457, 632, 1361, '0000-00-00', NULL, 1, 0),
+	(1458, 633, 523, '0000-00-00', NULL, 1, 0),
+	(1459, 633, 1363, '0000-00-00', NULL, 1, 0);
 /*!40000 ALTER TABLE `item_borrow_detail` ENABLE KEYS */;
 
 -- Dumping structure for table mis_inventory.machine_type

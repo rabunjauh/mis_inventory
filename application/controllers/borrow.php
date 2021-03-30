@@ -131,56 +131,118 @@ class Borrow extends CI_Controller {
       $inventory = $this->inventory_model->get_inventory_by_item($dataBorrow['item_id']);
 
       $item_borrow = $this->borrow_model->getBorrowedItemCheck($dataBorrow['taken_by_uid']);
-
-      if ($inventory && $inventory->inventory_quantity != 0) {
-        $dataItem['inventory_quantity'] = $inventory->inventory_quantity -  1;
-        $this->inventory_model->update_inventory($dataItem,$dataBorrow['item_id']);
-      }else {
-        $message = '<div class="alert alert-danger">Item Out Stock!</div>';
-        $this->session->set_flashdata('message', $message);
-        redirect(base_url('borrow/add'));
-      }
-
-      $borrow_id = $this->borrow_model->saveBorrow($dataBorrow);
-      if ($borrow_id) {
-        //accesories
-        $item_id = $this->input->post('item_id',true);
-        $quantities = $this->input->post('quantities',true);
-        $end_date = $this->input->post('end_date',true);
-
-        for ($i=0; $i < sizeof($item_id); $i++) {
-          $inventory = $this->inventory_model->get_inventory_by_item($item_id[$i]);
-          if ($inventory && $inventory->inventory_quantity >= $quantities[$i]) {
-            $tmp['item_id'] = $item_id[$i];
-            $tmp['quantities'] = $quantities[$i];
-            $tmp['end_date'] = $end_date[$i];
-            $tmp['borrow_id'] = $borrow_id;
-            $this->borrow_model->save_details($tmp);
-
-            $dataItem['inventory_quantity'] = $inventory->inventory_quantity -  $quantities[$i];
-            $this->inventory_model->update_inventory($dataItem,$item_id[$i]);
+      if (!$item_borrow) {
+        if ($inventory && $inventory->inventory_quantity != 0) {
+          $dataItem['inventory_quantity'] = $inventory->inventory_quantity -  1;
+          $this->inventory_model->update_inventory($dataItem,$dataBorrow['item_id']);
+        }else {
+          $message = '<div class="alert alert-danger">Item Out Stock!</div>';
+          $this->session->set_flashdata('message', $message);
+          redirect(base_url('borrow/add'));
+        }
+  
+        $borrow_id = $this->borrow_model->saveBorrow($dataBorrow);
+        if ($borrow_id) {
+          //accesories
+          $item_id = $this->input->post('item_id',true);
+          $quantities = $this->input->post('quantities',true);
+          $end_date = $this->input->post('end_date',true);
+  
+          for ($i=0; $i < sizeof($item_id); $i++) {
+            $inventory = $this->inventory_model->get_inventory_by_item($item_id[$i]);
+            if ($inventory && $inventory->inventory_quantity >= $quantities[$i]) {
+              $tmp['item_id'] = $item_id[$i];
+              $tmp['quantities'] = $quantities[$i];
+              $tmp['end_date'] = $end_date[$i];
+              $tmp['borrow_id'] = $borrow_id;
+              $this->borrow_model->save_details($tmp);
+  
+              $dataItem['inventory_quantity'] = $inventory->inventory_quantity -  $quantities[$i];
+              $this->inventory_model->update_inventory($dataItem,$item_id[$i]);
+            }
           }
+          //
+  
+          //software
+          $software = $this->input->post('software',true);
+          $description = $this->input->post('description',true);
+          for ($i=0; $i < sizeof($software) ; $i++) {
+            $soft['software_name'] = $software[$i];
+            $soft['software_description'] = $description[$i];
+            $soft['borrow_id'] = $borrow_id;
+            $this->borrow_model->save_software($soft);
+          }
+          //
+          $message = '<div class="alert alert-success">Success</div>';
+          $this->session->set_flashdata('message', $message);
+          redirect(base_url('borrow'));
+        }else {
+          $message = '<div class="alert alert-danger">Somethink Wrong!</div>';
+          $this->session->set_flashdata('message', $message);
+          redirect(base_url('borrow/add'));
         }
-        //
-
-        //software
-        $software = $this->input->post('software',true);
-        $description = $this->input->post('description',true);
-        for ($i=0; $i < sizeof($software) ; $i++) {
-          $soft['software_name'] = $software[$i];
-          $soft['software_description'] = $description[$i];
-          $soft['borrow_id'] = $borrow_id;
-          $this->borrow_model->save_software($soft);
-        }
-        //
-        $message = '<div class="alert alert-success">Success</div>';
-        $this->session->set_flashdata('message', $message);
-        redirect(base_url('borrow'));
-      }else {
-        $message = '<div class="alert alert-danger">Somethink Wrong!</div>';
-        $this->session->set_flashdata('message', $message);
-        redirect(base_url('borrow/add'));
+      } else {
+        $message = '<div class="alert alert-danger">This user has been assign the licensed software!</div>';
+          $this->session->set_flashdata('message', $message);
+          redirect(base_url('borrow/add'));
       }
+      //   for($i = 0; $i < sizeof($item_borrow); $i++) {
+      //     if ($item_borrow[$i] == $dataBorrow['item_id']) {
+      //       echo 'duplikat';
+      //     } else {
+      //       echo 'tidak ada duplikat';
+      //     }
+      //   }
+      //   die;
+      // if ($inventory && $inventory->inventory_quantity != 0) {
+      //   $dataItem['inventory_quantity'] = $inventory->inventory_quantity -  1;
+      //   $this->inventory_model->update_inventory($dataItem,$dataBorrow['item_id']);
+      // }else {
+      //   $message = '<div class="alert alert-danger">Item Out Stock!</div>';
+      //   $this->session->set_flashdata('message', $message);
+      //   redirect(base_url('borrow/add'));
+      // }
+
+      // $borrow_id = $this->borrow_model->saveBorrow($dataBorrow);
+      // if ($borrow_id) {
+      //   //accesories
+      //   $item_id = $this->input->post('item_id',true);
+      //   $quantities = $this->input->post('quantities',true);
+      //   $end_date = $this->input->post('end_date',true);
+
+      //   for ($i=0; $i < sizeof($item_id); $i++) {
+      //     $inventory = $this->inventory_model->get_inventory_by_item($item_id[$i]);
+      //     if ($inventory && $inventory->inventory_quantity >= $quantities[$i]) {
+      //       $tmp['item_id'] = $item_id[$i];
+      //       $tmp['quantities'] = $quantities[$i];
+      //       $tmp['end_date'] = $end_date[$i];
+      //       $tmp['borrow_id'] = $borrow_id;
+      //       $this->borrow_model->save_details($tmp);
+
+      //       $dataItem['inventory_quantity'] = $inventory->inventory_quantity -  $quantities[$i];
+      //       $this->inventory_model->update_inventory($dataItem,$item_id[$i]);
+      //     }
+      //   }
+      //   //
+
+      //   //software
+      //   $software = $this->input->post('software',true);
+      //   $description = $this->input->post('description',true);
+      //   for ($i=0; $i < sizeof($software) ; $i++) {
+      //     $soft['software_name'] = $software[$i];
+      //     $soft['software_description'] = $description[$i];
+      //     $soft['borrow_id'] = $borrow_id;
+      //     $this->borrow_model->save_software($soft);
+      //   }
+      //   //
+      //   $message = '<div class="alert alert-success">Success</div>';
+      //   $this->session->set_flashdata('message', $message);
+      //   redirect(base_url('borrow'));
+      // }else {
+      //   $message = '<div class="alert alert-danger">Somethink Wrong!</div>';
+      //   $this->session->set_flashdata('message', $message);
+      //   redirect(base_url('borrow/add'));
+      // }
     }
     $data = array();
     $data['header'] = $this->load->view('header/head', '', TRUE);
