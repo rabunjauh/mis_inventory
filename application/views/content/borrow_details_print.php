@@ -73,6 +73,24 @@
                 <?php $i++; ?>
               <?php endforeach; ?>
           </table>
+          <table class="content-table borderTable">
+            <tr>
+              <th> No. </th>
+              <th> Software Id. </th>
+              <th> DESCRIPTION. </th>
+              <th> Quantity. </th>
+            </tr>
+              <?php $i = 1; ?>
+              <?php foreach ($software as $value): ?>
+                <tr>
+                  <td class="accesories-first"><?php echo $i ?> </td>
+                  <td class="accesories-code"><?php echo $value->item_code ?> </td>
+                  <td class="accesories-text"><?php echo $value->item_name ?> </td>
+                  <td class="accesories-first"><?php echo $value->quantities ?> </td>
+                </tr>
+                <?php $i++; ?>
+              <?php endforeach; ?>
+          </table>
           <table class="content-table">
             <tr>
               <td class="content-first"> Remark </td>

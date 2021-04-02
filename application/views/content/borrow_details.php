@@ -6,10 +6,7 @@
             </a>
         </div>
     </div><!-- /.box-header -->
-
-
       <div class="box-header">
-      	  <!--<span class="box-title pull-left"><img src="<?php echo base_url(); ?>assets/images/main-logo.png" width="100" height="80" /></span>-->
           <span class="box-title pull-right">Asset Custody Form</span>
       </div><!-- /.box-header -->
       <div class="box-body table-responsive">
@@ -122,7 +119,7 @@
               <td class="content-space">&nbsp;</td>
               <td class="content-first"> VGA Type</td>
               <td class="content-space"> : </td>
-              <td class="content-text"> <?php echo $borrow->manufacture . " " . $borrow->vga_model; ?> </td>
+              <td class="content-text"> <?php echo $borrow->vga_manufacture . " " . $borrow->vga_model; ?> </td>
             </tr>
           </table>
 
