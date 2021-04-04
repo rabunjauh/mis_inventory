@@ -69,14 +69,17 @@ class Borrow_model extends CI_Model {
     return $result;
   }
 
-  public function get_borrow_details($id)
+  public function get_borrow_details($id, $view_print = NULL)
   {
     $this->db->select('*')
     ->from('item_borrow_detail')
     ->join('items', 'items.item_id = item_borrow_detail.item_id', 'left')
     ->join('tbl_measurement', 'items.measurement_id = tbl_measurement.measurement_id', 'left')
     ->where('borrow_id =', $id);
-    $this->db->where_not_in('items.cat_id', 34);
+      if ($view_print){
+        $this->db->where_not_in('items.cat_id', 34);
+        $this->db->where('return_quantity', 0);
+      }
     $query = $this->db->get();
 
     if ($query->num_rows() > 0) {
@@ -375,6 +378,7 @@ class Borrow_model extends CI_Model {
     $this->db->from('item_borrow_detail ibd');
     $this->db->join('items i', 'ibd.item_id = i.item_id');
     $this->db->where('ibd.borrow_id', $id);
+    $this->db->where('ibd.return_quantity', 0);
     $this->db->where('i.cat_id', 34);
     $query = $this->db->get();
 
@@ -689,15 +693,16 @@ class Borrow_model extends CI_Model {
     }
   }
 
-  public function getBorrowedItemCheck($uid) {
+  public function getExistingSoftware($uid) {
     $this->db->select('ibd.item_id');
     $this->db->from('item_borrow ib');
     $this->db->join('item_borrow_detail ibd', 'ibd.borrow_id = ib.borrow_id');
     $this->db->join('items i', 'ibd.item_id = i.item_id');
     $this->db->where('ib.taken_by_uid', $uid);
     $this->db->where('i.cat_id', 34);
+    $this->db->where('i.software_category_id is not NULL');
     $result = $this->db->get();
-    return $result->result_array();
+    return $result->result();
   }
 }
 

@@ -130,16 +130,16 @@ class Borrow extends CI_Controller {
 
       $inventory = $this->inventory_model->get_inventory_by_item($dataBorrow['item_id']);
 
-      $item_borrow = $this->borrow_model->getBorrowedItemCheck($dataBorrow['taken_by_uid']);
-      if (!$item_borrow) {
-        if ($inventory && $inventory->inventory_quantity != 0) {
-          $dataItem['inventory_quantity'] = $inventory->inventory_quantity -  1;
-          $this->inventory_model->update_inventory($dataItem,$dataBorrow['item_id']);
-        }else {
-          $message = '<div class="alert alert-danger">Item Out Stock!</div>';
-          $this->session->set_flashdata('message', $message);
-          redirect(base_url('borrow/add'));
-        }
+      // $item_borrow = $this->borrow_model->getBorrowedItemCheck($dataBorrow['taken_by_uid']);
+      // if (!$item_borrow) {
+        // if ($inventory && $inventory->inventory_quantity != 0) {
+        //   $dataItem['inventory_quantity'] = $inventory->inventory_quantity -  1;
+        //   $this->inventory_model->update_inventory($dataItem,$dataBorrow['item_id']);
+        // }else {
+        //   $message = '<div class="alert alert-danger">Item Out Stock!</div>';
+        //   $this->session->set_flashdata('message', $message);
+        //   redirect(base_url('borrow/add'));
+        // }
   
         $borrow_id = $this->borrow_model->saveBorrow($dataBorrow);
         if ($borrow_id) {
@@ -147,7 +147,20 @@ class Borrow extends CI_Controller {
           $item_id = $this->input->post('item_id',true);
           $quantities = $this->input->post('quantities',true);
           $end_date = $this->input->post('end_date',true);
-  
+
+          $existingSoftwares = $this->borrow_model->getExistingSoftware($dataBorrow['taken_by_uid']);
+          if (!empty($existingSoftwares)) {
+            foreach ($existingSoftwares as $existingSoftware) {
+              $existingRow[] = $existingSoftware->item_id;
+            }
+          }
+          $softwareDuplicate = array_intersect($item_id, $existingRow);
+
+          if ($softwareDuplicate){
+            echo "duplikat";
+          }
+          
+          die;
           for ($i=0; $i < sizeof($item_id); $i++) {
             $inventory = $this->inventory_model->get_inventory_by_item($item_id[$i]);
             if ($inventory && $inventory->inventory_quantity >= $quantities[$i]) {
@@ -181,11 +194,11 @@ class Borrow extends CI_Controller {
           $this->session->set_flashdata('message', $message);
           redirect(base_url('borrow/add'));
         }
-      } else {
-        $message = '<div class="alert alert-danger">This user has been assign the licensed software!</div>';
-          $this->session->set_flashdata('message', $message);
-          redirect(base_url('borrow/add'));
-      }
+      // } else {
+      //   $message = '<div class="alert alert-danger">This user has been assign the licensed software!</div>';
+      //     $this->session->set_flashdata('message', $message);
+      //     redirect(base_url('borrow/add'));
+      // }
       //   for($i = 0; $i < sizeof($item_borrow); $i++) {
       //     if ($item_borrow[$i] == $dataBorrow['item_id']) {
       //       echo 'duplikat';
@@ -545,7 +558,7 @@ class Borrow extends CI_Controller {
 
     $data['borrow'] = $this->borrow_model->get_view_borrow($id);
     if (isset($data['borrow']) && sizeof($data['borrow']) > 0) {
-      $data['borrow_details'] = $this->borrow_model->get_borrow_details($id);
+      $data['borrow_details'] = $this->borrow_model->get_borrow_details($id, TRUE);
       $data['software'] = $this->borrow_model->get_software_details($id);
       $data['content'] = $this->load->view('content/borrow_details', $data, TRUE);
       $data['footer'] = $this->load->view('footer/footer', '', TRUE);
@@ -581,7 +594,7 @@ class Borrow extends CI_Controller {
       redirect(base_url('borrow'));
     }
     // var_dump($data['borrow']);
-    $data['borrow_details'] = $this->borrow_model->get_borrow_details($id);
+    $data['borrow_details'] = $this->borrow_model->get_borrow_details($id, 'print');
     $data['software'] = $this->borrow_model->get_software_details($id);
     $data['content'] = $this->load->view('content/borrow_details_print', $data, TRUE);
     $data['footer'] = $this->load->view('footer/footer', '', TRUE);
