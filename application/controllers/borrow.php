@@ -157,7 +157,9 @@ class Borrow extends CI_Controller {
           $softwareDuplicate = array_intersect($item_id, $existingRow);
 
           if ($softwareDuplicate){
-            echo "duplikat";
+            $message = '<div class="alert alert-danger">This user has been assign the licensed software!</div>';
+            $this->session->set_flashdata('message', $message);
+            redirect(base_url('borrow/add'));
           }
           
           die;
