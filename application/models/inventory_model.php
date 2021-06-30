@@ -821,4 +821,39 @@ class Inventory_model extends CI_Model {
 			$query = $this->db->query($sql); 
     }
 
+    public function get_inventory_data() {
+        $this->db->select('
+        it.item_id, 
+        it.item_code, 
+        it.item_name, 
+        it.service_tag, 
+        it.express_service, 
+        it.computer_name,
+        ma.manufacture_desc, 
+        inv.inventory_quantity, 
+        inv.alert_qtt, 
+        mt.machine_type_desc, 
+        mo.model_desc, 
+        os.operating_system_desc, 
+        p.processor_type, 
+        me.memory_size, 
+        hd.hard_disk_size 
+    ')
+    ->join('tbl_measurement tm', 'tm.measurement_id = it.measurement_id', 'left')
+    ->join('category c', 'it.cat_id = c.cat_id', 'left')
+    ->join('machine_type mt', 'it.machine_type = mt.machine_type_id', 'left')
+    ->join('manufacture ma', 'it.manufacture = ma.manufacture_id', 'left')
+    ->join('model mo', 'it.model = mo.model_id', 'left')
+    ->join('operating_system os', 'it.operating_system = os.operating_system_id', 'left')
+    ->join('processor p', 'it.processor = p.processor_id', 'left')
+    ->join('memory me', 'it.memory = me.memory_id', 'left')
+    ->join('hard_disk hd', 'it.hdd = hd.hard_disk_id', 'left')
+    ->join('vga v', 'it.vga = v.vga_id', 'left')
+    ->join('inventory inv', 'inv.item_id = it.item_id');
+    $this->db->limit(10, 0);
+    $this->db->where('it.accessories =', 0);
+    $query = $this->db->get('items it');
+    return $query->result();
+    }
+
 }

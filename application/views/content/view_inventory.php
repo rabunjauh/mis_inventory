@@ -145,6 +145,7 @@
     </div>
 
   </div>
+
 </div>
 
 <script>
@@ -197,4 +198,5 @@ function submitFilter() {
   location.replace(url);
 
 }
+
 </script>

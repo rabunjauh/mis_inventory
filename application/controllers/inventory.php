@@ -14,33 +14,39 @@ class Inventory extends CI_Controller {
     public function index()
     {
         $data = array();
-        $config = array();
-        $config["base_url"] = base_url() . "inventory/index";
-        $total_row = $this->inventory_model->record_count_inventory('stock');
-        $config["total_rows"] = $total_row;
-        $config["per_page"] = 10;
-        $config['num_links'] = 5;
-        $config['cur_tag_open'] = '&nbsp;<a class="current">';
-        $config['cur_tag_close'] = '</a>';
-        $config['next_link'] = 'Next';
-        $config['prev_link'] = 'Previous';
-        $config["uri_segment"] = 3;
-        $this->pagination->initialize($config);
-        if($this->uri->segment(3)){
-            $page = ($this->uri->segment(3)) ;
-        }else{
-            $page = 0;
-        }
-        $data["results"] = $this->inventory_model->fetch_data_inventory($config["per_page"], $page,'stock');
-        $str_links = $this->pagination->create_links();
-        $data["links"] = explode('&nbsp;',$str_links );
-        $data["category"] = $this->item_model->get_categories();
+        // $config = array();
+        // $config["base_url"] = base_url() . "inventory/index";
+        // $total_row = $this->inventory_model->record_count_inventory('stock');
+        // $config["total_rows"] = $total_row;
+        // $config["per_page"] = 10;
+        // $config['num_links'] = 5;
+        // $config['cur_tag_open'] = '&nbsp;<a class="current">';
+        // $config['cur_tag_close'] = '</a>';
+        // $config['next_link'] = 'Next';
+        // $config['prev_link'] = 'Previous';
+        // $config["uri_segment"] = 3;
+        // $this->pagination->initialize($config);
+        // if($this->uri->segment(3)){
+        //     $page = ($this->uri->segment(3)) ;
+        // }else{
+        //     $page = 0;
+        // }
+        // $data["results"] = $this->inventory_model->fetch_data_inventory($config["per_page"], $page,'stock');
+        // $str_links = $this->pagination->create_links();
+        // $data["links"] = explode('&nbsp;',$str_links );
+        // $data["category"] = $this->item_model->get_categories();
         $data['header'] = $this->load->view('header/head', '', TRUE);
         $data['navigation'] = $this->load->view('header/navigation', $data, TRUE);
         $data['inventory'] = $this->inventory_model->index();
         $data['content'] = $this->load->view('content/view_inventory_stock', $data, TRUE);
         $data['footer'] = $this->load->view('footer/footer', '', TRUE);
         $this->load->view('main', $data);
+    }
+
+    public function get_inventory() {
+        $data = $this->inventory_model->get_inventory_data();
+        // var_dump($data);
+        echo json_encode($data);
     }
 
     public function filter_stock(){

@@ -42,8 +42,31 @@
                       <th>Alert Qtt.</th>
                   </tr>
               </thead>
-              <tbody id="t_body_inventory">
-                  
+              <tbody>
+                  <?php if (!empty($results)): ?>
+                      <?php foreach ($results as $item): ?>
+                          <tr class="<?=($item->inventory_quantity <= $item->alert_qtt)?'danger':''; ?>">
+                              <td><?=$item->item_code; ?></td>
+                              <td><?=$item->item_name; ?></td>
+                              <td><?php echo $item->service_tag ?></td>
+                              <td><?php echo $item->express_service ?></td>
+                              <td><?php echo $item->machine_type_desc ?></td>
+                              <td><?php echo $item->manufacture_desc ?></td>
+                              <td><?php echo $item->model_desc ?></td>
+                              <td><?php echo $item->operating_system_desc ?></td>
+                              <td><?php echo $item->processor_type ?></td>
+                              <td><?php echo $item->memory_size ?></td>
+                              <td><?php echo $item->hard_disk_size ?></td>
+                              <td><?php echo $item->computer_name ?></td>
+                              <td><?=$item->inventory_quantity; ?></td>
+                              <td><?=$item->alert_qtt; ?></td>
+                          </tr>
+                      <?php endforeach; ?>
+                  <?php else: ?>
+                      <tr>
+                          <td colspan="14"> No Data </td>
+                      </tr>
+                  <?php endif; ?>
               </tbody>
               <tfoot>
                   <tr>
@@ -146,43 +169,6 @@
 </div>
 
 <script>
-window.addEventListener('load', async function() {
-    const inventories = await getInventory();
-    wrapData(inventories);
-});
-
-function getInventory() {
-  return fetch('<?= base_url('inventory/get_inventory'); ?>')
-    .then(response => response.json());
-}
-
-function wrapData(inventories){
-  const tBodyInventory = document.getElementById('t_body_inventory');
-  let rows = '';
-  inventories.forEach(inventory => {
-  rows += `<tr>
-            <td>${inventory.item_code}</td>
-            <td>${inventory.item_name}</td>
-            <td>${inventory.service_tag}</td>
-            <td>${inventory.express_service}</td>
-            <td>${inventory.machine_type_desc}</td>
-            <td>${inventory.manufacture_desc}</td>
-            <td>${inventory.model_desc}</td>
-            <td>${inventory.operating_system_desc}</td>
-            <td>${inventory.processor_type}</td>
-            <td>${inventory.memory_size}</td>
-            <td>${inventory.hard_disk_size}</td>
-            <td>${inventory.computer_name}</td>
-            <td>${inventory.inventory_quantity}</td>
-            <td>${inventory.alert_qtt}</td>
-          </tr>`;
-  });
-
-  tBodyInventory.innerHTML = rows;
-}
-
-
-
 function submitFilter() {
   var cat = $( "[name='cat_id']" ).val();
   var search_type = $( "#search_type" ).val() ;
