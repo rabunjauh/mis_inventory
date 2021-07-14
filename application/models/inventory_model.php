@@ -821,7 +821,7 @@ class Inventory_model extends CI_Model {
 			$query = $this->db->query($sql); 
     }
 
-    public function get_inventory_data() {
+    public function get_inventory_data($limit) {
         $this->db->select('
         it.item_id, 
         it.item_code, 
@@ -850,10 +850,18 @@ class Inventory_model extends CI_Model {
     ->join('hard_disk hd', 'it.hdd = hd.hard_disk_id', 'left')
     ->join('vga v', 'it.vga = v.vga_id', 'left')
     ->join('inventory inv', 'inv.item_id = it.item_id');
-    $this->db->limit(10, 0);
-    $this->db->where('it.accessories =', 0);
+    $this->db->limit($limit, 0);
+$this->db->where('it.accessories =', 0);
     $query = $this->db->get('items it');
     return $query->result();
+    }
+
+    public function count_inventory() {
+        $this->db->select('inventory.item_id');
+        $this->db->join('inventory', 'items.item_id = inventory.item_id');
+        $query = $this->db->get('items');
+        return $query->num_rows();
+
     }
 
 }

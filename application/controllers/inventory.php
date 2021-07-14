@@ -43,10 +43,18 @@ class Inventory extends CI_Controller {
         $this->load->view('main', $data);
     }
 
-    public function get_inventory() {
-        $data = $this->inventory_model->get_inventory_data();
-        // var_dump($data);
+    public function get_inventory($limit) {
+        $data = $this->inventory_model->get_inventory_data($limit);
         echo json_encode($data);
+    }
+
+    public function count_inventory() {
+        $data = $this->inventory_model->count_inventory();
+        echo json_encode($data);
+    }
+
+    public function inventory_pagination(){
+        
     }
 
     public function filter_stock(){

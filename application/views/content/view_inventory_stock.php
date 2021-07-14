@@ -21,6 +21,9 @@
       </div>
     <?php endif; ?>
   </div><!-- /.box-header -->
+  <div>
+      <p><span id="data-count"></span></p>
+  </div>
   <div class="box-body table-responsive">
       <div style="overflow-x:auto;">
           <table id="example" class="table table-bordered table-striped">
@@ -65,9 +68,7 @@
               </tfoot>
           </table>
           <ul class="pagination">
-              <?php foreach ($links as $link) {
-                  echo "<li>". $link."</li>";
-              } ?>
+            
           </ul>
       </div>
   </div><!-- /.box-body -->
@@ -146,13 +147,103 @@
 </div>
 
 <script>
+// window.addEventListener('load', async function() {
+//     const inventories = await getInventory();    
+//     wrapData(inventories);
+// });
+
+// function getInventory() {
+//   return fetch('<?= base_url('inventory/get_inventory'); ?>')
+//     .then(response => response.json());
+// }
+
+// function wrapData(inventories){
+//   const tBodyInventory = document.getElementById('t_body_inventory');
+//   let rows = '';
+//   inventories.forEach(inventory => {
+//   rows += `<tr>
+//             <td>${inventory.item_code}</td>
+//             <td>${inventory.item_name}</td>
+//             <td>${inventory.service_tag}</td>
+//             <td>${inventory.express_service}</td>
+//             <td>${inventory.machine_type_desc}</td>
+//             <td>${inventory.manufacture_desc}</td>
+//             <td>${inventory.model_desc}</td>
+//             <td>${inventory.operating_system_desc}</td>
+//             <td>${inventory.processor_type}</td>
+//             <td>${inventory.memory_size}</td>
+//             <td>${inventory.hard_disk_size}</td>
+//             <td>${inventory.computer_name}</td>
+//             <td>${inventory.inventory_quantity}</td>
+//             <td>${inventory.alert_qtt}</td>
+//           </tr>`;
+//   });
+
+//   tBodyInventory.innerHTML = rows;
+// }
+
+
 window.addEventListener('load', async function() {
-    const inventories = await getInventory();
+    const currentPage = 1;
+    const perPage = 10;
+    const countInventories = await getCountInventory();
+    const allPage = Math.ceil(countInventories / perPage);    
+    const url = '<?= base_url('inventory/get_inventory') ?>';
+    const totalRow = document.getElementById('data-count');
+    spanText = document.createTextNode('Total Data: ')
+    totalRow.append(spanText);
+    totalRow.append(countInventories);
+    // console.log(inventories);  
+    // console.log(countInventories);  
+    
+
+    // Pagination Navigation
+    const paginationElement = document.querySelector('.pagination');
+    let page = '';
+    let pageUrl = '';
+    
+    page += `<li>
+              <a href='' aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>`;
+    
+    // for (let i = 1; i <= (allPage - allPage) + 5 ; i++) {
+    //   // currentPage = i;
+    //   // let pageUrl = `${url}/${(i * perPage) - perPage}`;
+    //   // if ()
+    //   page += `
+    //     <li><a href=${pageUrl}>${i}</a></li>
+    //   `;
+    // }
+
+    
+    
+    page +=`<li>
+              <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+          </li>`;
+          
+    paginationElement.innerHTML = page;
+    if (pageUrl){
+      url = pageUrl;
+    }
+
+    const inventories = await getInventory(perPage, url);
     wrapData(inventories);
 });
 
-function getInventory() {
-  return fetch('<?= base_url('inventory/get_inventory'); ?>')
+function getInventory(perPage, url) {
+  // let url = '';
+  // url += '<?= base_url('inventory/get_inventory'); ?>';
+  url += '/' + perPage;
+  return fetch(url)
+    .then(response => response.json());
+}
+
+function getCountInventory() {
+ return fetch('<?= base_url('inventory/count_inventory/'); ?>')
     .then(response => response.json());
 }
 
@@ -180,6 +271,10 @@ function wrapData(inventories){
 
   tBodyInventory.innerHTML = rows;
 }
+
+window.addEventListener('click', function(e) {
+  console.log(e);
+});
 
 
 
